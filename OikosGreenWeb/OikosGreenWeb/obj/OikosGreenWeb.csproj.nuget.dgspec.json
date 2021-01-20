@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj": {}
+    "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj": {}
   },
   "projects": {
-    "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj": {
+    "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj",
+        "projectUniqueName": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj",
         "projectName": "OikosGreenWeb",
-        "projectPath": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj",
-        "packagesPath": "C:\\Users\\juan1\\.nuget\\packages\\",
-        "outputPath": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\obj\\",
+        "projectPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\OikosGreenWeb.csproj",
+        "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
+        "outputPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreenWeb\\OikosGreenWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\juan1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ancou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.devexpress.com/Fm85OzitfsWGO8nGKcDlTn3GVcXiwjkaoxpNkDWQ448nt8uGzM/api": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
@@ -44,6 +44,10 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[5.5.2, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[3.2.1, )"
@@ -57,6 +61,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.2.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.11.7, )"
             },
             "System.Net.Http.Json": {
               "target": "Package",
