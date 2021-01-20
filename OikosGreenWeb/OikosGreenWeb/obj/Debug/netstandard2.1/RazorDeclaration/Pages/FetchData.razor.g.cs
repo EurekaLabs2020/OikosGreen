@@ -75,6 +75,13 @@ using OikosGreenWeb.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+using Blazorise;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/fetchdata")]
     public partial class FetchData : Microsoft.AspNetCore.Components.ComponentBase
     {

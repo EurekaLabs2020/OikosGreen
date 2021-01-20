@@ -72,6 +72,13 @@ using OikosGreenWeb.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+using Blazorise;
+
+#line default
+#line hidden
+#nullable disable
     public partial class App : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
