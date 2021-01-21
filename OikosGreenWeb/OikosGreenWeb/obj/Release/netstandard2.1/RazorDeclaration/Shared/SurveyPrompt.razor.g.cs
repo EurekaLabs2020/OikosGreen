@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace OikosGreenWeb
+namespace OikosGreenWeb.Shared
 {
     #line hidden
     using System;
@@ -75,20 +75,23 @@ using OikosGreenWeb.Shared;
 #line default
 #line hidden
 #nullable disable
+    public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
+    {
+        #pragma warning disable 1998
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
+        {
+        }
+        #pragma warning restore 1998
 #nullable restore
-#line 11 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
-using Blazorise;
+#line 12 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\Shared\SurveyPrompt.razor"
+       
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
 
 #line default
 #line hidden
 #nullable disable
-    public partial class _Imports : System.Object
-    {
-        #pragma warning disable 1998
-        protected void Execute()
-        {
-        }
-        #pragma warning restore 1998
     }
 }
 #pragma warning restore 1591

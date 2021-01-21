@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace OikosGreenWeb
+namespace OikosGreenWeb.Pages.Login
 {
     #line hidden
     using System;
@@ -75,17 +75,11 @@ using OikosGreenWeb.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 11 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
-using Blazorise;
-
-#line default
-#line hidden
-#nullable disable
-    public partial class _Imports : System.Object
+    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
+    public partial class LoginComponent : LoginComponentBase
     {
         #pragma warning disable 1998
-        protected void Execute()
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998

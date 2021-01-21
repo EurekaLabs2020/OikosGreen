@@ -13,63 +13,63 @@ namespace OikosGreenWeb.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 1 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 2 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 3 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 4 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 5 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 6 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 7 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 8 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using OikosGreenWeb;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
+#line 9 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
 using OikosGreenWeb.Shared;
 
 #line default
@@ -90,7 +90,7 @@ using Blazorise;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\Shared\SurveyPrompt.razor"
+#line 12 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\Shared\SurveyPrompt.razor"
        
     // Demonstrates how a parent component can supply parameters
     [Parameter]

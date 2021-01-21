@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace OikosGreenWeb
+namespace OikosGreenWeb.Shared
 {
     #line hidden
     using System;
@@ -75,20 +75,28 @@ using OikosGreenWeb.Shared;
 #line default
 #line hidden
 #nullable disable
+    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+    {
+        #pragma warning disable 1998
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
+        {
+        }
+        #pragma warning restore 1998
 #nullable restore
-#line 11 "C:\wamp\www\Eureka\OikosGreen\OikosGreenWeb\OikosGreenWeb\_Imports.razor"
-using Blazorise;
+#line 28 "D:\Negocio\OikosGreen\OikosGreen\OikosGreenWeb\OikosGreenWeb\Shared\NavMenu.razor"
+       
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
 
 #line default
 #line hidden
 #nullable disable
-    public partial class _Imports : System.Object
-    {
-        #pragma warning disable 1998
-        protected void Execute()
-        {
-        }
-        #pragma warning restore 1998
     }
 }
 #pragma warning restore 1591
