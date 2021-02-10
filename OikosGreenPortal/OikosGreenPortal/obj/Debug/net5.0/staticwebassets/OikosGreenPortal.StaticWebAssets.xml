@@ -1,0 +1,6 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\wamp\www\Eureka\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\juan1\.nuget\packages\blazorise\0.9.2.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Bootstrap" Path="C:\Users\juan1\.nuget\packages\blazorise.bootstrap\0.9.2.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Material" Path="C:\Users\juan1\.nuget\packages\blazorise.material\0.9.2.5\build\..\staticwebassets\" />
+</StaticWebAssets>
