@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OikosGreenPortal.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Material;
 using Blazorise.Icons.Material;
+using Blazored.Modal;
 
 namespace OikosGreenPortal
 {
@@ -29,6 +29,7 @@ namespace OikosGreenPortal
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Blazorise
             services
               .AddBlazorise(options =>
               {
@@ -36,10 +37,17 @@ namespace OikosGreenPortal
               })
               .AddMaterialProviders()
               .AddMaterialIcons();
+            #endregion
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+
+            #region BlazorModal
+            services.AddBlazoredModal();
+            #endregion
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

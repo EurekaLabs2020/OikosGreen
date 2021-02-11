@@ -2,6 +2,46 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Blazored.Menu/2.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.0.0",
+          "Microsoft.AspNetCore.Components.Web": "3.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Blazored.Menu.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Blazored.Menu.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Menu.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Menu.props": {}
+        }
+      },
+      "Blazored.Modal/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
+        }
+      },
       "Blazorise/0.9.2.5": {
         "type": "package",
         "dependencies": {
@@ -207,6 +247,18 @@
           "lib/net5.0/Microsoft.JSInterop.dll": {}
         }
       },
+      "Microsoft.JSInterop.WebAssembly/3.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.JSInterop": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
+        }
+      },
       "System.IO.Pipelines/5.0.0": {
         "type": "package",
         "compile": {
@@ -219,6 +271,42 @@
     }
   },
   "libraries": {
+    "Blazored.Menu/2.0.5": {
+      "sha512": "3LA7WtrloGFNJ4C0VidEY1+tZzeeqNA4qficho22zh1e+4j+1inVJGhvBGjyVw/gKB2HY2hNFJiCxE37dpqSfg==",
+      "type": "package",
+      "path": "blazored.menu/2.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.menu.2.0.5.nupkg.sha512",
+        "blazored.menu.nuspec",
+        "build/Blazored.Menu.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Menu.props",
+        "buildTransitive/Blazored.Menu.props",
+        "lib/netstandard2.0/Blazored.Menu.dll",
+        "staticwebassets/blazored-menu.css"
+      ]
+    },
+    "Blazored.Modal/6.0.1": {
+      "sha512": "a7FwVYU2nDL6MBvtBnkp8GSLTEdZU4eKcN8ZcfhQNh4tFwGRKsIvz9jN+6eIEGV1PdI2rbzHkif/igyOcfC8Zg==",
+      "type": "package",
+      "path": "blazored.modal/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.modal.6.0.1.nupkg.sha512",
+        "blazored.modal.nuspec",
+        "build/Blazored.Modal.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Modal.props",
+        "buildTransitive/Blazored.Modal.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Modal.dll",
+        "staticwebassets/blazored-modal.css",
+        "staticwebassets/blazored.modal.js"
+      ]
+    },
     "Blazorise/0.9.2.5": {
       "sha512": "Y/KLnzOSzUDqWcsr5/jv2WimTo8TBrI8rLm/5MR46TlQ7VWIHKdR9mBI0kbdAAtdvQ6AuGbP7rLFI1jbfNolFA==",
       "type": "package",
@@ -519,6 +607,21 @@
         "microsoft.jsinterop.nuspec"
       ]
     },
+    "Microsoft.JSInterop.WebAssembly/3.2.1": {
+      "sha512": "wYKx4YeBTnv1bzKZtdsWH0O9OmmYm7zq56QkKCUdl1hDg4Gn0lmCDfYBC0r1k5/Wh64IveuWwpkyTWjqCmp4pg==",
+      "type": "package",
+      "path": "microsoft.jsinterop.webassembly/3.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll",
+        "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.xml",
+        "microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512",
+        "microsoft.jsinterop.webassembly.nuspec"
+      ]
+    },
     "System.IO.Pipelines/5.0.0": {
       "sha512": "irMYm3vhVgRsYvHTU5b2gsT2CwT/SMM6LZFzuJjpIvT5Z4CshxNsaoBC1X/LltwuR3Opp8d6jOS/60WwOb7Q2Q==",
       "type": "package",
@@ -548,38 +651,40 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Blazored.Menu >= 2.0.5",
+      "Blazored.Modal >= 6.0.1",
       "Blazorise >= 0.9.2.5",
       "Blazorise.Icons.Material >= 0.9.2.5",
       "Blazorise.Material >= 0.9.2.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\juan1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ancou\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectUniqueName": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
-      "projectPath": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "packagesPath": "C:\\Users\\juan1\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp\\www\\Eureka\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+      "projectPath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\juan1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ancou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.devexpress.com/Fm85OzitfsWGO8nGKcDlTn3GVcXiwjkaoxpNkDWQ448nt8uGzM/api": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -597,6 +702,14 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Blazored.Menu": {
+            "target": "Package",
+            "version": "[2.0.5, )"
+          },
+          "Blazored.Modal": {
+            "target": "Package",
+            "version": "[6.0.1, )"
+          },
           "Blazorise": {
             "target": "Package",
             "version": "[0.9.2.5, )"
