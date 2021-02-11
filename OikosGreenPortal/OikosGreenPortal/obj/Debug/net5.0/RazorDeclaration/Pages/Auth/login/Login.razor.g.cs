@@ -110,7 +110,13 @@ using Blazored.Modal.Services;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
+#nullable restore
+#line 19 "C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Pages.Auth.login;
+
+#line default
+#line hidden
+#nullable disable
     public partial class Login : LoginBase
     {
         #pragma warning disable 1998
