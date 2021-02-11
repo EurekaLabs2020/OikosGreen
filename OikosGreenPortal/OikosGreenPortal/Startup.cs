@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazorise;
+using Blazorise.Material;
+using Blazorise.Icons.Material;
 
 namespace OikosGreenPortal
 {
@@ -26,6 +29,13 @@ namespace OikosGreenPortal
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+              .AddBlazorise(options =>
+              {
+                  options.ChangeTextOnKeyPress = true; // optional
+              })
+              .AddMaterialProviders()
+              .AddMaterialIcons();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -49,6 +59,9 @@ namespace OikosGreenPortal
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.ApplicationServices
+              .UseMaterialProviders()
+              .UseMaterialIcons();
 
             app.UseEndpoints(endpoints =>
             {
