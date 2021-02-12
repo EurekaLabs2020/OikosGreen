@@ -1,0 +1,55 @@
+﻿
+<div class="pop-up-form">
+    <div>
+        <label><h3>@titulo</h3></label>
+    </div>
+    <div>
+        <p>
+            @foreach (var linea in contenido.Split("&s"))
+            {
+                @linea
+                <br />
+            }
+        </p>
+    </div>
+    @if (titulo.ToUpper().Trim() == "CONFIRMACION")
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <button @onclick="BlazoredModal.CloseAsync" class="btn btn-warning btn-block">SI</button>
+            </div>
+            <div class="col-md-6">
+                <button @onclick="BlazoredModal.CancelAsync" class="btn btn-danger btn-block">NO</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <button @onclick="BlazoredModal.CloseAsync" class="btn btn-success btn-block">OK</button>
+    }
+    @if (!String.IsNullOrEmpty(Mensaje))
+    {
+        <div class="row" style="text-align:left; font-weight:bold">
+            <span>
+                @foreach (String mensaje in Mensaje.Split("&s"))
+                {
+                    @mensaje
+                    <br />
+                }
+            </span>
+        </div>
+    }
+</div>
+
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
+    [Parameter] public String titulo { get; set; }
+    [Parameter] public String contenido { get; set; }
+    private String Mensaje { get; set; } = "";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}

@@ -16,6 +16,7 @@ using Blazored.Modal;
 using Microsoft.AspNetCore.Components.Authorization;
 using OikosGreenPortal.Helpers;
 using System.Net.Http;
+using Blazored.LocalStorage;
 
 namespace OikosGreenPortal
 {
@@ -52,7 +53,10 @@ namespace OikosGreenPortal
             #region HttpClient
             services.AddScoped<HttpClient>();
             #endregion
-
+            #region LocalStorage
+            services.AddBlazoredLocalStorage();
+            services.AddBlazoredLocalStorage(Config => Config.JsonSerializerOptions.WriteIndented = true);
+            #endregion
 
         }
 
