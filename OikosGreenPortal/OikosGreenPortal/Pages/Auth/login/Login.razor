@@ -8,14 +8,14 @@
                 <img src="img/short-logo.jpeg" class="short-logo-login-oikos" alt="Alternate Text" />
                 <h2>Ingresar</h2>
                 <Field>
-                    <TextEdit Placeholder="Usuario" Role="TextRole.Email" />
+                    <TextEdit Placeholder="Usuario" Role="TextRole.Email" Text="@usuario"/>
                 </Field>
 
                 <Field>
                     <TextEdit Placeholder="Contraseña" Role="TextRole.Password" />
                 </Field>
 
-                <Button Color="Color.Primary" Block="true">Ingresar</Button>
+                <Button Color="Color.Primary" Block="true" @onclick="Logueo">Ingresar</Button>
             </div>
         </div>
         <div class="col-md-8 align-items-center bg-login-right">

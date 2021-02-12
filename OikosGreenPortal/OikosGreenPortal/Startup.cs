@@ -15,6 +15,7 @@ using Blazorise.Icons.Material;
 using Blazored.Modal;
 using Microsoft.AspNetCore.Components.Authorization;
 using OikosGreenPortal.Helpers;
+using System.Net.Http;
 
 namespace OikosGreenPortal
 {
@@ -40,17 +41,19 @@ namespace OikosGreenPortal
               .AddMaterialProviders()
               .AddMaterialIcons();
             #endregion
-
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
             #region BlazorModal
             services.AddBlazoredModal();
             #endregion
-
             #region Autenticacion Personalizada
             services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
             #endregion
+            #region HttpClient
+            services.AddScoped<HttpClient>();
+            #endregion
+
+
         }
 
 

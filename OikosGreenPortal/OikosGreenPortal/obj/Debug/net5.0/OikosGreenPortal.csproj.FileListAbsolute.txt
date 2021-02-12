@@ -59,3 +59,4 @@ C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGree
 C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Menu.dll
 C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Modal.dll
 C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\ancou\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Newtonsoft.Json.dll

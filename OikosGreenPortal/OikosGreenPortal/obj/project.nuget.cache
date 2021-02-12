@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vM+2TWY9NIgimSlAK/kT2MGcVGCRYQrMlHmJG0685Tt2ww/yYPo5bZawbhDKHBXyITFWMhT6SgE+MwM75wTJDA==",
+  "dgSpecHash": "lTraj3FHSmwGgoevnX2m+0FOuFbM7v3nM9K7oh1ESbFYgZ4tlVfMXNg6PxozrkHuzNmre3RmBjIkS0PxjuhYUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\ancou\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\ancou\\.nuget\\packages\\microsoft.jsinterop\\5.0.0\\microsoft.jsinterop.5.0.0.nupkg.sha512",
     "C:\\Users\\ancou\\.nuget\\packages\\microsoft.jsinterop.webassembly\\3.2.1\\microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512",
+    "C:\\Users\\ancou\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\ancou\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512"
   ],
   "logs": []
