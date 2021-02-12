@@ -69,7 +69,7 @@ namespace OikosGreenPortal.Pages.Auth.login
                     {
                         ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(token.responseLogin);
                         await _storage.SetAsync("data", token.responseLogin);
-                        _navegacion.NavigateTo("~/", true);
+                        _navegacion.NavigateTo("/", true);
                     }
                 }
                 else
