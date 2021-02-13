@@ -1,8 +1,8 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\bundle\" />
-  <ContentRoot BasePath="_content/Blazored.Menu" Path="C:\Users\ancou\.nuget\packages\blazored.menu\2.0.5\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\ancou\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\ancou\.nuget\packages\blazorise\0.9.2.5\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazorise.Bootstrap" Path="C:\Users\ancou\.nuget\packages\blazorise.bootstrap\0.9.2.5\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Blazorise.Material" Path="C:\Users\ancou\.nuget\packages\blazorise.material\0.9.2.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Blazored.Menu" Path="C:\Users\wilder.valencia\.nuget\packages\blazored.menu\2.0.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\wilder.valencia\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\wilder.valencia\.nuget\packages\blazorise\0.9.2.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Bootstrap" Path="C:\Users\wilder.valencia\.nuget\packages\blazorise.bootstrap\0.9.2.5\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Material" Path="C:\Users\wilder.valencia\.nuget\packages\blazorise.material\0.9.2.5\build\..\staticwebassets\" />
 </StaticWebAssets>
