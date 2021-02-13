@@ -145,7 +145,7 @@ using OikosGreenPortal.Helpers;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/catalogo/opción")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/catalogo/opcion")]
     public partial class Opcion : OpcionBase
     {
         #pragma warning disable 1998
