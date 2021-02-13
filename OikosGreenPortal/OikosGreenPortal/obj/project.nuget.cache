@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v7A7tsdE9/UDer+q/c9Z1YSCnfns/PFtKS6l2s+JeuXOd+qP/g3LgmUelXw1xKgBH9Xct+AQ2qTyChOThNNzFA==",
+  "dgSpecHash": "8gdEAK83rEmAbhfAcbiSI+IVeJQ1PHP7ALlNdpCWKZCf5Xm1t33PjcRWt9EFt/eYCmmKfdIY7ANgl/WBZlMHUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+  "projectFilePath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ancou\\.nuget\\packages\\blazored.localstorage\\3.0.0\\blazored.localstorage.3.0.0.nupkg.sha512",
     "C:\\Users\\ancou\\.nuget\\packages\\blazored.menu\\2.0.5\\blazored.menu.2.0.5.nupkg.sha512",

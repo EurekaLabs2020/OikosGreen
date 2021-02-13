@@ -7,7 +7,10 @@ namespace OikosGreenPortal.PersonalClass
 {
     public static class Urls
     {
-        public static String urlbase { get; set; } = "http://201.236.221.195:8080/api/";
+        public static String urlbase { get; set; } = "http://oikosgreen.com.co:82/api/";
         public static String urllogin { get { return urlbase + "Account/Login"; } }
+        public static String urlmenu { get { return urlbase + "menu/select"; } }
+
+
     }
 }

@@ -7,15 +7,17 @@
             <div id="login">
                 <img src="img/short-logo.jpeg" class="short-logo-login-oikos" alt="Alternate Text" />
                 <h2>Ingresar</h2>
-                <Field>
-                    <TextEdit Placeholder="Usuario" Role="TextRole.Email" @bind-Text="@_login.user"/>
-                </Field>
+                <Form>
+                    <Field>
+                        <TextEdit Placeholder="Usuario" Role="TextRole.Email" @bind-Text="@_login.user" />
+                    </Field>
 
-                <Field>
-                    <TextEdit Placeholder="Contraseña" Role="TextRole.Password" @bind-Text="@_login.password" />
-                </Field>
+                    <Field>
+                        <TextEdit Placeholder="Contraseña" Role="TextRole.Password" @bind-Text="@_login.password" />
+                    </Field>
 
-                <Button Color="Color.Primary" Block="true" Clicked="Logueo">Ingresar</Button>
+                    <Button Color="Color.Primary" Block="true" Clicked="Logueo">Ingresar</Button>
+                </Form>
             </div>
         </div>
         <div class="col-md-8 align-items-center bg-login-right">

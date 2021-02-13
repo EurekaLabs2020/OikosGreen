@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {}
+    "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {
+    "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+        "projectUniqueName": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
         "projectName": "OikosGreenPortal",
-        "projectPath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+        "projectPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
         "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ancou\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+        "outputPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

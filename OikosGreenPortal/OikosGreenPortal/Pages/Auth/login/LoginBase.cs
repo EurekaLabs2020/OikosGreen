@@ -23,35 +23,15 @@ namespace OikosGreenPortal.Pages.Auth.login
         [Inject] IModalService _modal { get; set; }
         [Inject] public AuthenticationStateProvider _autenticacion { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
-        [Inject] public NavigationManager _navegacion { get; set; }
 
 
         public LoginSend _login { get; set; }
-
-        private Task<AuthenticationState> authenticationStateTask { get; set; }
-        private string _authMessage;
 
 
         protected async override Task OnInitializedAsync()
         {
             _login = new LoginSend();
-            _login.user = _login.password = "";
-            await Task.Delay(1);
-        }
-
-        private async Task LogUsername()
-        {
-            var authState = await authenticationStateTask;
-            var user = authState.User;
-
-            if (user.Identity.IsAuthenticated)
-            {
-                _authMessage = $"{user.Identity.Name} is authenticated.";
-            }
-            else
-            {
-                _authMessage = "The user is NOT authenticated.";
-            }
+            _login.user = _login.password = "";            
         }
 
         public async Task Logueo()
@@ -62,14 +42,15 @@ namespace OikosGreenPortal.Pages.Auth.login
                 var dato = resultado.Content.ReadAsStringAsync();
                 if (resultado.IsSuccessStatusCode)
                 {
-                    AuthRequest token = JsonConvert.DeserializeObject<AuthRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                    if(token.responseLogin==null)
-                        await General.MensajeModal("Error Autenticación", token.status.message, _modal);
+                    AuthRequest resp = JsonConvert.DeserializeObject<AuthRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if(resp.entity==null)
+                        await General.MensajeModal("Error Autenticación", resp.status.message, _modal);
                     else
                     {
-                        ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(token.responseLogin);
-                        await _storage.SetAsync("data", token.responseLogin);
-                        _navegacion.NavigateTo("/", true);
+                        //Obtenemos el Menu
+
+                        ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(resp.entity);
+                        await _storage.SetAsync("data", resp.entity);                        
                     }
                 }
                 else
