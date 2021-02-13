@@ -124,6 +124,27 @@ using OikosGreenPortal.Pages.Auth.login;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 23 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.PersonalClass;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 24 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Data.Personal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Helpers;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -132,20 +153,52 @@ using OikosGreenPortal.Pages.Auth.login;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\NavMenu.razor"
+#line 46 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\NavMenu.razor"
        
-    private bool collapseNavMenu = true;
 
+    private bool collapseNavMenu = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private List<infoMenu> _lstMenu { get; set; }
+
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
 
+
+    protected override async Task OnInitializedAsync()
+    {
+        infoBrowser userLogueado = null;
+        _lstMenu = new List<infoMenu>();
+        try
+        {
+            do{
+                var data = await _storage.GetAsync<infoBrowser>("data");
+                userLogueado = data.Value;
+            } while (userLogueado == null);
+            _lstMenu = userLogueado.menus;
+
+            if (_lstMenu == null || _lstMenu.Count == 0)
+            {
+                await General.MensajeModal("Error", "Usuario no tiene un menu asociado.", _modal);
+                ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+                //navigation.NavigateTo("/", true);
+            }
+        }catch (Exception ex){
+            await General.MensajeModal("Error", "Se presento un error obteniendo el menu del usuario.&s" + ex.Message, _modal);
+        }
+        await base.OnInitializedAsync();
+    }
+
+
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService _modal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _autenticacion { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedSessionStorage _storage { get; set; }
     }
 }
 #pragma warning restore 1591

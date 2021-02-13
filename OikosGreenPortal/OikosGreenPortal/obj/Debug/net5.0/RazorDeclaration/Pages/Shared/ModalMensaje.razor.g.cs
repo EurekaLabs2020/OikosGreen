@@ -124,6 +124,27 @@ using OikosGreenPortal.Pages.Auth.login;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 23 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.PersonalClass;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 24 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Data.Personal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Helpers;
+
+#line default
+#line hidden
+#nullable disable
     public partial class ModalMensaje : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

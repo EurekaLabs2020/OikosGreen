@@ -132,3 +132,22 @@
         display: block;
     }
 }
+
+
+/*Estilo para el Menu*/
+.menu-ek a[b-xpioe6umow], .menu-ek span[b-xpioe6umow] {
+    color: #333 !important;
+    transition: all .2s ease-out;
+    text-decoration: none !important;
+    font-size: 14px;
+}
+
+    .menu-ek a:hover[b-xpioe6umow],
+    .menu-ek span:hover[b-xpioe6umow] {
+        font-weight: 700;
+    }
+
+.menu-ek .blazored-sub-menu-header span i[b-xpioe6umow] {
+    position: absolute;
+    right: 10px;
+}

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data;
+using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
 using OikosGreenPortal.Data.Send;
 using OikosGreenPortal.Helpers;
@@ -19,7 +20,6 @@ namespace OikosGreenPortal.Pages.Auth.login
 {
     public class LoginBase: ComponentBase
     {
-        [Inject] public HttpClient _http { get; set; }
         [Inject] IModalService _modal { get; set; }
         [Inject] public AuthenticationStateProvider _autenticacion { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
@@ -38,8 +38,9 @@ namespace OikosGreenPortal.Pages.Auth.login
         {
             if(_login.user.Trim().Length>0 && _login.password.Trim().Length > 0)
             {
-                var resultado = await _http.PostAsJsonAsync(Urls.urllogin, _login);
-                var dato = resultado.Content.ReadAsStringAsync();
+                var resultado = await General.solicitudUrl<LoginSend>("", "POST", Urls.urllogin, _login);
+                //var resultado = await _http.PostAsJsonAsync(Urls.urllogin, _login);
+                //var dato = resultado.Content.ReadAsStringAsync();
                 if (resultado.IsSuccessStatusCode)
                 {
                     AuthRequest resp = JsonConvert.DeserializeObject<AuthRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
@@ -48,9 +49,22 @@ namespace OikosGreenPortal.Pages.Auth.login
                     else
                     {
                         //Obtenemos el Menu
+                        var resultadoMenu = await General.solicitudUrl<LoginSend>(resp.entity.token, "POST", Urls.urlmenu, _login);
+                        if (resultadoMenu.IsSuccessStatusCode)
+                        {
+                            var infoMenu = JsonConvert.DeserializeObject<PermissionRequest>(resultadoMenu.Content.ReadAsStringAsync().Result.ToString());
+                            // Organizar el Menu y crear el data para guardar en el browser
+                            await General.organizaMenu(infoMenu.entities);
+                            infoBrowser data = new infoBrowser();
+                            data.menus = General._retMenu;
+                            data.roles = General._retRol;
+                            data.user = resp.entity;
 
-                        ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(resp.entity);
-                        await _storage.SetAsync("data", resp.entity);                        
+                            ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(data);
+                            await _storage.SetAsync("data", data);
+                        }else
+                            await General.MensajeModal("SIN INFORMACIÓN", "El usuario que esta usando no tiene acceso al menu.&sPor favor reintenar con otro usuario.", _modal);
+
                     }
                 }
                 else
@@ -59,7 +73,7 @@ namespace OikosGreenPortal.Pages.Auth.login
                     await General.MensajeModal("Error", r.status.message, _modal);
                 }                
             }else
-                await General.MensajeModal("SIN INFORMACIÓN", "Por favor ingrese los datos del usuario.", _modal);
+                await General.MensajeModal("SIN INFORMACIÓN", "Por favor ingrese los datos del usuario.", _modal);            
         }
 
     }

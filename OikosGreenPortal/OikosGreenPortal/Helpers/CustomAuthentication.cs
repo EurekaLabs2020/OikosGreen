@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using OikosGreenPortal.PersonalClass;
 using OikosGreenPortal.Data.Request;
+using OikosGreenPortal.Data.Personal;
 
 namespace OikosGreenPortal.Helpers
 {
@@ -34,23 +35,16 @@ namespace OikosGreenPortal.Helpers
             ClaimsPrincipal user = new ClaimsPrincipal();
             try
             {
-                var datosUsuario = await _storage.GetAsync<LoginRequest>("data");
+                var datosUsuario = await _storage.GetAsync<infoBrowser>("data");
                 General.userLogueado = datosUsuario.Value;
 
-                if (General.userLogueado != null && General.userLogueado.expiration < DateTime.Now)
+                if (General.userLogueado != null && General.userLogueado.user.expiration < DateTime.Now)
                     MarkUserAsLoggedOut();
                 else
                 {
                     if (General.userLogueado != null)
                     {
-                        identity = new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, General.userLogueado.nombrefull),
-                        new Claim(ClaimTypes.SerialNumber, General.userLogueado.user),
-                        new Claim(ClaimTypes.Email, General.userLogueado.email),
-                        new Claim(ClaimTypes.MobilePhone, General.userLogueado.phone),
-                        new Claim(ClaimTypes.NameIdentifier, General.userLogueado.iduser),
-                        new Claim(ClaimTypes.SerialNumber, General.userLogueado.typedoc+"-"+General.userLogueado.numdoc)
-                    }, "apiauth_type");
+                        identity = setClaims(General.userLogueado);
                     }
                 }
                 user = new ClaimsPrincipal(identity);
@@ -58,24 +52,9 @@ namespace OikosGreenPortal.Helpers
             return await Task.FromResult(new AuthenticationState(user));
         }
 
-        public void MarKUserAsAuthenticated(String _user)
+        public void MarKUserAsAuthenticated(infoBrowser _data)
         {
-            var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, _user), }, "apiauth_type");
-            var user = new ClaimsPrincipal(identity);
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
-        }
-
-
-        public void MarKUserAsAuthenticated(LoginRequest _user)
-        {
-            var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, _user.nombrefull),
-                    new Claim(ClaimTypes.SerialNumber, _user.user.ToString()),
-                    new Claim(ClaimTypes.Email, _user.email),
-                    new Claim(ClaimTypes.MobilePhone, _user.phone),
-                    new Claim(ClaimTypes.NameIdentifier, _user.iduser),
-                    new Claim(ClaimTypes.SerialNumber, _user.typedoc+"-"+_user.numdoc)
-            }, "apiauth_type");
+            var identity = setClaims(_data); 
             var user = new ClaimsPrincipal(identity);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
@@ -86,6 +65,27 @@ namespace OikosGreenPortal.Helpers
             var identity = new ClaimsIdentity();
             var user = new ClaimsPrincipal(identity);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
+        }
+
+        private ClaimsIdentity setClaims(infoBrowser _data)
+        {
+            ClaimsIdentity identity = new ClaimsIdentity();
+            if (_data != null)
+            {
+                identity = new ClaimsIdentity(new[] {
+                            new Claim(ClaimTypes.Name, _data.user.nombrefull),
+                            new Claim(ClaimTypes.SerialNumber, _data.user.user.ToString()),
+                            new Claim(ClaimTypes.Email, _data.user.email),
+                            new Claim(ClaimTypes.MobilePhone, _data.user.phone),
+                            new Claim(ClaimTypes.NameIdentifier, _data.user.iduser),
+                            new Claim(ClaimTypes.SerialNumber, _data.user.typedoc+"-"+_data.user.numdoc)
+                    }, "apiauth_type");
+                foreach(var reg in _data.roles)
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, reg.rol));
+                }
+            }
+            return identity;
         }
 
 

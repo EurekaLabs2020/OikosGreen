@@ -60,3 +60,22 @@
         display: block;
     }
 }
+
+
+/*Estilo para el Menu*/
+.menu-ek a, .menu-ek span {
+    color: #333 !important;
+    transition: all .2s ease-out;
+    text-decoration: none !important;
+    font-size: 14px;
+}
+
+    .menu-ek a:hover,
+    .menu-ek span:hover {
+        font-weight: 700;
+    }
+
+.menu-ek .blazored-sub-menu-header span i {
+    position: absolute;
+    right: 10px;
+}

@@ -120,3 +120,9 @@ a, .btn-link {
         display: none;
     }
 }
+
+
+.blazored-menu li a,
+.blazored-menu li span {
+    color: #FFF !important;
+}
