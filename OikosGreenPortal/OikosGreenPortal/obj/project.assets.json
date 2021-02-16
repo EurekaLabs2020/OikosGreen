@@ -727,23 +727,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wilder.valencia\\.nuget\\packages\\": {},
+    "C:\\Users\\ancou\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectUniqueName": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
-      "projectPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "packagesPath": "C:\\Users\\wilder.valencia\\.nuget\\packages\\",
-      "outputPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+      "projectPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
+      "outputPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\wilder.valencia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ancou\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
