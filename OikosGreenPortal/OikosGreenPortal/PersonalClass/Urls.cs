@@ -10,6 +10,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlbase { get; set; } = "http://oikosgreen.com.co:82/api/";
         public static String urllogin { get { return urlbase + "Account/Login"; } }
         public static String urlmenu { get { return urlbase + "permission/getbyuser"; } }
+        public static String urltipoproducto_getall { get { return urlbase + "tipoproducto/getall"; } }
 
 
     }

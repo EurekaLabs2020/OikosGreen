@@ -1,0 +1,34 @@
+﻿@page "/catalogo/tipoproducto"
+
+@inherits TipoProductoIndexBase
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h2> Tipo Producto </h2>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success btn-block"> Crear</button>
+            </div>
+        </div>
+        <div class="row">
+            <DataGrid TItem="TipoProducto_data"
+                      Data="@_lista"
+                      @bind-SelectedRow="@_regActual">
+                <DataGridCommandColumn TItem="TipoProducto_data">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">Nuevo</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">Editar</Button>
+                    </EditCommandTemplate>
+                </DataGridCommandColumn>
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="#" Sortable="false" />
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)" Caption="Nombre" Editable="true" />
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="true" />
+            </DataGrid>
+        </div>
+    </div>
+
+

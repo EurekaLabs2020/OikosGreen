@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 {
-    public class TipoProductoBase : ComponentBase
+    public class CreateUpdateTipoProductoBase : ComponentBase
     {
     }
 }

@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+@inject AuthenticationStateProvider _autenticacion
+
 <div class="page">
     <AuthorizeView>
         <Authorized>
@@ -13,7 +15,7 @@
         <AuthorizeView>
             <Authorized>
                 <div class="top-row px-4">
-                    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+                    <button @onclick="LogOut">Salir</button>
                 </div>
             </Authorized>
         </AuthorizeView>
@@ -22,3 +24,13 @@
         </div>
     </div>
 </div>
+
+@code{
+
+
+    private async Task LogOut()
+    {
+        ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+    }
+
+}

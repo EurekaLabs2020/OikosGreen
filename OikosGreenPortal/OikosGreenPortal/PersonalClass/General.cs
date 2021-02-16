@@ -55,6 +55,9 @@ namespace OikosGreenPortal.PersonalClass
                         else
                             response = await solicitud.PostAsJsonAsync("", _datos);
                         break;
+                    case "GET":
+                        response = await solicitud.GetAsync("");
+                        break;
                 }
 
             }
