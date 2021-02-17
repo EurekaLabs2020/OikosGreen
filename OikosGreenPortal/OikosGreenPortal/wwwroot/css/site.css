@@ -126,3 +126,14 @@ a, .btn-link {
 .blazored-menu li span {
     color: #FFF !important;
 }
+
+.row-spacing-bottom {
+    margin-bottom: 10px;
+}
+
+.cnt-titulo {
+    padding: 11px 0;
+    text-transform: uppercase;
+    background: url(../img/OIKOS-GREEN-bg.png) center center repeat;
+    background-size: contain;
+}

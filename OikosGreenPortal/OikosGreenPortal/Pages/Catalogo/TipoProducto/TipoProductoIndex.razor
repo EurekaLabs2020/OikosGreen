@@ -3,8 +3,9 @@
 @inherits TipoProductoIndexBase
 
 
+<div class="cnt-titulo">
     <div class="container">
-        <div class="row">
+        <div class="row row-spacing-bottom">
             <div class="col-md-10">
                 <h2> Tipo Producto </h2>
             </div>
@@ -15,12 +16,7 @@
         <div class="row">
             <DataGrid TItem="TipoProducto_data"
                       Data="@_lista"
-                      @bind-SelectedRow="@_regActual"
-                      Filterable="true"
-                      FilterMethod="DataGridFilterMethod.StartsWith"
-                      ShowPager="true"
-                      PageSize="1"
-                      PreviousPageButtonTemplate="Anterior">
+                      @bind-SelectedRow="@_regActual">
                 <DataGridCommandColumn TItem="TipoProducto_data">
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked">Nuevo</Button>
