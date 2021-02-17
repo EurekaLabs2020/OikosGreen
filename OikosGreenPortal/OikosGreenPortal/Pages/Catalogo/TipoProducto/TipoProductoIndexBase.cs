@@ -9,6 +9,7 @@ using OikosGreenPortal.Data.Request;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.PersonalClass;
 using Newtonsoft.Json;
+using Blazorise.DataGrid;
 
 namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 {
@@ -19,6 +20,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
+        public PaginationTemplates<String> template { get; set; }
 
 
         protected async override Task OnInitializedAsync()
@@ -48,7 +50,14 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
         }
 
 
+        public void estilofila(TipoProducto_data reg, DataGridRowStyling style)
+        {
+            style.Background = Blazorise.Background.Light;
+        }
 
-
+        public void filaSeleccionada(TipoProducto_data reg, DataGridRowStyling style)
+        {
+            style.Style = "background: green;";
+        }
     }
 }
