@@ -132,28 +132,35 @@ using OikosGreenPortal.Pages.Auth.login;
 #line hidden
 #nullable disable
 #nullable restore
-#line 24 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.PersonalClass;
+#line 22 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Pages.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 25 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.Data.Personal;
+using OikosGreenPortal.PersonalClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 26 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.Helpers;
+using OikosGreenPortal.Data.Personal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 27 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 28 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Request;
 
 #line default

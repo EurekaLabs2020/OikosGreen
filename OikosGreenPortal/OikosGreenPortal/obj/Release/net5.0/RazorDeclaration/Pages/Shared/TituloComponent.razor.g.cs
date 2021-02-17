@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace OikosGreenPortal.Pages.Catalogo.Tercero
+namespace OikosGreenPortal.Pages.Shared
 {
     #line hidden
     using System;
@@ -166,8 +166,7 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/catalogo/tercero")]
-    public partial class Tercero : TerceroBase
+    public partial class TituloComponent : TituloComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

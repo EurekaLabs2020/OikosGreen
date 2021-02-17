@@ -5,17 +5,9 @@
 <TituloComponent _titulo="Tipo Producto"></TituloComponent>
 <div class="container">
     <div class="row">
-        <DataGrid TItem="TipoProducto_data"
-                  Data="@_lista"
-                  @bind-SelectedRow="@_regActual"
-                  ShowPager="true"
-                  Filterable="true"
-                  FilterMethod="DataGridFilterMethod.Contains"
-                  PageSize="5"
-                  Editable="true"
-                  EditMode="DataGridEditMode.Popup"
-                  RowStyling="@estilofila"
-                  SelectedRowStyling="@filaSeleccionada">
+        <DataGrid TItem="TipoProducto_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada">
             <FirstPageButtonTemplate>
                 <span>Prim</span>
                 <DataGridCommandColumn TItem="TipoProducto_data">
