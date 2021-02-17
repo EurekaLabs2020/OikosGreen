@@ -11,32 +11,20 @@
             <FirstPageButtonTemplate>
                 <span>Prim</span>
                 <DataGridCommandColumn TItem="TipoProducto_data">
-                    <NewCommandTemplate>
-                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
-                    </NewCommandTemplate>
-                    <EditCommandTemplate>
-                        <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button>
-                    </EditCommandTemplate>
-                    <DeleteCommandTemplate>
-                        <Button Color="Color.Danger" Clicked="@context.Clicked">Incativar</Button>
-                    </DeleteCommandTemplate>
-                    <ClearFilterCommandTemplate>
-                        <span>Limpiar Filtro</span>
-                    </ClearFilterCommandTemplate>
+                    <NewCommandTemplate> <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button> </NewCommandTemplate>
+                    <EditCommandTemplate> <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button> </EditCommandTemplate>
+                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked">Inactivar</Button> </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> <span>Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate> <span>Grabar</span> </SaveCommandTemplate>
+                    <CancelCommandTemplate> <span>Cancelar</span> </CancelCommandTemplate>
                 </DataGridCommandColumn>
                 <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="Id" Sortable="false" />
                 <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)" Caption="Nombre" Editable="true" />
                 <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="true" />
             </FirstPageButtonTemplate>
-            <PreviousPageButtonTemplate>
-                <span>Ant</span>
-            </PreviousPageButtonTemplate>
-            <NextPageButtonTemplate>
-                <span>Sig</span>
-            </NextPageButtonTemplate>
-            <LastPageButtonTemplate>
-                <span>Ult</span>
-            </LastPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>            
         </DataGrid>
     </div>
 </div>
