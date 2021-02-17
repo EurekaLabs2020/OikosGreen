@@ -57,7 +57,18 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 
         public void filaSeleccionada(TipoProducto_data reg, DataGridRowStyling style)
         {
-            style.Style = "background: green;";
+            style.Style = "bacground: green; color: yellow;";
         }
+
+        public async Task<Boolean> insertFila(TipoProducto_data reg)
+        {
+            Boolean retorno = true;
+            if (reg.name.Trim().Length > 0)
+            {
+                retorno = false;
+            }
+            return retorno;
+        }
+
     }
 }
