@@ -58,6 +58,9 @@ namespace OikosGreenPortal.PersonalClass
                     case "GET":
                         response = await solicitud.GetAsync("");
                         break;
+                    case "PATCH":
+                        response = await solicitud.PatchAsync("", null);
+                        break;
                 }
 
             }

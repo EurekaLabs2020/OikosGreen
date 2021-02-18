@@ -84,12 +84,39 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 
         public async Task updateFila(EventArgs arg)
         {
-
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            item.name = nombre;
+            item.active = Convert.ToBoolean(valores.Where(w => w.Key == "active").Select(s => s.Value.ToString()).FirstOrDefault());
+            item.usermodify = _dataStorage.user.user;
+            item.datemodify = DateTime.Now;
+            try
+            {
+                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
+                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                    item.id = _dataRequest.entity.id;
+            }
+            catch (Exception ex) { item = new TipoProducto_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
         {
-
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            item.active = !item.active;
+            item.usermodify = _dataStorage.user.user;
+            item.datemodify = DateTime.Now;
+            try
+            {
+                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_inactive, item);
+                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                    item.id = _dataRequest.entity.id;
+            }
+            catch (Exception ex) { item = new TipoProducto_data(); }
         }
 
 
