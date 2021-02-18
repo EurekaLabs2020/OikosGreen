@@ -66,9 +66,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
-            //valores.Remove("name");
-            //valores.Add("name", nombre);
-            item.active = Convert.ToBoolean(valores.Where(w => w.Key == "active").Select(s => s.Value.ToString()).FirstOrDefault());
+            item.active = true;
             item.usercreate = _dataStorage.user.user;
             item.datecreate = DateTime.Now;
             item.usermodify = _dataStorage.user.user;
@@ -105,10 +103,11 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 
         public async Task inactiveFila(EventArgs arg)
         {
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data>)arg).Item;
             item.active = !item.active;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
+            ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
             try
             {
                 var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_inactive, item);

@@ -5,26 +5,18 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class UbicacionRequest
+    public class UbicacionesRequest
     {
         public List<Ubicacion_data> entities { get; set; }
         public Status status { get; set; }
     }
-    public class vUbicacionRequest
-    {
-        public List<vUbicacion_data> entities { get; set; }
-        public Status status { get; set; }
-    }
-    public class UbicacionData
+
+    public class UbicacionRequest
     {
         public Ubicacion_data entity { get; set; }
         public Status status { get; set; }
     }
-    public class vUbicacionData
-    {
-        public vUbicacion_data entity { get; set; }
-        public Status status { get; set; }
-    }
+
     public class Ubicacion_data
     {
         public Int64 id { get; set; }
@@ -37,13 +29,10 @@ namespace OikosGreenPortal.Data.Request
         public String usermodify { get; set; }
         public DateTime? datemodify { get; set; }
         public Boolean active { get; set; }
-    }
-
-    public class vUbicacion_data : Ubicacion_data
-    {
         public String typeparent { get; set; }
         public String codeparent { get; set; }
         public String nameparent { get; set; }
     }
+
 
 }
