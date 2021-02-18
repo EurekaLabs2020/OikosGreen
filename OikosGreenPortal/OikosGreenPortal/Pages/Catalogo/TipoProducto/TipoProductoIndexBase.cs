@@ -78,7 +78,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception ex) { item = new TipoProducto_data(); }
+            catch (Exception) { item = new TipoProducto_data(); }
         }
 
         public async Task updateFila(EventArgs arg)
@@ -87,7 +87,6 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
-            item.active = Convert.ToBoolean(valores.Where(w => w.Key == "active").Select(s => s.Value.ToString()).FirstOrDefault());
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             try
@@ -98,7 +97,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                     item.id = _dataRequest.entity.id;
 
             }
-            catch (Exception ex) { item = new TipoProducto_data(); }
+            catch (Exception) { item = new TipoProducto_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
@@ -115,7 +114,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception ex) {  }
+            catch (Exception) {  }
         }
 
         public void validaName(ValidatorEventArgs arg)

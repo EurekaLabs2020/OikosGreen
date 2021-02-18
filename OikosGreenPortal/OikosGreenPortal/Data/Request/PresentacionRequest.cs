@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class PresentacionRequest
+    public class PresentacionesRequest
     {
         public List<Presentacion_data> entities { get; set; }
         public Status status { get; set; }
     }
-    public class PresentacionData
+    public class PresentacionRequest
     {
         public Presentacion_data entity { get; set; }
         public Status status { get; set; }

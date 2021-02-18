@@ -51,7 +51,7 @@ namespace OikosGreenPortal.Helpers
                     }
                 }
                 user = new ClaimsPrincipal(identity);
-            }catch (Exception ex) { }
+            }catch (Exception) { }
             return await Task.FromResult(new AuthenticationState(user));
         }
 
