@@ -17,8 +17,6 @@ namespace OikosGreenPortal.Data.Request
         public Status status { get; set; }
     }
 
-
-
     public class TipoProducto_data
     {
         public Int64 id { get; set; }
