@@ -5,28 +5,29 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class TipoProductoRequest
+    public class ListaRequest
     {
-        public List<TipoProducto_data> entities { get; set; }
+        public List<Lista_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class TipoProductoData
+    public class ListaData
     {
-        public TipoProducto_data entity { get; set; }
+        public Lista_data entity { get; set; }
         public Status status { get; set; }
     }
 
-    public class TipoProducto_data
+    public class Lista_data
     {
         public Int64 id { get; set; }
         public String name { get; set; }
+        public DateTime startdate { get; set; }
+        public DateTime enddate { get; set; }
         public String usercreate { get; set; }
         public DateTime datecreate { get; set; }
         public String usermodify { get; set; }
         public DateTime? datemodify { get; set; }
         public Boolean active { get; set; }
-    }
 
-    
+    }
 }
