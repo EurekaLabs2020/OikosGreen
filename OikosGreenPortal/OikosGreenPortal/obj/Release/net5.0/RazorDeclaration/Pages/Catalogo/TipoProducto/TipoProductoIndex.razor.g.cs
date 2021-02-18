@@ -166,6 +166,13 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/catalogo/tipoproducto")]
     public partial class TipoProductoIndex : TipoProductoIndexBase
     {
