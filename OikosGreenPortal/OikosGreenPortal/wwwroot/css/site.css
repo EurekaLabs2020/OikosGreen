@@ -127,9 +127,14 @@ a, .btn-link {
     color: #FFF !important;
 }
 
-.row-spacing-bottom {
-    margin-bottom: 10px;
+.blazored-menu li a:hover,
+.blazored-menu li span:hover {
+    text-decoration: none !important;
 }
+
+    .row-spacing-bottom {
+        margin-bottom: 10px;
+    }
 
 .cnt-titulo {
     padding: 11px 0;
@@ -145,7 +150,7 @@ a, .btn-link {
 .btn-create {
     width: 100%;
     color: #FFF;
-    
+    border: 0 !important; 
     background: rgb(201,222,150); 
     background: -moz-linear-gradient(top, rgba(201,222,150,1) 0%, rgba(138,182,107,1) 44%, rgba(57,130,53,1) 100%);
     background: -webkit-linear-gradient(top, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%);
@@ -159,4 +164,16 @@ a, .btn-link {
 
 .btn-cancel {
     background-color: #e28541;
+}
+
+.menu-ek .active {
+    background: #e28541;
+}
+
+.blazored-sub-menu {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.blazored-sub-menu li a{
+    padding-left: 35px !important;
 }
