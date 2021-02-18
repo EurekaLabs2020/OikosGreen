@@ -174,13 +174,14 @@ using OikosGreenPortal.Data.Request;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
+#line 29 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
       
 
 
     private async Task LogOut()
     {
         ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+        
     }
 
 
