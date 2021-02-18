@@ -21,4 +21,6 @@ namespace OikosGreenPortal.Data.Request
         public DateTime datemodify { get; set; }
         public Boolean active { get; set; }
     }
+
+    
 }
