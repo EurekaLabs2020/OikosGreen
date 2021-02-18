@@ -20,7 +20,6 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
-        public PaginationTemplates<String> template { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
