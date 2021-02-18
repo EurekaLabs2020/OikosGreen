@@ -21,14 +21,16 @@
                     <EditCommandTemplate>
                         <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">Inactivar</Button> </DeleteCommandTemplate>
+                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
                     <SaveCommandTemplate> <button class="btn btn-info" @onclick="@context.Clicked">Grabar</button> </SaveCommandTemplate>
                     <CancelCommandTemplate> <button class="btn btn-danger btn-cancel" @onclick="@context.Clicked">Cancelar</button> </CancelCommandTemplate>
                 </DataGridCommandColumn>
+
                 <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="Id" Sortable="false" />
-                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)" Caption="Nombre" Editable="true" />
-                <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="true" />
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)"  Caption="Nombre" Validator="@validaName" Editable="true" />
+                <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="false" />
+
             </ChildContent>
             <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
             <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>

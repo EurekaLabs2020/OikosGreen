@@ -10,6 +10,7 @@ using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.PersonalClass;
 using Newtonsoft.Json;
 using Blazorise.DataGrid;
+using Blazorise;
 
 namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
 {
@@ -65,9 +66,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
-            //valores.Remove("name");
-            //valores.Add("name", nombre);
-            item.active = Convert.ToBoolean(valores.Where(w => w.Key == "active").Select(s => s.Value.ToString()).FirstOrDefault());
+            item.active = true;
             item.usercreate = _dataStorage.user.user;
             item.datecreate = DateTime.Now;
             item.usermodify = _dataStorage.user.user;
@@ -97,18 +96,18 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
+
             }
             catch (Exception ex) { item = new TipoProducto_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
         {
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
-            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data>)arg).Item;
             item.active = !item.active;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
+            ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
             try
             {
                 var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_inactive, item);
@@ -116,9 +115,15 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception ex) { item = new TipoProducto_data(); }
+            catch (Exception ex) {  }
         }
 
+        public void validaName(ValidatorEventArgs arg)
+        {
+            ValidationRule.IsUppercase(arg.Value.ToString());
+            if (arg.Status == ValidationStatus.Error)
+                arg.ErrorText = "El nombre debe de ser en letras mayusculas";
+        }
 
 
     }
