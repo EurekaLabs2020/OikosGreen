@@ -21,16 +21,16 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
         public PaginationTemplates<String> template { get; set; }
-
+        private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
             _lista = new List<TipoProducto_data>();
             _regActual = new TipoProducto_data();
-            TipoProductoRequest _dataRequest = new TipoProductoRequest();
+            TipoProductosRequest _dataRequest = new TipoProductosRequest();
             try
             {
-                infoBrowser _dataStorage = null;
+                _dataStorage = null;
                 do
                 {
                     var _resultado = await _storage.GetAsync<infoBrowser>("data");
@@ -38,7 +38,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 } while (_dataStorage == null);
 
                 var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltipoproducto_getall, "");
-                _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                _dataRequest = JsonConvert.DeserializeObject<TipoProductosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
 
@@ -60,16 +60,40 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             style.Style = "background: green; color: yellow;";
         }
 
-        public async Task insertFila(TipoProducto_data reg)
+        public async Task insertaFila(EventArgs arg)
         {
-           
-            
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TipoProducto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            item.name = nombre;
+            //valores.Remove("name");
+            //valores.Add("name", nombre);
+            item.active = Convert.ToBoolean(valores.Where(w => w.Key == "active").Select(s => s.Value.ToString()).FirstOrDefault());
+            item.usercreate = _dataStorage.user.user;
+            item.datecreate = DateTime.Now;
+            item.usermodify = _dataStorage.user.user;
+            item.datemodify = DateTime.Now;
+            try
+            {
+                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
+                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                    item.id = _dataRequest.entity.id;
+            }
+            catch (Exception ex) { item = new TipoProducto_data(); }
         }
 
-        public async Task insertaFila()
+        public async Task updateFila(EventArgs arg)
         {
 
         }
+
+        public async Task inactiveFila(EventArgs arg)
+        {
+
+        }
+
+
 
     }
 }

@@ -152,3 +152,11 @@ a, .btn-link {
     background: linear-gradient(to bottom, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 );
 }
+
+.btn-active {
+    background-color: #e28541;
+}
+
+.btn-cancel {
+    background-color: #e28541;
+}

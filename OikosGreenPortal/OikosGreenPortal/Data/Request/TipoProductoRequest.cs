@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class TipoProductoRequest
+    public class TipoProductosRequest
     {
         public List<TipoProducto_data> entities { get; set; }
         public Status status { get; set; }
     }
+
+    public class TipoProductoRequest
+    {
+        public TipoProducto_data entity { get; set; }
+        public Status status { get; set; }
+    }
+
+
 
     public class TipoProducto_data
     {

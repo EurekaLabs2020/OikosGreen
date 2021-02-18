@@ -2,6 +2,7 @@
 
 @inject AuthenticationStateProvider _autenticacion
 
+
 <div class="page">
     <AuthorizeView>
         <Authorized>
@@ -31,6 +32,7 @@
     private async Task LogOut()
     {
         ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+        
     }
 
 }
