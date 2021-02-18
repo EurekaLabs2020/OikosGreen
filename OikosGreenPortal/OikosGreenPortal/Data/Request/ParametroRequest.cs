@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class ParametroRequest
+    public class ParametrosRequest
     {
         public List<Parametro_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class ParametroData
+    public class ParametroRequest
     {
         public Parametro_data entity { get; set; }
         public Status status { get; set; }
