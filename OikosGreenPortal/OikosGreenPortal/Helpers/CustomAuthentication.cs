@@ -15,14 +15,17 @@ namespace OikosGreenPortal.Helpers
 {
     public class CustomAuthentication : AuthenticationStateProvider
     {
+        private NavigationManager _navegacion { get; set; }
         private ILocalStorageService sesion;
         private ProtectedSessionStorage _storage { get; set; }
 
 
-        public CustomAuthentication(ILocalStorageService _sesion, ProtectedSessionStorage storage)
+
+        public CustomAuthentication(ILocalStorageService _sesion, ProtectedSessionStorage storage, NavigationManager navegacion)
         {
             sesion = _sesion;
             _storage = storage;
+            _navegacion = navegacion;
         }
 
         public CustomAuthentication()
@@ -48,7 +51,7 @@ namespace OikosGreenPortal.Helpers
                     }
                 }
                 user = new ClaimsPrincipal(identity);
-            }catch (Exception ex) { }
+            }catch (Exception) { }
             return await Task.FromResult(new AuthenticationState(user));
         }
 
@@ -65,6 +68,7 @@ namespace OikosGreenPortal.Helpers
             var identity = new ClaimsIdentity();
             var user = new ClaimsPrincipal(identity);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
+            _navegacion.NavigateTo("/", true);
         }
 
         private ClaimsIdentity setClaims(infoBrowser _data)

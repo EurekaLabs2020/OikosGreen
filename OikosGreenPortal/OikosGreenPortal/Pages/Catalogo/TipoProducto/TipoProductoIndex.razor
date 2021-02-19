@@ -1,0 +1,49 @@
+﻿@page "/catalogo/tipoproducto"
+
+
+@inherits TipoProductoIndexBase
+@attribute [Authorize]
+
+
+<TituloComponent _titulo="Tipo Producto"></TituloComponent>
+<div class="container">
+    <div class="row">
+        <DataGrid TItem="TipoProducto_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                  RowInserting="@insertaFila"
+                  RowUpdating="@updateFila"
+                  RowRemoving="@inactiveFila">
+            <ChildContent>
+                <DataGridCommandColumn TItem="TipoProducto_data">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate> <button class="btn btn-info" @onclick="@context.Clicked">Grabar</button> </SaveCommandTemplate>
+                    <CancelCommandTemplate> <button class="btn btn-danger btn-cancel" @onclick="@context.Clicked">Cancelar</button> </CancelCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="Id" Sortable="false" />
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)"  Caption="Nombre" Validator="@validaName" Editable="true" />
+                <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="false" />
+
+            </ChildContent>
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+            <PopupTitleTemplate>
+                <span>Registro</span>
+            </PopupTitleTemplate>
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+        </DataGrid>
+    </div>
+</div>
+
+

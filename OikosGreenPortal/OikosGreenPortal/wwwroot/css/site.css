@@ -126,3 +126,58 @@ a, .btn-link {
 .blazored-menu li span {
     color: #FFF !important;
 }
+
+.blazored-menu li a:hover,
+.blazored-menu li span:hover {
+    text-decoration: none !important;
+}
+
+    .row-spacing-bottom {
+        margin-bottom: 10px;
+    }
+
+.cnt-titulo {
+    padding: 11px 0;
+    text-transform: uppercase;
+    background: url(../img/OIKOS-GREEN-bg.png) center center repeat;
+    background-size: contain;
+}
+
+.edit-button {
+    margin-right: 5px;
+}
+
+.btn-create {
+    width: 100%;
+    color: #FFF;
+    border: 0 !important; 
+    background: rgb(201,222,150); 
+    background: -moz-linear-gradient(top, rgba(201,222,150,1) 0%, rgba(138,182,107,1) 44%, rgba(57,130,53,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%);
+    background: linear-gradient(to bottom, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 );
+}
+
+.btn-active {
+    background-color: #e28541;
+}
+
+.btn-cancel {
+    background-color: #e28541;
+}
+
+.menu-ek .active {
+    background: #e28541;
+}
+
+.blazored-sub-menu {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.blazored-sub-menu li a{
+    padding-left: 35px !important;
+}
+
+.logo-nav {
+    max-width: 50px;
+}

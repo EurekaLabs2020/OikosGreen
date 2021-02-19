@@ -1,3 +1,21 @@
+/* _content/OikosGreenPortal/Pages/Shared/TituloComponent.razor.rz.scp.css */
+.titulo-pagina[b-md5mqx1o3b] {
+    color: #e28541;
+    font-weight: bolder;
+    text-shadow: -2px -7px 4px rgba(0,0,0,.5);
+}
+
+.btn-create[b-md5mqx1o3b] {
+    width: 100%;
+    color: #FFF;
+    text-transform: uppercase;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#c9de96+0,8ab66b+44,398235+100;Green+3D+%233 */
+    background: rgb(201,222,150); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(201,222,150,1) 0%, rgba(138,182,107,1) 44%, rgba(57,130,53,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(201,222,150,1) 0%,rgba(138,182,107,1) 44%,rgba(57,130,53,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 ); /* IE6-9 */
+}
 /* _content/OikosGreenPortal/Shared/MainLayout.razor.rz.scp.css */
 .page[b-3oecg0lfdj] {
     position: relative;
@@ -10,7 +28,7 @@
 }
 
 .sidebar[b-3oecg0lfdj] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(180deg, rgb(43, 116, 123) 0%, #0a7695 70%);
 }
 
 .top-row[b-3oecg0lfdj] {
@@ -53,7 +71,7 @@
 
     .sidebar[b-3oecg0lfdj] {
         width: 250px;
-        height: 100vh;
+        height: 100%;
         position: sticky;
         top: 0;
     }
@@ -145,9 +163,19 @@
     .menu-ek a:hover[b-xpioe6umow],
     .menu-ek span:hover[b-xpioe6umow] {
         font-weight: 700;
+        text-decoration: none !important;
     }
 
 .menu-ek .blazored-sub-menu-header span i[b-xpioe6umow] {
     position: absolute;
     right: 10px;
+}
+
+.menu-ek .active[b-xpioe6umow] {
+    background: #f90;
+}
+
+.blazored-sub-menu[b-xpioe6umow] {
+    padding: 0;
+    margin: 0;
 }

@@ -73,9 +73,19 @@
     .menu-ek a:hover[b-xpioe6umow],
     .menu-ek span:hover[b-xpioe6umow] {
         font-weight: 700;
+        text-decoration: none !important;
     }
 
 .menu-ek .blazored-sub-menu-header span i[b-xpioe6umow] {
     position: absolute;
     right: 10px;
+}
+
+.menu-ek .active[b-xpioe6umow] {
+    background: #f90;
+}
+
+.blazored-sub-menu[b-xpioe6umow] {
+    padding: 0;
+    margin: 0;
 }

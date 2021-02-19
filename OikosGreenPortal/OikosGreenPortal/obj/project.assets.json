@@ -94,6 +94,20 @@
           "buildMultiTargeting/Blazorise.Bootstrap.props": {}
         }
       },
+      "Blazorise.DataGrid/0.9.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Blazorise": "0.9.2.5",
+          "Microsoft.AspNetCore.Components": "5.0.0",
+          "Microsoft.AspNetCore.Components.Web": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/Blazorise.DataGrid.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazorise.DataGrid.dll": {}
+        }
+      },
       "Blazorise.Icons.Material/0.9.2.5": {
         "type": "package",
         "dependencies": {
@@ -382,6 +396,21 @@
         "lib/netstandard2.1/Blazorise.Bootstrap.dll",
         "staticwebassets/blazorise.bootstrap.css",
         "staticwebassets/blazorise.bootstrap.js"
+      ]
+    },
+    "Blazorise.DataGrid/0.9.2.5": {
+      "sha512": "4VaC14r5jQB+FZQIWvtVoREoo46d/heZbDY4pT0hS7yQG19afTAajsrIA28+tCzqwH5zrPSOhe/RsITu2GBJYA==",
+      "type": "package",
+      "path": "blazorise.datagrid/0.9.2.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Blazorise.png",
+        "LICENSE.md",
+        "blazorise.datagrid.0.9.2.5.nupkg.sha512",
+        "blazorise.datagrid.nuspec",
+        "lib/net5.0/Blazorise.DataGrid.dll",
+        "lib/netstandard2.1/Blazorise.DataGrid.dll"
       ]
     },
     "Blazorise.Icons.Material/0.9.2.5": {
@@ -721,29 +750,30 @@
       "Blazored.Menu >= 2.0.5",
       "Blazored.Modal >= 6.0.1",
       "Blazorise >= 0.9.2.5",
+      "Blazorise.DataGrid >= 0.9.2.5",
       "Blazorise.Icons.Material >= 0.9.2.5",
       "Blazorise.Material >= 0.9.2.5",
       "Newtonsoft.Json >= 12.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wilder.valencia\\.nuget\\packages\\": {},
+    "C:\\Users\\pc\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectUniqueName": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
-      "projectPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "packagesPath": "C:\\Users\\wilder.valencia\\.nuget\\packages\\",
-      "outputPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+      "projectPath": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+      "outputPath": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\wilder.valencia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -783,6 +813,10 @@
             "version": "[6.0.1, )"
           },
           "Blazorise": {
+            "target": "Package",
+            "version": "[0.9.2.5, )"
+          },
+          "Blazorise.DataGrid": {
             "target": "Package",
             "version": "[0.9.2.5, )"
           },
