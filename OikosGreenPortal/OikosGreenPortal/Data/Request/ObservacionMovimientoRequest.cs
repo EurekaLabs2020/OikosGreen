@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class ObservacionMovimientoRequest
+    public class ObservacionMovimientosRequest
     {
         public List<ObservacionMovimiento_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class ObservacionMovimientoData
+    public class ObservacionMovimientoRequest
     {
         public ObservacionMovimiento_data entity { get; set; }
         public Status status { get; set; }

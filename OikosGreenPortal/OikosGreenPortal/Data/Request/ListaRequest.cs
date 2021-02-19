@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class ListaRequest
+    public class ListasRequest
     {
         public List<Lista_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class ListaData
+    public class ListaRequest
     {
         public Lista_data entity { get; set; }
         public Status status { get; set; }

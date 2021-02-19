@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class GeneralIvaRequest
+    public class GeneralIvasRequest
     {
         public List<GeneralIva_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class GeneralIvaData 
+    public class GeneralIvaRequest
     {
         public GeneralIva_data entity { get; set; }
         public Status status { get; set; }

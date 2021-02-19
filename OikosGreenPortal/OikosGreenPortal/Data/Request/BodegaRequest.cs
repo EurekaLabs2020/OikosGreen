@@ -5,25 +5,14 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class BodegaRequest
+    public class BodegasRequest
     {
         public List<Bodega_data> entities { get; set; }
         public Status status { get; set; }
     }
-    public class vBodegaRequest
-    {
-        public List<vBodega_data> entities { get; set; }
-        public Status status { get; set; }
-    }
-    public class BodegaData
+    public class BodegaRequest
     {
         public Bodega_data entity { get; set; }
-        public Status status { get; set; }
-
-    }
-    public class vBodegaData
-    {
-        public vBodega_data entity { get; set; }
         public Status status { get; set; }
     }
     public class Bodega_data
@@ -41,13 +30,9 @@ namespace OikosGreenPortal.Data.Request
         public DateTime? datemodify { get; set; }
         public Boolean active { get; set; }
         public Int64 idubicacion { get; set; }
-    }
-    public class vBodega_data : Bodega_data
-    {
         public Int64? ubicacionid { get; set; }
         public String ubicatype { get; set; }
         public String ubicacode { get; set; }
     }
-
 }
 
