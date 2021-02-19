@@ -35,7 +35,13 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlparametro_inactive { get { return urlbase + "parametro/inactive"; } } //POST
         #endregion
 
-
+        #region GeneralIva
+        public static String urlgeneraliva_getall { get { return urlbase + "generaliva/getall"; } } //GET
+        public static String urlgeneraliva_getbyid { get { return urlbase + "generaliva/getbyid"; } } //POST
+        public static String urlgeneraliva_insert { get { return urlbase + "generaliva/insert"; } } //POST
+        public static String urlgeneraliva_update { get { return urlbase + "generaliva/update"; } } //POST
+        public static String urlgeneraliva_inactive { get { return urlbase + "generaliva/inactive"; } } //POST
+        #endregion
 
     }
 }
