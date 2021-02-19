@@ -43,5 +43,28 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlgeneraliva_inactive { get { return urlbase + "generaliva/inactive"; } } //POST
         #endregion
 
+        #region Lista
+        public static String urllista_getall { get { return urlbase + "lista/getall"; } } //GET
+        public static String urllista_getbyid { get { return urlbase + "lista/getbyid"; } } //POST
+        public static String urllista_insert { get { return urlbase + "lista/insert"; } } //POST
+        public static String urllista_update { get { return urlbase + "lista/update"; } } //POST
+        public static String urllista_inactive { get { return urlbase + "lista/inactive"; } } //POST
+        #endregion
+
+        #region Bodega
+        public static String urlbodega_getall { get { return urlbase + "bodega/getall"; } } //GET
+        public static String urlbodega_getbyid { get { return urlbase + "bodega/getbyid"; } } //POST
+        public static String urlbodega_insert { get { return urlbase + "bodega/insert"; } } //POST
+        public static String urlbodega_update { get { return urlbase + "bodega/update"; } } //POST
+        public static String urlbodega_inactive { get { return urlbase + "bodega/inactive"; } } //POST
+        #endregion
+
+        #region Ubicacion
+        public static String urlubicacion_getall { get { return urlbase + "ubicacion/getall"; } } //GET
+        public static String urlubicacion_getbyid { get { return urlbase + "ubicacion/getbyid"; } } //POST
+        public static String urlubicacion_insert { get { return urlbase + "ubicacion/insert"; } } //POST
+        public static String urlubicacion_update { get { return urlbase + "ubicacion/update"; } } //POST
+        public static String urlubicacion_inactive { get { return urlbase + "ubicacion/inactive"; } } //POST
+        #endregion
     }
 }
