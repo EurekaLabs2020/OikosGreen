@@ -12,22 +12,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Catalogo.Lista
+namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
 {
-    public class ListaIndexBase : ComponentBase
+    public class UbicacionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<Lista_data> _lista { get; set; }
-        public Lista_data _regActual { get; set; }
+        public List<Ubicacion_data> _lista { get; set; }
+        public Ubicacion_data _regActual { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
-            _lista = new List<Lista_data>();
-            _regActual = new Lista_data();
-            ListasRequest _dataRequest = new ListasRequest();
+            _lista = new List<Ubicacion_data>();
+            _regActual = new Ubicacion_data();
+            UbicacionesRequest _dataRequest = new UbicacionesRequest();
             try
             {
                 _dataStorage = null;
@@ -37,8 +37,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urllista_getall, "");
-                _dataRequest = JsonConvert.DeserializeObject<ListasRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlubicacion_getall, "");
+                _dataRequest = JsonConvert.DeserializeObject<UbicacionesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
 
@@ -50,20 +50,25 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
         }
 
 
-        public void estilofila(Lista_data reg, DataGridRowStyling style)
+        public void estilofila(Ubicacion_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
         }
 
-        public void filaSeleccionada(Lista_data reg, DataGridRowStyling style)
+        public void filaSeleccionada(Ubicacion_data reg, DataGridRowStyling style)
         {
             style.Style = "background: green; color: yellow;";
         }
 
-        public async Task insertaFila(EventArgs arg)
+        public void insertaFila(SavedRowItem<Ubicacion_data, Dictionary<string, object>> e)
         {
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+
+        }
+
+        public async Task insertaFila_(EventArgs arg)
+        {
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
             item.active = true;
@@ -73,44 +78,44 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Lista_data>(_dataStorage.user.token, "POST", Urls.urllista_insert, item);
-                ListaRequest _dataRequest = JsonConvert.DeserializeObject<ListaRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_insert, item);
+                UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception) { item = new Lista_data(); }
+            catch (Exception) { item = new Ubicacion_data(); }
         }
 
         public async Task updateFila(EventArgs arg)
         {
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Lista_data>(_dataStorage.user.token, "POST", Urls.urllista_update, item);
-                ListaRequest _dataRequest = JsonConvert.DeserializeObject<ListaRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_update, item);
+                UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
 
             }
-            catch (Exception) { item = new Lista_data(); }
+            catch (Exception) { item = new Ubicacion_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
         {
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data>)arg).Item;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data>)arg).Item;
             item.active = !item.active;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
             try
             {
-                var resultado = await General.solicitudUrl<Lista_data>(_dataStorage.user.token, "POST", Urls.urllista_inactive, item);
-                ListaRequest _dataRequest = JsonConvert.DeserializeObject<ListaRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_inactive, item);
+                UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
@@ -123,6 +128,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
             if (arg.Status == ValidationStatus.Error)
                 arg.ErrorText = "El nombre debe de ser en letras mayusculas";
         }
+
 
     }
 }
