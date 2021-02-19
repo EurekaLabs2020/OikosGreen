@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class DescuentoMovimientoRequest
+    public class DescuentoMovimientosRequest
     {
         public List<DescuentoMovimiento_data> entities { get; set; }
         public Status status { get; set; }
     }
 
-    public class DescuentoMovimientoData
+    public class DescuentoMovimientoRequest
     {
         public DescuentoMovimiento_data entity { get; set; }
         public Status status { get; set; }

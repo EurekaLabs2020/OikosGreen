@@ -5,26 +5,18 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class CategoriaRequest
+    public class CategoriasRequest
     {
         public List<Categoria_data> entities { get; set; }
         public Status status { get; set; }
     }
-    public class vCategoriaRequest
-    {
-        public List<vCategoria_data> entities { get; set; }
-        public Status status { get; set; }
-    }
-    public class CategoriaData
+
+    public class CategoriaRequest
     {
         public Categoria_data entity { get; set; }
         public Status status { get; set; }
     }
-    public class vCategoriaData
-    {
-        public vCategoria_data entity { get; set; }
-        public Status status { get; set; }
-    }
+
     public class Categoria_data
     {
         public Int64 id { get; set; }
@@ -35,9 +27,6 @@ namespace OikosGreenPortal.Data.Request
         public String usermodify { get; set; }
         public DateTime? datemodify { get; set; }
         public Boolean active { get; set; }
-    }
-    public class vCategoria_data : Categoria_data
-    {
         public String nameparent { get; set; }
     }
 }

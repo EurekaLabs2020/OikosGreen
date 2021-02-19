@@ -177,3 +177,7 @@ a, .btn-link {
 .blazored-sub-menu li a{
     padding-left: 35px !important;
 }
+
+.logo-nav {
+    max-width: 50px;
+}
