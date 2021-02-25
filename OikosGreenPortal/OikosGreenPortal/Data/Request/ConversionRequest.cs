@@ -5,29 +5,30 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Data.Request
 {
-    public class GeneralIvasRequest
+    public class ConversionesRequest
     {
-        public List<GeneralIva_data> entities { get; set; }
+        public List<Conversion_data> entities { get; set; }
+        public Status status { get; set; }
+    }
+    public class ConversionRequest
+    {
+        public Conversion_data entity { get; set; }
         public Status status { get; set; }
     }
 
-    public class GeneralIvaRequest
-    {
-        public GeneralIva_data entity { get; set; }
-        public Status status { get; set; }
-    }
-
-    public class GeneralIva_data 
+    public class Conversion_data
     {
         public Int64 id { get; set; }
-        public String code { get; set; }
+        public Int64 unitoriginid { get; set; }
+        public Int64 unitdestinationid { get; set; }
         public Decimal value { get; set; }
-        public DateTime startdate { get; set; }
-        public DateTime enddate { get; set; }
         public String usercreate { get; set; }
         public DateTime datecreate { get; set; }
         public String usermodify { get; set; }
         public DateTime? datemodify { get; set; }
         public Boolean active { get; set; }
+        public String presorigin { get; set; }
+        public String presdestination { get; set; }
     }
+
 }
