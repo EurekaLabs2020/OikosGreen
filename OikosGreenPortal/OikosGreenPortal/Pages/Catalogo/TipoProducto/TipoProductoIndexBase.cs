@@ -95,7 +95,6 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
-
             }
             catch (Exception) { item = new TipoProducto_data(); }
         }
