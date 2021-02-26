@@ -45,7 +45,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
         private Boolean isok { get; set; } = false;
-
+        private String urlgetall { get; set; } = Urls.urlubicacion_getall;
+        private String urlinsert { get; set; } = Urls.urlubicacion_insert;
+        private String urlupdate { get; set; } = Urls.urlubicacion_update;
+        private String urlinactive { get; set; } = Urls.urlubicacion_inactive;
+        private String urlgetcode { get; set; } = Urls.urlubicacion_getbycode;
 
 
         protected async override Task OnInitializedAsync()
@@ -67,7 +71,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlubicacion_getall, "");
+                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
                 _dataRequest = JsonConvert.DeserializeObject<UbicacionesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
@@ -94,117 +98,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
 
 
         
-
-        public async Task insertaFila_(EventArgs arg)
-        {
-            // Evaluar que si vengan con información
-            Boolean isok = false;
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
-
-            try{
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Remove("type");
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Remove("nameparent");
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Add("type", _datoTipoUbicacion);
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Add("nameparent", _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault());
-            }catch (Exception ex){}
-
-            //if (validaDatos(valores))
-            //{
-                var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-                var code = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-                item.name = nombre;
-                item.code = code;
-                item.active = true;
-                item.parent = _datoPadre;
-                item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-                item.type = _datoTipoUbicacion;
-                item.usercreate = _dataStorage.user.user;
-                item.datecreate = DateTime.Now;
-                item.usermodify = _dataStorage.user.user;
-                item.datemodify = DateTime.Now;
-                try
-                {
-                    var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_insert, item);
-                    UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    {
-                        item.id = _dataRequest.entity.id;
-                        _lista.Add(item);
-                        //_mensajeIsDanger = "lert-success";
-                        //_Mensaje = "REGISTRO ALMACENADO CON EXITO!!!";
-                        isok = true;
-                        StateHasChanged();
-                    }
-                }
-                catch (Exception ex) { item = new Ubicacion_data();  _Mensaje = ex.Message; }
-            //}
-            if (!isok)
-                ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
-        }
-
-        public async Task updateFila_(EventArgs arg)
-        {
-            Boolean isok = false;
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
-
-            try
-            {
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Remove("type");
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Remove("nameparent");
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Add("type", _datoTipoUbicacion);
-                ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values.Add("nameparent", _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault());
-            }
-            catch (Exception ex) { }
-
-            //if (validaDatos(valores))
-            //{
-                var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-                var code = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-                item.name = nombre;
-                item.code = code;
-                item.parent = _datoPadre;
-                item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-                item.type = _datoTipoUbicacion;
-                item.usermodify = _dataStorage.user.user;
-                item.datemodify = DateTime.Now;
-                try
-                {
-                    var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_update, item);
-                    UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    {
-                        item.id = _dataRequest.entity.id;
-                        isok = true;
-                    }
-
-                }
-                catch (Exception) { item = new Ubicacion_data(); }
-            //}
-            if (!isok)
-                ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
-            _datoPadre = 0;
-            _datoTipoUbicacion = "0";
-        }
-
-        public async Task inactiveFila_(EventArgs arg)
-        {
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data>)arg).Item;
-            item.active = !item.active;
-            item.usermodify = _dataStorage.user.user;
-            item.datemodify = DateTime.Now;
-            ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
-            try
-            {
-                var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_inactive, item);
-                UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
-            }
-            catch (Exception) { }
-        }
-
         public Boolean validaDatos(Ubicacion_data _paraValidar)
         {
             _Mensaje = "";
@@ -229,56 +122,39 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         {
             _datoPadre = 0;
             _datoTipoUbicacion = "0";
+            _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<Ubicacion_data, Dictionary<String, object>> e)
         {
-            isok = false;
-            e.Item.type = _datoTipoUbicacion;
-            e.Item.parent = _datoPadre;
-            e.Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            e.Item.name = e.Item.name.ToUpper();
-            Ubicacion_data reg = e.Item;
-            datosAdicionales(true, ref reg);
-            if (validaDatos(e.Item))
-            {
-                try
-                {
-                    var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Urls.urlubicacion_insert, reg);
-                    UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequest!=null && _dataRequest.status!=null && _dataRequest.status.code == 200)
-                    {
-                        if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
-                        {
-                            e.Item.id = _dataRequest.entity.id;
-                            isok = true;
-                        }
-                    }
-                    else
-                        _Mensaje = _dataRequest.status.message;
-                }
-                catch (Exception ex) { _Mensaje = ex.Message; }
-            }
-            StateHasChanged();
-            if (isok) 
-                _lista.Add(reg);
-            //else
-            //    await General.MensajeModal("Error Insertando", _Mensaje, _modal);
-            
+            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
-
 
 
         public async Task updateFila(SavedRowItem<Ubicacion_data, Dictionary<String, object>> e)
         {
-
+            await setUbicacion(e.Item, false, urlupdate);
         }
 
-        public async Task inactiveFila(Ubicacion_data e)
+
+        public async Task inactiveFila(EventArgs arg)
         {
-
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data>)arg).Item;
+            item.active = !item.active;
+            item.usermodify = _dataStorage.user.user;
+            item.datemodify = DateTime.Now;
+            ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+            try
+            {
+                var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", urlinactive, item);
+                UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                    item.id = _dataRequest.entity.id;
+            }
+            catch (Exception) { }
         }
-        
+
+
         private void datosAdicionales(Boolean isNuevo, ref Ubicacion_data item)
         {
             if (isNuevo)
@@ -290,6 +166,49 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
         }
+
+        private async Task<Int64> setUbicacion(Ubicacion_data Item, Boolean Crear, String Url)
+        {
+            Int64 retorno = 0;
+            isok = false;
+            Item.type = _datoTipoUbicacion;
+            Item.parent = _datoPadre;
+            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            Item.name = Item.name.ToUpper();
+            Ubicacion_data reg = Item;
+            datosAdicionales(Crear, ref reg);
+            if (validaDatos(Item))
+            {
+                var resultadoCode = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
+                UbicacionRequest _dataRequestCode = JsonConvert.DeserializeObject<UbicacionRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestCode!=null && (_dataRequestCode.status.code != 200 || !Crear))
+                {
+                    try
+                    {
+                        var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", Url, reg);
+                        UbicacionRequest  _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                        if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
+                        {
+                            if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
+                            {
+                                isok = true;
+                                retorno = _dataRequest.entity.id;
+                            }
+                        }
+                        else
+                            _Mensaje = _dataRequest.status.message;
+                    }
+                    catch (Exception ex) { _Mensaje = ex.Message; }
+                }
+                else
+                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+            }
+            StateHasChanged();
+            if (!isok && Crear)
+                _lista.Remove(reg);
+            return retorno;
+        }
+
 
     }
 }

@@ -186,6 +186,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Ubicacion
         public static String urlubicacion_getall { get { return urlbase + "ubicacion/getall"; } } //GET
         public static String urlubicacion_getbyid { get { return urlbase + "ubicacion/getbyid"; } } //POST
+        public static String urlubicacion_getbycode { get { return urlbase + "ubicacion/getbycode"; } } //POST
         public static String urlubicacion_insert { get { return urlbase + "ubicacion/insert"; } } //POST
         public static String urlubicacion_update { get { return urlbase + "ubicacion/update"; } } //POST
         public static String urlubicacion_inactive { get { return urlbase + "ubicacion/inactive"; } } //POST

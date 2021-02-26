@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using OikosGreenPortal.Data.Personal;
+using Blazorise.DataGrid;
 
 namespace OikosGreenPortal.PersonalClass
 {
@@ -36,6 +37,12 @@ namespace OikosGreenPortal.PersonalClass
             parameters.Add(nameof(ModalMensaje.contenido), _mensaje);
             var formModal = _modal.Show<ModalMensaje>("", parameters);
             var result = await formModal.Result;
+        }
+
+        public static void estilofila(DataGridRowStyling style)
+        {
+            style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
         }
 
 
