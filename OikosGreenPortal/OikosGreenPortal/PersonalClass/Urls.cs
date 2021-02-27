@@ -167,6 +167,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero Punto
         public static String urlterceropunto_getall { get { return urlbase + "terceropunto/getall"; } } //GET
         public static String urlterceropunto_getbyid { get { return urlbase + "terceropunto/getbyid"; } } //POST
+        public static String urlterceropunto_getbycode { get { return urlbase + "terceropunto/getbyperiodo"; } } //POST
         public static String urlterceropunto_insert { get { return urlbase + "terceropunto/insert"; } } //POST
         public static String urlterceropunto_update { get { return urlbase + "terceropunto/update"; } } //POST
         public static String urlterceropunto_inactive { get { return urlbase + "terceropunto/inactive"; } } //POST
@@ -175,6 +176,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero Tipo
         public static String urltercerotipo_getall { get { return urlbase + "tercerotipo/getall"; } } //GET
         public static String urltercerotipo_getbyid { get { return urlbase + "tercerotipo/getbyid"; } } //POST
+        public static String urltercerotipo_getbytipo { get { return urlbase + "tercerotipo/getbytipo"; } } //POST
         public static String urltercerotipo_insert { get { return urlbase + "tercerotipo/insert"; } } //POST
         public static String urltercerotipo_update { get { return urlbase + "tercerotipo/update"; } } //POST
         public static String urltercerotipo_inactive { get { return urlbase + "tercerotipo/inactive"; } } //POST

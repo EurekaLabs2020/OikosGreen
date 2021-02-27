@@ -1,13 +1,13 @@
-﻿@page "/catalogo/tercerotipo"
+﻿@page "/catalogo/terceropuntos"
 
-@inherits TerceroTipoBase
+@inherits TerceroPuntoBase
 @attribute [Authorize]
 
 <TituloComponent _titulo="Tercero Tipo"></TituloComponent>
 
 <div class="container">
     <div class="row">
-        <DataGrid TItem="TerceroTipo_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
+        <DataGrid TItem="TerceroPunto_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
@@ -15,7 +15,7 @@
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
-                <DataGridCommandColumn TItem="TerceroTipo_data" CellsEditableOnEditCommand="true">
+                <DataGridCommandColumn TItem="TerceroPunto_data" CellsEditableOnEditCommand="true">
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
@@ -37,8 +37,8 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.id)" Caption="Id" Editable="false" Width="80" />
-                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="110">
+                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.id)" Caption="Id" Editable="false" Displayable="false" />
+                <DataGridSelectColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.period)" Caption="periodo" Sortable="false" Editable="true" Width="110">
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
@@ -52,7 +52,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.nombrefull)" Caption="Tercero" Editable="true">
+                <DataGridSelectColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.nombrefull)" Caption="Tercero" Editable="true">
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
@@ -62,14 +62,18 @@
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaSecundaria.Distinct())
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name}")</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.nombrefull}")</SelectItem>
                                     }
                                 </Select>
                             }
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.active)" Caption="Activo" Editable="false" Width="50">
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.previousbalance)" Caption="Anterior" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.input)" Caption="Entrada" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.output)" Caption="Salida" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.currentbalance)" Caption="Actual" Editable="true" Width="60" />
+                <DataGridCheckColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.active)" Caption="Activo" Editable="false" Width="50">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>

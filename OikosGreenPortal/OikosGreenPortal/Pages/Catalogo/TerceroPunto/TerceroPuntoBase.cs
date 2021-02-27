@@ -12,16 +12,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
+namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
 {
-    public class TerceroTipoBase : ComponentBase
+    public class TerceroPuntoBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<TerceroTipo_data> _lista { get; set; }
+        public List<TerceroPunto_data> _lista { get; set; }
         public List<Tercero_data> _listaSecundaria { get; set; }
-        public TerceroTipo_data _regActual { get; set; }
+        public TerceroPunto_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _datoTipo { get; set; }
@@ -29,25 +29,24 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         public String _mensajeIsDanger { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
-        private String datoTipoUbicacion { get; set; }
         private Boolean isok { get; set; } = false;
-        private String urlgetall { get; set; } = Urls.urltercerotipo_getall;
-        private String urlinsert { get; set; } = Urls.urltercerotipo_insert;
-        private String urlupdate { get; set; } = Urls.urltercerotipo_update;
-        private String urlinactive { get; set; } = Urls.urltercerotipo_inactive;
-        private String urlgetcode { get; set; } = Urls.urltercerotipo_getbytipo;
+        private String urlgetall { get; set; } = Urls.urlterceropunto_getall;
+        private String urlinsert { get; set; } = Urls.urlterceropunto_insert;
+        private String urlupdate { get; set; } = Urls.urlterceropunto_update;
+        private String urlinactive { get; set; } = Urls.urlterceropunto_inactive;
+        private String urlgetcode { get; set; } = Urls.urlterceropunto_getbycode;
 
 
         protected async override Task OnInitializedAsync()
         {
-            _lista = new List<TerceroTipo_data>();
+            _lista = new List<TerceroPunto_data>();
             _listaSecundaria = null;
             _datoPadre = 0;
-            _Mensaje = _datoTipo= "";
-            _regActual = new TerceroTipo_data();
-            TipoTerceroTipo tipoUbica = new TipoTerceroTipo();
-            _listaTipo = tipoUbica.tiposTerceroTipo();
-            TercerosTipoRequest _dataRequest = new TercerosTipoRequest();
+            _Mensaje = _datoTipo = "";
+            _regActual = new TerceroPunto_data();
+            Periodos tipoUbica = new Periodos();
+            _listaTipo = tipoUbica.listaPeriodos();
+            TerceroPuntosRequest _dataRequest = new TerceroPuntosRequest();
             try
             {
                 _dataStorage = null;
@@ -58,9 +57,9 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
                 } while (_dataStorage == null);
 
                 var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
-                _dataRequest = JsonConvert.DeserializeObject<TercerosTipoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                _dataRequest = JsonConvert.DeserializeObject<TerceroPuntosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
-                    _lista = _dataRequest.entities.OrderBy(o=>o.nombrefull).ToList();
+                    _lista = _dataRequest.entities.OrderBy(o => o.nombrefull).OrderByDescending(o=>o.period).ToList();
                 //Obtenemos la Tabla de Terceros
                 try
                 {
@@ -69,7 +68,8 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
                     if (_dataRequestTercero != null && _dataRequestTercero.entities != null && _dataRequestTercero.entities.Count > 0)
                         _listaSecundaria = _dataRequestTercero.entities.OrderBy(o => o.nombrefull).ToList();
 
-                }catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
             }
             catch (Exception ex)
             {
@@ -78,13 +78,13 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         }
 
         #region Presentación
-        public void estilofila(TerceroTipo_data reg, DataGridRowStyling style)
+        public void estilofila(TerceroPunto_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
             style.Style = "font-size: 13px;";
         }
 
-        public void filaSeleccionada(TerceroTipo_data reg, DataGridRowStyling style)
+        public void filaSeleccionada(TerceroPunto_data reg, DataGridRowStyling style)
         {
             style.Style = "color: blue; font-size: 15px;";
             style.Color = Color.Success;
@@ -92,13 +92,13 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         #endregion
 
 
-        public Boolean validaDatos(TerceroTipo_data _paraValidar)
+        public Boolean validaDatos(TerceroPunto_data _paraValidar)
         {
             _Mensaje = "";
             _mensajeIsDanger = "alert-danger";
-            if (_paraValidar.type == null)
+            if (_paraValidar.period == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            if (_paraValidar.idtercero == null || _paraValidar.idtercero==0)
+            if (_paraValidar.idtercero == null || _paraValidar.idtercero == 0)
                 _Mensaje += "Por favor diligenciar el TERCERO, es un campo obligatorio.&s";
 
 
@@ -107,36 +107,41 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
             return true;
         }
 
-        public void iniciaDatos(TerceroTipo_data data)
+        public void iniciaDatos(TerceroPunto_data data)
         {
-            _datoPadre = 0;            
+            _datoPadre = 0;
+            data.previousbalance = data.input = data.output = data.currentbalance = 0;
             _Mensaje = "";
         }
 
-        public async Task insertFila(SavedRowItem<TerceroTipo_data, Dictionary<String, object>> e)
+        public async Task insertFila(SavedRowItem<TerceroPunto_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            try
+            {
+                e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            }
+            catch (Exception ex) { _Mensaje = ex.Message; }
         }
 
-        public async Task updateFila(SavedRowItem<TerceroTipo_data, Dictionary<String, object>> e)
+        public async Task updateFila(SavedRowItem<TerceroPunto_data, Dictionary<String, object>> e)
         {
             await setUbicacion(e.Item, false, urlupdate);
         }
 
-        public async Task inactiveFila(TerceroTipo_data item)
+        public async Task inactiveFila(TerceroPunto_data item)
         {
             item.active = !item.active;
             try
             {
-                var resultado = await General.solicitudUrl<TerceroTipo_data>(_dataStorage.user.token, "POST", urlinactive, item);
-                TerceroTipoRequest _dataRequest = JsonConvert.DeserializeObject<TerceroTipoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "POST", urlinactive, item);
+                TerceroPuntoRequest _dataRequest = JsonConvert.DeserializeObject<TerceroPuntoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest == null || _dataRequest.entity == null || _dataRequest.entity.id == 0)
                     item.active = !item.active;
             }
             catch (Exception) { item.active = !item.active; }
         }
 
-        private void datosAdicionales(Boolean isNuevo, ref TerceroTipo_data item)
+        private void datosAdicionales(Boolean isNuevo, ref TerceroPunto_data item)
         {
             if (isNuevo)
             {
@@ -148,26 +153,26 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(TerceroTipo_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setUbicacion(TerceroPunto_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipo;
+            Item.period = _datoTipo;
             Item.idtercero = _datoPadre;
             Item.name = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.lastname = _lista.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
-            TerceroTipo_data reg = Item;
+            TerceroPunto_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
-                var resultadoCode = await General.solicitudUrl<TerceroTipo_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
-                TerceroTipoRequest _dataRequestCode = JsonConvert.DeserializeObject<TerceroTipoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                var resultadoCode = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
+                TerceroPuntoRequest _dataRequestCode = JsonConvert.DeserializeObject<TerceroPuntoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
                 {
                     try
                     {
-                        var resultado = await General.solicitudUrl<TerceroTipo_data>(_dataStorage.user.token, "POST", Url, reg);
-                        TerceroTipoRequest _dataRequest = JsonConvert.DeserializeObject<TerceroTipoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                        var resultado = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "POST", Url, reg);
+                        TerceroPuntoRequest _dataRequest = JsonConvert.DeserializeObject<TerceroPuntoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                         if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
                         {
                             if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
