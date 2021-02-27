@@ -27,6 +27,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Categoria
         public static String urlcategoria_getall { get { return urlbase + "categoria/getall"; } } //GET
         public static String urlcategoria_getbyid { get { return urlbase + "categoria/getbyid"; } } //POST
+        public static String urlcategoria_getbycode { get { return urlbase + "categoria/getbycode"; } } //POST
         public static String urlcategoria_insert { get { return urlbase + "categoria/insert"; } } //POST
         public static String urlcategoria_update { get { return urlbase + "categoria/update"; } } //POST
         public static String urlcategoria_inactive { get { return urlbase + "categoria/inactive"; } } //POST
@@ -59,6 +60,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Documento
         public static String urldocumento_getall { get { return urlbase + "documento/getall"; } } //GET
         public static String urldocumento_getbyid { get { return urlbase + "documento/getbyid"; } } //POST
+        public static String urldocumento_getbycode { get { return urlbase + "documento/getbycode"; } } //POST
         public static String urldocumento_insert { get { return urlbase + "documento/insert"; } } //POST
         public static String urldocumento_update { get { return urlbase + "documento/update"; } } //POST
         public static String urldocumento_inactive { get { return urlbase + "documento/inactive"; } } //POST
@@ -115,6 +117,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Parametro Detalle
         public static String urlparametrodetalle_getall { get { return urlbase + "parametrodetalle/getall"; } } //GET
         public static String urlparametrodetalle_getbyid { get { return urlbase + "parametrodetalle/getbyid"; } } //POST
+        public static String urlparametrodetalle_getbycode { get { return urlbase + "parametrodetalle/getbycode"; } } //POST
         public static String urlparametrodetalle_insert { get { return urlbase + "parametrodetalle/insert"; } } //POST
         public static String urlparametrodetalle_update { get { return urlbase + "parametrodetalle/update"; } } //POST
         public static String urlparametrodetalle_inactive { get { return urlbase + "parametrodetalle/inactive"; } } //POST
