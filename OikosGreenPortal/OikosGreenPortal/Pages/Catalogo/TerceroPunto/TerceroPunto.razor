@@ -62,17 +62,17 @@
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaSecundaria.Distinct())
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name}")</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.nombrefull}")</SelectItem>
                                     }
                                 </Select>
                             }
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.previousbalance)" Caption="Anterior" Editable="true" Width="60" />
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.input)" Caption="Entrada" Editable="true" Width="60" />
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.output)" Caption="Salida" Editable="true" Width="60" />
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.currentbalance)" Caption="Actual" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.previousbalance)" Caption="Anterior" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.input)" Caption="Entrada" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.output)" Caption="Salida" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.currentbalance)" Caption="Actual" Editable="true" Width="60" />
                 <DataGridCheckColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.active)" Caption="Activo" Editable="false" Width="50">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

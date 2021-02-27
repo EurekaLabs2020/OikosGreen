@@ -16,7 +16,7 @@
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
-                <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">                    
+                <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
@@ -39,19 +39,6 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.numdocument)" Caption="Documento" Editable="true" Width="60"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.name)" Caption="Nombre" Editable="true" Displayable="false" Width="80"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.lastname)" Caption="Apellido" Editable="true" Displayable="false" Width="80"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.nombrefull)" Caption="Nombre" Editable="false">
-                    <DisplayTemplate>
-                        @($"{( context as Tercero_data)?.nombrefull.ToUpper()} ")
-                    </DisplayTemplate>
-                </DataGridColumn>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.address)" Caption="Dirección" Editable="true" Displayable="false" Width="80"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" Width="70"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="false" Width="70"/>
-                <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40"/>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80"/>
                 <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true" Width="60">
                     <EditTemplate>
                         @{
@@ -69,6 +56,32 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
+
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.numdocument)" Caption="Documento" Editable="true" Width="60" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.name)" Caption="Nombre" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.name.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.lastname)" Caption="Apellido" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.lastname.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.nombrefull)" Caption="Nombre" Editable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.nombrefull.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.address)" Caption="Dirección" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.address.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" Width="70" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="false" Width="70" />
+                <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80" />
                 <DataGridCheckColumn TItem="Tercero_data" Field="@nameof(Tercero_data.active)" Caption="Activo" Editable="false" Width="50">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

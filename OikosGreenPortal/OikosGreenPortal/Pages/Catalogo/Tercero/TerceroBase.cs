@@ -76,7 +76,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                     var resultadoDocumento = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urldocumento_getall, "");
                     DocumentosRequest _dataRequestDocumento = JsonConvert.DeserializeObject<DocumentosRequest>(resultadoDocumento.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestDocumento != null && _dataRequestDocumento.entities != null && _dataRequestDocumento.entities.Count > 0)
-                        _listaSecundaria = _dataRequestDocumento.entities.Where(w => w.type == _listaTipo[1]).ToList();
+                        _listaSecundaria = _dataRequestDocumento.entities.Where(w => w.type == _listaTipo[0]).ToList();
                 }
                 catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
             }
@@ -165,9 +165,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         {
             Int64 retorno = 0;
             isok = false;
-            Item.documentoid = _datoPadre;
+            Item.documentoid = Item.iddocumento= _datoPadre;
             Item.namedocum = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
+            Item.lastname = Item.lastname.ToUpper();
+            Item.address = Item.address.ToUpper();
+            Item.email = Item.email.ToUpper();
             Tercero_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))

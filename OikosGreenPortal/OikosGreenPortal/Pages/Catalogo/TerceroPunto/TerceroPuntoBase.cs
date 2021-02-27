@@ -110,12 +110,17 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
         public void iniciaDatos(TerceroPunto_data data)
         {
             _datoPadre = 0;
+            data.previousbalance = data.input = data.output = data.currentbalance = 0;
             _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<TerceroPunto_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            try
+            {
+                e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            }
+            catch (Exception ex) { _Mensaje = ex.Message; }
         }
 
         public async Task updateFila(SavedRowItem<TerceroPunto_data, Dictionary<String, object>> e)
