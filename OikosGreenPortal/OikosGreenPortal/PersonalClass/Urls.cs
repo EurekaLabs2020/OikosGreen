@@ -158,6 +158,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero
         public static String urltercero_getall { get { return urlbase + "tercero/getall"; } } //GET
         public static String urltercero_getbyid { get { return urlbase + "tercero/getbyid"; } } //POST
+        public static String urltercero_getbycode { get { return urlbase + "tercero/getbycode"; } } //POST
         public static String urltercero_insert { get { return urlbase + "tercero/insert"; } } //POST
         public static String urltercero_update { get { return urlbase + "tercero/update"; } } //POST
         public static String urltercero_inactive { get { return urlbase + "tercero/inactive"; } } //POST
