@@ -166,6 +166,13 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Catalogo\TerceroTipo\TerceroTipo.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/catalogo/tercerotipo")]
     public partial class TerceroTipo : TerceroTipoBase
     {

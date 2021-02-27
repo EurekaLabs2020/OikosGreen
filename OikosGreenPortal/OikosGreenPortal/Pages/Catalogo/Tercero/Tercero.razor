@@ -6,19 +6,17 @@
 <TituloComponent _titulo="Bodegas"></TituloComponent>
 
 <div class="container">
-    <div class="row">
-        <label>@($"{_regActual.name}-{_regActual.numdocument}_{_regActual.iddocumento}-{_regActual.namedocum}_")</label>
-    </div>
+
     <div class="row">
         <DataGrid TItem="Tercero_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
-                <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">
+                <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">                    
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
@@ -41,20 +39,20 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.numdocument)" Caption="Documento" Editable="true" Width="60" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.name)" Caption="Nombre" Editable="true" Displayable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.lastname)" Caption="Apellido" Editable="true" Displayable="false" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.numdocument)" Caption="Documento" Editable="true" Width="60"/>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.name)" Caption="Nombre" Editable="true" Displayable="false" Width="80"/>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.lastname)" Caption="Apellido" Editable="true" Displayable="false" Width="80"/>
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.nombrefull)" Caption="Nombre" Editable="false">
                     <DisplayTemplate>
                         @($"{( context as Tercero_data)?.nombrefull.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Teléfono" Editable="true" Displayable="false" />
-                <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true">
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.address)" Caption="Dirección" Editable="true" Displayable="false" Width="80"/>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" Width="70"/>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="false" Width="70"/>
+                <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40"/>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80"/>
+                <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true" Width="60">
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
