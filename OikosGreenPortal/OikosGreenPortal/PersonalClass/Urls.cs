@@ -18,6 +18,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Bodega
         public static String urlbodega_getall { get { return urlbase + "bodega/getall"; } } //GET
         public static String urlbodega_getbyid { get { return urlbase + "bodega/getbyid"; } } //POST
+        public static String urlbodega_getbycode { get { return urlbase + "bodega/getbycode"; } } //POST
         public static String urlbodega_insert { get { return urlbase + "bodega/insert"; } } //POST
         public static String urlbodega_update { get { return urlbase + "bodega/update"; } } //POST
         public static String urlbodega_inactive { get { return urlbase + "bodega/inactive"; } } //POST

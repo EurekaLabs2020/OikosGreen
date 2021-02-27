@@ -34,9 +34,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
                 if (datoTipoUbicacion == _listaTipoUbicacion[0] || datoTipoUbicacion=="0")
                     _listaSecundaria = null;
                 else if (datoTipoUbicacion == _listaTipoUbicacion[1])
-                    _listaSecundaria = _lista.Where(w => w.type.Trim().ToUpper() == _listaTipoUbicacion[0]).ToList();
+                    _listaSecundaria = _lista.Where(w => w.type!=null && w.type.Trim().ToUpper() == _listaTipoUbicacion[0]).ToList();
                 else
-                    _listaSecundaria = _lista.Where(w => w.type.Trim().ToUpper() == _listaTipoUbicacion[1]).ToList();
+                    _listaSecundaria = _lista.Where(w => w.type != null && w.type.Trim().ToUpper() == _listaTipoUbicacion[1]).ToList();
             }
         }
         public String _Mensaje { get; set; }
@@ -83,7 +83,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
             }
         }
 
-
+        #region Presentación
         public void estilofila(Ubicacion_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
@@ -95,9 +95,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
             style.Style = "color: blue; font-size: 15px;";
             style.Color = Color.Success;
         }
+        #endregion
 
 
-        
         public Boolean validaDatos(Ubicacion_data _paraValidar)
         {
             _Mensaje = "";
@@ -130,30 +130,23 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
 
-
         public async Task updateFila(SavedRowItem<Ubicacion_data, Dictionary<String, object>> e)
         {
             await setUbicacion(e.Item, false, urlupdate);
         }
 
-
-        public async Task inactiveFila(EventArgs arg)
+        public async Task inactiveFila(Ubicacion_data item)
         {
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Ubicacion_data>)arg).Item;
             item.active = !item.active;
-            item.usermodify = _dataStorage.user.user;
-            item.datemodify = DateTime.Now;
-            ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
             try
             {
                 var resultado = await General.solicitudUrl<Ubicacion_data>(_dataStorage.user.token, "POST", urlinactive, item);
                 UbicacionRequest _dataRequest = JsonConvert.DeserializeObject<UbicacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                if (_dataRequest == null || _dataRequest.entity == null || _dataRequest.entity.id == 0)
+                    item.active = !item.active;
             }
-            catch (Exception) { }
+            catch (Exception) { item.active = !item.active; }
         }
-
 
         private void datosAdicionales(Boolean isNuevo, ref Ubicacion_data item)
         {

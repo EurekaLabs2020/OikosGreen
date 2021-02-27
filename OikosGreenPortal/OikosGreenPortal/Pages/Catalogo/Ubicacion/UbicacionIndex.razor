@@ -4,12 +4,16 @@
 @attribute [Authorize]
 
 <TituloComponent _titulo="Ubicaciones"></TituloComponent>
+
 <div class="container">
+    <div class="row">
+        <label>@($"{_regActual.name}-{_regActual.type}_{_regActual.parent}-{_regActual.nameparent}_")</label>
+    </div>
     <div class="row">
         <DataGrid TItem="Ubicacion_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  RowInserted="@insertFila" RowUpdated="@updateFila" RowRemoving="@inactiveFila"
+                  RowInserted="@insertFila" RowUpdated="@updateFila" 
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true">
 
@@ -18,10 +22,12 @@
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
-                    <EditCommandTemplate>
+                    <EditCommandTemplate>                        
                         <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> </DeleteCommandTemplate>
+                    <DeleteCommandTemplate> 
+                        <Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> 
+                    </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
                     <SaveCommandTemplate>
                         <div class="col-md-6">
@@ -38,6 +44,7 @@
                 <DataGridSelectColumn TItem="Ubicacion_data" Field="@nameof(Ubicacion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="110">
                     <EditTemplate>
                         @{
+                            //_datoTipoUbicacion = context.CellValue.ToString();
                             <Select TValue="String" @bind-SelectedValue="@_datoTipoUbicacion">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipoUbicacion)
@@ -57,6 +64,7 @@
                 <DataGridSelectColumn TItem="Ubicacion_data" Field="@nameof(Ubicacion_data.nameparent)" Caption="Padre" Editable="true">
                     <EditTemplate>
                         @{
+                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString()); 
                             @if (_listaSecundaria != null)
                             {
                                 <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">

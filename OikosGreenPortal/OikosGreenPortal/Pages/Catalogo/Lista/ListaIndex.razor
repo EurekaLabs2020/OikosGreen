@@ -9,9 +9,8 @@
         <DataGrid TItem="Lista_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  RowInserting="@insertaFila"
-                  RowUpdating="@updateFila"
-                  RowRemoving="@inactiveFila">
+                  RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
             <ChildContent>
                 <DataGridCommandColumn TItem="Lista_data">
                     <NewCommandTemplate>
@@ -28,7 +27,11 @@
 
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.id)" Caption="Id" Sortable="false"  />
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" />
-                <DataGridCheckColumn TItem="Lista_data" Field="@nameof(Lista_data.active)" Caption="Activo" Editable="false" />
+                <DataGridCheckColumn TItem="Lista_data" Field="@nameof(Lista_data.active)" Caption="Activo" Editable="false" >
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
 
             </ChildContent>
             <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
