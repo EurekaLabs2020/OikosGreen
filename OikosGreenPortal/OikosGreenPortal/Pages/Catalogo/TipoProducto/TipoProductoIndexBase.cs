@@ -50,15 +50,19 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
         }
 
 
+        #region Presentación
         public void estilofila(TipoProducto_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
         }
 
         public void filaSeleccionada(TipoProducto_data reg, DataGridRowStyling style)
         {
-            style.Style = "background: green; color: yellow;";
+            style.Style = "color: blue; font-size: 15px;";
+            style.Color = Color.Success;
         }
+        #endregion
 
         public async Task insertaFila(EventArgs arg)
         {

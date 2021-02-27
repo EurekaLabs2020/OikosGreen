@@ -51,15 +51,19 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
         }
 
 
+        #region Presentación
         public void estilofila(GeneralIva_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
         }
 
         public void filaSeleccionada(GeneralIva_data reg, DataGridRowStyling style)
         {
-            style.Style = "background: green; color: yellow;";
+            style.Style = "color: blue; font-size: 15px;";
+            style.Color = Color.Success;
         }
+        #endregion
 
         public async Task insertaFila(EventArgs arg)
         {

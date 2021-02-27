@@ -11,9 +11,8 @@
         <DataGrid TItem="GeneralIva_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  RowInserting="@insertaFila"
-                  RowUpdating="@updateFila"
-                  RowRemoving="@inactiveFila">
+                  RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
             <ChildContent>
                 <DataGridCommandColumn TItem="GeneralIva_data">
                     <NewCommandTemplate>
@@ -28,12 +27,16 @@
                     <CancelCommandTemplate> <button class="btn btn-danger btn-cancel" @onclick="@context.Clicked">Cancelar</button> </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.id)" Caption="Id" Sortable="false"/>
-                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.code)" Caption="Código" Validator="@validaName" Editable="true" />
-                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.value)" Caption="Valor" Validator="@validaName" Editable="true" />
+                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.id)" Caption="Id" Sortable="false" Displayable="false"/>
+                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="120"/>
+                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.value)" Caption="Valor" Validator="@validaName" Editable="true" Width="120"/>
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.startdate)" Caption="Fecha Incial" Validator="@validaName" Editable="true" />
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.enddate)" Caption="Fecha Final" Validator="@validaName" Editable="true" />
-                <DataGridCheckColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.active)" Caption="Activo" Editable="false" />
+                <DataGridCheckColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.active)" Caption="Activo" Editable="false" Width="50">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
 
             </ChildContent>
             <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>

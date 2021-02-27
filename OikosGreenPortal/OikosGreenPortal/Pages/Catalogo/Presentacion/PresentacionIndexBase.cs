@@ -48,15 +48,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
                 await General.MensajeModal("ERROR", ex.Message, _modal);
             }
         }
+        #region Presentación
         public void estilofila(Presentacion_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
         }
 
         public void filaSeleccionada(Presentacion_data reg, DataGridRowStyling style)
         {
-            style.Style = "background: green; color: yellow;";
+            style.Style = "color: blue; font-size: 15px;";
+            style.Color = Color.Success;
         }
+        #endregion
 
         public async Task insertaFila(EventArgs arg)
         {
