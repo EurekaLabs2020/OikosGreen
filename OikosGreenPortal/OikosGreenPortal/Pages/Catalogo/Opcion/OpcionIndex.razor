@@ -37,13 +37,13 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="60" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true">
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="50" />
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true" Width="70">
                     <DisplayTemplate>
                         @($"{( context as Opcion_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="110">
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="900">
                     <EditTemplate>
                         @{
                             <Select TValue="String" @bind-SelectedValue="@_datoTipoOpcion">
@@ -57,7 +57,7 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="60" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="60" />
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" />
                 <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true">
                     <EditTemplate>
                         @{
@@ -74,7 +74,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="Ubicacion_data" Field="@nameof(Ubicacion_data.active)" Caption="Activo" Editable="false" Width="50">
+                <DataGridCheckColumn TItem="Opcion_data" Field="@nameof(Opcion_data.active)" Caption="Activo" Editable="false" Width="40">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
