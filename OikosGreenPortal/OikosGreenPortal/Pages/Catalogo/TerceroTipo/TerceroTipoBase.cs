@@ -65,11 +65,12 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
                 try
                 {
                     var resultadoTercero = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercero_getall, "");
-                    TercerosRequest _dataRequestTercero = JsonConvert.DeserializeObject<TercerosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    TercerosRequest _dataRequestTercero = JsonConvert.DeserializeObject<TercerosRequest>(resultadoTercero.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestTercero != null && _dataRequestTercero.entities != null && _dataRequestTercero.entities.Count > 0)
-                        _listaSecundaria = _dataRequestTercero.entities.OrderBy(o => o.nombrefull).ToList();
+                        _listaSecundaria = _dataRequestTercero.entities;
 
-                }catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
             }
             catch (Exception ex)
             {
