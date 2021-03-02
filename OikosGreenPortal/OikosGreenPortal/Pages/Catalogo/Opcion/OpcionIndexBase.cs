@@ -166,6 +166,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
             Item.name = Item.name.ToUpper();
             Item.code = Item.code;
             Item.url = Item.url;
+            Item.icon = Item.icon;
             Opcion_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
