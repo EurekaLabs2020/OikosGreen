@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Pages.Catalogo.Bodegas
 {
-    public class BodegaIndexBase : ComponentBase
+    public class BodegaIndexBase : ComponentBase 
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }

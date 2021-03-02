@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Blazored.Modal.Services;
+﻿using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -11,10 +7,15 @@ using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
 using OikosGreenPortal.PersonalClass;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace OikosGreenPortal.Pages.Catalogo.Conversion
 {
-    public class ConversionIndexBase : ComponentBase
+    public class ConversionPageBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
@@ -98,7 +99,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
         {
             _Mensaje = "";
             _mensajeIsDanger = "alert-danger";
-            if (_paraValidar.unitoriginid  == 0)
+            if (_paraValidar.unitoriginid == 0)
                 _Mensaje += "Por favor asignar una presentación origen, es un campo obligatorio.&s";
             if (_paraValidar.unitdestinationid == 0)
                 _Mensaje += "Por favor asignar una presentación destino, es un campo obligatorio.&s";
@@ -181,16 +182,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
                         _Mensaje = _dataRequest.status.message;
                 }
                 catch (Exception ex) { _Mensaje = ex.Message; }
-             
             }
             StateHasChanged();
             if (!isok && Crear)
                 _lista.Remove(reg);
             return retorno;
         }
-
-
-
-
     }
 }
