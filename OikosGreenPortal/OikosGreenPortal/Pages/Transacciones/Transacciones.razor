@@ -1,10 +1,16 @@
 ﻿@page "/transacciones"
 
 @inherits TransaccionesBase
+@attribute [Authorize]
+
+    <TituloComponent _titulo="Opciones"></TituloComponent>
+
+    <div class="container">
+        <div class="row">
+            <DataGrid >
+
+            </DataGrid>
+        </div>
+    </div>
 
 
-<h3>Transacciones</h3>
-
-@code {
-
-}
