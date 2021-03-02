@@ -49,7 +49,7 @@
                             <Select TValue="String" @bind-SelectedValue="@_datoTipoOpcion">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipoOpcion)
-                                {
+                                { 
                                     <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
                                 }
                             </Select>
