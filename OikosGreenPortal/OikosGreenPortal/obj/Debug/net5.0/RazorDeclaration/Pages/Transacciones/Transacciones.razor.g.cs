@@ -166,6 +166,13 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Transacciones\Transacciones.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/transacciones")]
     public partial class Transacciones : TransaccionesBase
     {

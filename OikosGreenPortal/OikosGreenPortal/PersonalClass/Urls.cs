@@ -204,6 +204,11 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlubicacion_inactive { get { return urlbase + "ubicacion/inactive"; } } //POST
         #endregion
 
+        #region Transaccion
+        public static String urltransaccion_gettransacc { get { return urlbase + "detallemovimiento/gettransaccc"; } } //GET
+        public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
+        #endregion
+
 
     }
 }

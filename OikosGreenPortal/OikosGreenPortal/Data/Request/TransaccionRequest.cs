@@ -7,6 +7,14 @@ namespace OikosGreenPortal.Data.Request
 {
     public class TransaccionRequest
     {
-        public int MyProperty { get; set; }
+        public List<Transaccion_data> entities { get; set; }
+        public Status  status { get; set; }
+
     }
+
+    public class Transaccion_data
+    {
+
+    }
+
 }

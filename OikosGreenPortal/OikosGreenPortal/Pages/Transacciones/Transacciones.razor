@@ -7,7 +7,36 @@
 
     <div class="container">
         <div class="row">
-            <DataGrid >
+            <div class="col-md-3">
+                <Button Color="Color.Primary" Clicked="@NuevaTransaccion" class="btn-create">Nueva</Button>
+            </div>
+
+        </div>
+        <div class="row">
+            <DataGrid TItem="Transaccion_data" Data="@_lista" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"
+                      Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                <ChildContent>
+                    <DataGridCommandColumn TItem="Opcion_data"/>
+
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+
+                </ChildContent>
+
+                <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+                <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+                <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+                <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+
+                <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+                <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
 
             </DataGrid>
         </div>
