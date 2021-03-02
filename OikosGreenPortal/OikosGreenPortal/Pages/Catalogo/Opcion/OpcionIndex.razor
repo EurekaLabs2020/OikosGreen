@@ -36,7 +36,6 @@
                         <button class="btn btn-danger btn-cancel" @onclick="@context.Clicked">Cancelar</button>
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
-
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" Displayable="false" />
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="60" />
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true">
@@ -44,13 +43,24 @@
                         @($"{( context as Opcion_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Editable="true" Width="60" />
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="110">
+                    <EditTemplate>
+                        @{
+                            <Select TValue="String" @bind-SelectedValue="@_datoTipoOpcion">
+                                <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
+                                @foreach (var item in _listaTipoOpcion)
+                                {
+                                    <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
+                                }
+                            </Select>
+                        }
+                    </EditTemplate>
+                </DataGridSelectColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="60" />
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="60" />
                 <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true">
                     <EditTemplate>
                         @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
                             {
                                 <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">

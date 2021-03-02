@@ -22,13 +22,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         public List<Opcion_data> _lista { get; set; }
         public List<Opcion_data> _listaSecundaria { get; set; }
         public Opcion_data _regActual { get; set; }
-        public List<String> _listaTipoUbicacion { get; set; }
+        public List<String> _listaTipoOpcion { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
-
         private infoBrowser _dataStorage { get; set; }
-        private String datoTipoUbicacion { get; set; }
+        private String datoTipoOpcion { get; set; }
+        public String _datoTipoOpcion
+        {
+            get { return datoTipoOpcion; }
+            set 
+            {
+                datoTipoOpcion = value;
+                _datoPadre = 0;
+            }
+        }
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlopcion_getall;
         private String urlinsert { get; set; } = Urls.urlopcion_insert;
@@ -43,6 +51,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
             _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Opcion_data();
+            TipoOpcion tipoOpcion = new TipoOpcion();
+            _listaTipoOpcion = tipoOpcion.tiposOpciones();
             OpcionesRequest _dataRequest = new OpcionesRequest();
             try
             {
@@ -57,6 +67,14 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                 _dataRequest = JsonConvert.DeserializeObject<OpcionesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
+                try
+                {
+                    var resultadoPadre = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
+                    OpcionesRequest _dataRequestPadre = JsonConvert.DeserializeObject<OpcionesRequest>(resultadoPadre.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestPadre != null && _dataRequestPadre.entities != null && _dataRequestPadre.entities.Count > 0)
+                        _listaSecundaria = _dataRequestPadre.entities.Where(w=> w.type =="MENU").ToList();
+                }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
 
             }
             catch (Exception ex)
@@ -99,6 +117,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         public void iniciaDatos(Opcion_data data)
         {
             _datoPadre = 0;
+            _datoTipoOpcion = "0";
             _Mensaje = "";
         }
 
@@ -141,10 +160,13 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         {
             Int64 retorno = 0;
             isok = false;
+            Item.type = _datoTipoOpcion;
             Item.parent = _datoPadre;
             Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Item.code = Item.code;
+            Item.url = Item.url;
+            Item.icon = Item.icon;
             Opcion_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
