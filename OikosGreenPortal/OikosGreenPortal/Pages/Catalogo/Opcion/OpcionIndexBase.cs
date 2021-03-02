@@ -1,4 +1,8 @@
-﻿using Blazored.Modal.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -7,59 +11,39 @@ using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
 using OikosGreenPortal.PersonalClass;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Catalogo.Bodegas
+namespace OikosGreenPortal.Pages.Catalogo.Opcion
 {
-    public class BodegaIndexBase : ComponentBase 
+    public class OpcionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<Bodega_data> _lista { get; set; }
-        public List<Ubicacion_data> _listaSecundaria { get; set; }
-        public Bodega_data _regActual { get; set; }
-        public List<String> _listaTipo { get; set; }
+        public List<Opcion_data> _lista { get; set; }
+        public List<Opcion_data> _listaSecundaria { get; set; }
+        public Opcion_data _regActual { get; set; }
         public List<String> _listaTipoUbicacion { get; set; }
-
         public Int64 _datoPadre { get; set; }
-        public String _datoTipo
-        {
-            get { return datoTipo; }
-            set
-            {
-                datoTipo = value;
-                _datoPadre = 0;                
-            }
-        }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
-        private String datoTipo { get; set; }
+        private String datoTipoUbicacion { get; set; }
         private Boolean isok { get; set; } = false;
-        private String urlgetall { get; set; } = Urls.urlbodega_getall;
-        private String urlinsert { get; set; } = Urls.urlbodega_insert;
-        private String urlupdate { get; set; } = Urls.urlbodega_update;
-        private String urlinactive { get; set; } = Urls.urlbodega_inactive;
-        private String urlgetcode { get; set; } = Urls.urlbodega_getbycode;
-
+        private String urlgetall { get; set; } = Urls.urlopcion_getall;
+        private String urlinsert { get; set; } = Urls.urlopcion_insert;
+        private String urlupdate { get; set; } = Urls.urlopcion_update;
+        private String urlinactive { get; set; } = Urls.urlopcion_inactive;
+        private String urlgetcode { get; set; } = Urls.urlopcion_getbycode;
 
         protected async override Task OnInitializedAsync()
         {
-            _lista = new List<Bodega_data>();
+            _lista = new List<Opcion_data>();
             _listaSecundaria = null;
             _datoPadre = 0;
             _Mensaje = "";
-            _regActual = new Bodega_data();
-            TipoUbicacion tipoUbica = new TipoUbicacion();
-            _listaTipoUbicacion = tipoUbica.tiposUbicaciones();
-            TipoBodega tipo = new TipoBodega();
-            _listaTipo = tipo.tiposBodegas();
-            BodegasRequest _dataRequest = new BodegasRequest();
+            _regActual = new Opcion_data();
+            OpcionesRequest _dataRequest = new OpcionesRequest();
             try
             {
                 _dataStorage = null;
@@ -70,18 +54,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
                 } while (_dataStorage == null);
 
                 var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
-                _dataRequest = JsonConvert.DeserializeObject<BodegasRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                _dataRequest = JsonConvert.DeserializeObject<OpcionesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
-                // Obtenemos la Lista Ciudad
-                try
-                {
-                    var resultadoCiudad = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlubicacion_getall, "");
-                    UbicacionesRequest _dataRequestCiudad = JsonConvert.DeserializeObject<UbicacionesRequest>(resultadoCiudad.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequestCiudad != null && _dataRequestCiudad.entities != null && _dataRequestCiudad.entities.Count > 0)
-                        _listaSecundaria = _dataRequestCiudad.entities.Where(w=>w.type== _listaTipoUbicacion[1]).ToList();
-                }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+
             }
             catch (Exception ex)
             {
@@ -90,13 +66,13 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         }
 
         #region Presentación
-        public void estilofila(Bodega_data reg, DataGridRowStyling style)
+        public void estilofila(Opcion_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
             style.Style = "font-size: 13px;";
         }
 
-        public void filaSeleccionada(Bodega_data reg, DataGridRowStyling style)
+        public void filaSeleccionada(Opcion_data reg, DataGridRowStyling style)
         {
             style.Style = "color: blue; font-size: 15px;";
             style.Color = Color.Success;
@@ -104,7 +80,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         #endregion
 
 
-        public Boolean validaDatos(Bodega_data _paraValidar)
+        public Boolean validaDatos(Opcion_data _paraValidar)
         {
             _Mensaje = "";
             _mensajeIsDanger = "alert-danger";
@@ -114,43 +90,42 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-
+            
             if (_Mensaje.Trim().Length > 0)
                 return false;
             return true;
         }
 
-        public void iniciaDatos(Bodega_data data)
+        public void iniciaDatos(Opcion_data data)
         {
             _datoPadre = 0;
-            _datoTipo = "0";
             _Mensaje = "";
         }
 
-        public async Task insertFila(SavedRowItem<Bodega_data, Dictionary<String, object>> e)
+        public async Task insertFila(SavedRowItem<Opcion_data, Dictionary<String, object>> e)
         {
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
 
-        public async Task updateFila(SavedRowItem<Bodega_data, Dictionary<String, object>> e)
+        public async Task updateFila(SavedRowItem<Opcion_data, Dictionary<String, object>> e)
         {
             await setUbicacion(e.Item, false, urlupdate);
         }
 
-        public async Task inactiveFila(Bodega_data item)
+        public async Task inactiveFila(Opcion_data item)
         {
             item.active = !item.active;
             try
             {
-                var resultado = await General.solicitudUrl<Bodega_data>(_dataStorage.user.token, "POST", urlinactive, item);
-                BodegaRequest _dataRequest = JsonConvert.DeserializeObject<BodegaRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Opcion_data>(_dataStorage.user.token, "POST", urlinactive, item);
+                OpcionRequest _dataRequest = JsonConvert.DeserializeObject<OpcionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest == null || _dataRequest.entity == null || _dataRequest.entity.id == 0)
                     item.active = !item.active;
             }
             catch (Exception) { item.active = !item.active; }
         }
 
-        private void datosAdicionales(Boolean isNuevo, ref Bodega_data item)
+        private void datosAdicionales(Boolean isNuevo, ref Opcion_data item)
         {
             if (isNuevo)
             {
@@ -162,26 +137,26 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(Bodega_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setUbicacion(Opcion_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipo;
-            Item.ubicacionid = _datoPadre;
-            Item.ubicaname = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            Item.parent = _datoPadre;
+            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
-            Bodega_data reg = Item;
+            Item.code = Item.code;
+            Opcion_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
-                var resultadoCode = await General.solicitudUrl<Bodega_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
-                BodegaRequest _dataRequestCode = JsonConvert.DeserializeObject<BodegaRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                var resultadoCode = await General.solicitudUrl<Opcion_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
+                OpcionRequest _dataRequestCode = JsonConvert.DeserializeObject<OpcionRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
                 {
                     try
                     {
-                        var resultado = await General.solicitudUrl<Bodega_data>(_dataStorage.user.token, "POST", Url, reg);
-                        BodegaRequest _dataRequest = JsonConvert.DeserializeObject<BodegaRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                        var resultado = await General.solicitudUrl<Opcion_data>(_dataStorage.user.token, "POST", Url, reg);
+                        OpcionRequest _dataRequest = JsonConvert.DeserializeObject<OpcionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                         if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
                         {
                             if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
@@ -203,6 +178,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
                 _lista.Remove(reg);
             return retorno;
         }
+
 
     }
 }
