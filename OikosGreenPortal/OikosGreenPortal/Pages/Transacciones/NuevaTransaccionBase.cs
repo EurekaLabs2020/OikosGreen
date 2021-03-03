@@ -1,12 +1,9 @@
 ﻿using Blazored.Modal.Services;
-using Blazorise;
-using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
-using OikosGreenPortal.Data.Send;
 using OikosGreenPortal.PersonalClass;
 using System;
 using System.Collections.Generic;
@@ -15,15 +12,23 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Pages.Transacciones
 {
-    public class TransaccionesBase : ComponentBase
+    public class NuevaTransaccionBase : ComponentBase
     {
         [Inject] public IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
         [Inject] public NavigationManager _navigation { get; set; }
 
+        public Boolean _mostrarDetalle { get; set; }
+        public String _resumenDetalle { get; set; }
+        public Int64 _datoTipo { get; set; }
+        public Int64 _datoClase { get; set; }
+        public DateTime? _datoFecha { get; set; }
 
-        public List<Transaccion_data> _lista { get; set; }
+
+        public List<Documento_data> _listaTipo { get; set; }
+        public List<String> _tipo { get; set; }
         public String _Mensaje { get; set; }
+        public String _mensajeIsDanger { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
 
@@ -31,11 +36,15 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         protected async override Task OnInitializedAsync()
         {
-            _lista = new List<Transaccion_data>();
-            _Mensaje = "";
-            TransaccionSend envio = new TransaccionSend();
-            envio.number = 100;
-            TransaccionRequest _dataRequest = new TransaccionRequest();
+            _mostrarDetalle = false;
+            _resumenDetalle = "...";
+            _datoTipo = _datoClase = 0;
+            _datoFecha = DateTime.Now;
+
+            TipoDocumento tipo = new TipoDocumento();
+            _tipo = tipo.tiposDocumentos();
+
+            DocumentosRequest _dataRequest = new DocumentosRequest();
             try
             {
                 _dataStorage = null;
@@ -45,10 +54,10 @@ namespace OikosGreenPortal.Pages.Transacciones
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<TransaccionSend>(_dataStorage.user.token, "POST", Urls.urltransaccion_gettransaccbyitem, envio);
-                _dataRequest = JsonConvert.DeserializeObject<TransaccionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urldocumento_getall, "");
+                _dataRequest = JsonConvert.DeserializeObject<DocumentosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
-                    _lista = _dataRequest.entities.OrderByDescending(o => o.date).ToList();
+                    _listaTipo = _dataRequest.entities.Where(w=>w.type==_tipo[1]).ToList();
             }
             catch (Exception ex)
             {
@@ -57,20 +66,12 @@ namespace OikosGreenPortal.Pages.Transacciones
         }
 
 
-
-        #region Presentación
-        public void estilofila(Transaccion_data reg, DataGridRowStyling style)
+        public async Task Detalle()
         {
-            style.Background = Blazorise.Background.Light;
-            style.Style = "font-size: 13px;";
+            _mostrarDetalle = !_mostrarDetalle;
+            if (_datoTipo != 0)
+                _resumenDetalle += _listaTipo.Where(w => w.id == _datoTipo).Select(s=>s.name).FirstOrDefault();
         }
-
-        public void filaSeleccionada(Transaccion_data reg, DataGridRowStyling style)
-        {
-            style.Style = "color: blue; font-size: 15px;";
-            style.Color = Color.Success;
-        }
-        #endregion
 
 
 
