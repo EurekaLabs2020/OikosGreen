@@ -36,14 +36,14 @@
                         <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="50" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true" Width="100">
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" Displayable="false" Sortable="false" />
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="50" Sortable="false"/>
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true" Width="180" Sortable="false">
                     <DisplayTemplate>
                         @($"{( context as Opcion_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="150">
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="120">
                     <EditTemplate>
                         @{
                             <Select TValue="String" @bind-SelectedValue="@_datoTipoOpcion">
@@ -56,9 +56,9 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="60" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" />
-                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true">
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="80" Sortable="false" />
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" Sortable="false"/>
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true" Width="150" Sortable="false">
                     <EditTemplate>
                         @{
                             @if (_listaSecundaria != null)
@@ -74,7 +74,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="Opcion_data" Field="@nameof(Opcion_data.active)" Caption="Activo" Editable="false" Width="40">
+                <DataGridCheckColumn TItem="Opcion_data" Field="@nameof(Opcion_data.active)" Caption="Activo" Editable="false" Width="40" Sortable="false">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>

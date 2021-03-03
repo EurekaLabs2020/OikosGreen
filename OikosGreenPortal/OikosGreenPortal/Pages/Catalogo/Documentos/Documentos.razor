@@ -12,7 +12,7 @@
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Documento_data" CellsEditableOnEditCommand="true">
@@ -37,8 +37,8 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="110">
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.id)" Caption="Id" Editable="false" Displayable="false" Width="100" Sortable="false" />
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="150">
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
@@ -52,15 +52,15 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="60" />
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true">
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150" Sortable="false"/>
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280" Sortable="false">
                     <DisplayTemplate>
                         @($"{( context as Documento_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.namelist)" Caption="Lista" Editable="true">
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.namelist)" Caption="Lista" Editable="true" Width="150" Sortable="false">
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
@@ -77,7 +77,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.active)" Caption="Activo" Editable="false" Width="50">
+                <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.active)" Caption="Activo" Editable="false" Width="150">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
@@ -90,7 +90,7 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
 
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>

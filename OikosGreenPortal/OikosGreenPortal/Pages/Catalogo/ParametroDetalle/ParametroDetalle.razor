@@ -12,7 +12,7 @@
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="ParametroDetalle_data" CellsEditableOnEditCommand="true">
@@ -37,10 +37,10 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.value)" Caption="Valor" Editable="true" Width="60" />
-                <DataGridSelectColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.nameparam)" Caption="Parametro" Editable="true">
-                    <EditTemplate>
+                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.id)" Caption="Id" Editable="false" Displayable="false"/>
+                
+                <DataGridSelectColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.nameparam)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
+                       <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
@@ -56,8 +56,9 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
+                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.value)" Caption="Valor" Editable="true" Width="280" Sortable="false" />
+                <DataGridCheckColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.active)" Caption="Activo" Editable="false" Width="200" Sortable="false">
+                        <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
                 </DataGridCheckColumn>
@@ -69,7 +70,7 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
 
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
