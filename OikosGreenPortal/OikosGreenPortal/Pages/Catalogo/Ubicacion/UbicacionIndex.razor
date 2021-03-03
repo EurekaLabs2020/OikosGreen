@@ -7,9 +7,6 @@
 
 <div class="container">
     <div class="row">
-        <label>@($"{_regActual.name}-{_regActual.type}_{_regActual.parent}-{_regActual.nameparent}_")</label>
-    </div>
-    <div class="row">
         <DataGrid TItem="Ubicacion_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
