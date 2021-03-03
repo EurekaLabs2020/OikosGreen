@@ -21,10 +21,18 @@
                     <EditCommandTemplate>
                         <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> </DeleteCommandTemplate>
-                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
-                    <SaveCommandTemplate> <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip> </SaveCommandTemplate>
-                    <CancelCommandTemplate> <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip> </CancelCommandTemplate>
+                    <DeleteCommandTemplate> 
+                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
+                    </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> 
+                        <span @onclick="@context.Clicked">Limpiar Filtro</span> 
+                    </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate> 
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate> 
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip> 
+                    </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="Id" Sortable="false" />

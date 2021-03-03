@@ -22,7 +22,7 @@
                         <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                     </EditCommandTemplate>
                     <DeleteCommandTemplate> 
-                        <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> 
+                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
                     </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
                     <SaveCommandTemplate> 
