@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using OikosGreenPortal.Data.Personal;
+using Blazorise.DataGrid;
 
 namespace OikosGreenPortal.PersonalClass
 {
@@ -38,31 +39,42 @@ namespace OikosGreenPortal.PersonalClass
             var result = await formModal.Result;
         }
 
+        public static void estilofila(DataGridRowStyling style)
+        {
+            style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
+        }
+
 
         public static async Task<HttpResponseMessage> solicitudUrl<T>(String _token, String _metodo, String _url, T _datos)
         {
             HttpResponseMessage response = new HttpResponseMessage();
-            using (var solicitud = new HttpClient())
+            try
             {
-                if (_token.Trim().Length > 0)
-                    solicitud.DefaultRequestHeaders.Add( "Authorization", $"Bearer {_token}");
-                solicitud.BaseAddress = new Uri(_url);
-                switch (_metodo)
+                using (var solicitud = new HttpClient())
                 {
-                    case "POST":
-                        if(_datos==null)
-                            response = await solicitud.PostAsync("",null);
-                        else
-                            response = await solicitud.PostAsJsonAsync("", _datos);
-                        break;
-                    case "GET":
-                        response = await solicitud.GetAsync("");
-                        break;
-                    case "PATCH":
-                        response = await solicitud.PatchAsync("", null);
-                        break;
-                }
+                    if (_token.Trim().Length > 0)
+                        solicitud.DefaultRequestHeaders.Add("Authorization", $"Bearer {_token}");
+                    solicitud.BaseAddress = new Uri(_url);
+                    switch (_metodo)
+                    {
+                        case "POST":
+                            if (_datos == null)
+                                response = await solicitud.PostAsync("", null);
+                            else
+                                response = await solicitud.PostAsJsonAsync("", _datos);
+                            break;
+                        case "GET":
+                            response = await solicitud.GetAsync("");
+                            break;
+                        case "PATCH":
+                            response = await solicitud.PatchAsync("", null);
+                            break;
+                    }
 
+                }
+            }catch(Exception ex)
+            {
             }
             return response;
         }

@@ -1,0 +1,81 @@
+﻿@page "/transacciones/new"
+
+@inherits NuevaTransaccionBase
+@attribute [Authorize]
+
+<TituloComponent _titulo="Nueva Transacción"></TituloComponent>
+
+<div class="container">
+    <div class="row">
+        <div class=" col-md-3">
+            <Button Color="Color.Success" Clicked="@Detalle" class="btn-create">@(_mostrarDetalle ? "Ocultar" : "Detalle")</Button>
+        </div>
+    </div>
+
+    @if (_mostrarDetalle)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <Label>Tipo</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoTipo" >
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _listaTipo)
+                    {
+                        <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                    }
+                </Select>
+            </div>
+            <div class="col-md-4">
+                <Label >Clase</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoClase" >
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    <SelectItem TValue="Int64" Value="1">POSITIVO</SelectItem>
+                    <SelectItem TValue="Int64" Value="2">NEGATIVO</SelectItem>
+                </Select>
+            </div>
+            <div class="col-md-4">
+                <Label >Fecha</Label>
+                <input type="date" @bind="@_datoFecha"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <Label>Origen</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig" >
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _listaOrig)
+                    {
+                        <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                    }
+                </Select>
+            </div>
+            <div class="col-md-4">
+                <Label>Destino</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest" >
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _listaDest)
+                    {
+                <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                    }
+                </Select>
+            </div>
+            <div class="col-md-4">
+                <Label>Proveedor</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _listaProv)
+                    {
+                        <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                    }
+                </Select>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <span>@_resumenDetalle</span>
+        </div>
+    }
+</div>

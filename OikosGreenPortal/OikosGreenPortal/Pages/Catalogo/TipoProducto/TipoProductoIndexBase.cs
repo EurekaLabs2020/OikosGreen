@@ -50,15 +50,19 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
         }
 
 
+        #region Presentación
         public void estilofila(TipoProducto_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
+            style.Style = "font-size: 13px;";
         }
 
         public void filaSeleccionada(TipoProducto_data reg, DataGridRowStyling style)
         {
-            style.Style = "background: green; color: yellow;";
+            style.Style = "color: blue; font-size: 15px;";
+            style.Color = Color.Success;
         }
+        #endregion
 
         public async Task insertaFila(EventArgs arg)
         {
@@ -95,7 +99,6 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
-
             }
             catch (Exception) { item = new TipoProducto_data(); }
         }

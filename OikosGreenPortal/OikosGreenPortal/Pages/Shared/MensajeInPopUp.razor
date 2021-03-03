@@ -1,0 +1,17 @@
+﻿@if (!String.IsNullOrEmpty(Mensaje))
+{
+    <div class="row" style="text-align:left; font-weight:bold;font-size:12px;">
+        <span class="@clase ">
+            @foreach (String mensaje in Mensaje.Split("&s"))
+            {
+                @mensaje
+                <br />
+            }
+        </span>
+    </div>
+}
+
+@code {
+    [Parameter] public String Mensaje { get; set; }
+    [Parameter] public String clase { get; set; }
+}

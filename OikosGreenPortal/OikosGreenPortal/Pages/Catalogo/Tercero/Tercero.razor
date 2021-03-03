@@ -1,9 +1,112 @@
 ﻿@page "/catalogo/tercero"
 
 @inherits TerceroBase
+@attribute [Authorize]
 
-<h3>Tercero</h3>
+<TituloComponent _titulo="Terceros"></TituloComponent>
 
-@code {
+<div class="container">
 
-}
+    <div class="row">
+        <DataGrid TItem="Tercero_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                  RowInserted="@insertFila" RowUpdated="@updateFila"
+                  UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+
+            <ChildContent>
+                <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active"> <i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i></Button></Tooltip>
+                    </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate>
+                        <div class="col-md-6">
+                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                        </div>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
+                    </CancelCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.id)" Caption="Id" Editable="false" Displayable="false" />
+                <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true" Width="60">
+                    <EditTemplate>
+                        @{
+                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
+                            @if (_listaSecundaria != null)
+                            {
+                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                    @foreach (var item in _listaSecundaria)
+                                    {
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                    }
+                                </Select>
+                            }
+                        }
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.numdocument)" Caption="Documento" Editable="true" Width="60" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.name)" Caption="Nombre" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.name.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.lastname)" Caption="Apellido" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.lastname.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.nombrefull)" Caption="Nombre" Editable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.nombrefull.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.address)" Caption="Dirección" Editable="true" Displayable="false" Width="80">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.address.ToUpper()} ")
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" Width="70" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="false" Width="70" />
+                <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80" />
+                <DataGridCheckColumn TItem="Tercero_data" Field="@nameof(Tercero_data.active)" Caption="Activo" Editable="false" Width="50">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
+
+            </ChildContent>
+
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+            <PopupTitleTemplate>
+                @*<span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>*@
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
+            </PopupTitleTemplate>
+
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+        </DataGrid>
+    </div>
+    <div class="row">
+        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+    </div>
+</div>
+

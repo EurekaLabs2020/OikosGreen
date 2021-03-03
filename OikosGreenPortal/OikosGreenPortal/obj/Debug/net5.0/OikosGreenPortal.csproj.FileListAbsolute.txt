@@ -162,111 +162,6 @@ E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Transacciones\Transacciones.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Reportes\Inventario\Inventario.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Inventario\Inventario.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.Development.json
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.json
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.StaticWebAssets.xml
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.exe
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.deps.json
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.runtimeconfig.json
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.runtimeconfig.dev.json
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\ref\OikosGreenPortal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.pdb
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.Views.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.Views.pdb
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.LocalStorage.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Menu.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Modal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Bootstrap.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.DataGrid.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Icons.Material.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Material.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Microsoft.JSInterop.WebAssembly.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Newtonsoft.Json.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.GeneratedMSBuildEditorConfig.editorconfig
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfoInputs.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfo.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csproj.CoreCompileInputs.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.MvcApplicationPartsAssemblyInfo.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorComponent.input.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\Login.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Bodegas\Bodegas.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Categorias\Categorias.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Conversion\Conversion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Documentos\Documentos.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Lista\Lista.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Opcion\Opcion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Producto\Producto.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Tercero\Tercero.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Ubicacion\Ubicacion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Clientes\Clientes.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Intercambio\Intercambio.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\PuntoSatelite\PuntoSatelite.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Reportes\Inventario\Inventario.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\ModalMensaje.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Transacciones\Transacciones.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\TituloComponent.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorComponent.output.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\OikosGreenPortal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.TagHelpers.input.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.TagHelpers.output.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorCoreGenerate.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\App.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\Login.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Bodegas\Bodegas.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Categorias\Categorias.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Conversion\Conversion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Documentos\Documentos.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Lista\Lista.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Opcion\Opcion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Producto\Producto.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Tercero\Tercero.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Ubicacion\Ubicacion.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Clientes\Clientes.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Intercambio\Intercambio.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\PuntoSatelite\PuntoSatelite.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Inventario\Inventario.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\ModalMensaje.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Transacciones\Transacciones.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\TituloComponent.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorAssemblyInfo.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorAssemblyInfo.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\staticwebassets\OikosGreenPortal.StaticWebAssets.Manifest.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\staticwebassets\OikosGreenPortal.StaticWebAssets.xml
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Pages\Shared\TituloComponent.razor.rz.scp.css
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\bundle\OikosGreenPortal.styles.css
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\projectbundle\OikosGreenPortal.bundle.scp.css
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorTargetAssemblyInfo.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorTargetAssemblyInfo.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.Views.pdb
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csproj.CopyComplete
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.Development.json
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.json
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.StaticWebAssets.xml
@@ -297,19 +192,14 @@ C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\o
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorComponent.input.cache
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\Login.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Bodegas\Bodegas.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Categorias\Categorias.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Conversion\Conversion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Documentos\Documentos.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Lista\Lista.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Opcion\Opcion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Producto\Producto.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Tercero\Tercero.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Ubicacion\Ubicacion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Clientes\Clientes.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Intercambio\Intercambio.razor.g.cs
@@ -328,19 +218,14 @@ C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\o
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorCoreGenerate.cache
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\App.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\Login.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Bodegas\Bodegas.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Categorias\Categorias.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Conversion\Conversion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Documentos\Documentos.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Lista\Lista.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Opcion\Opcion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Producto\Producto.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Tercero\Tercero.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Ubicacion\Ubicacion.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Clientes\Clientes.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Intercambio\Intercambio.razor.g.cs
@@ -375,10 +260,6 @@ C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\o
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.DataGrid.dll
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
@@ -391,3 +272,140 @@ E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Pages\Shared\TituloComponent.razor.rz.scp.css
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Bodegas\BodegaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Lista\ListaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Ubicacion\UbicacionIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Bodegas\BodegaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Lista\ListaIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Ubicacion\UbicacionIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\MensajeInPopUp.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\MensajeInPopUp.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Conversion\ConversionPage.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Conversion\ConversionPage.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Opcion\OpcionIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Opcion\OpcionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.Development.json
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\appsettings.json
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.StaticWebAssets.xml
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.exe
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.deps.json
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.runtimeconfig.json
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.runtimeconfig.dev.json
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\ref\OikosGreenPortal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.pdb
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.Views.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\OikosGreenPortal.Views.pdb
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.LocalStorage.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Menu.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazored.Modal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Bootstrap.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.DataGrid.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Icons.Material.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Material.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Microsoft.JSInterop.WebAssembly.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.GeneratedMSBuildEditorConfig.editorconfig
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfoInputs.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfo.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csproj.CoreCompileInputs.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.MvcApplicationPartsAssemblyInfo.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorComponent.input.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\Login.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Bodegas\BodegaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Categorias\Categorias.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Conversion\ConversionPage.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Documentos\Documentos.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Lista\ListaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Opcion\OpcionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Producto\Producto.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TerceroPunto\TerceroPuntoIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Tercero\Tercero.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Ubicacion\UbicacionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Clientes\Clientes.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Intercambio\Intercambio.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\PuntoSatelite\PuntoSatelite.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Reportes\Inventario\Inventario.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\MensajeInPopUp.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\ModalMensaje.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Transacciones\Transacciones.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\TituloComponent.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorComponent.output.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\OikosGreenPortal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.TagHelpers.input.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.TagHelpers.output.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorCoreGenerate.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\App.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\Login.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Bodegas\BodegaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Categorias\Categorias.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Conversion\ConversionPage.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Documentos\Documentos.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\GeneralIva\GeneralIvaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ListaDetalle\ListaDetalle.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Lista\ListaIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Opcion\OpcionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\ParametroDetalle\ParametroDetalle.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Parametro\ParametroIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Presentacion\PresentacionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Producto\Producto.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TerceroPunto\TerceroPuntoIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TerceroTipo\TerceroTipo.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Tercero\Tercero.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TipoProducto\TipoProductoIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Ubicacion\UbicacionIndex.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Clientes\Clientes.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Intercambio\Intercambio.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\PuntoSatelite\PuntoSatelite.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Inventario\Inventario.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\MensajeInPopUp.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\ModalMensaje.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Transacciones\Transacciones.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\TituloComponent.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorAssemblyInfo.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorAssemblyInfo.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\staticwebassets\OikosGreenPortal.StaticWebAssets.Manifest.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\staticwebassets\OikosGreenPortal.StaticWebAssets.xml
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Pages\Shared\TituloComponent.razor.rz.scp.css
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\bundle\OikosGreenPortal.styles.css
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\projectbundle\OikosGreenPortal.bundle.scp.css
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorTargetAssemblyInfo.cache
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.RazorTargetAssemblyInfo.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.Views.pdb
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csproj.CopyComplete
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\TerceroPunto\TerceroPuntoIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\TerceroPunto\TerceroPuntoIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Transacciones\NuevaTransaccion.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Transacciones\NuevaTransaccion.razor.g.cs

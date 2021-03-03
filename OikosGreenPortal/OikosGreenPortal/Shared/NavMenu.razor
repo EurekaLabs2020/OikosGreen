@@ -10,36 +10,36 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    @if(_lstMenu==null || _lstMenu.Count == 0)
+    @if (_lstMenu == null || _lstMenu.Count == 0)
     {
         <p>Cargando Información del Menu...</p>
     }
     else
     {
         <BlazoredMenu Css="menu-ek">
-            @foreach(var opPpal in _lstMenu.OrderBy(o=>o.code).Where(w=>w.idparent=="0" || w.idparent == ""))
-            {
-                @if (!_lstMenu.Any(a => a.idparent.Trim() == opPpal.id.Trim()))
+                @foreach(var opPpal in _lstMenu.OrderBy(o=>o.code).Where(w=>w.idparent=="0" || w.idparent == ""))
                 {
-                    <Blazored.Menu.BlazoredMenuItem>
-                        <NavLink href="@opPpal.url"> @opPpal.option </NavLink>
-                    </Blazored.Menu.BlazoredMenuItem>
+                    @if (!_lstMenu.Any(a => a.idparent.Trim() == opPpal.id.Trim()))
+                    {
+                        <BlazoredMenuItem>
+                            <NavLink href="@opPpal.url"> @opPpal.option </NavLink>
+                        </BlazoredMenuItem>
+                    }
+                    else
+                    {
+                        <BlazoredSubMenu Header="@opPpal.option.ToUpper()">
+                            <MenuTemplate>
+                                @foreach (var opHijo in _lstMenu.Where(w => w.idparent.Trim() == opPpal.id.Trim()).OrderBy(o => o.code))
+                                {
+                                    <BlazoredMenuItem>
+                                        <NavLink href="@opHijo.url"> @opHijo.option </NavLink>
+                                    </BlazoredMenuItem>
+                                }
+                            </MenuTemplate>
+                        </BlazoredSubMenu>
+                    }
                 }
-                else
-                {
-                    <Blazored.Menu.BlazoredSubMenu Header="@opPpal.option">
-                        <MenuTemplate>
-                            @foreach(var opHijo in _lstMenu.Where(w => w.idparent.Trim() == opPpal.id.Trim()).OrderBy(o => o.code))
-                            {
-                                <Blazored.Menu.BlazoredMenuItem>
-                                    <NavLink href="@opHijo.url"> @opHijo.option </NavLink>
-                                </Blazored.Menu.BlazoredMenuItem>
-                            }
-                        </MenuTemplate>
-                    </Blazored.Menu.BlazoredSubMenu>
-                }
-            }
-        </BlazoredMenu>
+            </BlazoredMenu>
     }
 </div>
 
