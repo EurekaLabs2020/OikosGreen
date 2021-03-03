@@ -95,7 +95,8 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>
+                @*<span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>*@
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
 
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
