@@ -12,7 +12,7 @@
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Conversion_data" CellsEditableOnEditCommand="true">
@@ -38,7 +38,7 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presorigin)" Caption="Presentación Origen" Editable="true">
+                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presorigin)" Caption="Presentación Origen" Editable="true" Width="320">
                     <EditTemplate>
                         @{
                             @if (_listaSecundaria != null)
@@ -54,7 +54,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presdestination)" Caption="Presentación Destino" Editable="true">
+                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presdestination)" Caption="Presentación Destino" Editable="true" Width="320">
                     <EditTemplate>
                         @{
                             @if (_listaTercera != null)
@@ -70,8 +70,8 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.value)" Caption="Valor" Editable="true" Width="60" />
-                <DataGridCheckColumn TItem="Conversion_data" Field="@nameof(Conversion_data.active)" Caption="Activo" Editable="false" Width="50">
+                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.value)" Caption="Valor" Editable="true" Width="180" />
+                <DataGridCheckColumn TItem="Conversion_data" Field="@nameof(Conversion_data.active)" Caption="Activo" Editable="false" Width="60">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
@@ -83,7 +83,7 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
 
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>

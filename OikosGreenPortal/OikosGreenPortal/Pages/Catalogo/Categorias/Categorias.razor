@@ -12,7 +12,7 @@
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Categoria_data" CellsEditableOnEditCommand="true">
@@ -37,8 +37,8 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Categoria_data" Field="@nameof(Categoria_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Categoria_data" Field="@nameof(Categoria_data.name)" Caption="Nombre" Editable="true">
+                <DataGridColumn TItem="Categoria_data" Field="@nameof(Categoria_data.id)" Caption="Id" Editable="false" Displayable="false" Sortable="false" />
+                <DataGridColumn TItem="Categoria_data" Field="@nameof(Categoria_data.name)" Caption="Nombre" Editable="true" Sortable="false">
                     <DisplayTemplate>
                         @($"{( context as Categoria_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
@@ -73,7 +73,7 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <span>@(context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando") Registro</span>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
 
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
