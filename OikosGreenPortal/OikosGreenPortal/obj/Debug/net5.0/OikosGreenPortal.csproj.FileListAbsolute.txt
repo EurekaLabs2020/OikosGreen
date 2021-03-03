@@ -406,3 +406,7 @@ C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\o
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\SendEmailSignIn.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Transacciones\NuevaTransaccion.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Auth\login\SendEmailSignIn.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Transacciones\NuevaTransaccion.razor.g.cs
