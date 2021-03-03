@@ -3,29 +3,31 @@
 @inherits TransaccionesBase
 @attribute [Authorize]
 
-    <TituloComponent _titulo="Opciones"></TituloComponent>
+    <TituloComponent _titulo="Transacciones"></TituloComponent>
 
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <Button Color="Color.Primary" Clicked="@NuevaTransaccion" class="btn-create">Nueva</Button>
+                <a href="/transacciones/new"> <Button Color="Color.Primary" class="btn-create">Nueva</Button> </a>
             </div>
 
         </div>
         <div class="row">
             <DataGrid TItem="Transaccion_data" Data="@_lista" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"
+                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"  ShowPager="true"
                       Bordered="true" Striped="true" Responsive="true" Hoverable="true">
                 <ChildContent>
-                    <DataGridCommandColumn TItem="Opcion_data"/>
+                    <DataGridCommandColumn TItem="Opcion_data" />
 
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.idencabezado)" Caption="Id" Editable="false" Displayable="false" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Editable="false"  Width="120"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.name)" Caption="Tipo" Editable="false" Width="80"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Documento" Editable="false" Width="50"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.nombrefull)" Caption="Cliente" Editable="false"  Width="100"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Codigo" Editable="false" Width="50"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Editable="false" Width="80"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cantidad" Editable="false" Width="50"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Editable="false" Width="60"/>
 
                 </ChildContent>
 
@@ -41,5 +43,4 @@
             </DataGrid>
         </div>
     </div>
-
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -69,6 +70,8 @@ namespace OikosGreenPortal.Data.Request
         public Decimal? costvalue { get; set; }
         public Decimal? valueiva { get; set; }
         public Decimal? points { get; set; }
+        [NotMapped]
+        public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 
     }
 
