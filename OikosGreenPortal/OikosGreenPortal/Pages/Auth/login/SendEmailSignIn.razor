@@ -1,0 +1,21 @@
+﻿@page "/olvido-clave"
+
+@inherits SendEmailSignInBase
+
+<div class="container">
+    <div class="row justify-content-center cnt-login vh-100">
+        <div class="col align-self-center">
+            <div class="card div-align-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Recuperar Contraseña</h5>
+                    <form action="">
+                        <div class="cnt-input-login">
+                            <TextEdit @bind-Text="@_usuario.user" Label="Usuario" Icon="account_circle" Outlined="true"></TextEdit>
+                        </div>
+                        <a href="index" type="submit" class="btn btn-primary btn-block" @onclick="Enviar">Enviar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

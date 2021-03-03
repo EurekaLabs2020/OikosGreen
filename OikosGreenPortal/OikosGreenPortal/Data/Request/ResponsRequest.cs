@@ -10,4 +10,10 @@ namespace OikosGreenPortal.Data.Request
         public Boolean state { get; set; }
         public Status status { get; set; }
     }
+
+    public class ResponsRequestBoolean
+    {
+        public Boolean entity { get; set; }
+        public Status status { get; set; }
+    }
 }

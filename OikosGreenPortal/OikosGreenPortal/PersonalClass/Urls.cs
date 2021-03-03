@@ -11,6 +11,8 @@ namespace OikosGreenPortal.PersonalClass
 
         #region Login - Permisos
         public static String urllogin { get { return urlbase + "Account/Login"; } }
+        public static String urlsentemail { get { return urlbase + "sentemail"; } }
+
         public static String urlmenu { get { return urlbase + "permission/getbyuser"; } }
         public static String urlopcion_getall { get { return urlbase + "opcion/getall"; } }
         public static String urlopcion_insert { get { return urlbase + "opcion/insert"; } }

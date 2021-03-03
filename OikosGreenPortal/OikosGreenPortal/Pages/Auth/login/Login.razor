@@ -9,14 +9,17 @@
                 <h2>Ingresar</h2>
                 <form action="javaScript:void(0)" method="post">
                     <Field>
-                        <TextEdit Placeholder="Usuario" Role="TextRole.Text" @bind-Text="@_login.user" ChangeTextOnKeyPress="false"/>
+                        <TextEdit Placeholder="Usuario" Role="TextRole.Text" @bind-Text="@_login.user" ChangeTextOnKeyPress="false" />
                     </Field>
 
                     <Field>
-                        <TextEdit Placeholder="Contraseña" Role="TextRole.Password" @bind-Text="@_login.password" ChangeTextOnKeyPress="false"/>
+                        <TextEdit Placeholder="Contraseña" Role="TextRole.Password" @bind-Text="@_login.password" ChangeTextOnKeyPress="false" />
                     </Field>
 
                     <Button Color="Color.Primary" Block="true" Clicked="Logueo" Type="ButtonType.Submit">Ingresar</Button>
+                    
+                    <Link To="/olvido-clave"> Recordar Contraseña </Link>
+
                 </form>
             </div>
         </div>

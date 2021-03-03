@@ -3,12 +3,9 @@
 @inherits CategoriasBase
 @attribute [Authorize]
 
-<TituloComponent _titulo="Ubicaciones"></TituloComponent>
+<TituloComponent _titulo="Categorias"></TituloComponent>
 
 <div class="container">
-    <div class="row">
-        <label>@($"{_regActual.name}_{_regActual.parent}-{_regActual.nameparent}_")</label>
-    </div>
     <div class="row">
         <DataGrid TItem="Categoria_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"

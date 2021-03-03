@@ -29,7 +29,7 @@ namespace OikosGreenPortal.Data.Request
         public String address { get; set; }
 
         [NotMapped]
-        public virtual String nombrefull { get { return name.Trim().ToUpper() + " " + lastname.Trim().ToUpper(); } }
+        public virtual String nombrefull { get { return (name == null ? "" : name.Trim().ToUpper()) + " " + (lastname ==null ? "" : lastname.Trim().ToUpper()); } }
     }
 
 }

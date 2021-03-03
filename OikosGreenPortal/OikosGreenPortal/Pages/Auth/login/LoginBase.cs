@@ -24,7 +24,7 @@ namespace OikosGreenPortal.Pages.Auth.login
         [Inject] public AuthenticationStateProvider _autenticacion { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-
+         
         public LoginSend _login { get; set; }
 
 
