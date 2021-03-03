@@ -19,12 +19,18 @@
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
                     <EditCommandTemplate>
-                        <Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button">Editar</Button>
+                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate> <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> </DeleteCommandTemplate>
+                    <DeleteCommandTemplate> 
+                        <Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active">@(context.Item.active ? "Inactivar" : "Activar")</Button> 
+                    </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
-                    <SaveCommandTemplate> <button class="btn btn-info" @onclick="@context.Clicked">Grabar</button> </SaveCommandTemplate>
-                    <CancelCommandTemplate> <button class="btn btn-danger btn-cancel" @onclick="@context.Clicked">Cancelar</button> </CancelCommandTemplate>
+                    <SaveCommandTemplate> 
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip> 
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate> 
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip> 
+                    </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.id)" Caption="Id" Sortable="false" Displayable="false"/>
