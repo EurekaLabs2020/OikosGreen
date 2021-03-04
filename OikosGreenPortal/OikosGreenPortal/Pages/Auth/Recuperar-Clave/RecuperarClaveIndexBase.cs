@@ -11,13 +11,13 @@ namespace OikosGreenPortal.Pages.Auth.Recuperar_Clave
     {
         //public ForgotPassword _usuario { get; set; }
 
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    _usuario = new ForgotPassword();
-        //}
-        //public async Task Enviar()
-        //{
+        protected override async Task OnInitializedAsync()
+        {
+            //_usuario = new ForgotPassword();
+        }
+        public async Task Enviar()
+        {
 
-        //}
+        }
     }
 }
