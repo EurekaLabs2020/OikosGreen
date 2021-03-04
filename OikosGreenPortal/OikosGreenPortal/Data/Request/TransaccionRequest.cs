@@ -19,7 +19,7 @@ namespace OikosGreenPortal.Data.Request
         public Int64? numberdocument { get; set; }
         public DateTime date { get; set; }
         public String typemoviment { get; set; }
-        public Int64? docid { get; set; }
+        public Int64 docid { get; set; }
         public String code { get; set; }
         public String name { get; set; }
         public String type { get; set; }
@@ -31,10 +31,10 @@ namespace OikosGreenPortal.Data.Request
         public String sellerid { get; set; }
         public String sellername { get; set; }
         public String sellerlastname { get; set; }
-        public Int64? cellarid { get; set; }
+        public Int64 cellarid { get; set; }
         public String cellartype { get; set; }
         public String cellarname { get; set; }
-        public Int64? cellarorigid { get; set; }
+        public Int64 cellarorigid { get; set; }
         public String cellarorigtype { get; set; }
         public String cellarorigname { get; set; }
         public Int64? cellardestid { get; set; }
@@ -62,15 +62,22 @@ namespace OikosGreenPortal.Data.Request
         public Int64 prodid { get; set; }
         public String prodcode { get; set; }
         public String prodname { get; set; }
+        public Int64 presentacionid { get; set; }
         public String prodtipname { get; set; }
         public String prodivacode { get; set; }
         public Decimal? prodivavalue { get; set; }
-        public Decimal? quantity { get; set; }
-        public Decimal? unitvaluebefore { get; set; }
-        public Decimal? unitvalue { get; set; }
-        public Decimal? costvalue { get; set; }
-        public Decimal? valueiva { get; set; }
-        public Decimal? points { get; set; }
+        public Decimal quantity { get; set; }
+        public Decimal unitvaluebefore { get; set; }
+        public Decimal unitvalue { get; set; }
+        public Decimal costvalue { get; set; }
+        public Decimal valueiva { get; set; }
+        public Decimal points { get; set; }
+        public String usercreate { get; set; }
+        public DateTime datecreate { get; set; }
+        public String usermodify { get; set; }
+        public DateTime? datemodify { get; set; }
+        public String namepc { get; set; }
+
         [NotMapped]
         public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 

@@ -1,9 +1,46 @@
 ﻿@page "/intercambio"
 
 @inherits IntercambioBase
+@attribute [Authorize]
 
-<h3>Intercambio</h3>
+<TituloComponent _titulo="Transacciones"></TituloComponent>
 
-@code {
+<div class="container">
+    <div class="row margen-supinf">
+        <div class="col-md-3">
+            <a href="/transacciones/new"> <Button Color="Color.Primary" class="btn-create">Nueva</Button> </a>
+        </div>
 
-}
+    </div>
+    <div class="row">
+        <DataGrid TItem="Transaccion_data" Data="@_lista" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" ShowPager="true"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+            <ChildContent>
+                <DataGridCommandColumn TItem="Opcion_data" />
+
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.idencabezado)" Caption="Id" Editable="false" Displayable="false" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Editable="false" Width="120" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.name)" Caption="Tipo" Editable="false" Width="80" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Documento" Editable="false" Width="50" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.nombrefull)" Caption="Cliente" Editable="false" Width="100" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Codigo" Editable="false" Width="50" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Editable="false" Width="80" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cantidad" Editable="false" Width="50" />
+                <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Editable="false" Width="60" />
+
+            </ChildContent>
+
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+        </DataGrid>
+    </div>
+</div>
+
