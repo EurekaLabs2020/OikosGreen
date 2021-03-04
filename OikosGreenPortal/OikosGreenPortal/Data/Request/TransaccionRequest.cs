@@ -54,7 +54,7 @@ namespace OikosGreenPortal.Data.Request
         public String terclastname { get; set; }
         public String tercnumdocument { get; set; }
         public String docterccode { get; set; }
-        public String doctercname { get; set; }
+        public String doctercname { get; set; } 
         public String tercphone { get; set; }
         public String terccellphone { get; set; }
         public Int64 detid { get; set; }
