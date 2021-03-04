@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {}
+    "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {}
   },
   "projects": {
-    "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {
+    "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+        "projectUniqueName": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
         "projectName": "OikosGreenPortal",
-        "projectPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-        "packagesPath": "C:\\Users\\wilder.valencia\\.nuget\\packages\\",
-        "outputPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+        "projectPath": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Desarrollos\\OikosGreen S.A\\OikosGreen_Web\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\wilder.valencia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

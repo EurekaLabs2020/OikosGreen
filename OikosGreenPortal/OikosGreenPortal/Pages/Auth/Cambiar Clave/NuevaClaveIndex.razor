@@ -4,13 +4,23 @@
 <div class="container">
     <div class="row cnt-input-change-pass">
         <div class="col-md-12">
-            <TextEdit @bind-Text="@_usuario.passTMP" Type=@(_mostrarPassword ? "password" : "text") Label="Clave actual" Icon=@(_mostrarPassword ? "remove_red_eye" : "lock") IconOnClick="togglePassTMP" Outlined="true" class="input-change-pass"></TextEdit>
+            <div class="module-input-icono">
+                <TextEdit @bind-Text="@_usuario.passTMP" Role=@(_mostrarPassword ? TextRole.Password : TextRole.Text) Placeholder="Clave actual" class="input-change-pass" ChangeTextOnKeyPress="false"></TextEdit>
+                <i class=@(_mostrarPassword ? "fas fa-eye" : "far fa-eye-slash") @onclick="togglePassTMP"></i>
+            </div>
+
         </div>
         <div class="col-md-12">
-            <TextEdit @bind-Text="@_usuario.password" Type=@(_mostrarPassword2 ? "password" : "text") Label="Nueva Clave" Icon=@(_mostrarPassword2 ? "remove_red_eye" : "lock") IconOnClick="togglePass" Outlined="true" class="input-change-pass"></TextEdit>
-        </div>
+            <div class="module-input-icono">
+                <TextEdit @bind-Text="@_usuario.password" Role=@(_mostrarPassword2 ? TextRole.Password : TextRole.Text) Placeholder="Nueva Clave" class="input-change-pass" ChangeTextOnKeyPress="false"></TextEdit>
+                <i class=@(_mostrarPassword2 ? "fas fa-eye" : "far fa-eye-slash") @onclick="togglePass"></i>
+            </div> 
+       </div>
         <div class="col-md-12">
-            <TextEdit @bind-Text="@_usuario.passwordconfirm" Type=@(_mostrarPassword3 ? "password" : "text") Label="Confirmar Clave" Icon=@(_mostrarPassword3 ? "remove_red_eye" : "lock") IconOnClick="toggleConfirmPass" Outlined="true" class="input-change-pass"></TextEdit>
+            <div class="module-input-icono">
+                <TextEdit @bind-Text="@_usuario.passwordconfirm" Role=@(_mostrarPassword3 ? TextRole.Password : TextRole.Text) Placeholder="Confirmar Clave" class="input-change-pass" ChangeTextOnKeyPress="false"></TextEdit>
+                <i class=@(_mostrarPassword3 ? "fas fa-eye" : "far fa-eye-slash") @onclick="toggleConfirmPass"></i>
+            </div>
         </div>
 
         <div class="col-md-12">
