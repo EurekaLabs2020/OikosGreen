@@ -22,8 +22,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
         public List<ParametroDetalle_data> _lista { get; set; }
         public List<Parametro_data> _listaSecundaria { get; set; }
         public ParametroDetalle_data _regActual { get; set; }
-
-        public Int64 _datoPadre { get; set; }
+ 
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -41,7 +40,6 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
         {
             _lista = new List<ParametroDetalle_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new ParametroDetalle_data();
             ParametroDetallesRequest _dataRequest = new ParametroDetallesRequest();
@@ -58,6 +56,11 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
                 _dataRequest = JsonConvert.DeserializeObject<ParametroDetallesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
+                if(_lista!=null && _lista.Count > 0)
+                {
+                    foreach (var reg in _lista)
+                        reg.idparametro = reg.parametroid;
+                }
                 // Obtenemos la Lista Parametro
                 try
                 {
@@ -105,17 +108,19 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
 
         public void iniciaDatos(ParametroDetalle_data data)
         {
-            _datoPadre = 0;
+            data.idparametro = 0;
             _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<ParametroDetalle_data, Dictionary<String, object>> e)
         {
+            e.Item.parametroid = e.Item.idparametro;
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<ParametroDetalle_data, Dictionary<String, object>> e)
         {
+            e.Item.parametroid = e.Item.idparametro;
             await setUbicacion(e.Item, false, urlupdate);
         }
 
@@ -148,8 +153,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
         {
             Int64 retorno = 0;
             isok = false;
-            Item.idparametro = _datoPadre;
-            Item.nameparam = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            Item.nameparam = _listaSecundaria.Where(w => w.id == Item.idparametro).Select(s => s.name).FirstOrDefault();
             ParametroDetalle_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
