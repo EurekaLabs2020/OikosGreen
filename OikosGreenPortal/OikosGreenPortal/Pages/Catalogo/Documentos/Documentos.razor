@@ -11,8 +11,9 @@
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
-                  UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  UseInternalEditing="false" NewItemDefaultSetter="iniciaDatos"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" 
+                  RowInserting="@insertingFila" RowUpdating="@updatingFila">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Documento_data" CellsEditableOnEditCommand="true">
@@ -35,15 +36,18 @@
                     <CancelCommandTemplate>
                         <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
                     </CancelCommandTemplate>
-                    
+
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.id)" Caption="Id" Editable="false" Displayable="false" Width="100" Sortable="false" />
                 <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.type)" Caption="Tipo" Editable="true" Width="150">
+                    <DisplayTemplate>
+                        @($"{( context as Documento_data)?.type}")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
-                            <Select TValue="String" @bind-SelectedValue="@_datoTipo">
+                            <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipo)
                                 {
@@ -54,20 +58,53 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150" />
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280" >
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280">
                     <DisplayTemplate>
                         @($"{( context as Documento_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.namelist)" Caption="Lista" Editable="true" Width="150" >
+                <DataGridNumericColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
+                
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.typeclass)} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
+                            <SelectItem TValue="String" Value=@("X")>NO APLICA</SelectItem>
+                            <SelectItem TValue="String" Value=@("C")>COMPRA</SelectItem>
+                            <SelectItem TValue="String" Value=@("V")>VENTA</SelectItem>
+                            <SelectItem TValue="String" Value=@("I")>INTERCAMBIO</SelectItem>
+                            <SelectItem TValue="String" Value=@("A")>AJUSTE</SelectItem>
+                        </Select>
+                    </EditTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.affect)" Caption="Afecte" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.affect)} ")
+                    </DisplayTemplate>
+                    <EditTemplate>                        
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
+                            <SelectItem TValue="String" Value=@("X")>NO APLICA</SelectItem>
+                            <SelectItem TValue="String" Value=@("E")>ENTRADA</SelectItem>
+                            <SelectItem TValue="String" Value=@("S")>SALIDA</SelectItem>
+                        </Select>
+                    </EditTemplate>
+
+                </DataGridColumn>
+                
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista" Editable="true" Width="150">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.namelist==null ? "" : ( context as Documento_data)?.namelist.ToUpper())} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaSecundaria)
                                     {

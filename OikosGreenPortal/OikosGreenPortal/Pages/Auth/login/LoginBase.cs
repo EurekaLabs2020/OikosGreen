@@ -34,6 +34,13 @@ namespace OikosGreenPortal.Pages.Auth.login
             _login.user = _login.password = "";            
         }
 
+        public Boolean showPassword { get; set; } = false;
+
+        public async Task togglePass()
+        {
+            showPassword = !showPassword;
+        }
+
         public async Task Logueo()
         {
             if(_login.user.Trim().Length>0 && _login.password.Trim().Length > 0)
