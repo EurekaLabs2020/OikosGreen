@@ -12,13 +12,16 @@
                         <TextEdit Placeholder="Usuario" Role="TextRole.Text" @bind-Text="@_login.user" ChangeTextOnKeyPress="false" />
                     </Field>
 
-                    <Field>
-                        <TextEdit Placeholder="Contraseña" Role="TextRole.Password" @bind-Text="@_login.password" ChangeTextOnKeyPress="false" />
-                    </Field>
+                    <div class="module-input-icono">
+                        <Field>
+                            <TextEdit Placeholder="Contraseña" Role=@(showPassword ? TextRole.Text : TextRole.Password) @bind-Text="@_login.password" ChangeTextOnKeyPress="false" />
+                        </Field>
+                        <i class=@(showPassword ? "fas fa-eye" : "far fa-eye-slash") @onclick="togglePass"></i>
+                    </div>
 
-                    <Button Color="Color.Primary" Block="true" Clicked="Logueo" Type="ButtonType.Submit">Ingresar</Button>
-                    
-                    <Link To="/olvido-clave"> Recordar Contraseña </Link>
+                        <Button Color="Color.Primary" Block="true" Clicked="Logueo" Type="ButtonType.Submit">Ingresar</Button>
+
+                        <Link To="/olvido-clave"> Recordar Contraseña </Link>
 
                 </form>
             </div>

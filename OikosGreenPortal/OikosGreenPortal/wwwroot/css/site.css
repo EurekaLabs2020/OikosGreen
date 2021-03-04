@@ -205,3 +205,15 @@ a, .btn-link {
 .margen-inf-auto{
     margin-bottom:auto;
 }
+
+.module-input-icono {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.module-input-icono i {
+    position: absolute;
+    right: 13px;
+    z-index: 9;
+    top: calc(50% - 7px);
+}

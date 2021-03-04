@@ -72,6 +72,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                 _dataRequest = JsonConvert.DeserializeObject<DocumentosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
+                if (_lista != null)
+                {
+                    foreach (var x in _lista)
+                        x.idlist = x.listid == null ? 0 : x.listid.Value;
+                }
                 // Obtenemos la Lista Ciudad
                 try
                 {
@@ -124,16 +129,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             _datoPadre = 0;
             _datoTipo = "0";
             _Mensaje = "";
+            data.active = true;
+            data.affect = "0";
+            data.code = data.name = data.type = data.typeclass= data.usercreate= data.usermodify= "";
+            data.idlist = data.consecutive = data.copie= 0;
+            data.datemodify = data.datecreate = DateTime.Now;            
         }
 
         public async Task insertFila(SavedRowItem<Documento_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            //e.Item.id = await setData(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<Documento_data, Dictionary<String, object>> e)
         {
-            await setUbicacion(e.Item, false, urlupdate);
+            //await setData(e.Item, false, urlupdate);
         }
 
         public async Task inactiveFila(Documento_data item)
@@ -161,22 +171,18 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(Documento_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setData(Documento_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipo;
-            Item.listid = _datoPadre;
-            Item.namelist = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            Item.name = Item.name.ToUpper();
             Documento_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
-                var resultadoCode = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
-                DocumentoRequest _dataRequestCode = JsonConvert.DeserializeObject<DocumentoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
-                {
+                //var resultadoCode = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
+                //DocumentoRequest _dataRequestCode = JsonConvert.DeserializeObject<DocumentoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                //if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
+                //{
                     try
                     {
                         var resultado = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", Url, reg);
@@ -193,16 +199,55 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                             _Mensaje = _dataRequest.status.message;
                     }
                     catch (Exception ex) { _Mensaje = ex.Message; }
-                }
-                else
-                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+                //}
+                //else
+                //    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
             }
-            StateHasChanged();
-            if (!isok && Crear)
-                _lista.Remove(reg);
+            //if (!isok && Crear)
+                //_lista.Remove(reg);
             return retorno;
         }
 
+        public async Task insertingFila(EventArgs arg)
+        {
+            await helpGrid(arg, true);
+        }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+            await helpGrid(arg, false);
+        }
+
+        public async Task<Boolean> helpGrid(EventArgs arg, Boolean Crear)
+        {
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Documento_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Documento_data>)arg).Item;
+            item.listid = item.idlist = Convert.ToInt64(valores["idlist"].ToString());
+            item.name = valores["name"].ToString();
+            if (Crear)
+            {
+                item.type = valores["type"].ToString();
+                item.typeclass = valores["typeclass"].ToString();
+                item.affect = valores["affect"].ToString();
+            }
+            try
+            {
+                item.consecutive = Convert.ToInt64(valores["consecutive"].ToString());
+            }
+            catch  { item.consecutive = 0 ; }
+            item.code = valores["code"].ToString();             
+            item.namelist = _listaSecundaria.Where(w => w.id == item.idlist).Select(s => s.name).FirstOrDefault();
+            Int64 id = await setData(item, Crear ? true : false, Crear ? urlinsert : urlupdate);           
+            StateHasChanged();
+            if (id == 0)
+                return false;
+            if (Crear && id > 0)
+            {
+                item.id = id;
+                _lista.Add(item);
+            }
+            return true;
+        }
 
 
     }
