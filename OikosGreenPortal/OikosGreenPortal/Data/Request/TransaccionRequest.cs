@@ -49,7 +49,7 @@ namespace OikosGreenPortal.Data.Request
         public String docorigtype { get; set; }
         public String docorigtypeclass { get; set; }
         public String docorigaffect { get; set; }
-        public Int64? terceroid { get; set; }
+        public Int64 terceroid { get; set; }
         public String tercname { get; set; }
         public String terclastname { get; set; }
         public String tercnumdocument { get; set; }
@@ -77,7 +77,7 @@ namespace OikosGreenPortal.Data.Request
         public String usermodify { get; set; }
         public DateTime? datemodify { get; set; }
         public String namepc { get; set; }
-
+        public Int64 idlist { get; set; }
         [NotMapped]
         public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 
