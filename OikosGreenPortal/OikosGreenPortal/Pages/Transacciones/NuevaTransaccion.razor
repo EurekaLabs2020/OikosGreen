@@ -5,19 +5,19 @@
 
 <TituloComponent _titulo="Nueva Transacción"></TituloComponent>
 
-<div class="container">
-    <div class="row">
+<div class="container row-spacing-bottom">
+    <div class="row margen-sup">
         <div class=" col-md-3">
-            <Button Color="Color.Success" Clicked="@Detalle" class="btn-create">@(_mostrarDetalle ? "Ocultar" : "Detalle")</Button>
+            <Button Color="Color.Primary" class="btn-block" Clicked="@Detalle">@(_mostrarDetalleEncabezado ? "Ocultar" : "Detalle")</Button>
         </div>
     </div>
 
-    @if (_mostrarDetalle)
+    @if (_mostrarDetalleEncabezado)
     {
         <div class="row">
             <div class="col-md-4">
                 <Label>Tipo</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoTipo" >
+                <Select TValue="Int64" @bind-SelectedValue="@_datoTipo">
                     <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                     @foreach (var item in _listaTipo)
                     {
@@ -26,56 +26,139 @@
                 </Select>
             </div>
             <div class="col-md-4">
-                <Label >Clase</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoClase" >
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    <SelectItem TValue="Int64" Value="1">POSITIVO</SelectItem>
-                    <SelectItem TValue="Int64" Value="2">NEGATIVO</SelectItem>
-                </Select>
+                <Label>Fecha</Label>
+                <input type="date" class="form-control" @bind="@_datoFecha" />
             </div>
             <div class="col-md-4">
-                <Label >Fecha</Label>
-                <input type="date" @bind="@_datoFecha"/>
+                <Label>Proveedor</Label>
+                @if (_listaProv != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaProv)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <Label>Origen</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig" >
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaOrig)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                    }
-                </Select>
+                @if (_listaOrig != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaOrig)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
             <div class="col-md-4">
                 <Label>Destino</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest" >
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaDest)
-                    {
-                <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                    }
-                </Select>
+                @if (_listaDest != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaDest)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
-            <div class="col-md-4">
-                <Label>Proveedor</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaProv)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
-                    }
-                </Select>
-            </div>
-
+            <div class="col-md-4"><Button Color="Color.Primary" class="btn btn-block margen-sup30" Clicked="@creaEncabezado">Continuar</Button></div>
         </div>
     }
     else
     {
-        <div class="row">
+        <div class="row margen-supinf">
             <span>@_resumenDetalle</span>
+        </div>
+    }
+    @if(_mostrarDetalleProductos)
+    {
+        <div class="row">
+            <DataGrid TItem = "Transaccion_Producto" Data="@_listaDetalleProducto" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"  ShowPager="true"
+                      Bordered="true" Striped="true" Responsive="true" Hoverable="true"
+                       RowInserted="@insertFila" RowUpdated="@updateFila"
+                      Editable="true" EditMode="DataGridEditMode.Inline" NewItemDefaultSetter="iniciaDatos">
+                <ChildContent>
+                    <DataGridCommandColumn TItem="Transaccion_Producto">
+                        <NewCommandTemplate>
+                            <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                        </NewCommandTemplate>
+                        <EditCommandTemplate>
+                            <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
+                        </EditCommandTemplate>
+                        <DeleteCommandTemplate>
+                            <Tooltip Text="Eliminar"><Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active"> <i class="fas fa-arrow-alt-circle-down"></i></Button></Tooltip>
+                        </DeleteCommandTemplate>
+                        <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                        <SaveCommandTemplate>
+                            @*<div class="col-md-6">
+                                <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                            </div>*@
+                            <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                        </SaveCommandTemplate>
+                        <CancelCommandTemplate>
+                            <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
+                        </CancelCommandTemplate>
+                    </DataGridCommandColumn>
+
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.line)" Caption="Linea" Editable="false" Width="50" />
+                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.productoid)" Caption="Producto" Editable="true"  >
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_Producto)?.prodNombre}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @if (_listaProducto != null)
+                            {
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                    @foreach (var item in _listaProducto)
+                                    {
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name</SelectItem>
+                                    }
+                                </Select>
+                            }
+                        </EditTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.presentationid)" Caption="Presentación" Editable="false" Width="200">
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_Producto)?.presNombre}")
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.ivaid)" Caption="Iva" Editable="false" Width="80">
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_Producto)?.ivaporc}")
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.quantity)" Caption="Cantidad" Editable="true" Width="150">
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_Producto)?.quantity}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        </EditTemplate>
+                    </DataGridColumn>
+
+                </ChildContent>
+
+                <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+                <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+                <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+                <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+
+                <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+                <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+            </DataGrid>
         </div>
     }
 </div>
