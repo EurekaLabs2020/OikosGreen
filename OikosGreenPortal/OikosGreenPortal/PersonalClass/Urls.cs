@@ -75,7 +75,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urldocumento_update { get { return urlbase + "documento/update"; } } //POST
         public static String urldocumento_inactive { get { return urlbase + "documento/inactive"; } } //POST
         #endregion
-
+         
         #region Encabezado Movimiento
         public static String urlencabezadomovimiento_getall { get { return urlbase + "encabezadomovimiento/getall"; } } //GET
         public static String urlencabezadomovimiento_getbyid { get { return urlbase + "encabezadomovimiento/getbyid"; } } //POST
