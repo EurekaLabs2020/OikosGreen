@@ -35,10 +35,11 @@
                     <CancelCommandTemplate>
                         <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
                     </CancelCommandTemplate>
+                    
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.id)" Caption="Id" Editable="false" Displayable="false" Width="100" Sortable="false" />
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="150">
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.type)" Caption="Tipo" Editable="true" Width="150">
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
@@ -52,15 +53,15 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150" Sortable="false"/>
-                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280" Sortable="false">
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150" />
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280" >
                     <DisplayTemplate>
                         @($"{( context as Documento_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.namelist)" Caption="Lista" Editable="true" Width="150" Sortable="false">
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.namelist)" Caption="Lista" Editable="true" Width="150" >
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());

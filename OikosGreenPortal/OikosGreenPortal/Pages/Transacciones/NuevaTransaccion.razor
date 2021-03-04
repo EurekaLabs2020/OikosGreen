@@ -31,35 +31,44 @@
             </div>
             <div class="col-md-4">
                 <Label>Proveedor</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaProv)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
-                    }
-                </Select>
+                @if (_listaProv != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaProv)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <Label>Origen</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig">
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaOrig)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                    }
-                </Select>
+                @if (_listaOrig != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaOrig)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
             <div class="col-md-4">
                 <Label>Destino</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaDest)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                    }
-                </Select>
+                @if (_listaDest != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
+                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _listaDest)
+                        {
+                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                        }
+                    </Select>
+                }
             </div>
             <div class="col-md-4"><Button Color="Color.Primary" class="btn btn-block margen-sup30" Clicked="@creaEncabezado">Continuar</Button></div>
         </div>
