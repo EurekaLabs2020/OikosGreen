@@ -167,7 +167,7 @@ using OikosGreenPortal.Data.Request;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Intercambio\Intercambio.razor"
+#line 4 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Intercambio\Intercambio.razor"
            [Authorize]
 
 #line default
