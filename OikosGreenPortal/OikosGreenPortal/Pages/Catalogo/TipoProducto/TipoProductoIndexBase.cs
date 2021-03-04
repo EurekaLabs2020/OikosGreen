@@ -120,12 +120,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             catch (Exception) {  }
         }
 
-        public void validaName(ValidatorEventArgs arg)
-        {
-            ValidationRule.IsUppercase(arg.Value.ToString());
-            if (arg.Status == ValidationStatus.Error)
-                arg.ErrorText = "El nombre debe de ser en letras mayusculas";
-        }
+        
 
 
     }

@@ -1,38 +1,65 @@
 ﻿@inherits LayoutComponentBase
-
+@inject  ProtectedSessionStorage _storage
 @inject AuthenticationStateProvider _autenticacion
+@inject IModalService _modal
 
+@using OikosGreenPortal.Pages.Auth.Cambiar_Clave
 
-<div class="page">
-    <AuthorizeView>
-        <Authorized>
-            <div class="sidebar">
-                <NavMenu />
-            </div>
-        </Authorized>
-    </AuthorizeView>
-
-    <div class="main">
+    <div class="page">
         <AuthorizeView>
             <Authorized>
-                <div class="top-row px-4">
-                    <a href="#!" @onclick="LogOut">Salir</a>
+                <div class="sidebar">
+                    <NavMenu />
                 </div>
             </Authorized>
         </AuthorizeView>
-        <div class="content px-4">
-            @Body
+
+        <div class="main">
+            <AuthorizeView>
+                <Authorized>
+                    <div class="top-row px-4">
+                        <a href="#!" @onclick="@(e => changePass())">Cambiar contraseña</a>
+                        <a href="#!" @onclick="LogOut">Salir</a>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+            <div class="content px-4">
+                @Body
+            </div>
         </div>
     </div>
-</div>
 
-@code{
+    @code{
 
 
-    private async Task LogOut()
-    {
-        ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
-        
+        private infoBrowser userLogueado { get; set; }
+
+        private async Task LogOut()
+        {
+            ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+
+        }
+
+        public async Task changePass()
+        {
+            userLogueado = null;
+
+            try
+            {
+                var resultado = await _storage.GetAsync<infoBrowser>("data");
+                userLogueado = resultado.Value;
+
+                var parameters = new ModalParameters();
+                parameters.Add(nameof(NuevaClaveIndex.userLogueado), userLogueado);
+                var formModal = _modal.Show<NuevaClaveIndex>("Cambio de Clave", parameters);
+                var result = await formModal.Result;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
     }
-
-}

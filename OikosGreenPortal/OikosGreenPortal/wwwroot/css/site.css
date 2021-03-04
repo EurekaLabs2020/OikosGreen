@@ -182,7 +182,26 @@ a, .btn-link {
     max-width: 50px;
 }
 
-
 .modal-title{
     width:100%;
+}
+
+.margen-sup {
+    margin-top:15px;
+}
+
+.margen-sup30 {
+    margin-top: 30px;
+}
+
+.margen-inf {
+    margin-bottom: 15px;
+}
+
+.margen-supinf {
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+.margen-inf-auto{
+    margin-bottom:auto;
 }

@@ -36,7 +36,7 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.id)" Caption="Id" Sortable="false" />
-                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)"  Caption="Nombre" Validator="@validaName" Editable="true" />
+                <DataGridColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.name)"  Caption="Nombre" Editable="true" />
                 <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="false">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

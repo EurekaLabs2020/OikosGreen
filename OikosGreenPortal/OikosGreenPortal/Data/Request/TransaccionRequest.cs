@@ -15,10 +15,11 @@ namespace OikosGreenPortal.Data.Request
 
     public class Transaccion_data
     {
-        public Int64 idencabezado { get; set; }
-        public Int64 numberdocument { get; set; }
+        public Int64? idencabezado { get; set; }
+        public Int64? numberdocument { get; set; }
         public DateTime date { get; set; }
         public String typemoviment { get; set; }
+        public Int64? docid { get; set; }
         public String code { get; set; }
         public String name { get; set; }
         public String type { get; set; }
@@ -74,5 +75,6 @@ namespace OikosGreenPortal.Data.Request
         public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 
     }
+
 
 }
