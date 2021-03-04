@@ -119,6 +119,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Parametro
         public static String urlparametro_getall { get { return urlbase + "parametro/getall"; } } //GET
         public static String urlparametro_getbyid { get { return urlbase + "parametro/getbyid"; } } //POST
+        public static String urlparametro_getbycode { get { return urlbase + "parametro/getbycode"; } } //POST
         public static String urlparametro_insert { get { return urlbase + "parametro/insert"; } } //POST
         public static String urlparametro_update { get { return urlbase + "parametro/update"; } } //POST
         public static String urlparametro_inactive { get { return urlbase + "parametro/inactive"; } } //POST

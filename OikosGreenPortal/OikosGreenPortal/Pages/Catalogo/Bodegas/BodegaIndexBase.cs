@@ -25,16 +25,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         public List<String> _listaTipo { get; set; }
         public List<String> _listaTipoUbicacion { get; set; }
 
-        public Int64 _datoPadre { get; set; }
-        public String _datoTipo
-        {
-            get { return datoTipo; }
-            set
-            {
-                datoTipo = value;
-                _datoPadre = 0;                
-            }
-        }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -52,7 +42,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         {
             _lista = new List<Bodega_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Bodega_data();
             TipoUbicacion tipoUbica = new TipoUbicacion();
@@ -73,6 +62,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
                 _dataRequest = JsonConvert.DeserializeObject<BodegasRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
+                if(_lista!=null && _lista.Count>0)
+                {
+                    foreach (var reg in _lista)
+                        reg.idubicacion = reg.ubicacionid==null ? 0 : reg.ubicacionid.Value;
+                }
                 // Obtenemos la Lista Ciudad
                 try
                 {
@@ -122,8 +116,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
 
         public void iniciaDatos(Bodega_data data)
         {
-            _datoPadre = 0;
-            _datoTipo = "0";
+            data.idubicacion = 0;
+            data.type = "";
             _Mensaje = "";
         }
 
@@ -166,9 +160,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipo;
-            Item.ubicacionid = _datoPadre;
-            Item.ubicaname = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            Item.ubicaname = _listaSecundaria.Where(w => w.id == Item.idubicacion).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Bodega_data reg = Item;
             datosAdicionales(Crear, ref reg);

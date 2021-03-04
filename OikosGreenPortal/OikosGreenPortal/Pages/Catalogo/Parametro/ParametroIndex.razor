@@ -23,20 +23,25 @@
                     <DeleteCommandTemplate>
                         <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
                     </DeleteCommandTemplate>
-                    <ClearFilterCommandTemplate> 
-                        <span @onclick="@context.Clicked">Limpiar Filtro</span> 
+                    <ClearFilterCommandTemplate>
+                        <span @onclick="@context.Clicked">Limpiar Filtro</span>
                     </ClearFilterCommandTemplate>
-                    <SaveCommandTemplate> 
-                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip> 
+                    <SaveCommandTemplate>
+                        <div class="col-md-6">
+                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                        </div>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
                     </SaveCommandTemplate>
-                    <CancelCommandTemplate> 
+                    <CancelCommandTemplate>
                         <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Sortable="false" Width="180"/>
-                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false"/>
-                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" Width="320" Sortable="false"/>
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false" />
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" Width="320" Sortable="false">
+                    <DisplayTemplate>@($"{( context as Parametro_data )?.name.ToUpper()} ")</DisplayTemplate>
+                </DataGridColumn>
                 <DataGridCheckColumn TItem="Parametro_data" Field="@nameof(Parametro_data.active)" Caption="Activo" Editable="false" Width="180">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
@@ -54,5 +59,8 @@
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
             <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
         </DataGrid>
+    </div>
+    <div class="row">
+        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
     </div>
 </div>
