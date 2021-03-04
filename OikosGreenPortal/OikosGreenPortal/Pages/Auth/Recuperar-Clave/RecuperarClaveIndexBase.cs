@@ -9,15 +9,15 @@ namespace OikosGreenPortal.Pages.Auth.Recuperar_Clave
 {
     public class RecuperarClaveIndexBase: ComponentBase
     {
-        public ForgotPassword _usuario { get; set; }
+        //public ForgotPassword _usuario { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            _usuario = new ForgotPassword();
-        }
-        public async Task Enviar()
-        {
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    _usuario = new ForgotPassword();
+        //}
+        //public async Task Enviar()
+        //{
 
-        }
+        //}
     }
 }
