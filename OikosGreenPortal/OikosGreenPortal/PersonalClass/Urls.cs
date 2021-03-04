@@ -63,6 +63,8 @@ namespace OikosGreenPortal.PersonalClass
         public static String urldetallemovimiento_insert { get { return urlbase + "detallemovimiento/insert"; } } //POST
         public static String urldetallemovimiento_update { get { return urlbase + "detallemovimiento/update"; } } //POST
         public static String urldetallemovimiento_inactive { get { return urlbase + "detallemovimiento/inactive"; } } //POST
+        public static String urlcreatetransacc { get { return urlbase + "detallemovimiento/createtransacc"; } } //POST
+
         #endregion
 
         #region Documento
