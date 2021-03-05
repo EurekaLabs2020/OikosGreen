@@ -16,7 +16,6 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
 {
     public class ProductoCategoriaIndexBase : ComponentBase
     {
-    
         [Inject] IModalService _modal { get; set; }
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
