@@ -39,19 +39,22 @@
 
                 <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.id)" Caption="Id" Editable="false" Displayable="false"/>
                 
-                <DataGridSelectColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.nameparam)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
-                       <EditTemplate>
+                <DataGridSelectColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.idparametro)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as ParametroDetalle_data)?.nameparam}")
+                    </DisplayTemplate>
+                    <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
-                                    }
-                                </Select>
+                               <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                   <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                   @foreach (var item in _listaSecundaria)
+                                   {
+                                       <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                   }
+                               </Select>
                             }
                         }
                     </EditTemplate>

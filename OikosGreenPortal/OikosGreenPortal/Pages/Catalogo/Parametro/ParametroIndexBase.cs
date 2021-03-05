@@ -21,12 +21,16 @@ namespace OikosGreenPortal.Pages.Catalogo.Parametro
 
         public List<Parametro_data> _lista { get; set; }
         public Parametro_data _regActual { get; set; }
+        public String _Mensaje { get; set; }
+        public String _mensajeIsDanger { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            _mensajeIsDanger = "alert-danger";
             _lista = new List<Parametro_data>();
             _regActual = new Parametro_data();
+            _Mensaje = "";
             ParametrosRequest _dataRequest = new ParametrosRequest();
             try
             {
@@ -79,10 +83,27 @@ namespace OikosGreenPortal.Pages.Catalogo.Parametro
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_insert, item);
-                ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                _Mensaje = "";
+                var resultadoValida = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_getbycode, item);
+                ParametroRequest _dataRequestValida = JsonConvert.DeserializeObject<ParametroRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestValida == null || _dataRequestValida.entity == null)
+                {
+
+                    var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_insert, item);
+                    ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
+                }
+                else if (_dataRequestValida == null)
+                {
+                    _Mensaje = "Error realizando validación";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
+                else if (_dataRequestValida.entity != null)
+                {
+                    _Mensaje = "El código se encuentra duplicado";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
             }
             catch (Exception) { item = new Parametro_data(); }
         }
@@ -92,17 +113,31 @@ namespace OikosGreenPortal.Pages.Catalogo.Parametro
             var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-            var codigo = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
-            item.code = codigo;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_update, item);
-                ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                _Mensaje = "";
+                var resultadoValida = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_getbycode, item);
+                ParametroRequest _dataRequestValida = JsonConvert.DeserializeObject<ParametroRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestValida == null || _dataRequestValida.entity == null)
+                {
+                    var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_update, item);
+                    ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
+                }
+                else if (_dataRequestValida == null)
+                {
+                    _Mensaje = "Error realizando validación";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
+                else if (_dataRequestValida.entity != null)
+                {
+                    _Mensaje = "El código se encuentra duplicado";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
 
             }
             catch (Exception) { item = new Parametro_data(); }

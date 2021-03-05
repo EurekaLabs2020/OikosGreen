@@ -66,13 +66,14 @@ a, .btn-link {
 }
 
 .bg-login-right {
-    background: #005f47;
+    background: url(../img/OIKOS-GREEN-marca-ok.jpg) center center no-repeat;
+    background-size: cover;
     height: 100vh;
     position: relative;
     color: #FFF;
 }
 
-    .bg-login-right::after {
+    /*.bg-login-right::after {
         content: '';
         background: #005f47;
         position: absolute;
@@ -81,9 +82,9 @@ a, .btn-link {
         width: 100%;
         height: 100%;
         z-index: -1;
-    }
+    }*/
 
-.decoration {
+/*.decoration {
     position: fixed;
     bottom: -9px;
     right: -7.5rem;
@@ -102,7 +103,7 @@ a, .btn-link {
         width: 300px;
         height: 300px;
         border-radius: 50% 50px;
-    }
+    }*/
 
 .text-oikos-login {
     position: absolute;
@@ -216,4 +217,30 @@ a, .btn-link {
     right: 13px;
     z-index: 9;
     top: calc(50% - 7px);
+}
+
+.acceso-directo a {
+    color: #FFF;
+    font-size: 23px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.acceso-directo i {
+    display: block;
+    color: #FFF;
+    font-size: 50px;
+}
+
+.acceso-directo {
+    text-align: center;
+    padding: 40px 20px;
+    
+    background: rgb(174,191,185); 
+    background: -moz-linear-gradient(top, rgba(174,191,185,1) 0%, rgba(66,141,145,1) 33%, rgba(0,151,193,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(174,191,185,1) 0%,rgba(66,141,145,1) 33%,rgba(0,151,193,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(174,191,185,1) 0%,rgba(66,141,145,1) 33%,rgba(0,151,193,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebfb9', endColorstr='#0097c1',GradientType=0 ); /* IE6-9 */
+    margin-top: 30px;
+    border-radius: 20px;
 }

@@ -1,8 +1,7 @@
-﻿@page "/olvido-clave"
+﻿@*@page "/recuperar-clave"
+@inherits RecuperarClaveIndexBase
 
-@inherits SendEmailSignInBase
-
-<div class="container-fluid">
+@*<div class="container-fluid">
     <div class="row justify-content-center cnt-login vh-100">
         <div class="col-4 align-self-center">
             <div class="card div-align-center" style="width: 18rem;">
@@ -10,7 +9,13 @@
                     <h5 class="card-title">Recuperar Contraseña</h5>
                     <form action="">
                         <div class="cnt-input-login">
-                            <TextEdit @bind-Text="@_usuario.user" Label="Usuario" Icon="account_circle" Outlined="true"></TextEdit>
+                            <TextEdit @bind-Text="@_usuario.passTMP" Placeholder="Clave Temporal" ></TextEdit>
+                        </div>
+                        <div class="cnt-input-login">
+                           @<TextEdit @bind-Text="@_usuario.newPass" Placeholder="Nueva Clave"></TextEdit>
+                        </div>
+                        <div class="cnt-input-login">
+                            <TextEdit @bind-Text="@_usuario.newPassConfirm" Placeholder="Confirmar Nueva Clave"></TextEdit>
                         </div>
                         <a href="index" type="submit" class="btn btn-primary btn-block" @onclick="Enviar">Enviar</a>
                     </form>
@@ -21,4 +26,4 @@
 
         </div>
     </div>
-</div>
+</div>*@
