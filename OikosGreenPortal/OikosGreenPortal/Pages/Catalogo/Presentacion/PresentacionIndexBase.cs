@@ -51,6 +51,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
                 await General.MensajeModal("ERROR", ex.Message, _modal);
             }
         }
+
         #region Presentación
         public void estilofila(Presentacion_data reg, DataGridRowStyling style)
         {
@@ -80,8 +81,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             {
                 var resultadoCode = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_getbycode, item);
                 PresentacionRequest _dataRequestCode = JsonConvert.DeserializeObject<PresentacionRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
-
-                if (_dataRequestCode == null && _dataRequestCode.entity == null)
+                if (_dataRequestCode != null && _dataRequestCode.status.code != 200)
                 {
                     var resultado = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_insert, item);
                     PresentacionRequest _dataRequest = JsonConvert.DeserializeObject<PresentacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());

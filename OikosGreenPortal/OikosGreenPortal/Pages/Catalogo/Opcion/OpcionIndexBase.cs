@@ -23,20 +23,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         public List<Opcion_data> _listaSecundaria { get; set; }
         public Opcion_data _regActual { get; set; }
         public List<String> _listaTipoOpcion { get; set; }
-        public Int64 _datoPadre { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
         private infoBrowser _dataStorage { get; set; }
-        private String datoTipoOpcion { get; set; }
-        public String _datoTipoOpcion
-        {
-            get { return datoTipoOpcion; }
-            set 
-            {
-                datoTipoOpcion = value;
-                _datoPadre = 0;
-            }
-        }
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlopcion_getall;
         private String urlinsert { get; set; } = Urls.urlopcion_insert;
@@ -48,7 +37,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         {
             _lista = new List<Opcion_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Opcion_data();
             TipoOpcion tipoOpcion = new TipoOpcion();
@@ -108,7 +96,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            
+            if(_paraValidar.type=="MENU" && (_paraValidar.parent==null || _paraValidar.parent==0))
+                _Mensaje += "Por favor diligenciar el PADRE, es un campo obligatorio.&s";
+
             if (_Mensaje.Trim().Length > 0)
                 return false;
             return true;
@@ -116,8 +106,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
 
         public void iniciaDatos(Opcion_data data)
         {
-            _datoPadre = 0;
-            _datoTipoOpcion = "0";
+            data.parent = 0;
+            data.type = "";
             _Mensaje = "";
         }
 
@@ -160,9 +150,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         { 
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipoOpcion;
-            Item.parent = _datoPadre;
-            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();            
+            Item.nameparent = _lista.Where(w => w.id == Item.parent).Select(s => s.name).FirstOrDefault();            
             Item.code = Item.code;
             Item.url = Item.url;
             Item.icon = Item.icon;
