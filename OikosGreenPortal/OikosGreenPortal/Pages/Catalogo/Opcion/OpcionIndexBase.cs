@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
     public class OpcionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Opcion_data> _lista { get; set; }
@@ -62,12 +63,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                     if (_dataRequestPadre != null && _dataRequestPadre.entities != null && _dataRequestPadre.entities.Count > 0)
                         _listaSecundaria = _dataRequestPadre.entities.Where(w=> w.type =="MENU").ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

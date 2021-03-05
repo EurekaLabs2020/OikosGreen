@@ -16,4 +16,11 @@ namespace OikosGreenPortal.Data.Request
         public Boolean entity { get; set; }
         public Status status { get; set; }
     }
+
+    public class ResponsRequestLong
+    {
+        public Int64 entity { get; set; }
+        public Status status { get; set; }
+    }
+
 }

@@ -18,6 +18,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
     {
 
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<TerceroPunto_data> _lista { get; set; }
@@ -70,11 +71,11 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
                         _listaSecundaria = _dataRequestTercero.entities.OrderBy(o => o.nombrefull).ToList();
 
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

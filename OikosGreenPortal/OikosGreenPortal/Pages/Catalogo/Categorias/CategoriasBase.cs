@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
     public class CategoriasBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Categoria_data> _lista { get; set; }
@@ -60,7 +61,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

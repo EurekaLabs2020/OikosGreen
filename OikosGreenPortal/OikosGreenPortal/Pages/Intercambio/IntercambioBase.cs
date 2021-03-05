@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Intercambio
     public class IntercambioBase : ComponentBase
     {
         [Inject] public IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
         [Inject] public NavigationManager _navigation { get; set; }
 
@@ -119,7 +120,7 @@ namespace OikosGreenPortal.Pages.Intercambio
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

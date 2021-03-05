@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
     public class PresentacionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Presentacion_data> _lista { get; set; }
@@ -48,7 +49,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

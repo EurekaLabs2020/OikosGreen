@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
     public class TipoProductoIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
@@ -48,7 +49,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
         public Boolean validaDatos(TipoProducto_data _paraValidar)

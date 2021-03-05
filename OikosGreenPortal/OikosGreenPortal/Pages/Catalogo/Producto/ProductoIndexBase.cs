@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
     public class ProductoIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Producto_data> _lista { get; set; }
@@ -81,7 +82,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestPresentacion != null && _dataRequestPresentacion.entities != null && _dataRequestPresentacion.entities.Count > 0)
                         _listaPresentacion = _dataRequestPresentacion.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
                 try
                 {
                     var resultadoUnidadVenta = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlpresentacion_getall, "");
@@ -89,7 +90,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadVenta != null && _dataRequestUnidadVenta.entities != null && _dataRequestUnidadVenta.entities.Count > 0)
                         _listaUnidadVenta = _dataRequestUnidadVenta.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -98,7 +99,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadCompra != null && _dataRequestUnidadCompra.entities != null && _dataRequestUnidadCompra.entities.Count > 0)
                         _listaUnidadCompra = _dataRequestUnidadCompra.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -107,7 +108,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadInventario != null && _dataRequestUnidadInventario.entities != null && _dataRequestUnidadInventario.entities.Count > 0)
                         _listaUnidadInventario = _dataRequestUnidadInventario.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -116,7 +117,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestTipoProducto != null && _dataRequestTipoProducto.entities != null && _dataRequestTipoProducto.entities.Count > 0)
                         _listaTipoProducto = _dataRequestTipoProducto.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -125,11 +126,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestIva != null && _dataRequestIva.entities != null && _dataRequestIva.entities.Count > 0)
                         _listaGeneralIva = _dataRequestIva.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

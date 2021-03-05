@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
     public class ParametroDetalleBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<ParametroDetalle_data> _lista { get; set; }
@@ -69,11 +70,11 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
                     if (_dataRequestParametro != null && _dataRequestParametro.entities != null && _dataRequestParametro.entities.Count > 0)
                         _listaSecundaria = _dataRequestParametro.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

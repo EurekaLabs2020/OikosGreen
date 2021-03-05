@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
     public class ProductoCategoriaIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<ProductoCategoria_data> _lista { get; set; }
@@ -74,7 +75,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
                     if (_dataRequestCategoria != null && _dataRequestCategoria.entities != null && _dataRequestCategoria.entities.Count > 0)
                         _listaCategoria = _dataRequestCategoria.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -83,11 +84,11 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
                     if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                         _listaProducto = _dataRequestProductos.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

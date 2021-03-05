@@ -64,7 +64,7 @@
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
-                
+
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.typeclass)} ")
@@ -83,7 +83,7 @@
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.affect)} ")
                     </DisplayTemplate>
-                    <EditTemplate>                        
+                    <EditTemplate>
                         <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                             <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
                             @foreach (var item in _listaAfecte)
@@ -92,9 +92,8 @@
                             }
                         </Select>
                     </EditTemplate>
-
                 </DataGridColumn>
-                
+
                 <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista" Editable="true" Width="150">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.namelist==null ? "" : ( context as Documento_data)?.namelist.ToUpper())} ")
@@ -115,6 +114,47 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.nature)" Caption="Naturaleza" Editable="true" Width="150" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.nature)} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
+                            @foreach (var item in _listaAfecte)
+                            {
+                                <SelectItem TValue="String" Value="@(item.Split('|')[0])">@item.Split('|')[1]</SelectItem>
+                            }
+                        </Select>
+                    </EditTemplate>
+                </DataGridColumn>
+
+                <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.hasthird)" Caption="Tiene Tercero" Editable="true" Displayable="false" Width="150">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.hasthird" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Check CheckedChanged="@(v=>((CellEditContext)context).CellValue=v)" TValue="Boolean"></Check>
+                    </EditTemplate>
+                </DataGridCheckColumn>
+
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.thirdtype)" Caption="Tipo Tercero" Editable="true" Width="150" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.thirdtype)} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
+                            @foreach (var item in _listaTerceroTipo)
+                            {
+                                <SelectItem TValue="String" Value="@(item.Split('|')[0])">@item.Split('|')[1]</SelectItem>
+                            }
+                        </Select>
+                    </EditTemplate>
+
+                </DataGridColumn>
+
+
                 <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.active)" Caption="Activo" Editable="false" Width="150">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
     public class DocumentosBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Documento_data> _lista { get; set; }
@@ -25,6 +26,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
         public List<String> _listaTipo { get; set; }
         public List<String> _listaClase { get; set; }
         public List<String> _listaAfecte { get; set; }
+        public List<String> _listaTerceroTipo { get; set; }
 
         public Int64 _datoPadre { get; set; }
         public String _datoTipo
@@ -61,10 +63,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             _listaTipo = tipo.tiposDocumentos();
             ClaseDocumento clase = new ClaseDocumento();
             _listaClase = clase.clasesDocumentos();
-
             AfecteDocumento afecte = new AfecteDocumento();
             _listaAfecte = afecte.afectesDocumentos();
-
+            TipoTerceroTipo tipoterc = new TipoTerceroTipo();
+            _listaTerceroTipo = tipoterc.tiposTerceroTipo();
 
             DocumentosRequest _dataRequest = new DocumentosRequest();
             try
@@ -93,11 +95,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                     if (_dataRequestLista != null && _dataRequestLista.entities != null && _dataRequestLista.entities.Count > 0)
                         _listaSecundaria = _dataRequestLista.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
@@ -138,7 +140,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             _datoTipo = "0";
             _Mensaje = "";
             data.active = true;
-            data.affect = "0";
+            data.hasthird = false;
+            data.affect = data.thirdtype = data.nature= "0";
             data.code = data.name = data.type = data.typeclass= data.usercreate= data.usermodify= "";
             data.idlist = data.consecutive = data.copie= 0;
             data.datemodify = data.datecreate = DateTime.Now;            
