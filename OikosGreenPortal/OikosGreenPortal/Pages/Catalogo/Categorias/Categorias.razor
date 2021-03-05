@@ -43,15 +43,18 @@
                         @($"{( context as Categoria_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.nameparent)" Caption="Padre" Editable="true">
+                <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.parent)" Caption="Padre" Editable="true">
+                    <DisplayTemplate>
+                        @($"{((context as Categoria_data)?.nameparent==null ? "" : ( context as Categoria_data)?.nameparent.ToUpper())} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
+                                    @foreach (var item in _listaSecundaria.OrderBy(o=>o.name))
                                     {
                                         <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
                                     }

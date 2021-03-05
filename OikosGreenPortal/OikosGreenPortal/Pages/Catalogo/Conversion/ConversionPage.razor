@@ -38,14 +38,17 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presorigin)" Caption="Presentación Origen" Editable="true" Width="320">
+                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.unitoriginid)" Caption="Presentación Origen" Editable="true" Width="320">
+                    <DisplayTemplate>
+                        @($"{((context as Conversion_data)?.presorigin.ToUpper())} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
+                                    @foreach (var item in _listaSecundaria.OrderBy(o=>o.name))
                                     {
                                         <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
                                     }
@@ -53,15 +56,18 @@
                             }
                         }
                     </EditTemplate>
-                </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presdestination)" Caption="Presentación Destino" Editable="true" Width="320">
+                </DataGridColumn>
+                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.unitdestinationid)" Caption="Presentación Destino" Editable="true" Width="320">
+                    <DisplayTemplate>
+                        @($"{((context as Conversion_data)?.presdestination.ToUpper())} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             @if (_listaTercera != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadreTres">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaTercera)
+                                    @foreach (var item in _listaTercera.OrderBy(o=>o.name))
                                     {
                                         <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
                                     }
@@ -69,8 +75,8 @@
                             }
                         }
                     </EditTemplate>
-                </DataGridSelectColumn>
-                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.value)" Caption="Valor" Editable="true" Width="180" />
+                </DataGridColumn>
+                <DataGridNumericColumn TItem="Conversion_data" Field="@nameof(Conversion_data.value)" Caption="Valor" Editable="true" Width="180" />
                 <DataGridCheckColumn TItem="Conversion_data" Field="@nameof(Conversion_data.active)" Caption="Activo" Editable="false" Width="60">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
