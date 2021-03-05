@@ -150,6 +150,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlproducto_insert { get { return urlbase + "producto/insert"; } } //POST
         public static String urlproducto_update { get { return urlbase + "producto/update"; } } //POST
         public static String urlproducto_inactive { get { return urlbase + "producto/inactive"; } } //POST
+        public static String urlproducto_getbycode { get { return urlbase + "producto/getbycode"; } } //POST
         #endregion
 
         #region Producto Categoria
@@ -201,6 +202,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urltipoproducto_insert { get { return urlbase + "tipoproducto/insert"; } } //POST
         public static String urltipoproducto_update { get { return urlbase + "tipoproducto/update"; } } //POST
         public static String urltipoproducto_inactive { get { return urlbase + "tipoproducto/inactive"; } } //POST
+        public static String urltipoproducto_getbycode { get { return urlbase + "tipoproducto/getbycode"; } } //POST
         #endregion    
 
         #region Ubicacion
