@@ -229,12 +229,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                 item.type = valores["type"].ToString();
                 item.typeclass = valores["typeclass"].ToString();
                 item.affect = valores["affect"].ToString();
+                try
+                {
+                    item.consecutive = Convert.ToInt64(valores["consecutive"].ToString());
+                }
+                catch { item.consecutive = 0; }
             }
-            try
-            {
-                item.consecutive = Convert.ToInt64(valores["consecutive"].ToString());
-            }
-            catch  { item.consecutive = 0 ; }
             item.code = valores["code"].ToString();             
             item.namelist = _listaSecundaria.Where(w => w.id == item.idlist).Select(s => s.name).FirstOrDefault();
             Int64 id = await setData(item, Crear ? true : false, Crear ? urlinsert : urlupdate);           
