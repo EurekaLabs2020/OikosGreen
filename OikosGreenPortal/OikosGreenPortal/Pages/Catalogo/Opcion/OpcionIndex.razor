@@ -44,12 +44,15 @@
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="120">
+                    <DisplayTemplate>
+                        @($"{( context as Opcion_data)?.type}")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
-                            <Select TValue="String" @bind-SelectedValue="@_datoTipoOpcion">
+                            <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipoOpcion)
-                                { 
+                                {
                                     <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
                                 }
                             </Select>
@@ -58,12 +61,15 @@
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="80" Sortable="false" />
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" Sortable="false"/>
-                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true" Width="150" Sortable="false">
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.parent)" Caption="Padre" Editable="true" Width="150" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Opcion_data)?.nameparent}")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaSecundaria)
                                     {
