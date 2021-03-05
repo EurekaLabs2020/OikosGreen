@@ -128,6 +128,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
 
         public async Task updateFila(SavedRowItem<Bodega_data, Dictionary<String, object>> e)
         {
+            e.Item.ubicacionid = e.Item.idubicacion;
             await setUbicacion(e.Item, false, urlupdate);
         }
 
@@ -162,6 +163,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
             isok = false;
             Item.ubicaname = _listaSecundaria.Where(w => w.id == Item.idubicacion).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
+            Item.code = Item.code.ToUpper();
+            Item.phone = Item.phone.ToUpper();
+            Item.address = Item.address.ToUpper();
             Bodega_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))

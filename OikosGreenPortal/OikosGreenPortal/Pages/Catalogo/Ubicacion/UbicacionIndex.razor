@@ -42,7 +42,7 @@
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
-                            <Select TValue="String" @bind-SelectedValue="@_datoTipoUbicacion">
+                            <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipoUbicacion)
                                 {
@@ -58,17 +58,20 @@
                         @($"{( context as Ubicacion_data )?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridSelectColumn TItem="Ubicacion_data" Field="@nameof(Ubicacion_data.nameparent)" Caption="Padre" Editable="true">
+                <DataGridSelectColumn TItem="Ubicacion_data" Field="@nameof(Ubicacion_data.parent)" Caption="Padre" Editable="true">
+                    <DisplayTemplate>
+                        @($"{((context as Ubicacion_data)?.nameparent== null ? "" : ( context as Ubicacion_data )?.nameparent.ToUpper())} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString()); 
+                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
                             @if (_listaSecundaria != null)
                             {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
+                                    @foreach (var item in _listaSecundaria.OrderBy(o => o.type))
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.type-@item.name</SelectItem>
                                     }
                                 </Select>
                             }
