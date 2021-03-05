@@ -63,7 +63,7 @@ namespace OikosGreenPortal.Pages.Transacciones
             public Decimal points { get; set; }
             public Int64 productoid { get; set; }
             public Int64 presentationid { get; set; }
-            public Int64 ivaid { get; set; }
+            public Int64? ivaid { get; set; }
             public String prodNombre { get; set; }
             public String presNombre { get; set; }
             public Decimal ivaporc { get; set; }
