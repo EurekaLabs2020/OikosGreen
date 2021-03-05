@@ -96,7 +96,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            if(_paraValidar.type=="MENU" && (_paraValidar.parent==null || _paraValidar.parent==0))
+            if(_paraValidar.type==_listaTipoOpcion[1] && (_paraValidar.parent==null || _paraValidar.parent==0))
                 _Mensaje += "Por favor diligenciar el PADRE, es un campo obligatorio.&s";
 
             if (_Mensaje.Trim().Length > 0)
