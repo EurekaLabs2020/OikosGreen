@@ -15,7 +15,7 @@
     @if (_mostrarDetalleEncabezado)
     {
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <Label>Tipo</Label>
                 @if (_listaTipo != null)
                 {
@@ -28,19 +28,33 @@
                     </Select>
                 }
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <Label>Fecha</Label>
                 <input type="date" class="form-control" @bind="@_datoFecha" />
             </div>
-            @if (_listaTipo!=null && _listaProv != null && _listaTipo.Any(w => w.id == _datoTipo && w.name.Contains("COMPRA")))
+            <div class="col-md-3">
+                <Label>Tipo Mvto</Label>
+                @if (_tipoMvto != null)
+                {
+                    <Select TValue="String" @bind-SelectedValue="@_datoTipoMvto">
+                        <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
+                        @foreach (var item in _tipoMvto)
+                        {
+                            <SelectItem TValue="String" Value="@item.Split('|')[0]">@item.Split('|')[1]</SelectItem>
+                        }
+                    </Select>
+                }
+            </div>
+            @if (_listaTipo != null && _listaTerc != null && _listaTipo.Any(w => w.id == _datoTipo && w.hasthird))
             {
                 <div class="col-md-4">
-                    <Label>Proveedor</Label>
-                    @if (_listaProv != null)
+                    <Label>Tercero</Label>
+                    @if (_listaTerc != null)
                     {
-                        <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+
+                        <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
                             <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                            @foreach (var item in _listaProv)
+                            @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
                             {
                                 <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
                             }

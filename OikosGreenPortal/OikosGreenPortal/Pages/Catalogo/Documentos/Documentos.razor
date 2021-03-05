@@ -127,7 +127,6 @@
                             }
                         </Select>
                     </EditTemplate>
-
                 </DataGridColumn>
 
                 <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.hasthird)" Caption="Tiene Tercero" Editable="true" Displayable="false" Width="150">
@@ -135,9 +134,25 @@
                         <Check @bind-Checked="@context.hasthird" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
                     <EditTemplate>
-                        <Check  CheckedChanged="@(v=>((CellEditContext)context).CellValue=v)" TValue="Boolean" ></Check>
+                        <Check CheckedChanged="@(v=>((CellEditContext)context).CellValue=v)" TValue="Boolean"></Check>
                     </EditTemplate>
                 </DataGridCheckColumn>
+
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.thirdtype)" Caption="Tipo Tercero" Editable="true" Width="150" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.thirdtype)} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
+                            @foreach (var item in _listaTerceroTipo)
+                            {
+                                <SelectItem TValue="String" Value="@(item.Split('|')[0])">@item.Split('|')[1]</SelectItem>
+                            }
+                        </Select>
+                    </EditTemplate>
+
+                </DataGridColumn>
 
 
                 <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.active)" Caption="Activo" Editable="false" Width="150">

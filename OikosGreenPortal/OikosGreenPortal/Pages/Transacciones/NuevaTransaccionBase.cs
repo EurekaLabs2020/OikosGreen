@@ -24,11 +24,12 @@ namespace OikosGreenPortal.Pages.Transacciones
         public Boolean _mostrarDetalleProductos { get; set; }
         public String _resumenDetalle { get; set; }
         public Int64 _datoTipo { get; set; }
+        public String _datoTipoMvto { get; set; }
         public Int64 _datoClase { get; set; }
         public DateTime? _datoFecha { get; set; }
         public Int64 _datoBodegaOrig { get; set; }
         public Int64 _datoBodegadest { get; set; }
-        public Int64 _datoProveedor { get; set; }
+        public Int64 _datoTercero { get; set; }
 
         public List<Transaccion_data> _envio { get; set; }
         public List<Documento_data> _listaTipo { get; set; }
@@ -38,7 +39,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public List<String> _tipoMvto { get; set; }
         public List<Bodega_data> _listaOrig { get; set; }
         public List<Bodega_data> _listaDest { get; set; }
-        public List<TerceroTipo_data> _listaProv { get; set; }
+        public List<TerceroTipo_data> _listaTerc { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -78,6 +79,7 @@ namespace OikosGreenPortal.Pages.Transacciones
             _mostrarDetalleEncabezado = true;
             _mostrarDetalleProductos = false;
             _resumenDetalle = "...";
+            _datoTipoMvto = "M";
             _datoTipo = _datoClase = 0;
             _datoFecha = DateTime.Now;
             _envio = new List<Transaccion_data>();
@@ -112,7 +114,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 var resultadoProveedor = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercerotipo_getall, "");
                 TercerosTipoRequest _dataRequestProveedor = JsonConvert.DeserializeObject<TercerosTipoRequest>(resultadoProveedor.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProveedor != null && _dataRequestProveedor.entities != null && _dataRequestProveedor.entities.Count > 0)
-                    _listaProv = _dataRequestProveedor.entities.Where(w=>w.type== _tipoProv[0]).ToList();
+                    _listaTerc = _dataRequestProveedor.entities.ToList();
                 //Obtiene Productos
                 var resultadoProducto = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlproducto_getall, "");
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
@@ -142,8 +144,8 @@ namespace OikosGreenPortal.Pages.Transacciones
                 _resumenDetalle += "   Bod Orig :" + _listaOrig.Where(w => w.id == _datoBodegaOrig).Select(s => s.name).FirstOrDefault();
             if (_datoBodegadest != 0)
                 _resumenDetalle += "   Bod Dest :" + _listaDest.Where(w => w.id == _datoBodegadest).Select(s => s.name).FirstOrDefault();
-            if (_datoProveedor != 0)
-                _resumenDetalle += "   Prov :" + _listaProv.Where(w => w.id == _datoProveedor).Select(s => s.name).FirstOrDefault();
+            if (_datoTercero != 0)
+                _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.id == _datoTercero).Select(s => s.name).FirstOrDefault();
 
             _listaDetalleProducto = new List<Transaccion_Producto>();
             _mostrarDetalleProductos = true;
@@ -266,9 +268,9 @@ namespace OikosGreenPortal.Pages.Transacciones
                     nuevo.sellerid = _dataStorage.user.iduser;
                     
                     
-                    nuevo.terceroid = 5;
+                    nuevo.terceroid = _datoTercero;
                     nuevo.encaorigin = 0;
-                    nuevo.typemoviment = "M"; //Mostrador-Domicilio-Web
+                    nuevo.typemoviment = _datoTipoMvto; //Mostrador-Domicilio-Web
                     try{
                         nuevo.namepc = System.Net.Dns.GetHostName();
                     }catch { nuevo.namepc = ""; }
