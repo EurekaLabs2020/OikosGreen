@@ -19,6 +19,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
+
         public List<Ubicacion_data> _lista { get; set; }
         public List<Ubicacion_data> _listaSecundaria { get; set; }
         public Ubicacion_data _regActual { get; set; }
@@ -52,6 +53,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         private String urlgetcode { get; set; } = Urls.urlubicacion_getbycode;
 
 
+
         protected async override Task OnInitializedAsync()
         {
             _lista = new List<Ubicacion_data>();
@@ -74,7 +76,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
                 var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
                 _dataRequest = JsonConvert.DeserializeObject<UbicacionesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
-                    _lista = _dataRequest.entities;
+                {
+                    _listaSecundaria = _lista = _dataRequest.entities;
+                    _listaSecundaria = _lista.OrderBy(o => o.type).OrderBy(o => o.name).ToList();
+                }
 
             }
             catch (Exception ex)
@@ -120,8 +125,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
 
         public void iniciaDatos(Ubicacion_data data)
         {
-            _datoPadre = 0;
-            _datoTipoUbicacion = "0";
+            data.type = "";
+            _listaSecundaria = _lista.OrderBy(o => o.type).OrderBy(o => o.name).ToList();
             _Mensaje = "";
         }
 
@@ -164,9 +169,15 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipoUbicacion;
-            Item.parent = _datoPadre;
-            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            //Item.type = _datoTipoUbicacion;
+            //Item.parent = _datoPadre;
+            if(Item.type==_listaTipoUbicacion[0])
+            {
+                Item.parent = 0;
+                Item.nameparent = "";
+            }
+            else
+                Item.nameparent = _lista.Where(w => w.id == Item.parent).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Ubicacion_data reg = Item;
             datosAdicionales(Crear, ref reg);
@@ -193,8 +204,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
                     }
                     catch (Exception ex) { _Mensaje = ex.Message; }
                 }
-                else
-                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+                else 
+                    _Mensaje = "Por favor revisar, el registro se encuentra duplicado.&s";
             }
             StateHasChanged();
             if (!isok && Crear)

@@ -44,6 +44,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Conversion
         public static String urlconversion_getall { get { return urlbase + "conversion/getall"; } } //GET
         public static String urlconversion_getbyid { get { return urlbase + "conversion/getbyid"; } } //POST
+        public static String urlconversion_getbycode { get { return urlbase + "conversion/getbycode"; } } //POST
         public static String urlconversion_insert { get { return urlbase + "conversion/insert"; } } //POST
         public static String urlconversion_update { get { return urlbase + "conversion/update"; } } //POST
         public static String urlconversion_inactive { get { return urlbase + "conversion/inactive"; } } //POST
@@ -137,6 +138,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Presentacion
         public static String urlpresentacion_getall { get { return urlbase + "presentacion/getall"; } } //GET
         public static String urlpresentacion_getbyid { get { return urlbase + "presentacion/getbyid"; } } //POST
+        public static String urlpresentacion_getbycode { get { return urlbase + "presentacion/getbycode"; } } //POST
         public static String urlpresentacion_insert { get { return urlbase + "presentacion/insert"; } } //POST
         public static String urlpresentacion_update { get { return urlbase + "presentacion/update"; } } //POST
         public static String urlpresentacion_inactive { get { return urlbase + "presentacion/inactive"; } } //POST

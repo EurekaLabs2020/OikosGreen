@@ -24,8 +24,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
         public List<Presentacion_data> _listaSecundaria { get; set; }
         public List<Presentacion_data> _listaTercera { get; set; }
         public Conversion_data _regActual { get; set; }
-        public Int64 _datoPadre { get; set; }
-        public Int64 _datoPadreTres { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
         private infoBrowser _dataStorage { get; set; }
@@ -39,7 +37,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
         {
             _lista = new List<Conversion_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Conversion_data();
             ConversionesRequest _dataRequest = new ConversionesRequest();
@@ -95,37 +92,20 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
         }
         #endregion
 
-        public Boolean validaDatos(Conversion_data _paraValidar)
-        {
-            _Mensaje = "";
-            _mensajeIsDanger = "alert-danger";
-            if (_paraValidar.unitoriginid == 0)
-                _Mensaje += "Por favor asignar una presentación origen, es un campo obligatorio.&s";
-            if (_paraValidar.unitdestinationid == 0)
-                _Mensaje += "Por favor asignar una presentación destino, es un campo obligatorio.&s";
-            if (_paraValidar.value == 0)
-                _Mensaje += "Por favor asignar un valor, es un campo obligatorio.&s";
-
-            if (_Mensaje.Trim().Length > 0)
-                return false;
-            return true;
-        }
-
         public void iniciaDatos(Conversion_data data)
         {
-            _datoPadre = 0;
-            _datoPadreTres = 0;
+            data.unitdestinationid = data.unitoriginid = 0;
             _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<Conversion_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            e.Item.id = await setData(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<Conversion_data, Dictionary<String, object>> e)
         {
-            await setUbicacion(e.Item, false, urlupdate);
+            await setData(e.Item, false, urlupdate);
         }
 
         public async Task inactiveFila(Conversion_data item)
@@ -153,33 +133,41 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(Conversion_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setData(Conversion_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
             isok = false;
             Item.value = Item.value;
-            Item.presorigin = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            Item.presdestination = _listaTercera.Where(w => w.id == _datoPadreTres).Select(s => s.name).FirstOrDefault();
-            Item.unitoriginid = _datoPadre;
-            Item.unitdestinationid = _datoPadreTres;
+            Item.presorigin = _listaSecundaria.Where(w => w.id == Item.unitoriginid).Select(s => s.name).FirstOrDefault();
+            Item.presdestination = _listaTercera.Where(w => w.id == Item.unitdestinationid).Select(s => s.name).FirstOrDefault();
+                        
             Conversion_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
                 try
                 {
-                    var resultado = await General.solicitudUrl<Conversion_data>(_dataStorage.user.token, "POST", Url, reg);
-                    ConversionRequest _dataRequest = JsonConvert.DeserializeObject<ConversionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
+                    var resultadoCode = await General.solicitudUrl<Conversion_data>(_dataStorage.user.token, "POST", Urls.urlconversion_getbycode, reg);
+                    ConversionRequest _dataRequestCode = JsonConvert.DeserializeObject<ConversionRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
                     {
-                        if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
+
+                        var resultado = await General.solicitudUrl<Conversion_data>(_dataStorage.user.token, "POST", Url, reg);
+                        ConversionRequest _dataRequest = JsonConvert.DeserializeObject<ConversionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                        if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
                         {
-                            isok = true;
-                            retorno = _dataRequest.entity.id;
+                            if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
+                            {
+                                isok = true;
+                                retorno = _dataRequest.entity.id;
+                            }
                         }
+                        else
+                            _Mensaje = _dataRequest.status.message;
                     }
                     else
-                        _Mensaje = _dataRequest.status.message;
+                        _Mensaje = "Por favor revisar, el registro se encuentra duplicado.&s";
+
                 }
                 catch (Exception ex) { _Mensaje = ex.Message; }
             }
@@ -188,5 +176,25 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
                 _lista.Remove(reg);
             return retorno;
         }
+
+
+        public Boolean validaDatos(Conversion_data _paraValidar)
+        {
+            _Mensaje = "";
+            _mensajeIsDanger = "alert-danger";
+            if (_paraValidar.unitoriginid == null || _paraValidar.unitoriginid==0)
+                _Mensaje += "Por favor diligenciar el PRESENTACION ORIGEN, es un campo obligatorio.&s";
+            if (_paraValidar.unitdestinationid == null || _paraValidar.unitdestinationid == 0)
+                _Mensaje += "Por favor diligenciar el PRESENTACION DESTINO, es un campo obligatorio.&s";
+            if (_paraValidar.value == null || _paraValidar.value == 0)
+                _Mensaje += "Por favor diligenciar el VALOR, es un campo obligatorio.&s";
+
+
+            if (_Mensaje.Trim().Length > 0)
+                return false;
+            return true;
+        }
+
+
     }
 }
