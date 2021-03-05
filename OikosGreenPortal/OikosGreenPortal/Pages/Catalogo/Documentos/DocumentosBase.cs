@@ -85,7 +85,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                 if (_lista != null)
                 {
                     foreach (var x in _lista)
+                    {
                         x.idlist = x.listid == null ? 0 : x.listid.Value;
+                        x.nature = x.nature == null ? "0" : x.nature;
+                        x.thirdtype = x.thirdtype==null ? "0": x.thirdtype;
+                    }
                 }
                 // Obtenemos la Lista Ciudad
                 try
@@ -235,8 +239,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Documento_data>)arg).Item;
             item.listid = item.idlist = Convert.ToInt64(valores["idlist"].ToString());
             item.name = valores["name"].ToString();
+            item.thirdtype = valores["thirdtype"].ToString();
             if (Crear)
             {
+                item.nature = valores["nature"].ToString();
+                item.hasthird =Convert.ToBoolean( valores["hasthird"].ToString());
                 item.type = valores["type"].ToString();
                 item.typeclass = valores["typeclass"].ToString();
                 item.affect = valores["affect"].ToString();
