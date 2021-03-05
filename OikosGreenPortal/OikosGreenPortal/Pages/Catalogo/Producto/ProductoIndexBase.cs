@@ -157,6 +157,18 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.presentationid == 0)
                 _Mensaje += "Por favor diligenciar la PRESENTACIÓN, es un campo obligatorio.&s";
+            if (_paraValidar.unitbuyid == 0)
+                _Mensaje += "Por favor diligenciar la UNIDAD DE COMPRA, es un campo obligatorio.&s";
+            if (_paraValidar.unitsaleid == 0)
+                _Mensaje += "Por favor diligenciar la UNIDAD DE VENTA, es un campo obligatorio.&s";
+            if (_paraValidar.unitinventoryid == 0)
+                _Mensaje += "Por favor diligenciar la UNIDAD DE INVENTARIO, es un campo obligatorio.&s";
+            if (_paraValidar.typeproductid == 0)
+                _Mensaje += "Por favor diligenciar el TIPO DE PRODUCTO, es un campo obligatorio.&s";
+            if (_paraValidar.ivaid == 0)
+                _Mensaje += "Por favor diligenciar el IVA, es un campo obligatorio.&s";
+            if (_paraValidar.cost == 0)
+                _Mensaje += "Por favor diligenciar el COSTO, es un campo obligatorio.&s";
 
             if (_Mensaje.Trim().Length > 0)
                 return false;
