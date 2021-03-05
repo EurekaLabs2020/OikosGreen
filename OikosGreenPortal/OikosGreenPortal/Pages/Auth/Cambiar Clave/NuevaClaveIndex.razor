@@ -17,7 +17,7 @@
             </div> 
        </div>
         <div class="col-md-12">
-            <div class="module-input-icono">
+            <div class="module-input-icono"> 
                 <TextEdit @bind-Text="@_usuario.passwordconfirm" Role=@(_mostrarPassword3 ? TextRole.Password : TextRole.Text) Placeholder="Confirmar Clave" class="input-change-pass" ChangeTextOnKeyPress="false"></TextEdit>
                 <i class=@(_mostrarPassword3 ? "fas fa-eye" : "far fa-eye-slash") @onclick="toggleConfirmPass"></i>
             </div>
