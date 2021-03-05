@@ -104,6 +104,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Lista Detalle
         public static String urllistadetalle_getall { get { return urlbase + "listadetalle/getall"; } } //GET
         public static String urllistadetalle_getbyid { get { return urlbase + "listadetalle/getbyid"; } } //POST
+        public static String urllistadetalle_getbycode { get { return urlbase + "listadetalle/getbycode"; } } //POST
         public static String urllistadetalle_insert { get { return urlbase + "listadetalle/insert"; } } //POST
         public static String urllistadetalle_update { get { return urlbase + "listadetalle/update"; } } //POST
         public static String urllistadetalle_inactive { get { return urlbase + "listadetalle/inactive"; } } //POST
