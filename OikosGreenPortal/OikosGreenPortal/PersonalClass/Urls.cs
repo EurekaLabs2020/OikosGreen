@@ -200,6 +200,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urltipoproducto_insert { get { return urlbase + "tipoproducto/insert"; } } //POST
         public static String urltipoproducto_update { get { return urlbase + "tipoproducto/update"; } } //POST
         public static String urltipoproducto_inactive { get { return urlbase + "tipoproducto/inactive"; } } //POST
+        public static String urltipoproducto_getbycode { get { return urlbase + "tipoproducto/getbycode"; } } //POST
         #endregion    
 
         #region Ubicacion

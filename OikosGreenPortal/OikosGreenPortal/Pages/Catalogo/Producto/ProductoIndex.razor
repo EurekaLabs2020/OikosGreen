@@ -49,7 +49,7 @@
                         @($"{( context as Producto_data)?.description.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
+                <DataGridNumericColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
 
                 <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.presentationid)" Caption="Presentación" Editable="true">
                     <DisplayTemplate>

@@ -223,9 +223,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         {
             Int64 retorno = 0;
             isok = false;
-            Item.namepresentation = _listaPresentacion.Where(w => w.id == Item.presentationid).Select(s => s.name).FirstOrDefault();
-            Item.name = Item.name.ToUpper();
             Item.code = Item.code.ToUpper();
+            Item.name = Item.name.ToUpper();
+            Item.description = Item.description.ToUpper();
+            try
+            {
+                Item.cost = Item.cost;
+            }
+            catch { Item.cost = 0; }
+            Item.namepresentation = _listaPresentacion.Where(w => w.id == Item.presentationid).Select(s => s.name).FirstOrDefault();
+            Item.nameunitsale = _listaUnidadVenta.Where(w => w.id == Item.unitsaleid).Select(s => s.name).FirstOrDefault();
+            Item.nameunitbuy = _listaUnidadCompra.Where(w => w.id == Item.unitbuyid).Select(s => s.name).FirstOrDefault();
+            Item.nameunitinventory = _listaUnidadInventario.Where(w => w.id == Item.unitinventoryid).Select(s => s.name).FirstOrDefault();
+
             Producto_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))

@@ -18,15 +18,18 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
-
+        public String _Mensaje { get; set; }
+        public String _mensajeIsDanger { get; set; }
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            _mensajeIsDanger = "alert-danger";
             _lista = new List<TipoProducto_data>();
             _regActual = new TipoProducto_data();
+            _Mensaje = "";
             TipoProductosRequest _dataRequest = new TipoProductosRequest();
             try
             {
@@ -77,10 +80,26 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
-                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                _Mensaje = "";
+                var resultadoValida = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_getbycode, item);
+                TipoProductoRequest _dataRequestValida = JsonConvert.DeserializeObject<TipoProductoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestValida == null || _dataRequestValida.entity == null)
+                {
+                    var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
+                    TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
+                }
+                else if (_dataRequestValida == null)
+                {
+                    _Mensaje = "Error realizando validación";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
+                else if (_dataRequestValida.entity != null)
+                {
+                    _Mensaje = "El código se encuentra duplicado";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
             }
             catch (Exception) { item = new TipoProducto_data(); }
         }
@@ -95,10 +114,27 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
-                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                _Mensaje = "";
+                var resultadoValida = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_getbycode, item);
+                TipoProductoRequest _dataRequestValida = JsonConvert.DeserializeObject<TipoProductoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestValida == null || _dataRequestValida.entity == null)
+                {
+
+                    var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
+                    TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
+                }
+                else if (_dataRequestValida == null)
+                {
+                    _Mensaje = "Error realizando validación";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
+                else if (_dataRequestValida.entity != null)
+                {
+                    _Mensaje = "El código se encuentra duplicado";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
             }
             catch (Exception) { item = new TipoProducto_data(); }
         }
@@ -117,11 +153,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception) {  }
+            catch (Exception) {  } 
         }
-
-        
-
-
     }
 }
