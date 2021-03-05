@@ -157,13 +157,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         }
 
         private async Task<Int64> setUbicacion(Opcion_data Item, Boolean Crear, String Url)
-        {
+        { 
             Int64 retorno = 0;
             isok = false;
             Item.type = _datoTipoOpcion;
             Item.parent = _datoPadre;
-            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            Item.name = Item.name.ToUpper();
+            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();            
             Item.code = Item.code;
             Item.url = Item.url;
             Item.icon = Item.icon;
