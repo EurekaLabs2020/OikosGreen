@@ -159,8 +159,9 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlproductocategoria_insert { get { return urlbase + "productocategoria/insert"; } } //POST
         public static String urlproductocategoria_update { get { return urlbase + "productocategoria/update"; } } //POST
         public static String urlproductocategoria_inactive { get { return urlbase + "productocategoria/inactive"; } } //POST
+        public static String urlproductocategoria_getbycode { get { return urlbase + "productocategoria/getbycode"; } } //POST
         #endregion
-        
+
         #region Saldo Producto
         public static String urlsaldoproducto_getall { get { return urlbase + "saldoproducto/getall"; } } //GET
         public static String urlsaldoproducto_getbyid { get { return urlbase + "saldoproducto/getbyid"; } } //POST

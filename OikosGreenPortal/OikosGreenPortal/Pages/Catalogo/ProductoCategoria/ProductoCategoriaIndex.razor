@@ -5,10 +5,9 @@
 
 <TituloComponent _titulo="Productos Categoria"></TituloComponent>
 
-
 <div class="container">
     <div class="row">
-        <DataGrid TItem="ParametroDetalle_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
+        <DataGrid TItem="ProductoCategoria_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
@@ -16,7 +15,7 @@
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
             <ChildContent>
-                <DataGridCommandColumn TItem="ParametroDetalle_data" CellsEditableOnEditCommand="true">
+                <DataGridCommandColumn TItem="ProductoCategoria_data" CellsEditableOnEditCommand="true">
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
@@ -38,20 +37,19 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.id)" Caption="Id" Editable="false" Displayable="false" />
+                <DataGridColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.id)" Caption="Id" Editable="false" Displayable="false" />
 
-                <DataGridSelectColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.idparametro)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
+                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.idcategory)" Caption="Categoria" Editable="true" Width="320" Sortable="false">
                     <DisplayTemplate>
-                        @($"{( context as ParametroDetalle_data)?.nameparam}")
+                        @($"{( context as ProductoCategoria_data)?.namecateg}")
                     </DisplayTemplate>
                     <EditTemplate>
                         @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaSecundaria != null)
+                            @if (_listaCategoria != null)
                             {
                                 <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
+                                    @foreach (var item in _listaCategoria)
                                     {
                                         <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
                                     }
@@ -60,8 +58,27 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.value)" Caption="Valor" Editable="true" Width="280" Sortable="false" />
-                <DataGridCheckColumn TItem="ParametroDetalle_data" Field="@nameof(ParametroDetalle_data.active)" Caption="Activo" Editable="false" Width="200" Sortable="false">
+
+                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.idproduct)" Caption="Producto" Editable="true" Width="320" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as ProductoCategoria_data)?.nameprod}")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        @{
+                            @if (_listaProducto != null)
+                            {
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                    @foreach (var item in _listaProducto)
+                                    {
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                    }
+                                </Select>
+                            }
+                        }
+                    </EditTemplate>
+                </DataGridSelectColumn>
+                <DataGridCheckColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.active)" Caption="Activo" Editable="false" Width="200" Sortable="false">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
                     </DisplayTemplate>
