@@ -186,7 +186,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
             _lista.Remove(reg);
         return retorno;
     }
-
+      
 }
 }
 
