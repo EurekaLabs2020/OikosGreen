@@ -157,7 +157,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         }
 
         private async Task<Int64> setUbicacion(Opcion_data Item, Boolean Crear, String Url)
-        {
+        { 
             Int64 retorno = 0;
             isok = false;
             Item.type = _datoTipoOpcion;
