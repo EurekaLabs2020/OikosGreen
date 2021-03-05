@@ -95,7 +95,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                     _Mensaje = "";
                     var resultadoValida = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_getbycode, item);
                     TipoProductoRequest _dataRequestValida = JsonConvert.DeserializeObject<TipoProductoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequestValida == null || _dataRequestValida.entity == null)
+                    if (_dataRequestValida != null && _dataRequestValida.status.code != 200)
                     {
                         var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
                         TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
@@ -129,27 +129,10 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             {
                 try
                 {
-                    _Mensaje = "";
-                    var resultadoValida = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_getbycode, item);
-                    TipoProductoRequest _dataRequestValida = JsonConvert.DeserializeObject<TipoProductoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
-                    if (_dataRequestValida == null || _dataRequestValida.entity == null)
-                    {
-
-                        var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
-                        TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                        if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                            item.id = _dataRequest.entity.id;
-                    }
-                    else if (_dataRequestValida == null)
-                    {
-                        _Mensaje = "Error realizando validación";
-                        ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
-                    }
-                    else if (_dataRequestValida.entity != null)
-                    {
-                        _Mensaje = "El código se encuentra duplicado";
-                        ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
-                    }
+                    var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
+                    TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;  
                 }
                 catch (Exception) { item = new TipoProducto_data(); }
             }
