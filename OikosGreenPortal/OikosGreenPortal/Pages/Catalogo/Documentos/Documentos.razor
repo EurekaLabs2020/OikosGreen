@@ -72,11 +72,10 @@
                     <EditTemplate>
                         <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                             <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
-                            <SelectItem TValue="String" Value=@("X")>NO APLICA</SelectItem>
-                            <SelectItem TValue="String" Value=@("C")>COMPRA</SelectItem>
-                            <SelectItem TValue="String" Value=@("V")>VENTA</SelectItem>
-                            <SelectItem TValue="String" Value=@("I")>INTERCAMBIO</SelectItem>
-                            <SelectItem TValue="String" Value=@("A")>AJUSTE</SelectItem>
+                            @foreach (var item in _listaClase)
+                            {
+                                <SelectItem TValue="String" Value="@(item.Split('|')[0])">@item.Split('|')[1]</SelectItem>
+                            }
                         </Select>
                     </EditTemplate>
                 </DataGridColumn>
@@ -87,9 +86,10 @@
                     <EditTemplate>                        
                         <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                             <SelectItem TValue="String" Value=@("0")>SELECCIONAR...</SelectItem>
-                            <SelectItem TValue="String" Value=@("X")>NO APLICA</SelectItem>
-                            <SelectItem TValue="String" Value=@("E")>ENTRADA</SelectItem>
-                            <SelectItem TValue="String" Value=@("S")>SALIDA</SelectItem>
+                            @foreach (var item in _listaAfecte)
+                            {
+                                <SelectItem TValue="String" Value="@(item.Split('|')[0])">@item.Split('|')[1]</SelectItem>
+                            }
                         </Select>
                     </EditTemplate>
 

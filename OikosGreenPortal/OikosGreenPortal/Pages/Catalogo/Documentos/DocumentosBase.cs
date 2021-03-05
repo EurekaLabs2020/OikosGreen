@@ -23,7 +23,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
         public List<Lista_data> _listaSecundaria { get; set; }
         public Documento_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
-        
+        public List<String> _listaClase { get; set; }
+        public List<String> _listaAfecte { get; set; }
+
         public Int64 _datoPadre { get; set; }
         public String _datoTipo
         {
@@ -57,6 +59,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
 
             TipoDocumento tipo = new TipoDocumento();
             _listaTipo = tipo.tiposDocumentos();
+            ClaseDocumento clase = new ClaseDocumento();
+            _listaClase = clase.clasesDocumentos();
+
+            AfecteDocumento afecte = new AfecteDocumento();
+            _listaAfecte = afecte.afectesDocumentos();
+
 
             DocumentosRequest _dataRequest = new DocumentosRequest();
             try
