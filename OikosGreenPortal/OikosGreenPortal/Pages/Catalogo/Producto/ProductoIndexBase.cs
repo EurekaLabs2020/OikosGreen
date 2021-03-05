@@ -184,6 +184,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
 
         public async Task insertFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
         {
+            e.Item.typeproductid = e.Item.idtypeproduct;
+            e.Item.ivaid = e.Item.idiva;
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
 
