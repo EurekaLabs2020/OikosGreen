@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
     public class BodegaIndexBase : ComponentBase 
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Bodega_data> _lista { get; set; }
@@ -75,11 +76,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
                     if (_dataRequestCiudad != null && _dataRequestCiudad.entities != null && _dataRequestCiudad.entities.Count > 0)
                         _listaSecundaria = _dataRequestCiudad.entities.Where(w=>w.type== _listaTipoUbicacion[1]).ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

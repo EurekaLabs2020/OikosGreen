@@ -17,31 +17,37 @@
         <div class="row">
             <div class="col-md-4">
                 <Label>Tipo</Label>
-                <Select TValue="Int64" @bind-SelectedValue="@_datoTipo">
-                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                    @foreach (var item in _listaTipo)
-                    {
-                        <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
-                    }
-                </Select>
-            </div>
-            <div class="col-md-4">
-                <Label>Fecha</Label>
-                <input type="date" class="form-control" @bind="@_datoFecha" />
-            </div>
-            <div class="col-md-4">
-                <Label>Proveedor</Label>
-                @if (_listaProv != null)
+                @if (_listaTipo != null)
                 {
-                    <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+                    <Select TValue="Int64" @bind-SelectedValue="@_datoTipo">
                         <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                        @foreach (var item in _listaProv)
+                        @foreach (var item in _listaTipo)
                         {
                             <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
                         }
                     </Select>
                 }
             </div>
+            <div class="col-md-4">
+                <Label>Fecha</Label>
+                <input type="date" class="form-control" @bind="@_datoFecha" />
+            </div>
+            @if (_listaTipo!=null && _listaProv != null && _listaTipo.Any(w => w.id == _datoTipo && w.name.Contains("COMPRA")))
+            {
+                <div class="col-md-4">
+                    <Label>Proveedor</Label>
+                    @if (_listaProv != null)
+                    {
+                        <Select TValue="Int64" @bind-SelectedValue="@_datoProveedor" Class="form-control">
+                            <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _listaProv)
+                            {
+                                <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                            }
+                        </Select>
+                    }
+                </div>
+            }
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -81,9 +87,9 @@
     }
     @if(_mostrarDetalleProductos)
     {
-        <div class="row">
+        <div class="row margen-sup30">
             <DataGrid TItem = "Transaccion_Producto" Data="@_listaDetalleProducto" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"  ShowPager="true"
+                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="2"  ShowPager="true"
                       Bordered="true" Striped="true" Responsive="true" Hoverable="true"
                        RowInserted="@insertFila" RowUpdated="@updateFila"
                       Editable="true" EditMode="DataGridEditMode.Inline" NewItemDefaultSetter="iniciaDatos">
@@ -159,6 +165,11 @@
                 <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
 
             </DataGrid>
+        </div>
+        <div class="row margen-sup30">
+            <div class="col-md-3">
+                <Button Color="Color.Success" class="btn-block" Clicked="@terminar"> Terminar</Button>
+            </div>
         </div>
     }
 </div>

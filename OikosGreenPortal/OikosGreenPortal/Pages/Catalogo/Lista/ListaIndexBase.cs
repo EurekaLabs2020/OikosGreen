@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
     public class ListaIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Lista_data> _lista { get; set; }
@@ -45,7 +46,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

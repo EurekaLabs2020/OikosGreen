@@ -12,7 +12,7 @@ namespace OikosGreenPortal.Pages.Auth.login
 {
     public class SendEmailSignInBase : ComponentBase
     {
-        [Inject] IModalService _modal { get; set; }
+        [Inject] IModalService _modal { get; set; }        
         [Inject] NavigationManager _nav { get; set; }
 
         public LoginRequest _usuario { get; set; } = new LoginRequest();
@@ -33,16 +33,16 @@ namespace OikosGreenPortal.Pages.Auth.login
                 if (_dataRequest != null && _dataRequest.status.code == 200)
                 {
                     //Creamos la Autenticacion y obtenemos el Menu y Obtenemos el Usuario Logueado
-                    await General.MensajeModal("Envio clave", "Su clave temporal se ha enviado al correo registrado.", _modal);
+                    await General.MensajeModal("Envio clave", "Su clave temporal se ha enviado al correo registrado.", _modal, _nav);
                 }
                 else
                 {
                     //Mensaje de error
-                    await General.MensajeModal("Confirmación", $"Error.&sCodigo={_dataRequest.status.code}.&s{_dataRequest.status.message}", _modal);
+                    await General.MensajeModal("Confirmación", $"Error.&sCodigo={_dataRequest.status.code}.&s{_dataRequest.status.message}", _modal, _nav);
                 }
             }
             else
-                await General.MensajeModal("Confirmación", "No se ha ingresado ningun usuario.", _modal);
+                await General.MensajeModal("Confirmación", "No se ha ingresado ningun usuario.", _modal, _nav);
             _nav.NavigateTo("/", true);
         }
     }

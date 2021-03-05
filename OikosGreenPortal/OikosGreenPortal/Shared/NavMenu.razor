@@ -1,23 +1,24 @@
 ﻿@inject ProtectedSessionStorage _storage
 @inject AuthenticationStateProvider _autenticacion
 @inject IModalService _modal
+@inject NavigationManager _nav 
 
-<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href=""><img src="img/islOgo con slogan.png" class="logo-nav" /> OikosGreen</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+    <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href=""><img src="img/islOgo con slogan.png" class="logo-nav" /> OikosGreen</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    @if (_lstMenu == null || _lstMenu.Count == 0)
-    {
-        <p>Cargando Información del Menu...</p>
-    }
-    else
-    {
-        <BlazoredMenu Css="menu-ek">
-                @foreach(var opPpal in _lstMenu.OrderBy(o=>o.code).Where(w=>w.idparent=="0" || w.idparent == ""))
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        @if (_lstMenu == null || _lstMenu.Count == 0)
+        {
+            <p>Cargando Información del Menu...</p>
+        }
+        else
+        {
+            <BlazoredMenu Css="menu-ek">
+                @foreach (var opPpal in _lstMenu.OrderBy(o => o.code).Where(w => w.idparent == "0" || w.idparent == ""))
                 {
                     @if (!_lstMenu.Any(a => a.idparent.Trim() == opPpal.id.Trim()))
                     {
@@ -40,45 +41,48 @@
                     }
                 }
             </BlazoredMenu>
-    }
-</div>
-
-@code {
-
-    private bool collapseNavMenu = true;
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private List<infoMenu> _lstMenu { get; set; }
-
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        infoBrowser userLogueado = null;
-        _lstMenu = new List<infoMenu>();
-        try
-        {
-            do{
-                var data = await _storage.GetAsync<infoBrowser>("data");
-                userLogueado = data.Value;
-            } while (userLogueado == null);
-            _lstMenu = userLogueado.menus;
-
-            if (_lstMenu == null || _lstMenu.Count == 0)
-            {
-                await General.MensajeModal("Error", "Usuario no tiene un menu asociado.", _modal);
-                ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
-                //navigation.NavigateTo("/", true);
-            }
-        }catch (Exception ex){
-            await General.MensajeModal("Error", "Se presento un error obteniendo el menu del usuario.&s" + ex.Message, _modal);
         }
-        await base.OnInitializedAsync();
+    </div>
+
+    @code {
+
+        private bool collapseNavMenu = true;
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+        private List<infoMenu> _lstMenu { get; set; }
+
+
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
+
+
+        protected override async Task OnInitializedAsync()
+        {
+            infoBrowser userLogueado = null;
+            _lstMenu = new List<infoMenu>();
+            try
+            {
+                do
+                {
+                    var data = await _storage.GetAsync<infoBrowser>("data");
+                    userLogueado = data.Value;
+                } while (userLogueado == null);
+                _lstMenu = userLogueado.menus;
+
+                if (_lstMenu == null || _lstMenu.Count == 0)
+                {
+                    await General.MensajeModal("Error", "Usuario no tiene un menu asociado.", _modal, _nav);
+                    ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+                    //navigation.NavigateTo("/", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                await General.MensajeModal("Error", "Se presento un error obteniendo el menu del usuario.&s" + ex.Message, _modal, _nav);
+            }
+            await base.OnInitializedAsync();
+        }
+
+
     }
-
-
-}

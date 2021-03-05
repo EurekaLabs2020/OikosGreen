@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
     public class DocumentosBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Documento_data> _lista { get; set; }
@@ -93,11 +94,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                     if (_dataRequestLista != null && _dataRequestLista.entities != null && _dataRequestLista.entities.Count > 0)
                         _listaSecundaria = _dataRequestLista.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
