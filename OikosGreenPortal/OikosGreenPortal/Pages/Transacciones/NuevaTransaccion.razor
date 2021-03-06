@@ -7,94 +7,99 @@
 
 <div class="container row-spacing-bottom">
     <div class="row margen-sup">
-        <div class=" col-md-3">
+        <div class=" col-md-2">
             <Button Color="Color.Primary" class="btn-block" Clicked="@Detalle">@(_mostrarDetalleEncabezado ? "Ocultar" : "Detalle")</Button>
+        </div>
+        <div class=" col-md-2">
+            <Button Color="Color.Secondary" class="btn-block" Clicked="@Regresar">Regresar</Button>
         </div>
     </div>
 
     @if (_mostrarDetalleEncabezado)
     {
-        <div class="row">
-            <div class="col-md-3">
-                <Label>Tipo</Label>
-                @if (_listaTipo != null)
-                {
-                    <Select TValue="Int64" @bind-SelectedValue="@_datoTipo">
-                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                        @foreach (var item in _listaTipo)
-                        {
-                            <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
-                        }
-                    </Select>
-                }
-            </div>
-            <div class="col-md-2">
-                <Label>Fecha</Label>
-                <input type="date" class="form-control" @bind="@_datoFecha" />
-            </div>
-            <div class="col-md-3">
-                @if (_tipoMvto != null)
-                {
-                    <Label>Tipo Mvto</Label>
-                    <Select TValue="String" @bind-SelectedValue="@_datoTipoMvto">
-                        <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
-                        @foreach (var item in _tipoMvto)
-                        {
-                            <SelectItem TValue="String" Value="@item.Split('|')[0]">@item.Split('|')[1]</SelectItem>
-                        }
-                    </Select>
-                }
-            </div>
-            @if (_listaTipo != null && _listaTerc != null && _listaTipo.Any(w => w.id == _datoTipo && w.hasthird))
-            {                                    
-                @if (_listaTerc != null)
-                {
-                    <div class="col-md-3">
-                        <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Cliente")</Label>
-                        <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
+        <div class="container" hidden="@(_enProductos)">
+            <div class="row">
+                <div class="col-md-3">
+                    <Label>Tipo</Label>
+                    @if (_listaTipo != null)
+                    {
+                        <Select TValue="Int64" @bind-SelectedValue="@_datoTipo">
                             <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                            @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
+                            @foreach (var item in _listaTipo)
                             {
-                                <SelectItem TValue="Int64" Value="@item.id">@item.numdocument-@item.nombrefull</SelectItem>
+                                <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
                             }
                         </Select>
-                    </div>
-                    <div class="col-md-1">
-                        <Button Color="Color.Light" class="btn btn-block margen-sup30" Clicked="@creaTercero">...</Button>
-                    </div>
-                }
+                    }
+                </div>
+                <div class="col-md-2">
+                    <Label>Fecha</Label>
+                    <input type="date" class="form-control" @bind="@_datoFecha" />
+                </div>
+                <div class="col-md-3">
+                    @if (_tipoMvto != null)
+                    {
+                        <Label>Tipo Mvto</Label>
+                        <Select TValue="String" @bind-SelectedValue="@_datoTipoMvto">
+                            <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _tipoMvto)
+                            {
+                                <SelectItem TValue="String" Value="@item.Split('|')[0]">@item.Split('|')[1]</SelectItem>
+                            }
+                        </Select>
+                    }
+                </div>
+                @if (_listaTipo != null && _listaTerc != null && _listaTipo.Any(w => w.id == _datoTipo && w.hasthird))
+                {                                    
+                    @if (_listaTerc != null)
+                    {
+                        <div class="col-md-3">
+                            <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Cliente")</Label>
+                            <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
+                                <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                                @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
+                                {
+                                    <SelectItem TValue="Int64" Value="@item.id">@item.numdocument-@item.nombrefull</SelectItem>
+                                }
+                            </Select>
+                        </div>
+                        <div class="col-md-1">
+                            <Button Color="Color.Light" class="btn btn-block margen-sup30" Clicked="@creaTercero">...</Button>
+                        </div>
+                    }
                 
-            }
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <Label>Origen</Label>
-                @if (_listaOrig != null)
-                {
-                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig">
-                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                        @foreach (var item in _listaOrig)
-                        {
-                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                        }
-                    </Select>
                 }
             </div>
-            <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <Label>Origen</Label>
+                    @if (_listaOrig != null)
+                    {
+                        <Select TValue="Int64" @bind-SelectedValue="@_datoBodegaOrig">
+                            <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _listaOrig)
+                            {
+                                <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                            }
+                        </Select>
+                    }
+                </div>
+                <div class="col-md-4">
 
-                @if (_listaDest != null && _listaTipo != null && _listaTipo.Any(w => w.id == _datoTipo && w.typeclass == "T"))
-                {
-                    <Label>Destino</Label>
-                    <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
-                        <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                        @foreach (var item in _listaDest)
-                        {
-                            <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
-                        }
-                    </Select>
-                }
+                    @if (_listaDest != null && _listaTipo != null && _listaTipo.Any(w => w.id == _datoTipo && w.typeclass == "T"))
+                    {
+                        <Label>Destino</Label>
+                        <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
+                            <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _listaDest)
+                            {
+                                <SelectItem TValue="Int64" Value="@item.id">@item.code-@item.name</SelectItem>
+                            }
+                        </Select>
+                    }
+                </div>
+                <div class="col-md-4"><Button Color="Color.Primary" class="btn btn-block margen-sup30" Clicked="@creaEncabezado">Continuar</Button></div>
             </div>
-            <div class="col-md-4"><Button Color="Color.Primary" class="btn btn-block margen-sup30" Clicked="@creaEncabezado">Continuar</Button></div>
         </div>
     }
     else
@@ -153,7 +158,7 @@
                             }
                         </EditTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.presentationid)" Caption="Presentación" Editable="false" Width="200">
+                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.presentationid)" Caption="Presentación" Editable="false" Width="100">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_Producto)?.presNombre}")
                         </DisplayTemplate>
