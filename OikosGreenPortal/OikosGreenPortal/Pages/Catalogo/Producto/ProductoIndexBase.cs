@@ -67,7 +67,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
+                var resultado = await General.solicitudUrl<String>("", "GET", urlgetall, "");
                 _dataRequest = JsonConvert.DeserializeObject<ProductosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
