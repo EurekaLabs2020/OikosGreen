@@ -37,12 +37,11 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Editable="true" Width="60" >
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="true" Width="60" >
                     <DisplayTemplate>
                         @($"{((context as Producto_data)?.imagepath == null ? "" : (context as Producto_data)?.imagepath.ToUpper())} ")
                     </DisplayTemplate>
                     <EditTemplate>
-                        
                         <FileEdit Changed="@OnChanged" Written="@OnWritten" Progressed="@OnProgressed" />
                     </EditTemplate>
                 </DataGridColumn>
@@ -60,7 +59,7 @@
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
 
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.presentationid)" Caption="Presentación" Editable="true">
+                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.presentationid)" Caption="Presentación" Width="100" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.namepresentation}")
                     </DisplayTemplate>
@@ -140,7 +139,7 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
 
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idtypeproduct)" Caption="Tipo Producto" Editable="true">
+                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idtypeproduct)" Caption="Tipo Producto" Editable="true" Width="100">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.nametypeproduct}")
                     </DisplayTemplate>
