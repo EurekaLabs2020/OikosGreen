@@ -30,7 +30,8 @@ namespace OikosGreenPortal.Data.Request
         public String nature { get; set; }
         public Boolean hasthird { get; set; }
         public String thirdtype { get; set; }
-        public Int64 typeproduct { get; set; }
+        public Int64 typeproductid { get; set; }
+        public String nametypeproduct { get; set; }
 
         public Int32 copie { get; set; }
         public Int64? listid { get; set; }

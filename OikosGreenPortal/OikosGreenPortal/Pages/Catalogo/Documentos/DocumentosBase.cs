@@ -22,6 +22,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
 
         public List<Documento_data> _lista { get; set; }
         public List<Lista_data> _listaSecundaria { get; set; }
+        public List<TipoProducto_data> _listaTipoProducto { get; set; }
         public Documento_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
         public List<String> _listaClase { get; set; }
@@ -55,6 +56,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
         {
             _lista = new List<Documento_data>();
             _listaSecundaria = null;
+            _listaTipoProducto = null;
             _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Documento_data();
@@ -98,6 +100,15 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                     ListasRequest _dataRequestLista = JsonConvert.DeserializeObject<ListasRequest>(resultadoLista.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestLista != null && _dataRequestLista.entities != null && _dataRequestLista.entities.Count > 0)
                         _listaSecundaria = _dataRequestLista.entities.ToList();
+                }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
+
+                try
+                {
+                    var resultadoTipoProducto = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltipoproducto_getall, "");
+                    TipoProductosRequest _dataRequestTipoProducto = JsonConvert.DeserializeObject<TipoProductosRequest>(resultadoTipoProducto.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestTipoProducto != null && _dataRequestTipoProducto.entities != null && _dataRequestTipoProducto.entities.Count > 0)
+                        _listaTipoProducto = _dataRequestTipoProducto.entities.ToList();
                 }
                 catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
@@ -147,7 +158,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             data.hasthird = false;
             data.affect = data.thirdtype = data.nature= "0";
             data.code = data.name = data.type = data.typeclass= data.usercreate= data.usermodify= "";
-            data.idlist = data.consecutive = data.copie= 0;
+            data.idlist = data.consecutive = data.typeproductid= data.copie= 0;
             data.datemodify = data.datecreate = DateTime.Now;            
         }
 
@@ -247,6 +258,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                 item.type = valores["type"].ToString();
                 item.typeclass = valores["typeclass"].ToString();
                 item.affect = valores["affect"].ToString();
+                item.typeproductid = Convert.ToInt64(valores["typeproductid"].ToString());
                 try
                 {
                     item.consecutive = Convert.ToInt64(valores["consecutive"].ToString());
