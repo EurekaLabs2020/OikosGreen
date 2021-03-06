@@ -473,5 +473,7 @@ D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\ob
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
-C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Pages\Transacciones\NuevaTransaccion.razor.rz.scp.css
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Reportes\Movimiento\MovimientoIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Movimiento\MovimientoIndex.razor.g.cs
+C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\scopedcss\Pages\Transacciones\NuevaTransaccion.razor.rz.scp.css
