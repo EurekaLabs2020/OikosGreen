@@ -94,7 +94,7 @@
                     </EditTemplate>
                 </DataGridColumn>
 
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista" Editable="true" Width="150">
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista"  Displayable="false" Editable="true" Width="150">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.namelist==null ? "" : ( context as Documento_data)?.namelist.ToUpper())} ")
                     </DisplayTemplate>
@@ -114,6 +114,28 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
+
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.typeproductid)" Caption="Tipo Producto" Displayable="false" Editable="true" Width="150">
+                    <DisplayTemplate>
+                        @($"{( (context as Documento_data)?.nametypeproduct==null ? "" : ( context as Documento_data)?.nametypeproduct.ToUpper())} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        @{
+                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
+                            @if (_listaTipoProducto != null)
+                            {
+                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                    @foreach (var item in _listaTipoProducto)
+                                    {
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                    }
+                                </Select>
+                            }
+                        }
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.nature)" Caption="Naturaleza" Editable="true" Width="150" Displayable="false">
                     <DisplayTemplate>
                         @($"{(((context as Documento_data)?.nature==null ? "" :(context as Documento_data)?.nature))} ")

@@ -132,7 +132,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
-            _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproduct).FirstOrDefault())).ToList();
+            _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
         }
 
         #region Detalle Productos
