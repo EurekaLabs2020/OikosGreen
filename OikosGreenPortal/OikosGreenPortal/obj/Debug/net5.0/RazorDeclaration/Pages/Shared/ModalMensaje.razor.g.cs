@@ -13,161 +13,161 @@ namespace OikosGreenPortal.Pages.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 1 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 2 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 3 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 4 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 5 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 6 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 7 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 8 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 9 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 10 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 13 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazorise;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 14 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Menu;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 15 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 16 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 17 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 18 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazorise.DataGrid;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 22 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 22 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Pages.Auth.login;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 23 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 23 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Pages.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 24 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 24 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Pages.Reportes.Movimiento.Producto;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 27 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 27 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.PersonalClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 28 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 28 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Personal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 29 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 29 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 30 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 30 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Request;
 
 #line default
@@ -181,7 +181,7 @@ using OikosGreenPortal.Data.Request;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Pages\Shared\ModalMensaje.razor"
+#line 44 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Shared\ModalMensaje.razor"
        
     [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
     [Parameter] public String titulo { get; set; }
