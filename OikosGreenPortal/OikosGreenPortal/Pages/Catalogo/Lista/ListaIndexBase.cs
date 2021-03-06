@@ -24,6 +24,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
         public Lista_data _regActual { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
+        public DateTime fechaini { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
             _lista = new List<Lista_data>();
@@ -66,10 +68,15 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
         #endregion
 
 
+        public async Task pasaFecha(EventArgs arg)
+        {
+            
+        }
+
         public void iniciaDatos(Lista_data data)
         {
             data.active = true;
-            data.startdate = DateTime.Now;
+            fechaini = data.startdate = DateTime.Now;
             data.enddate = DateTime.Now.AddYears(1);
         }
 
