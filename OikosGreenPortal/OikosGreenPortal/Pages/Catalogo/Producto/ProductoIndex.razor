@@ -37,6 +37,15 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Editable="true" Width="60" >
+                    <DisplayTemplate>
+                        @($"{((context as Producto_data)?.imagepath == null ? "" : (context as Producto_data)?.imagepath.ToUpper())} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        
+                        <FileEdit Changed="@OnChanged" Written="@OnWritten" Progressed="@OnProgressed" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.id)" Caption="Id" Editable="false" Displayable="false" />
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.code)" Caption="Código" Editable="true" Width="60" />
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.name)" Caption="Nombre" Editable="true">
@@ -91,7 +100,7 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
 
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.unitbuyid)" Caption="Unidad Compra" Displayable="false"  Editable="true">
+                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.unitbuyid)" Caption="Unidad Compra" Displayable="false" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.nameunitbuy}")
                     </DisplayTemplate>
