@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
     public class UbicacionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
 
@@ -84,7 +85,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

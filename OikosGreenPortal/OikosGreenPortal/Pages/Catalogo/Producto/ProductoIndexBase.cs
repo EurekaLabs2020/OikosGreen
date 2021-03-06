@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazored.Modal.Services;
@@ -7,6 +8,7 @@ using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
@@ -17,6 +19,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
     public class ProductoIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] IWebHostEnvironment _environment { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Producto_data> _lista { get; set; }
@@ -29,6 +33,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         public Producto_data _regActual { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+
+        public String fileContent { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
@@ -81,7 +87,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestPresentacion != null && _dataRequestPresentacion.entities != null && _dataRequestPresentacion.entities.Count > 0)
                         _listaPresentacion = _dataRequestPresentacion.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
                 try
                 {
                     var resultadoUnidadVenta = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlpresentacion_getall, "");
@@ -89,7 +95,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadVenta != null && _dataRequestUnidadVenta.entities != null && _dataRequestUnidadVenta.entities.Count > 0)
                         _listaUnidadVenta = _dataRequestUnidadVenta.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -98,7 +104,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadCompra != null && _dataRequestUnidadCompra.entities != null && _dataRequestUnidadCompra.entities.Count > 0)
                         _listaUnidadCompra = _dataRequestUnidadCompra.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -107,7 +113,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestUnidadInventario != null && _dataRequestUnidadInventario.entities != null && _dataRequestUnidadInventario.entities.Count > 0)
                         _listaUnidadInventario = _dataRequestUnidadInventario.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -116,7 +122,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestTipoProducto != null && _dataRequestTipoProducto.entities != null && _dataRequestTipoProducto.entities.Count > 0)
                         _listaTipoProducto = _dataRequestTipoProducto.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
                 try
                 {
@@ -125,13 +131,75 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     if (_dataRequestIva != null && _dataRequestIva.entities != null && _dataRequestIva.entities.Count > 0)
                         _listaGeneralIva = _dataRequestIva.entities.ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
+
+        #region Cargar Archivo
+        public async Task OnChanged(FileChangedEventArgs e)
+        {
+            try
+            {
+                foreach (var file in e.Files)
+                {                   
+                    using (var stream = new MemoryStream())
+                    {
+                        /*await file.WriteToStreamAsync(stream);*/
+                        try
+                        {
+                            /*fileContent = await file.WriteToStreamAsync( .UploadAsyncStream(stream, file.Name);*/
+
+                            String Name = DateTime.Now.Date.ToShortDateString().Replace("/", "") + "_" + DateTime.Now.ToShortTimeString().Replace(":", "").Substring(0, DateTime.Now.ToShortTimeString().Replace(":", "").Length > 4 ? 4 : 3).Trim()+ "_" + file.Name.Trim();
+
+                            var path = Path.Combine(_environment.WebRootPath, @"Uploads", Name);// fileEntry.Name);
+
+                            using (FileStream archivo = new FileStream(path, FileMode.Create, FileAccess.Write))
+                            {
+                                stream.WriteTo(archivo);
+                                //Articulo articulo = new Articulo()
+                                //{
+                                //   RutaArchivo = file.Name
+                                //};
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        /*stream.Seek(0, SeekOrigin.Begin);
+                        
+                        using (var reader = new StreamReader(stream))
+                        {
+                            fileContent = await reader.ReadToEndAsync();
+                        }*/
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                this.StateHasChanged();
+            }
+        }
+
+        public void OnWritten(FileWrittenEventArgs e)
+        {
+            Console.WriteLine($"File: {e.File.Name} Position: {e.Position} Data: {Convert.ToBase64String(e.Data)}");
+        }
+
+        public void OnProgressed(FileProgressedEventArgs e)
+        {
+            Console.WriteLine($"File: {e.File.Name} Progress: {e.Percentage}");
+        }
+        #endregion
 
         #region Presentación
         public void estilofila(Producto_data reg, DataGridRowStyling style)

@@ -13,154 +13,154 @@ namespace OikosGreenPortal.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 1 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 2 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 3 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 4 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 5 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 6 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 7 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 8 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 9 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 10 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 13 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazorise;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 14 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Menu;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 15 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 16 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 17 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 18 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using Blazorise.DataGrid;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 22 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 22 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Pages.Auth.login;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 23 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 23 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Pages.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 26 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 26 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.PersonalClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 27 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 27 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Personal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 28 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 28 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 29 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+#line 29 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Request;
 
 #line default
@@ -174,49 +174,54 @@ using OikosGreenPortal.Data.Request;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\NavMenu.razor"
-       
+#line 47 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Shared\NavMenu.razor"
+           
 
-    private bool collapseNavMenu = true;
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private List<infoMenu> _lstMenu { get; set; }
-
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+        private bool collapseNavMenu = true;
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+        private List<infoMenu> _lstMenu { get; set; }
 
 
-    protected override async Task OnInitializedAsync()
-    {
-        infoBrowser userLogueado = null;
-        _lstMenu = new List<infoMenu>();
-        try
+        private void ToggleNavMenu()
         {
-            do{
-                var data = await _storage.GetAsync<infoBrowser>("data");
-                userLogueado = data.Value;
-            } while (userLogueado == null);
-            _lstMenu = userLogueado.menus;
-
-            if (_lstMenu == null || _lstMenu.Count == 0)
-            {
-                await General.MensajeModal("Error", "Usuario no tiene un menu asociado.", _modal);
-                ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
-                //navigation.NavigateTo("/", true);
-            }
-        }catch (Exception ex){
-            await General.MensajeModal("Error", "Se presento un error obteniendo el menu del usuario.&s" + ex.Message, _modal);
+            collapseNavMenu = !collapseNavMenu;
         }
-        await base.OnInitializedAsync();
-    }
 
 
+        protected override async Task OnInitializedAsync()
+        {
+            infoBrowser userLogueado = null;
+            _lstMenu = new List<infoMenu>();
+            try
+            {
+                do
+                {
+                    var data = await _storage.GetAsync<infoBrowser>("data");
+                    userLogueado = data.Value;
+                } while (userLogueado == null);
+                _lstMenu = userLogueado.menus;
+
+                if (_lstMenu == null || _lstMenu.Count == 0)
+                {
+                    await General.MensajeModal("Error", "Usuario no tiene un menu asociado.", _modal, _nav);
+                    ((CustomAuthentication)_autenticacion).MarkUserAsLoggedOut();
+                    //navigation.NavigateTo("/", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                await General.MensajeModal("Error", "Se presento un error obteniendo el menu del usuario.&s" + ex.Message, _modal, _nav);
+            }
+            await base.OnInitializedAsync();
+        }
+
+
+    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _nav { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IModalService _modal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _autenticacion { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedSessionStorage _storage { get; set; }

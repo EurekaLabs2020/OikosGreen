@@ -18,26 +18,28 @@ namespace OikosGreenPortal.Pages.Transacciones
     {
         [Inject] public IModalService _modal { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
-        [Inject] public NavigationManager _navigation { get; set; }
+        [Inject] public NavigationManager _nav { get; set; }
 
         public Boolean _mostrarDetalleEncabezado { get; set; }
         public Boolean _mostrarDetalleProductos { get; set; }
         public String _resumenDetalle { get; set; }
         public Int64 _datoTipo { get; set; }
+        public String _datoTipoMvto { get; set; }
         public Int64 _datoClase { get; set; }
         public DateTime? _datoFecha { get; set; }
         public Int64 _datoBodegaOrig { get; set; }
         public Int64 _datoBodegadest { get; set; }
-        public Int64 _datoProveedor { get; set; }
+        public Int64 _datoTercero { get; set; }
 
         public List<Transaccion_data> _envio { get; set; }
         public List<Documento_data> _listaTipo { get; set; }
         public List<Producto_data> _listaProducto { get; set; }
         public List<String> _tipo { get; set; }
         public List<String> _tipoProv { get; set; }
+        public List<String> _tipoMvto { get; set; }
         public List<Bodega_data> _listaOrig { get; set; }
         public List<Bodega_data> _listaDest { get; set; }
-        public List<TerceroTipo_data> _listaProv { get; set; }
+        public List<TerceroTipo_data> _listaTerc { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -74,8 +76,10 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         protected async override Task OnInitializedAsync()
         {
-            _mostrarDetalleEncabezado = _mostrarDetalleProductos = false;
+            _mostrarDetalleEncabezado = true;
+            _mostrarDetalleProductos = false;
             _resumenDetalle = "...";
+            _datoTipoMvto = "M";
             _datoTipo = _datoClase = 0;
             _datoFecha = DateTime.Now;
             _envio = new List<Transaccion_data>();
@@ -84,6 +88,9 @@ namespace OikosGreenPortal.Pages.Transacciones
             _tipo = tipo.tiposDocumentos();
             TipoTerceroTipo tipoUbica = new TipoTerceroTipo();
             _tipoProv = tipoUbica.tiposTerceroTipo();
+            TipoMovimiento tipoMvto = new TipoMovimiento();
+            _tipoMvto = tipoMvto.tiposMovimiento();
+
             DocumentosRequest _dataRequest = new DocumentosRequest();
             try
             {
@@ -107,7 +114,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 var resultadoProveedor = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercerotipo_getall, "");
                 TercerosTipoRequest _dataRequestProveedor = JsonConvert.DeserializeObject<TercerosTipoRequest>(resultadoProveedor.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProveedor != null && _dataRequestProveedor.entities != null && _dataRequestProveedor.entities.Count > 0)
-                    _listaProv = _dataRequestProveedor.entities.Where(w=>w.type== _tipoProv[0]).ToList();
+                    _listaTerc = _dataRequestProveedor.entities.ToList();
                 //Obtiene Productos
                 var resultadoProducto = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlproducto_getall, "");
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
@@ -116,7 +123,7 @@ namespace OikosGreenPortal.Pages.Transacciones
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
@@ -137,8 +144,8 @@ namespace OikosGreenPortal.Pages.Transacciones
                 _resumenDetalle += "   Bod Orig :" + _listaOrig.Where(w => w.id == _datoBodegaOrig).Select(s => s.name).FirstOrDefault();
             if (_datoBodegadest != 0)
                 _resumenDetalle += "   Bod Dest :" + _listaDest.Where(w => w.id == _datoBodegadest).Select(s => s.name).FirstOrDefault();
-            if (_datoProveedor != 0)
-                _resumenDetalle += "   Prov :" + _listaProv.Where(w => w.id == _datoProveedor).Select(s => s.name).FirstOrDefault();
+            if (_datoTercero != 0)
+                _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.id == _datoTercero).Select(s => s.name).FirstOrDefault();
 
             _listaDetalleProducto = new List<Transaccion_Producto>();
             _mostrarDetalleProductos = true;
@@ -174,7 +181,7 @@ namespace OikosGreenPortal.Pages.Transacciones
             e.Item.costvalue = prod.cost;
             e.Item.ivaid = prod.ivaid;
             e.Item.ivaporc = prod.valueiva.Value;
-            e.Item.line = _listaDetalleProducto.Count() + 1;
+            e.Item.line = _listaDetalleProducto.Count();
             await setUbicacion(e.Item, true, urlinsert);
         }
 
@@ -238,6 +245,65 @@ namespace OikosGreenPortal.Pages.Transacciones
             //if (!isok && Crear)
             //    _lista.Remove(reg);            
             return retorno;
+        }
+
+
+
+        public async Task terminar()
+        {
+            if (await validaDatos() && _listaDetalleProducto.Count>0)
+            {
+                foreach(var reg in _listaDetalleProducto)
+                {
+                    Transaccion_data nuevo = new Transaccion_data();
+                    nuevo.cashierid = _dataStorage.user.iduser;                    
+                    nuevo.cellardestid = _datoBodegadest;
+                    nuevo.cellarid = _datoBodegaOrig;
+                    nuevo.cellarorigid = _datoBodegaOrig;
+                    nuevo.detline = reg.line;
+                    nuevo.prodid = reg.productoid;
+                    nuevo.docid = _datoTipo;
+                    nuevo.date = _datoFecha.Value;
+                    nuevo.quantity = reg.quantity;
+                    nuevo.sellerid = _dataStorage.user.iduser;
+                    
+                    
+                    nuevo.terceroid = _datoTercero;
+                    nuevo.encaorigin = 0;
+                    nuevo.typemoviment = _datoTipoMvto; //Mostrador-Domicilio-Web
+                    try{
+                        nuevo.namepc = System.Net.Dns.GetHostName();
+                    }catch { nuevo.namepc = ""; }
+
+                    nuevo.usermodify = nuevo.usercreate = _dataStorage.user.iduser;
+                    nuevo.datemodify = nuevo.datecreate = DateTime.Now;
+                    _envio.Add(nuevo);
+                }
+                // Envio a la Api
+                try
+                {
+                    var resultado = await General.solicitudUrl<List<Transaccion_data>>(_dataStorage.user.token, "POST", Urls.urlcreatetransacc, _envio);
+                    ResponsRequestLong _dataRequest = JsonConvert.DeserializeObject<ResponsRequestLong>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity > 0)
+                    {
+                        await General.MensajeModal("Transacción", $"Transaccion  de {_listaTipo.Where(w=>w.id== _datoTipo).Select(s=>s.name).FirstOrDefault()}  Número {_dataRequest.entity}. Creada con éxito!!!!",  _modal, _nav, "/transacciones");
+                    }
+                        
+                }
+                catch(Exception ex) { }
+            }
+        }
+
+
+        public async Task<Boolean> validaDatos()
+        {
+            _Mensaje = "";
+
+
+            if (_Mensaje.Trim().Length > 0)
+                return false;
+            return true;
+
         }
 
 

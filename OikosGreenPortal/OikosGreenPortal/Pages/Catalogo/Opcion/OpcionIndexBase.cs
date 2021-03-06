@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
     public class OpcionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Opcion_data> _lista { get; set; }
@@ -62,12 +63,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                     if (_dataRequestPadre != null && _dataRequestPadre.entities != null && _dataRequestPadre.entities.Count > 0)
                         _listaSecundaria = _dataRequestPadre.entities.Where(w=> w.type =="MENU").ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
@@ -96,7 +97,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            if(_paraValidar.type=="MENU" && (_paraValidar.parent==null || _paraValidar.parent==0))
+            if(_paraValidar.type==_listaTipoOpcion[1] && (_paraValidar.parent==null || _paraValidar.parent==0))
                 _Mensaje += "Por favor diligenciar el PADRE, es un campo obligatorio.&s";
 
             if (_Mensaje.Trim().Length > 0)

@@ -21,6 +21,7 @@ namespace OikosGreenPortal.Pages.Auth.login
     public class LoginBase: ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }        
         [Inject] public AuthenticationStateProvider _autenticacion { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
@@ -52,7 +53,7 @@ namespace OikosGreenPortal.Pages.Auth.login
                 {
                     AuthRequest resp = JsonConvert.DeserializeObject<AuthRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                     if(resp.entity==null)
-                        await General.MensajeModal("Error Autenticación", resp.status.message, _modal);
+                        await General.MensajeModal("Error Autenticación", resp.status.message, _modal, _nav);
                     else
                     {
                         //Obtenemos el Menu
@@ -70,17 +71,17 @@ namespace OikosGreenPortal.Pages.Auth.login
                             ((CustomAuthentication)_autenticacion).MarKUserAsAuthenticated(data);
                             await _storage.SetAsync("data", data);
                         }else
-                            await General.MensajeModal("SIN INFORMACIÓN", "El usuario que esta usando no tiene acceso al menu.&sPor favor reintenar con otro usuario.", _modal);
+                            await General.MensajeModal("SIN INFORMACIÓN", "El usuario que esta usando no tiene acceso al menu.&sPor favor reintenar con otro usuario.", _modal, _nav);
 
                     }
                 }
                 else
                 {
                     ResponsRequest r = JsonConvert.DeserializeObject<ResponsRequest>((JsonConvert.DeserializeObject(resultado.Content.ReadAsStringAsync().Result.ToString())).ToString());
-                    await General.MensajeModal("Error", r.status.message, _modal);
+                    await General.MensajeModal("Error", r.status.message, _modal, _nav);
                 }                
             }else
-                await General.MensajeModal("SIN INFORMACIÓN", "Por favor ingrese los datos del usuario.", _modal);            
+                await General.MensajeModal("SIN INFORMACIÓN", "Por favor ingrese los datos del usuario.", _modal, _nav);            
         }
 
     }
