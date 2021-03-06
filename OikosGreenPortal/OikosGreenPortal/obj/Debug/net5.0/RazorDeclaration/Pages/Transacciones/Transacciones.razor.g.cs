@@ -173,7 +173,7 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/transacciones")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/transaccion")]
     public partial class Transacciones : TransaccionesBase
     {
         #pragma warning disable 1998
