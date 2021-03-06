@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <BlazoredSubMenu IconClass="@opPpal.icono" Header="@opPpal.option.ToUpper()">
+                        <BlazoredSubMenu IconClass="@opPpal.icono"  Header="@opPpal.option.ToUpper()">
                             <MenuTemplate>
                                 @foreach (var opHijo in _lstMenu.Where(w => w.idparent.Trim() == opPpal.id.Trim()).OrderBy(o => o.code))
                                 {
