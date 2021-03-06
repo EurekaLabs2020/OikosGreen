@@ -23,7 +23,7 @@
                     @if (!_lstMenu.Any(a => a.idparent.Trim() == opPpal.id.Trim()))
                     {
                         <BlazoredMenuItem>
-                            <NavLink href="@opPpal.url"> @opPpal.option.ToUpper() </NavLink>
+                            <NavLink href="@opPpal.url"><i class="@opPpal.icono"></i> @opPpal.option.ToUpper() </NavLink>
                         </BlazoredMenuItem>
                     }
                     else
@@ -33,7 +33,7 @@
                                 @foreach (var opHijo in _lstMenu.Where(w => w.idparent.Trim() == opPpal.id.Trim()).OrderBy(o => o.code))
                                 {
                                     <BlazoredMenuItem>
-                                        <NavLink href="@opHijo.url"> @opHijo.option </NavLink>
+                                        <NavLink href="@opHijo.url"><i class="@opHijo.icono"></i> @opHijo.option </NavLink>
                                     </BlazoredMenuItem>
                                 }
                             </MenuTemplate>

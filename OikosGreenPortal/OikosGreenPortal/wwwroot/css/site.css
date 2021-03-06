@@ -51,6 +51,8 @@ a, .btn-link {
 
 .short-logo-login-oikos {
     max-width: 120px;
+    display: block;
+    margin: 0 auto;
 }
 
 /*MAIN*/
@@ -116,6 +118,10 @@ a, .btn-link {
         line-height: 55px;
     }
 
+.recPass {
+    display: block;
+    text-align: center;
+}
 @media screen and (max-width:768px) {
     .bg-login-right {
         display: none;

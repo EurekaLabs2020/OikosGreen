@@ -164,6 +164,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
             _mostrarDetalleProductos = true;
             _enProductos = true;
+            Detalle();
         }
 
         #region Presentación

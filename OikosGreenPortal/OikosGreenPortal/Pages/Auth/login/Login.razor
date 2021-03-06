@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div id="login">
                 <img src="img/short-logo.jpeg" class="short-logo-login-oikos" alt="Alternate Text" />
-                <h2>Ingresar</h2>
+                <h2 class="text-center">Ingresar</h2>
                 <form action="javaScript:void(0)" method="post">
                     <Field>
                         <TextEdit Placeholder="Usuario" Role="TextRole.Text" @bind-Text="@_login.user" ChangeTextOnKeyPress="false" />
@@ -21,7 +21,7 @@
 
                         <Button Color="Color.Primary" Block="true" Clicked="Logueo" Type="ButtonType.Submit">Ingresar</Button>
 
-                        <Link To="/olvido-clave"> Recordar Contraseña </Link>
+                        <a href="/olvido-clave" class="recPass"> Recordar Contraseña </a>
 
                 </form>
             </div>
