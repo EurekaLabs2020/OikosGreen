@@ -757,39 +757,20 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\Jhonatan\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\ancou\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
->>>>>>> 7930cc3bc23f550944f96976807d2fb100f8ca96
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Jhonatan\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
       "projectPath": "C:\\Users\\Jhonatan\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "packagesPath": "C:\\Users\\Jhonatan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jhonatan\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
-=======
-      "projectUniqueName": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "projectName": "OikosGreenPortal",
-      "projectPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
-      "outputPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
->>>>>>> 7930cc3bc23f550944f96976807d2fb100f8ca96
       "projectStyle": "PackageReference",
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\Jhonatan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-=======
-        "C:\\Users\\ancou\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
->>>>>>> 7930cc3bc23f550944f96976807d2fb100f8ca96
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -865,12 +846,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> 7930cc3bc23f550944f96976807d2fb100f8ca96
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\Jhonatan\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
