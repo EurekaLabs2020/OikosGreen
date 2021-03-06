@@ -39,9 +39,9 @@
 
                 <DataGridColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.id)" Caption="Id" Editable="false" Displayable="false" />
 
-                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idlist)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
+                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idlist)" Caption="Lista" Editable="true" Width="320" Sortable="false">
                     <DisplayTemplate>
-                        @($"{( context as ListaDetalle_data)?.namelist}")
+                        @($"{( context as ListaDetalle_data)?.namelist.ToUpper()}")
                     </DisplayTemplate>
                     <EditTemplate>
                         @{
@@ -59,9 +59,9 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idproduct)" Caption="Parametro" Editable="true" Width="320" Sortable="false">
+                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idproduct)" Caption="Producto" Editable="true" Width="320" Sortable="false">
                     <DisplayTemplate>
-                        @($"{( context as ListaDetalle_data)?.nameprod}")
+                        @($"{ (context as ListaDetalle_data)?.codeprod}-{( context as ListaDetalle_data)?.nameprod.ToUpper() }")
                     </DisplayTemplate>
                     <EditTemplate>
                         @{

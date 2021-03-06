@@ -65,6 +65,14 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
         }
         #endregion
 
+
+        public void iniciaDatos(Lista_data data)
+        {
+            data.active = true;
+            data.startdate = DateTime.Now;
+            data.enddate = DateTime.Now.AddYears(1);
+        }
+
         public async Task insertaFila(EventArgs arg)
         {
             var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Lista_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
