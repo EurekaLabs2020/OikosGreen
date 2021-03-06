@@ -33,9 +33,9 @@
                 <input type="date" class="form-control" @bind="@_datoFecha" />
             </div>
             <div class="col-md-3">
-                <Label>Tipo Mvto</Label>
                 @if (_tipoMvto != null)
                 {
+                    <Label>Tipo Mvto</Label>
                     <Select TValue="String" @bind-SelectedValue="@_datoTipoMvto">
                         <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                         @foreach (var item in _tipoMvto)
@@ -46,12 +46,11 @@
                 }
             </div>
             @if (_listaTipo != null && _listaTerc != null && _listaTipo.Any(w => w.id == _datoTipo && w.hasthird))
-            {
-                <div class="col-md-4">
-                    <Label>Tercero</Label>
-                    @if (_listaTerc != null)
-                    {
-
+            {                                    
+                @if (_listaTerc != null)
+                {
+                    <div class="col-md-3">
+                        <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Tercero")</Label>
                         <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
                             <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                             @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
@@ -59,8 +58,12 @@
                                 <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
                             }
                         </Select>
-                    }
-                </div>
+                    </div>
+                    <div class="col-md-1">
+                        <Button Color="Color.Light" class="btn btn-block margen-sup30" Clicked="@creaTercero">...</Button>
+                    </div>
+                }
+                
             }
         </div>
         <div class="row">
@@ -78,9 +81,10 @@
                 }
             </div>
             <div class="col-md-4">
-                <Label>Destino</Label>
-                @if (_listaDest != null)
+
+                @if (_listaDest != null && _listaTipo != null && _listaTipo.Any(w => w.id == _datoTipo && w.typeclass == "T"))
                 {
+                    <Label>Destino</Label>
                     <Select TValue="Int64" @bind-SelectedValue="@_datoBodegadest">
                         <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                         @foreach (var item in _listaDest)
@@ -101,9 +105,10 @@
     }
     @if(_mostrarDetalleProductos)
     {
+        <Divider DividerType="DividerType.TextContent" Text="Detalle Transacción"/>
         <div class="row margen-sup30">
             <DataGrid TItem = "Transaccion_Producto" Data="@_listaDetalleProducto" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="2"  ShowPager="true"
+                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="4"  ShowPager="true"
                       Bordered="true" Striped="true" Responsive="true" Hoverable="true"
                        RowInserted="@insertFila" RowUpdated="@updateFila"
                       Editable="true" EditMode="DataGridEditMode.Inline" NewItemDefaultSetter="iniciaDatos">
@@ -142,7 +147,7 @@
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaProducto)
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name-@item.namepresentation</SelectItem>
                                     }
                                 </Select>
                             }
