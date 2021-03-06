@@ -139,28 +139,35 @@ using OikosGreenPortal.Pages.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 26 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.PersonalClass;
+#line 24 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Pages.Reportes.Movimiento.Producto;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 27 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.Data.Personal;
+using OikosGreenPortal.PersonalClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 28 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
-using OikosGreenPortal.Helpers;
+using OikosGreenPortal.Data.Personal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 29 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
+using OikosGreenPortal.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 30 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\_Imports.razor"
 using OikosGreenPortal.Data.Request;
 
 #line default
@@ -173,7 +180,7 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/transacciones")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/transaccion")]
     public partial class Transacciones : TransaccionesBase
     {
         #pragma warning disable 1998
