@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Catalogo.Movimiento
+namespace OikosGreenPortal.Pages.Shared
 {
-    public class MovimientoIndexBase : ComponentBase
+    public class TituloTabComponentBase : ComponentBase
     {
+        [Parameter] public String _titulo { get; set; }
     }
 }

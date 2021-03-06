@@ -12,8 +12,9 @@
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
-                  UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
+                  UseInternalEditing="false" NewItemDefaultSetter="iniciaDatos"
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">
@@ -40,6 +41,9 @@
 
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.id)" Caption="Id" Editable="false" Displayable="false" />
                 <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true" Width="90" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.namedocum.ToUpper()} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
@@ -78,10 +82,10 @@
                         @($"{( context as Tercero_data)?.address.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="true" Width="170" Sortable="false" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="false" Width="70" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" Width="170" Sortable="false" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="true" Width="70" />
                 <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="Email" Editable="true" Displayable="false" Width="80" />
                 <DataGridCheckColumn TItem="Tercero_data" Field="@nameof(Tercero_data.active)" Caption="Activo" Editable="false" Width="50" Sortable="false">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

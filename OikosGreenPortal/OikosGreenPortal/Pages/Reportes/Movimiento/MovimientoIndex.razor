@@ -1,0 +1,35 @@
+﻿@page "/reporte/movimiento"
+
+@inherits MovimientoIndexBase
+@attribute [Authorize]
+
+
+    <TituloComponent _titulo="Reporte de Movimiento"></TituloComponent>
+
+    <div class="container row-spacing-bottom">
+        <div class="row margen-sup margen-sup30">
+            <Tabs SelectedTab="@selectedTab" SelectedTabChanged="@OnSelectedTabChanged">
+                <Items>
+                    <Tab Name="producto">Producto</Tab>
+                    <Tab Name="tercero">Tercero</Tab>
+                    <Tab Name="punto">Punto</Tab>
+                </Items>
+                <Content>
+                    <TabPanel Name="producto">
+                        <RepMovProducto/>
+                    </TabPanel>
+                    <TabPanel Name="tercero">
+                        Content for profile.
+                    </TabPanel>
+                    <TabPanel Name="punto">
+                        Content for messages.
+                    </TabPanel>
+                </Content>
+            </Tabs>
+        </div>
+    </div>
+
+
+
+
+

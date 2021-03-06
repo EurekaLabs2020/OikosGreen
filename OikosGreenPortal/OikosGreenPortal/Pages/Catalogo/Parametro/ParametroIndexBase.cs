@@ -113,7 +113,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Parametro
             var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
             var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            var codigo = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
             item.name = nombre;
+            item.code = codigo;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             try

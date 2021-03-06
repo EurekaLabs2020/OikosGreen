@@ -171,7 +171,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             Item.name = Item.name.ToUpper();
             Item.lastname = Item.lastname.ToUpper();
             Item.address = Item.address.ToUpper();
-            Item.email = Item.email.ToUpper();
+            Item.email = Item.email== null ? "" : Item.email.ToUpper();
+            Item.birthdate = Item.birthdate == null ? DateTime.Now : Item.birthdate;
             Tercero_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))

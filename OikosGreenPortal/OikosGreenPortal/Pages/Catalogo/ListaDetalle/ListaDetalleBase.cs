@@ -63,8 +63,8 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
                 {
                     foreach (var reg in _lista)
                     {
-                        reg.idlist = reg.listid;
-                        reg.idproduct = reg.productid;
+                        reg.idlista = reg.listid;
+                        reg.idproducto = reg.productid;
                     }
                 }
                 // Obtenemos la Lista Parametro
@@ -111,9 +111,9 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
         {
             _Mensaje = "";
             _mensajeIsDanger = "alert-danger";
-            if (_paraValidar.idlist == null || _paraValidar.idlist== 0)
+            if (_paraValidar.idlista == null || _paraValidar.idlista== 0)
                 _Mensaje += "Por favor diligenciar el LISTA, es un campo obligatorio.&s";
-            if (_paraValidar.idproduct == null || _paraValidar.idproduct == 0)
+            if (_paraValidar.idproducto == null || _paraValidar.idproducto == 0)
                 _Mensaje += "Por favor diligenciar el PRODUCTO, es un campo obligatorio.&s";
 
             if (_Mensaje.Trim().Length > 0)
@@ -123,21 +123,21 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
 
         public void iniciaDatos(ListaDetalle_data data)
         {
-            data.idlist = data.idproduct = 0;
+            data.idlista = data.idproducto = 0;
             _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<ListaDetalle_data, Dictionary<String, object>> e)
         {
-            e.Item.listid = e.Item.idlist;
-            e.Item.productid = e.Item.idproduct;
+            e.Item.listid = e.Item.idlista;
+            e.Item.productid = e.Item.idproducto;
             e.Item.id = await setData(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<ListaDetalle_data, Dictionary<String, object>> e)
         {
-            e.Item.listid = e.Item.idlist;
-            e.Item.productid = e.Item.idproduct;
+            e.Item.listid = e.Item.idlista;
+            e.Item.productid = e.Item.idproducto;
             await setData(e.Item, false, urlupdate);
         }
 
@@ -170,8 +170,9 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
         {
             Int64 retorno = 0;
             isok = false;
-            Item.namelist = _listaSecundaria.Where(w => w.id == Item.idlist).Select(s => s.name).FirstOrDefault();
-            Item.nameprod = _listaSecundaria.Where(w => w.id == Item.idproduct).Select(s => s.name).FirstOrDefault();
+            Item.namelist = _listaSecundaria.Where(w => w.id == Item.idlista).Select(s => s.name).FirstOrDefault();
+            Item.nameprod = _listaTercera.Where(w => w.id == Item.idproducto).Select(s => s.name).FirstOrDefault();
+            Item.codeprod = _listaTercera.Where(w => w.id == Item.idproducto).Select(s => s.code).FirstOrDefault();
             ListaDetalle_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
