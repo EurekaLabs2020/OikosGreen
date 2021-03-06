@@ -29,8 +29,9 @@ namespace OikosGreenPortal.Data.Request
         public Int64 unitsaleid { get; set; }
         public Int64 unitbuyid { get; set; }
         public Int64 unitinventoryid { get; set; }
-        public Int64? typeproductid { get; set; }
+        public Int64? typeproductid { get; set; } 
         public Int64? ivaid { get; set; }
+        public String imagepath { get; set; }
         public String usercreate { get; set; }
         public DateTime datecreate { get; set; }
         public String usermodify { get; set; }
