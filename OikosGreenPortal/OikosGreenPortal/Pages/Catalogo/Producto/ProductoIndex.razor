@@ -37,12 +37,11 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Editable="true" Width="60" >
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="true" Width="60" >
                     <DisplayTemplate>
                         @($"{((context as Producto_data)?.imagepath == null ? "" : (context as Producto_data)?.imagepath.ToUpper())} ")
                     </DisplayTemplate>
                     <EditTemplate>
-                        
                         <FileEdit Changed="@OnChanged" Written="@OnWritten" Progressed="@OnProgressed" />
                     </EditTemplate>
                 </DataGridColumn>
