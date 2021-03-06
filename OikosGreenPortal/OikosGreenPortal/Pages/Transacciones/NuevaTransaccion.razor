@@ -50,12 +50,12 @@
                 @if (_listaTerc != null)
                 {
                     <div class="col-md-3">
-                        <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Tercero")</Label>
+                        <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Cliente")</Label>
                         <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
                             <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                             @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
                             {
-                                <SelectItem TValue="Int64" Value="@item.id">@item.name</SelectItem>
+                                <SelectItem TValue="Int64" Value="@item.id">@item.numdocument-@item.nombrefull</SelectItem>
                             }
                         </Select>
                     </div>
