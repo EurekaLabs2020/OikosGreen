@@ -12,7 +12,8 @@
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large"
+                  RowInserting="@insertingFila" RowUpdating="@updatingFila">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="TerceroTipo_data" CellsEditableOnEditCommand="true">
@@ -52,7 +53,10 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.nombrefull)" Caption="Tercero" Editable="true" Width="330">
+                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.terceroid)" Caption="Tercero" Editable="true" Width="330">
+                    <DisplayTemplate>
+                        @($"{(( context as TerceroTipo_data)?.nombrefull == null ? "" : (context as TerceroTipo_data)?.nombrefull) }")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());

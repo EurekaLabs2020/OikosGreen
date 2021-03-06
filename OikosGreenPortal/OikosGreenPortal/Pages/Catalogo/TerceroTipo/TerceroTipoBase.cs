@@ -19,7 +19,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         [Inject] IModalService _modal { get; set; }
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
-
+        
         public List<TerceroTipo_data> _lista { get; set; }
         public List<Tercero_data> _listaSecundaria { get; set; }
         public TerceroTipo_data _regActual { get; set; }
@@ -36,7 +36,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         private String urlinsert { get; set; } = Urls.urltercerotipo_insert;
         private String urlupdate { get; set; } = Urls.urltercerotipo_update;
         private String urlinactive { get; set; } = Urls.urltercerotipo_inactive;
-        private String urlgetcode { get; set; } = Urls.urltercerotipo_getbytipo;
+        private String urlgetcode { get; set; } = Urls.urltercerotipo_getbycode;
 
 
         protected async override Task OnInitializedAsync()
@@ -62,6 +62,12 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
                 _dataRequest = JsonConvert.DeserializeObject<TercerosTipoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities.OrderBy(o=>o.nombrefull).ToList();
+
+                if (_lista != null)
+                    foreach (var x in _lista)
+                        x.idtercero = x.terceroid == null ? 0 : x.terceroid.Value;
+
+
                 //Obtenemos la Tabla de Terceros
                 try
                 {
@@ -100,7 +106,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
             _mensajeIsDanger = "alert-danger";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            if (_paraValidar.idtercero == null || _paraValidar.idtercero==0)
+            if (_paraValidar.terceroid == null || _paraValidar.terceroid==0)
                 _Mensaje += "Por favor diligenciar el TERCERO, es un campo obligatorio.&s";
 
 
@@ -117,12 +123,12 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
 
         public async Task insertFila(SavedRowItem<TerceroTipo_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            //e.Item.id = await setUbicacion(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<TerceroTipo_data, Dictionary<String, object>> e)
         {
-            await setUbicacion(e.Item, false, urlupdate);
+            //await setUbicacion(e.Item, false, urlupdate);
         }
 
         public async Task inactiveFila(TerceroTipo_data item)
@@ -150,15 +156,17 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(TerceroTipo_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setData(TerceroTipo_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipo;
-            Item.idtercero = _datoPadre;
-            Item.name = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            Item.lastname = _lista.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
+            Item.idtercero = Item.terceroid.Value;
             TerceroTipo_data reg = Item;
+            //Item.type = _datoTipo;
+            //Item.idtercero = _datoPadre;
+            //Item.name = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            //Item.lastname = _lista.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
+            //TerceroTipo_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
@@ -186,11 +194,40 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
                 else
                     _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
             }
-            StateHasChanged();
-            if (!isok && Crear)
-                _lista.Remove(reg);
+            //StateHasChanged();
+            //if (!isok && Crear)
+            //    _lista.Remove(reg);
             return retorno;
         }
+
+        public async Task insertingFila(EventArgs arg)
+        {
+            await helpGrid(arg, true);
+        }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+            await helpGrid(arg, false);
+        }
+
+        public async Task<Boolean> helpGrid(EventArgs arg, Boolean Crear)
+        {
+            //var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TerceroTipo_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.TerceroTipo_data>)arg).Item;
+            item.type = _datoTipo;
+            item.terceroid = _datoPadre;
+            Int64 id = await setData(item, Crear ? true : false, Crear ? urlinsert : urlupdate);
+            //StateHasChanged();
+            if (id == 0)
+                return false;
+            if (Crear && id > 0)
+            {
+                item.id = id;
+                _lista.Add(item);
+            }
+            return true;
+        }
+
 
     }
 }

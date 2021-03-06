@@ -205,10 +205,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
-                //var resultadoCode = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
-                //DocumentoRequest _dataRequestCode = JsonConvert.DeserializeObject<DocumentoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
-                //if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
-                //{
+                var resultadoCode = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
+                DocumentoRequest _dataRequestCode = JsonConvert.DeserializeObject<DocumentoRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
+                {
                     try
                     {
                         var resultado = await General.solicitudUrl<Documento_data>(_dataStorage.user.token, "POST", Url, reg);
@@ -225,9 +225,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                             _Mensaje = _dataRequest.status.message;
                     }
                     catch (Exception ex) { _Mensaje = ex.Message; }
-                //}
-                //else
-                //    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+                }
+                else
+                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
             }
             //if (!isok && Crear)
                 //_lista.Remove(reg);

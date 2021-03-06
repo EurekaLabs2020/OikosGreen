@@ -192,7 +192,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero Tipo
         public static String urltercerotipo_getall { get { return urlbase + "tercerotipo/getall"; } } //GET
         public static String urltercerotipo_getbyid { get { return urlbase + "tercerotipo/getbyid"; } } //POST
-        public static String urltercerotipo_getbytipo { get { return urlbase + "tercerotipo/getbytipo"; } } //POST
+        public static String urltercerotipo_getbycode { get { return urlbase + "tercerotipo/getbycode"; } } //POST
         public static String urltercerotipo_insert { get { return urlbase + "tercerotipo/insert"; } } //POST
         public static String urltercerotipo_update { get { return urlbase + "tercerotipo/update"; } } //POST
         public static String urltercerotipo_inactive { get { return urlbase + "tercerotipo/inactive"; } } //POST
