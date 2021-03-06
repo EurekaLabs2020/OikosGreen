@@ -15,7 +15,7 @@ namespace OikosGreenPortal.Data.Personal
         public List<String> clasesDocumentos()
         {
             List<String> retorno = new List<String>()
-            { "X|NO APLICA", "C|COMPRA", "V|VENTA", "I|INTERCAMBIO", "A|AJUSTE"};
+            { "X|NO APLICA", "C|COMPRA", "V|VENTA", "I|INTERCAMBIO", "A|AJUSTE", "T|TRASLADO"};
             return retorno;
         }
     }

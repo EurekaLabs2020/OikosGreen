@@ -131,6 +131,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
+            
         }
 
         #region Detalle Productos
@@ -305,6 +306,14 @@ namespace OikosGreenPortal.Pages.Transacciones
             return true;
 
         }
+
+        public async Task creaTercero()
+        {
+
+        }
+
+
+
 
 
         #endregion
