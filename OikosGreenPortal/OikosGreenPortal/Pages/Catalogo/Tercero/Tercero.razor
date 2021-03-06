@@ -40,6 +40,9 @@
 
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.id)" Caption="Id" Editable="false" Displayable="false" />
                 <DataGridSelectColumn TItem="Tercero_data" Field="@nameof(Tercero_data.documentoid)" Caption="Tipo Documento" Editable="true" Width="90" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Tercero_data)?.namedocum.ToUpper()} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         @{
                             //_datoPadre = Convert.ToInt64( context.CellValue.ToString());

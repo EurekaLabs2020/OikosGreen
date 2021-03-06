@@ -37,7 +37,7 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
                 <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false" />
                 <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" Width="320" Sortable="false">
                     <DisplayTemplate>@($"{( context as Parametro_data )?.name.ToUpper()} ")</DisplayTemplate>
