@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Pages\Reportes\Indicadores\" />
+    <Folder Include="Pages\Reportes\Movimiento\Punto\" />
+    <Folder Include="Pages\Reportes\Movimiento\Tercero\" />
     <Folder Include="Pages\Reportes\Puntos\" />
   </ItemGroup>
 

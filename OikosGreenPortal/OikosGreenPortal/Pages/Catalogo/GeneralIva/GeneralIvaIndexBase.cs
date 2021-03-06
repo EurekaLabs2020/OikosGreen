@@ -66,6 +66,14 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
         }
         #endregion
 
+
+        public void iniciaDatos(GeneralIva_data data)
+        {
+            data.startdate = DateTime.Now;
+            data.enddate = DateTime.Now.AddYears(1);
+        }
+
+
         public async Task insertaFila(EventArgs arg)
         {
             var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.GeneralIva_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;

@@ -18,8 +18,8 @@ namespace OikosGreenPortal.Data.Request
     public class ListaDetalle_data
     {
         public Int64 id { get; set; }
-        public Int64 idproduct { get; set; }
-        public Int64 idlist { get; set; }
+        public Int64 idproducto { get; set; }
+        public Int64 idlista { get; set; }
         public Int64 productid { get; set; }
         public Int64 listid { get; set; }
         public Decimal value { get; set; }
