@@ -160,13 +160,15 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroTipo
         {
             Int64 retorno = 0;
             isok = false;
-            Item.idtercero = Item.terceroid.Value;
+            Item.idtercero = _datoPadre;
+            Item.type = _datoTipo;
+            Item.name = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            Item.lastname = _lista.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
             TerceroTipo_data reg = Item;
             //Item.type = _datoTipo;
             //Item.idtercero = _datoPadre;
             //Item.name = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             //Item.lastname = _lista.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
-            //TerceroTipo_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
             {
