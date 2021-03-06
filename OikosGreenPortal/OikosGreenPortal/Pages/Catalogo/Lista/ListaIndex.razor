@@ -39,24 +39,27 @@
                         @($"{( context as Lista_data)?.name.ToUpper()}")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridDateColumn TItem="Lista_data" Field="@nameof(Lista_data.startdate)" Caption="Fecna Inicio" Editable="true">
-                    <DisplayTemplate>
+                <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.startdate)" Caption="Fecna Inicio" Editable="true">
+                    @*<DisplayTemplate>
                         @($"{( context as Lista_data )?.startdate} ")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        <input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))"  />
+                    </DisplayTemplate>*@
+                    <!--<EditTemplate>-->
+                        @*<input class="form-control" type="date" name="@fechaini" value="@fechaini)" @onbeforeactivate="pasaFecha" />*@
+                        @*<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />*@
+                        @*<TextEdit  Text="@( ((DateTime)(((CellEditContext)context).CellValue)).ToString("yyyy-MM-dd") )" TextChanged="@(v=>((CellEditContext)context).CellValue=v)"/>*@
                         @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />*@
-                    </EditTemplate>
-                </DataGridDateColumn>
-                <DataGridDateColumn TItem="Lista_data" Field="@nameof(Lista_data.enddate)" Caption="Fecna Finalización" Editable="true">
-                    <DisplayTemplate>
+                    <!--</EditTemplate>-->
+                </DataGridColumn>
+                <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.enddate)" Caption="Fecna Finalización" Editable="true">
+                    @*<DisplayTemplate>
                         @($"{( context as Lista_data )?.enddate} ")
                     </DisplayTemplate>
-                    <EditTemplate>
-                        <input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />
-                        @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />*@
-                    </EditTemplate>
-                </DataGridDateColumn>
+                    <EditTemplate>-->
+                        @*<InputDate TValue="DateTime" Value="@((DateTime)(((CellEditContext)context).CellValue))"  ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
+                        <!--<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />
+                        @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                    </EditTemplate>*@
+                </DataGridColumn>
                 <DataGridCheckColumn TItem="Lista_data" Field="@nameof(Lista_data.active)" Caption="Activo" Editable="false" Width="50">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
