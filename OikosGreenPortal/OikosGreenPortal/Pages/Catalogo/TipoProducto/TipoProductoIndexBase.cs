@@ -17,16 +17,20 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
     public class TipoProductoIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
-
+        public String _Mensaje { get; set; }
+        public String _mensajeIsDanger { get; set; }
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            _mensajeIsDanger = "alert-danger";
             _lista = new List<TipoProducto_data>();
             _regActual = new TipoProducto_data();
+            _Mensaje = "";
             TipoProductosRequest _dataRequest = new TipoProductosRequest();
             try
             {
@@ -45,10 +49,20 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
+        public Boolean validaDatos(TipoProducto_data _paraValidar)
+        {
+            _Mensaje = "";
+            _mensajeIsDanger = "alert-danger";
+            if (_paraValidar.name == null)
+                _Mensaje += "Por favor diligenciar el NOMBRE, es un campo obligatorio.&s";
 
+            if (_Mensaje.Trim().Length > 0)
+                return false;
+            return true;
+        }
 
         #region Presentación
         public void estilofila(TipoProducto_data reg, DataGridRowStyling style)
@@ -75,14 +89,33 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             item.datecreate = DateTime.Now;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
-            try
+            if (validaDatos(item))
             {
-                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
-                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                try
+                {
+                    _Mensaje = "";
+                    var resultadoValida = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_getbycode, item);
+                    TipoProductoRequest _dataRequestValida = JsonConvert.DeserializeObject<TipoProductoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestValida != null && _dataRequestValida.status.code != 200)
+                    {
+                        var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_insert, item);
+                        TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                        if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                            item.id = _dataRequest.entity.id;
+                    }
+                    else if (_dataRequestValida == null)
+                    {
+                        _Mensaje = "Error realizando validación";
+                        ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                    }
+                    else if (_dataRequestValida.entity != null)
+                    {
+                        _Mensaje = "El código se encuentra duplicado";
+                        ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                    }
+                }
+                catch (Exception) { item = new TipoProducto_data(); }
             }
-            catch (Exception) { item = new TipoProducto_data(); }
         }
 
         public async Task updateFila(EventArgs arg)
@@ -93,14 +126,18 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             item.name = nombre;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
-            try
+            if (validaDatos(item))
             {
-                var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
-                TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                try
+                {
+                    var resultado = await General.solicitudUrl<TipoProducto_data>(_dataStorage.user.token, "POST", Urls.urltipoproducto_update, item);
+                    TipoProductoRequest _dataRequest = JsonConvert.DeserializeObject<TipoProductoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;  
+                }
+                catch (Exception) { item = new TipoProducto_data(); }
             }
-            catch (Exception) { item = new TipoProducto_data(); }
+        
         }
 
         public async Task inactiveFila(EventArgs arg)
@@ -117,11 +154,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception) {  }
+            catch (Exception) {  } 
         }
-
-        
-
-
     }
 }

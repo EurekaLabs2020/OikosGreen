@@ -17,26 +17,16 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
     public class OpcionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Opcion_data> _lista { get; set; }
         public List<Opcion_data> _listaSecundaria { get; set; }
         public Opcion_data _regActual { get; set; }
         public List<String> _listaTipoOpcion { get; set; }
-        public Int64 _datoPadre { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
         private infoBrowser _dataStorage { get; set; }
-        private String datoTipoOpcion { get; set; }
-        public String _datoTipoOpcion
-        {
-            get { return datoTipoOpcion; }
-            set 
-            {
-                datoTipoOpcion = value;
-                _datoPadre = 0;
-            }
-        }
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlopcion_getall;
         private String urlinsert { get; set; } = Urls.urlopcion_insert;
@@ -48,7 +38,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         {
             _lista = new List<Opcion_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Opcion_data();
             TipoOpcion tipoOpcion = new TipoOpcion();
@@ -74,12 +63,12 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                     if (_dataRequestPadre != null && _dataRequestPadre.entities != null && _dataRequestPadre.entities.Count > 0)
                         _listaSecundaria = _dataRequestPadre.entities.Where(w=> w.type =="MENU").ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
 
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
@@ -108,7 +97,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
                 _Mensaje += "Por favor diligenciar el CODIGO, es un campo obligatorio.&s";
             if (_paraValidar.type == null)
                 _Mensaje += "Por favor diligenciar el TIPO, es un campo obligatorio.&s";
-            
+            if(_paraValidar.type==_listaTipoOpcion[1] && (_paraValidar.parent==null || _paraValidar.parent==0))
+                _Mensaje += "Por favor diligenciar el PADRE, es un campo obligatorio.&s";
+
             if (_Mensaje.Trim().Length > 0)
                 return false;
             return true;
@@ -116,8 +107,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
 
         public void iniciaDatos(Opcion_data data)
         {
-            _datoPadre = 0;
-            _datoTipoOpcion = "0";
+            data.parent = 0;
+            data.type = "";
             _Mensaje = "";
         }
 
@@ -157,13 +148,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Opcion
         }
 
         private async Task<Int64> setUbicacion(Opcion_data Item, Boolean Crear, String Url)
-        {
+        { 
             Int64 retorno = 0;
             isok = false;
-            Item.type = _datoTipoOpcion;
-            Item.parent = _datoPadre;
-            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            Item.name = Item.name.ToUpper();
+            Item.nameparent = _lista.Where(w => w.id == Item.parent).Select(s => s.name).FirstOrDefault();            
             Item.code = Item.code;
             Item.url = Item.url;
             Item.icon = Item.icon;

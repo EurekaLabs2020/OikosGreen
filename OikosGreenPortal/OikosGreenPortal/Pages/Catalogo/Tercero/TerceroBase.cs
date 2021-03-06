@@ -17,6 +17,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
     public class TerceroBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Tercero_data> _lista { get; set; }
@@ -78,11 +79,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                     if (_dataRequestDocumento != null && _dataRequestDocumento.entities != null && _dataRequestDocumento.entities.Count > 0)
                         _listaSecundaria = _dataRequestDocumento.entities.Where(w => w.type == _listaTipo[0]).ToList();
                 }
-                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal); }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

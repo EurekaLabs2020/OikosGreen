@@ -26,6 +26,11 @@ namespace OikosGreenPortal.Data.Request
         public Int64 consecutive { get; set; }
         public String typeclass { get; set; }
         public String affect { get; set; }
+
+        public String nature { get; set; }
+        public Boolean hasthird { get; set; }
+        public String thirdtype { get; set; }
+
         public Int32 copie { get; set; }
         public Int64? listid { get; set; }
         public String usercreate { get; set; }

@@ -44,6 +44,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Conversion
         public static String urlconversion_getall { get { return urlbase + "conversion/getall"; } } //GET
         public static String urlconversion_getbyid { get { return urlbase + "conversion/getbyid"; } } //POST
+        public static String urlconversion_getbycode { get { return urlbase + "conversion/getbycode"; } } //POST
         public static String urlconversion_insert { get { return urlbase + "conversion/insert"; } } //POST
         public static String urlconversion_update { get { return urlbase + "conversion/update"; } } //POST
         public static String urlconversion_inactive { get { return urlbase + "conversion/inactive"; } } //POST
@@ -103,6 +104,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Lista Detalle
         public static String urllistadetalle_getall { get { return urlbase + "listadetalle/getall"; } } //GET
         public static String urllistadetalle_getbyid { get { return urlbase + "listadetalle/getbyid"; } } //POST
+        public static String urllistadetalle_getbycode { get { return urlbase + "listadetalle/getbycode"; } } //POST
         public static String urllistadetalle_insert { get { return urlbase + "listadetalle/insert"; } } //POST
         public static String urllistadetalle_update { get { return urlbase + "listadetalle/update"; } } //POST
         public static String urllistadetalle_inactive { get { return urlbase + "listadetalle/inactive"; } } //POST
@@ -137,6 +139,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Presentacion
         public static String urlpresentacion_getall { get { return urlbase + "presentacion/getall"; } } //GET
         public static String urlpresentacion_getbyid { get { return urlbase + "presentacion/getbyid"; } } //POST
+        public static String urlpresentacion_getbycode { get { return urlbase + "presentacion/getbycode"; } } //POST
         public static String urlpresentacion_insert { get { return urlbase + "presentacion/insert"; } } //POST
         public static String urlpresentacion_update { get { return urlbase + "presentacion/update"; } } //POST
         public static String urlpresentacion_inactive { get { return urlbase + "presentacion/inactive"; } } //POST
@@ -148,6 +151,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlproducto_insert { get { return urlbase + "producto/insert"; } } //POST
         public static String urlproducto_update { get { return urlbase + "producto/update"; } } //POST
         public static String urlproducto_inactive { get { return urlbase + "producto/inactive"; } } //POST
+        public static String urlproducto_getbycode { get { return urlbase + "producto/getbycode"; } } //POST
         #endregion
 
         #region Producto Categoria
@@ -156,8 +160,9 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlproductocategoria_insert { get { return urlbase + "productocategoria/insert"; } } //POST
         public static String urlproductocategoria_update { get { return urlbase + "productocategoria/update"; } } //POST
         public static String urlproductocategoria_inactive { get { return urlbase + "productocategoria/inactive"; } } //POST
+        public static String urlproductocategoria_getbycode { get { return urlbase + "productocategoria/getbycode"; } } //POST
         #endregion
-        
+
         #region Saldo Producto
         public static String urlsaldoproducto_getall { get { return urlbase + "saldoproducto/getall"; } } //GET
         public static String urlsaldoproducto_getbyid { get { return urlbase + "saldoproducto/getbyid"; } } //POST
@@ -199,6 +204,7 @@ namespace OikosGreenPortal.PersonalClass
         public static String urltipoproducto_insert { get { return urlbase + "tipoproducto/insert"; } } //POST
         public static String urltipoproducto_update { get { return urlbase + "tipoproducto/update"; } } //POST
         public static String urltipoproducto_inactive { get { return urlbase + "tipoproducto/inactive"; } } //POST
+        public static String urltipoproducto_getbycode { get { return urlbase + "tipoproducto/getbycode"; } } //POST
         #endregion    
 
         #region Ubicacion

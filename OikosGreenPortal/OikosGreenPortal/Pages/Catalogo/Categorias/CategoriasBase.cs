@@ -17,13 +17,13 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
     public class CategoriasBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Categoria_data> _lista { get; set; }
         public List<Categoria_data> _listaSecundaria { get; set; }
         public Categoria_data _regActual { get; set; }
         public List<String> _listaTipoUbicacion { get; set; }
-        public Int64 _datoPadre { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -41,7 +41,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
         {
             _lista = new List<Categoria_data>();
             _listaSecundaria = null;
-            _datoPadre = 0;
             _Mensaje = "";
             _regActual = new Categoria_data();
             CategoriasRequest _dataRequest = new CategoriasRequest();
@@ -62,7 +61,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 
@@ -96,18 +95,18 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
 
         public void iniciaDatos(Categoria_data data)
         {
-            _datoPadre = 0;            
+            data.parent = 0;            
             _Mensaje = "";
         }
 
         public async Task insertFila(SavedRowItem<Categoria_data, Dictionary<String, object>> e)
         {
-            e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            e.Item.id = await setData(e.Item, true, urlinsert);
         }
 
         public async Task updateFila(SavedRowItem<Categoria_data, Dictionary<String, object>> e)
         {
-            await setUbicacion(e.Item, false, urlupdate);
+            await setData(e.Item, false, urlupdate);
         }
 
         public async Task inactiveFila(Categoria_data item)
@@ -135,12 +134,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
             item.datemodify = DateTime.Now;
         }
 
-        private async Task<Int64> setUbicacion(Categoria_data Item, Boolean Crear, String Url)
+        private async Task<Int64> setData(Categoria_data Item, Boolean Crear, String Url)
         {
             Int64 retorno = 0;
-            isok = false;            
-            Item.parent = _datoPadre;
-            Item.nameparent = _lista.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
+            isok = false;                        
+            Item.nameparent = _lista.Where(w => w.id == Item.parent).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Categoria_data reg = Item;
             datosAdicionales(Crear, ref reg);
@@ -168,7 +166,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
                     catch (Exception ex) { _Mensaje = ex.Message; }
                 }
                 else
-                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+                    _Mensaje = "Por favor revisar, el registro se encuentra duplicado.&s";
             }
             StateHasChanged();
             if (!isok && Crear)

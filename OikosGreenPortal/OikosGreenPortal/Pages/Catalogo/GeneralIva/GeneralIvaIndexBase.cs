@@ -18,6 +18,7 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
     {
 
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<GeneralIva_data> _lista { get; set; }
@@ -46,7 +47,7 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
 

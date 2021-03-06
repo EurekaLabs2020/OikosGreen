@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using OikosGreenPortal.Data.Personal;
 using Blazorise.DataGrid;
+using Microsoft.AspNetCore.Components;
 
 namespace OikosGreenPortal.PersonalClass
 {
@@ -30,13 +31,17 @@ namespace OikosGreenPortal.PersonalClass
         /// </param>
         /// <param name="_modal"> Es el servicio ImodalService que se necesita para que la ventana sea emergente</param>
         /// <returns></returns>
-        public static async Task MensajeModal(String _titulo, String _mensaje, IModalService _modal)
+        public static async Task MensajeModal(String _titulo, String _mensaje, IModalService _modal, NavigationManager _nav, String url = "")
         {
             var parameters = new ModalParameters();
             parameters.Add(nameof(ModalMensaje.titulo), _titulo);
             parameters.Add(nameof(ModalMensaje.contenido), _mensaje);
             var formModal = _modal.Show<ModalMensaje>("", parameters);
             var result = await formModal.Result;
+            if (!result.Cancelled &&  url.Trim().Length>0)
+            {
+                _nav.NavigateTo(url, true);
+            }
         }
 
         public static void estilofila(DataGridRowStyling style)

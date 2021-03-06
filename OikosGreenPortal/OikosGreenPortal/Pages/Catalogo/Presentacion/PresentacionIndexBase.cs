@@ -17,15 +17,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
     public class PresentacionIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
+        [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
         public List<Presentacion_data> _lista { get; set; }
         public Presentacion_data _regActual { get; set; }
+        public String _Mensaje { get; set; }
+        public String _mensajeIsDanger { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
 
         protected async override Task OnInitializedAsync() 
         {
+            _mensajeIsDanger = "alert-danger";
             _lista = new List<Presentacion_data>();
             _regActual = new Presentacion_data();
             PresentacionesRequest _dataRequest = new PresentacionesRequest();
@@ -45,9 +49,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             }
             catch (Exception ex)
             {
-                await General.MensajeModal("ERROR", ex.Message, _modal);
+                await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
             }
         }
+
         #region Presentación
         public void estilofila(Presentacion_data reg, DataGridRowStyling style)
         {
@@ -75,10 +80,20 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_insert, item);
-                PresentacionRequest _dataRequest = JsonConvert.DeserializeObject<PresentacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                var resultadoCode = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_getbycode, item);
+                PresentacionRequest _dataRequestCode = JsonConvert.DeserializeObject<PresentacionRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
+                if (_dataRequestCode != null && _dataRequestCode.status.code != 200)
+                {
+                    var resultado = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_insert, item);
+                    PresentacionRequest _dataRequest = JsonConvert.DeserializeObject<PresentacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
+                }
+                else
+                {
+                    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
+                    ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                }
             }
             catch (Exception) { item = new Presentacion_data(); }
         }
@@ -91,15 +106,18 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             item.name = nombre;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
-            try
+            if (validaDatos(item))
             {
-                var resultado = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_update, item);
-                PresentacionRequest _dataRequest = JsonConvert.DeserializeObject<PresentacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
-                    item.id = _dataRequest.entity.id;
+                try
+                {
+                    var resultado = await General.solicitudUrl<Presentacion_data>(_dataStorage.user.token, "POST", Urls.urlpresentacion_update, item);
+                    PresentacionRequest _dataRequest = JsonConvert.DeserializeObject<PresentacionRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        item.id = _dataRequest.entity.id;
 
+                }
+                catch (Exception) { item = new Presentacion_data(); }
             }
-            catch (Exception) { item = new Presentacion_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
@@ -119,12 +137,17 @@ namespace OikosGreenPortal.Pages.Catalogo.Presentacion
             catch (Exception) { }
         }
 
-        public void validaName(ValidatorEventArgs arg)
+        public Boolean validaDatos(Presentacion_data _paraValidar)
         {
-            ValidationRule.IsUppercase(arg.Value.ToString());
-            if (arg.Status == ValidationStatus.Error)
-                arg.ErrorText = "El nombre debe de ser en letras mayusculas";
-        }
+            _Mensaje = "";
+            _mensajeIsDanger = "alert-danger";
+            if (_paraValidar.name == null)
+                _Mensaje += "Por favor diligenciar el NOMBRE, es un campo obligatorio.&s";
 
+
+            if (_Mensaje.Trim().Length > 0)
+                return false;
+            return true;
+        }
     }
 }
