@@ -43,6 +43,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public List<TerceroTipo_data> _listaTerc { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public Boolean _enProductos { get; set; }
 
 
         private infoBrowser _dataStorage { get; set; }
@@ -77,6 +78,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         protected async override Task OnInitializedAsync()
         {
+            _enProductos = false;
             _mostrarDetalleEncabezado = true;
             _mostrarDetalleProductos = false;
             _resumenDetalle = "...";
@@ -129,6 +131,11 @@ namespace OikosGreenPortal.Pages.Transacciones
         }
 
 
+        public async Task Regresar()
+        {
+            _nav.NavigateTo("/transaccion", true);
+        }
+
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
@@ -150,8 +157,13 @@ namespace OikosGreenPortal.Pages.Transacciones
                 _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.id == _datoTercero).Select(s => s.name).FirstOrDefault();
 
             _listaDetalleProducto = new List<Transaccion_Producto>();
-            _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
+            var _typepro = _listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault();
+            if (_typepro == null || _typepro==0)
+                _listaProducto = _listaProductoOrig.OrderBy(o=>o.name).ToList();
+            else
+                _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
             _mostrarDetalleProductos = true;
+            _enProductos = true;
         }
 
         #region Presentación
@@ -319,5 +331,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
 
         #endregion
+    
+    
     }
 }
