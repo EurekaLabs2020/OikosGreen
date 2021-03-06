@@ -42,7 +42,7 @@ namespace OikosGreenPortal.Data.Request
         public String nameunitbuy { get; set; }
         public String nameunitinventory { get; set; }
         public String nametypeproduct { get; set; }
-        public String codeiva { get; set; }
+        public String codeiva { get; set; } 
         public Decimal? valueiva { get; set; }
     }
 }
