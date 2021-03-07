@@ -53,31 +53,32 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.terceroid)" Caption="Tercero" Editable="true" Width="330">
-                    <DisplayTemplate>
-                        @($"{(( context as TerceroTipo_data)?.nombrefull == null ? "" : (context as TerceroTipo_data)?.nombrefull) }")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaSecundaria != null)
-                            {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria.Distinct())
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name}")</SelectItem>
-                                    }
-                                </Select>
+                <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.nombrefull)" Caption="Tercero" Editable="false" Width="330" Displayable="true"/>
+                    <DataGridSelectColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.terceroid)" Caption="Tercero" Editable="true" Width="330" Displayable="false">
+                        <DisplayTemplate>
+                            @($"{(( context as TerceroTipo_data)?.nombrefull == null ? "" : (context as TerceroTipo_data)?.nombrefull) }")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @{
+                                //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
+                                @if (_listaSecundaria != null)
+                                {
+                                    <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                        @foreach (var item in _listaSecundaria.Distinct())
+                                        {
+                                            <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name}")</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridCheckColumn>
+                        </EditTemplate>
+                    </DataGridSelectColumn>
+                    <DataGridCheckColumn TItem="TerceroTipo_data" Field="@nameof(TerceroTipo_data.active)" Caption="Activo" Editable="false" Width="50">
+                        <DisplayTemplate>
+                            <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                        </DisplayTemplate>
+                    </DataGridCheckColumn>
 
             </ChildContent>
 
