@@ -67,7 +67,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
+                var resultado = await General.solicitudUrl<String>("", "GET", urlgetall, "");
                 _dataRequest = JsonConvert.DeserializeObject<ProductosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
@@ -252,6 +252,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
 
         public async Task insertFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
         {
+            e.Item.imagepath = e.Item.imagepath;
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
@@ -259,6 +260,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
 
         public async Task updateFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
         {
+            e.Item.imagepath = e.Item.imagepath;
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
             await setUbicacion(e.Item, false, urlupdate);
@@ -305,7 +307,6 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
             Item.nameunitsale = _listaUnidadVenta.Where(w => w.id == Item.unitsaleid).Select(s => s.name).FirstOrDefault();
             Item.nameunitbuy = _listaUnidadCompra.Where(w => w.id == Item.unitbuyid).Select(s => s.name).FirstOrDefault();
             Item.nameunitinventory = _listaUnidadInventario.Where(w => w.id == Item.unitinventoryid).Select(s => s.name).FirstOrDefault();
-
             Producto_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))

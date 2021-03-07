@@ -63,6 +63,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
                         _listaSecundaria = _dataRequestPresentaciones.entities.ToList();
                 }
                 catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
+
                 try
                 {
                     var resultadoPresentacion = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlpresentacion_getall, "");

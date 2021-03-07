@@ -1,7 +1,9 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@700&display=swap');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /*font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+    font-family: 'Averia Serif Libre', cursive; 
 }
 
 a, .btn-link {
@@ -51,6 +53,8 @@ a, .btn-link {
 
 .short-logo-login-oikos {
     max-width: 120px;
+    display: block;
+    margin: 0 auto;
 }
 
 /*MAIN*/
@@ -116,6 +120,10 @@ a, .btn-link {
         line-height: 55px;
     }
 
+.centrar {
+    display: block;
+    text-align: center;
+}
 @media screen and (max-width:768px) {
     .bg-login-right {
         display: none;
@@ -169,7 +177,7 @@ a, .btn-link {
 
 .menu-ek .active {
     background: #e28541;
-}
+    }
 
 .blazored-sub-menu {
     padding: 0 !important;
