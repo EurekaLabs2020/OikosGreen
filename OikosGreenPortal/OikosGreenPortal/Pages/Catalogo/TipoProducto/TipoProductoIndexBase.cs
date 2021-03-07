@@ -33,7 +33,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             _Mensaje = "";
             TipoProductosRequest _dataRequest = new TipoProductosRequest();
             try
-            {
+            { 
                 _dataStorage = null;
                 do
                 {
