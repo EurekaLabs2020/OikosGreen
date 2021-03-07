@@ -39,7 +39,7 @@
 
                 <DataGridColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.id)" Caption="Id" Editable="false" Displayable="false" />
 
-                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.namecateg)" Caption="Categoria" Editable="true" Width="320" Sortable="false" Displayable="true"/>
+                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.namecateg)" Caption="Categoria" Editable="false" Width="320" Sortable="false" Displayable="true"/>
                 <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.idcategory)" Caption="Categoria" Editable="true" Width="320" Sortable="false" Displayable="false">
                     <DisplayTemplate>
                         @($"{( context as ProductoCategoria_data)?.namecateg}")
@@ -59,7 +59,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.nameprod)" Caption="Producto" Editable="true" Width="320" Sortable="false" Displayable="true"/>
+                <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.nameprod)" Caption="Producto" Editable="false" Width="320" Sortable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="ProductoCategoria_data" Field="@nameof(ProductoCategoria_data.idproduct)" Caption="Producto" Editable="true" Width="320" Sortable="false" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as ProductoCategoria_data)?.nameprod}")
