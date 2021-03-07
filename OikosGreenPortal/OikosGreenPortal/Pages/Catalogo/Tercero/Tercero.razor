@@ -85,7 +85,7 @@
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" Width="170" Sortable="false" />
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.cellphone)" Caption="Celular" Editable="true" Displayable="true" Width="70" />
                 <DataGridDateColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="true" Displayable="false" Width="40" />
-                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="EMail" Editable="true" Displayable="false" Width="80" />
+                <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="Email" Editable="true" Displayable="false" Width="80" />
                 <DataGridCheckColumn TItem="Tercero_data" Field="@nameof(Tercero_data.active)" Caption="Activo" Editable="false" Width="50" Sortable="false">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

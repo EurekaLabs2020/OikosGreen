@@ -79,7 +79,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
                 // Obtenemos la Producto
                 try
                 {
-                    var resultadoProd = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlproducto_getall, "");
+                    var resultadoProd = await General.solicitudUrl<String>("", "GET", Urls.urlproducto_getall, "");
                     ProductosRequest _dataRequestProd = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProd.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestProd != null && _dataRequestProd.entities != null && _dataRequestProd.entities.Count > 0)
                         _listaTercera = _dataRequestProd.entities;

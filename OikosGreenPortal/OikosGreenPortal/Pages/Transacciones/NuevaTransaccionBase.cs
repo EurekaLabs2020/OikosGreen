@@ -43,6 +43,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public List<TerceroTipo_data> _listaTerc { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public Boolean _enProductos { get; set; }
 
 
         private infoBrowser _dataStorage { get; set; }
@@ -77,6 +78,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         protected async override Task OnInitializedAsync()
         {
+            _enProductos = false;
             _mostrarDetalleEncabezado = true;
             _mostrarDetalleProductos = false;
             _resumenDetalle = "...";
@@ -117,7 +119,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 if (_dataRequestProveedor != null && _dataRequestProveedor.entities != null && _dataRequestProveedor.entities.Count > 0)
                     _listaTerc = _dataRequestProveedor.entities.ToList();
                 //Obtiene Productos
-                var resultadoProducto = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlproducto_getall, "");
+                var resultadoProducto = await General.solicitudUrl<String>("", "GET", Urls.urlproducto_getall, "");
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                     _listaProductoOrig = _dataRequestProductos.entities;
@@ -129,10 +131,15 @@ namespace OikosGreenPortal.Pages.Transacciones
         }
 
 
+        public async Task Regresar()
+        {
+            _nav.NavigateTo("/transaccion", true);
+        }
+
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
-            _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
+            
         }
 
         #region Detalle Productos
@@ -150,7 +157,14 @@ namespace OikosGreenPortal.Pages.Transacciones
                 _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.id == _datoTercero).Select(s => s.name).FirstOrDefault();
 
             _listaDetalleProducto = new List<Transaccion_Producto>();
+            var _typepro = _listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault();
+            if (_typepro == null || _typepro==0)
+                _listaProducto = _listaProductoOrig.OrderBy(o=>o.name).ToList();
+            else
+                _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
             _mostrarDetalleProductos = true;
+            _enProductos = true;
+            Detalle();
         }
 
         #region Presentación
@@ -318,5 +332,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
 
         #endregion
+    
+    
     }
 }

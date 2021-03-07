@@ -55,7 +55,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
+                var resultado = await General.solicitudUrl<String>("", "GET", urlgetall, "");
                 _dataRequest = JsonConvert.DeserializeObject<ProductoCategoriasRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
@@ -70,7 +70,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
                 // Obtenemos las Listas asociadas
                 try
                 {
-                    var resultadoCategoria = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlcategoria_getall, "");
+                    var resultadoCategoria = await General.solicitudUrl<String>("", "GET", Urls.urlcategoria_getall, "");
                     CategoriasRequest _dataRequestCategoria = JsonConvert.DeserializeObject<CategoriasRequest>(resultadoCategoria.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestCategoria != null && _dataRequestCategoria.entities != null && _dataRequestCategoria.entities.Count > 0)
                         _listaCategoria = _dataRequestCategoria.entities.ToList();
@@ -79,7 +79,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
 
                 try
                 {
-                    var resultadoProducto = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlproducto_getall, "");
+                    var resultadoProducto = await General.solicitudUrl<String>("", "GET", Urls.urlproducto_getall, "");
                     ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                         _listaProducto = _dataRequestProductos.entities.ToList();
