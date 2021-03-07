@@ -38,7 +38,7 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.namelist)" Caption="Lista" Editable="true" Width="200" Sortable="false" Displayable="true"/>
+                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.namelist)" Caption="Lista" Editable="false" Width="200" Sortable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idlista)" Caption="Lista" Editable="true" Width="200" Sortable="false" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as ListaDetalle_data)?.namelist.ToUpper()}")
@@ -59,7 +59,7 @@
                             }
                         </EditTemplate>
                     </DataGridSelectColumn>
-                    <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.nameprod)" Caption="Producto" Editable="true" Width="320" Sortable="false" Displayable="true"/>
+                    <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.nameprod)" Caption="Producto" Editable="false" Width="320" Sortable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idproducto)" Caption="Producto" Editable="true" Width="320" Sortable="false" Displayable="false">
                             <DisplayTemplate>
                                 @($"{ (context as ListaDetalle_data)?.codeprod}-{( context as ListaDetalle_data)?.nameprod.ToUpper() }")
