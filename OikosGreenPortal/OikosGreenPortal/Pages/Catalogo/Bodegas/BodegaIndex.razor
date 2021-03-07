@@ -62,32 +62,33 @@
                 </DataGridColumn>
                 <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
                 <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.idubicacion)" Caption="Ciudad" Editable="true">
-                    <DisplayTemplate>
-                        @($"{( context as Bodega_data)?.ubicaname}")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            @if (_listaSecundaria != null)
-                            {
-                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
-                                    }
-                                </Select>
+                <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.ubicaname)" Caption="Ciudad" Editable="false" Displayable="true"/>
+                    <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.idubicacion)" Caption="Ciudad" Editable="true" Displayable="false">
+                        <DisplayTemplate>
+                            @($"{( context as Bodega_data)?.ubicaname}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @{
+                                @if (_listaSecundaria != null)
+                                {
+                                    <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                        @foreach (var item in _listaSecundaria)
+                                        {
+                                            <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
-                <DataGridCheckColumn TItem="Bodega_data" Field="@nameof(Bodega_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridCheckColumn>
+                        </EditTemplate>
+                    </DataGridSelectColumn>
+                    <DataGridCheckColumn TItem="Bodega_data" Field="@nameof(Bodega_data.active)" Caption="Activo" Editable="false" Width="50">
+                        <DisplayTemplate>
+                            <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                        </DisplayTemplate>
+                    </DataGridCheckColumn>
 
-            </ChildContent>
+</ChildContent>
 
             <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
             <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>

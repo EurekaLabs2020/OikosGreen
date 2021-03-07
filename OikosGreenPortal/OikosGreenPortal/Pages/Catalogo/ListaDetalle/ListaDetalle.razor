@@ -38,56 +38,57 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.id)" Caption="Id" Editable="false" Displayable="false" />
-
-                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idlista)" Caption="Lista" Editable="true" Width="200" Sortable="false">
-                    <DisplayTemplate>
-                        @($"{( context as ListaDetalle_data)?.namelist.ToUpper()}")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaSecundaria != null)
-                            {
-                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
-                                    }
-                                </Select>
+                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.namelist)" Caption="Lista" Editable="false" Width="200" Sortable="false" Displayable="true"/>
+                    <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idlista)" Caption="Lista" Editable="true" Width="200" Sortable="false" Displayable="false">
+                        <DisplayTemplate>
+                            @($"{( context as ListaDetalle_data)?.namelist.ToUpper()}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @{
+                                //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
+                                @if (_listaSecundaria != null)
+                                {
+                                    <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                        @foreach (var item in _listaSecundaria)
+                                        {
+                                            <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
-                <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idproducto)" Caption="Producto" Editable="true" Width="320" Sortable="false">
-                    <DisplayTemplate>
-                        @($"{ (context as ListaDetalle_data)?.codeprod}-{( context as ListaDetalle_data)?.nameprod.ToUpper() }")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaTercera != null)
-                            {
-                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaTercera)
+                        </EditTemplate>
+                    </DataGridSelectColumn>
+                    <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.nameprod)" Caption="Producto" Editable="false" Width="320" Sortable="false" Displayable="true"/>
+                    <DataGridSelectColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.idproducto)" Caption="Producto" Editable="true" Width="320" Sortable="false" Displayable="false">
+                            <DisplayTemplate>
+                                @($"{ (context as ListaDetalle_data)?.codeprod}-{( context as ListaDetalle_data)?.nameprod.ToUpper() }")
+                            </DisplayTemplate>
+                            <EditTemplate>
+                                @{
+                                    //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
+                                    @if (_listaTercera != null)
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name</SelectItem>
+                                        <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                            <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                            @foreach (var item in _listaTercera)
+                                            {
+                                                <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name</SelectItem>
+                                            }
+                                        </Select>
                                     }
-                                </Select>
-                            }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
+                                }
+                            </EditTemplate>
+                        </DataGridSelectColumn>
 
-                <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" />
-                <DataGridCheckColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.active)" Caption="Activo" Editable="false" Width="50" Sortable="false" >
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridCheckColumn>
+                        <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" />
+                        <DataGridCheckColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.active)" Caption="Activo" Editable="false" Width="50" Sortable="false">
+                            <DisplayTemplate>
+                                <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                            </DisplayTemplate>
+                        </DataGridCheckColumn>
 
-            </ChildContent>
+</ChildContent>
 
             <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
             <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>

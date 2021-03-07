@@ -37,7 +37,7 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="true" Width="60" >
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="true" Width="60">
                     <DisplayTemplate>
                         @($"{((context as Producto_data)?.imagepath == null ? "" : (context as Producto_data)?.imagepath.ToUpper())} ")
                     </DisplayTemplate>
@@ -59,7 +59,8 @@
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
 
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.presentationid)" Caption="Presentación" Width="100" Editable="true">
+                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.namepresentation)" Caption="Presentación" Width="100" Editable="true" Displayable="true" />
+                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.presentationid)" Caption="Presentación" Width="100" Editable="true" Displayable="false">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.namepresentation}")
                     </DisplayTemplate>
@@ -138,53 +139,53 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idtypeproduct)" Caption="Tipo Producto" Editable="true" Width="100">
-                    <DisplayTemplate>
-                        @($"{( context as Producto_data)?.nametypeproduct}")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            @if (_listaTipoProducto != null)
-                            {
-                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaTipoProducto)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
-                                    }
-                                </Select>
+                    <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.nametypeproduct)" Caption="Tipo Producto" Editable="false" Width="100" Displayable="true"/>
+                    <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idtypeproduct)" Caption="Tipo Producto" Editable="true" Width="100" Displayable="false">
+                        <DisplayTemplate>
+                            @($"{( context as Producto_data)?.nametypeproduct}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @{
+                                @if (_listaTipoProducto != null)
+                                {
+                                    <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                        @foreach (var item in _listaTipoProducto)
+                                        {
+                                            <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
+                        </EditTemplate>
+                    </DataGridSelectColumn>
 
-                <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idiva)" Caption="Iva" Displayable="false" Editable="true">
-                    <DisplayTemplate>
-                        @($"{( context as Producto_data)?.codeiva}")
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        @{
-                            @if (_listaGeneralIva != null)
-                            {
-                                <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaGeneralIva)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code</SelectItem>
-                                    }
-                                </Select>
+                    <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idiva)" Caption="Iva" Displayable="false" Editable="true">
+                        <DisplayTemplate>
+                            @($"{( context as Producto_data)?.codeiva}")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            @{
+                                @if (_listaGeneralIva != null)
+                                {
+                                    <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                                        @foreach (var item in _listaGeneralIva)
+                                        {
+                                            <SelectItem TValue="Int64" Value="@(item.id)">@item.code</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             }
-                        }
-                    </EditTemplate>
-                </DataGridSelectColumn>
+                        </EditTemplate>
+                    </DataGridSelectColumn>
 
 
-                <DataGridCheckColumn TItem="Producto_data" Field="@nameof(Producto_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridCheckColumn>
+                    <DataGridCheckColumn TItem="Producto_data" Field="@nameof(Producto_data.active)" Caption="Activo" Editable="false" Width="50">
+                        <DisplayTemplate>
+                            <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                        </DisplayTemplate>
+                    </DataGridCheckColumn>
 
             </ChildContent>
 
