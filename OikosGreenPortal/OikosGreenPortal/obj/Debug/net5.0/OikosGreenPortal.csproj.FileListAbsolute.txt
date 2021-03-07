@@ -481,3 +481,7 @@ C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\o
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\TituloTabComponent.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Movimiento\Producto\RepMovProducto.razor.g.cs
 C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\TituloTabComponent.razor.g.cs
+E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Reportes\Movimiento\Producto\RepMovProducto.razor.g.cs
+E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Shared\TituloTabComponent.razor.g.cs
+E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Movimiento\Producto\RepMovProducto.razor.g.cs
+E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Shared\TituloTabComponent.razor.g.cs
