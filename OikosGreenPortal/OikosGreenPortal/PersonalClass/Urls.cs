@@ -221,6 +221,16 @@ namespace OikosGreenPortal.PersonalClass
         public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
         #endregion
 
+        #region Saldos
+
+        public static String urlsaldos_getbyprodid { get { return urlbase + "saldos/getbyprodid"; } } //POST Reibe Saldos_data
+        public static String urlsaldos_getbyprodperiod { get { return urlbase + "saldos/getbyprodperiod"; } } //Post  Reibe Saldos_data
+
+        #endregion
+
+
+
+
 
     }
 }
