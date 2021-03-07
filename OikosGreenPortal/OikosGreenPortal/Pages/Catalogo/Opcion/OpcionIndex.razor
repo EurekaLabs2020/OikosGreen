@@ -61,7 +61,7 @@
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="80" Sortable="false" />
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" Sortable="false"/>
-                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="true" Width="150" Sortable="false" Displayable="true"/>
+                <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="false" Width="150" Sortable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.parent)" Caption="Padre" Editable="true" Width="150" Sortable="false" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as Opcion_data)?.nameparent}")
