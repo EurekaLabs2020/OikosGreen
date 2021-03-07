@@ -113,7 +113,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
                         _Mensaje = "El código se encuentra duplicado";
                         ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
                     }
-                }
+                } 
                 catch (Exception) { item = new TipoProducto_data(); }
             }
         }
