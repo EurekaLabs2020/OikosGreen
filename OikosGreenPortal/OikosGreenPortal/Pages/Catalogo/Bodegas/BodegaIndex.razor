@@ -62,7 +62,7 @@
                 </DataGridColumn>
                 <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
                 <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.ubicaname)" Caption="Ciudad" Editable="true" Displayable="true"/>
+                <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.ubicaname)" Caption="Ciudad" Editable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.idubicacion)" Caption="Ciudad" Editable="true" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as Bodega_data)?.ubicaname}")

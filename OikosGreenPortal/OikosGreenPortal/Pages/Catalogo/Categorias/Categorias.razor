@@ -43,7 +43,7 @@
                         @($"{( context as Categoria_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                 </DataGridColumn>
-                <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.nameparent)" Caption="Padre" Editable="true" Displayable="true"/>
+                <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.nameparent)" Caption="Padre" Editable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.parent)" Caption="Padre" Editable="true" Displayable="false">
                         <DisplayTemplate>
                             @($"{((context as Categoria_data)?.nameparent==null ? "" : ( context as Categoria_data)?.nameparent.ToUpper())} ")
