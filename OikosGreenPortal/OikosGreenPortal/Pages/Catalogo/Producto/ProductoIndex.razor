@@ -139,7 +139,7 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                    <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.nametypeproduct)" Caption="Tipo Producto" Editable="true" Width="100" Displayable="true"/>
+                    <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.nametypeproduct)" Caption="Tipo Producto" Editable="false" Width="100" Displayable="true"/>
                     <DataGridSelectColumn TItem="Producto_data" Field="@nameof(Producto_data.idtypeproduct)" Caption="Tipo Producto" Editable="true" Width="100" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as Producto_data)?.nametypeproduct}")
