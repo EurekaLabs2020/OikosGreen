@@ -38,7 +38,7 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presorigin)" Caption="Presentación Origen" Editable="true" Width="320" Displayable="true"/>
+                <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presorigin)" Caption="Presentación Origen" Editable="false" Width="320" Displayable="true"/>
                     <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.unitoriginid)" Caption="Presentación Origen" Editable="true" Width="320" Displayable="false">
                         <DisplayTemplate>
                             @($"{((context as Conversion_data)?.presorigin.ToUpper())} ")
@@ -58,7 +58,7 @@
                             }
                         </EditTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presdestination)" Caption="Presentación Destino" Editable="true" Width="320" Displayable="true" />
+                    <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.presdestination)" Caption="Presentación Destino" Editable="false" Width="320" Displayable="true" />
                     <DataGridColumn TItem="Conversion_data" Field="@nameof(Conversion_data.unitdestinationid)" Caption="Presentación Destino" Editable="true" Width="320" Displayable="false">
                         <DisplayTemplate>
                             @($"{((context as Conversion_data)?.presdestination.ToUpper())} ")
