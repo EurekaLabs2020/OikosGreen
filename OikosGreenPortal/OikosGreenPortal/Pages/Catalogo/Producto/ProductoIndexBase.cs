@@ -148,35 +148,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                 {                   
                     using (var stream = new MemoryStream())
                     {
-                        /*await file.WriteToStreamAsync(stream);*/
                         try
                         {
-                            /*fileContent = await file.WriteToStreamAsync( .UploadAsyncStream(stream, file.Name);*/
-
                             String Name = DateTime.Now.Date.ToShortDateString().Replace("/", "") + "_" + DateTime.Now.ToShortTimeString().Replace(":", "").Substring(0, DateTime.Now.ToShortTimeString().Replace(":", "").Length > 4 ? 4 : 3).Trim()+ "_" + file.Name.Trim();
 
-                            var path = Path.Combine(_environment.WebRootPath, @"Uploads", Name);// fileEntry.Name);
+                            var path = Path.Combine(_environment.WebRootPath, @"Uploads", Name);
 
                             using (FileStream archivo = new FileStream(path, FileMode.Create, FileAccess.Write))
                             {
                                 stream.WriteTo(archivo);
-                                //Articulo articulo = new Articulo()
-                                //{
-                                //   RutaArchivo = file.Name
-                                //};
                             }
                         }
                         catch (Exception ex)
                         {
 
                         }
-
-                        /*stream.Seek(0, SeekOrigin.Begin);
-                        
-                        using (var reader = new StreamReader(stream))
-                        {
-                            fileContent = await reader.ReadToEndAsync();
-                        }*/
                     }
                 }
             }
@@ -248,23 +234,38 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
             _Mensaje = "";
             data.idiva = 0;
             data.idtypeproduct = 0;
+            data.imagepath = "";
         }
 
         public async Task insertFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
-        {
-            e.Item.imagepath = e.Item.imagepath;
+        {           
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            e.Item.imagepath = e.Item.code.Trim() + ".png";
         }
 
         public async Task updateFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
-        {
-            e.Item.imagepath = e.Item.imagepath;
+        {           
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
+            e.Item.imagepath = e.Item.code.Trim() + ".png";
             await setUbicacion(e.Item, false, urlupdate);
         }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+            //nombre, desctipcion, costo, iva, 
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Producto_data>)arg).Item;
+            var valor = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Producto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            valor.Remove("code");
+            valor.Remove("unitbuyid");
+            valor.Remove("unitsaleid");
+            valor.Remove("unitinventoryid");
+            valor.Remove("idtypeproduct");
+            valor.Remove("presentationid");
+        }
+
 
         public async Task inactiveFila(Producto_data item)
         {
@@ -295,7 +296,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         {
             Int64 retorno = 0;
             isok = false;
-            Item.code = Item.code.ToUpper();
+            if(Crear)
+                Item.code = Item.code.ToUpper();
             Item.name = Item.name.ToUpper();
             Item.description = Item.description.ToUpper();
             try

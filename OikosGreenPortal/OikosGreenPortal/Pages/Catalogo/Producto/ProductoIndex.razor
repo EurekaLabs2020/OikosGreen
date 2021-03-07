@@ -10,7 +10,7 @@
         <DataGrid TItem="Producto_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  RowInserted="@insertFila" RowUpdated="@updateFila"
+                  RowInserted="@insertFila" RowUpdated="@updateFila" RowUpdating="@updatingFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
@@ -37,12 +37,12 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="true" Width="60">
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.imagepath)" Caption="Imagen" Displayable="false" Editable="false" Width="60">
                     <DisplayTemplate>
                         @($"{((context as Producto_data)?.imagepath == null ? "" : (context as Producto_data)?.imagepath.ToUpper())} ")
                     </DisplayTemplate>
                     <EditTemplate>
-                        <FileEdit Changed="@OnChanged" Written="@OnWritten" Progressed="@OnProgressed" />
+                        <FileEdit  Changed="@OnChanged" Written="@OnWritten" Progressed="@OnProgressed" Filter=".jpg, .png, .gif"  />
                     </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.id)" Caption="Id" Editable="false" Displayable="false" />

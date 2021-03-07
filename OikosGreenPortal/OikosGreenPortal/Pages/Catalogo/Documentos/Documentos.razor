@@ -48,7 +48,7 @@
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
                             
-                            <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)" Disabled="@(context.CellValue.ToString().Trim().Length>1 ? true : false)">
+                            <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipo)
                                 {
@@ -60,7 +60,7 @@
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150">
                  <EditTemplate>
-                     <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" Disabled="@(context.CellValue.ToString().Trim().Length>0 ? true : false)" ChangeTextOnKeyPress="false"/>
+                     <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
                  </EditTemplate>   
                 </DataGridColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280">
