@@ -228,7 +228,14 @@ namespace OikosGreenPortal.PersonalClass
 
         #endregion
 
+        #region Reporte Puntos
 
+        public static String urlreportepunto_getbytercero { get { return urlbase + "terceropuntos/getbytercero"; } } //POST Reibe Saldos_data
+        public static String urlreportepunto_getbycodeperiod { get { return urlbase + "terceropunto/getbycode"; } } //Post  Reibe Saldos_data
+
+        #endregion
+
+        
 
 
 
