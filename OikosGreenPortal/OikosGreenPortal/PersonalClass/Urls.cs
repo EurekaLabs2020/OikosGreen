@@ -166,6 +166,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Saldo Producto
         public static String urlsaldoproducto_getall { get { return urlbase + "saldoproducto/getall"; } } //GET
         public static String urlsaldoproducto_getbyid { get { return urlbase + "saldoproducto/getbyid"; } } //POST
+        public static String urlsaldoproducto_getbyprodperiod { get { return urlbase + "saldoproducto/getbyprodperiod"; } } //POST
         public static String urlsaldoproducto_insert { get { return urlbase + "saldoproducto/insert"; } } //POST
         public static String urlsaldoproducto_update { get { return urlbase + "saldoproducto/update"; } } //POST
         public static String urlsaldoproducto_inactive { get { return urlbase + "saldoproducto/inactive"; } } //POST
@@ -219,6 +220,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Transaccion
         public static String urltransaccion_gettransacc { get { return urlbase + "detallemovimiento/gettransaccc"; } } //GET
         public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
+        public static String urltransaccion_getbyfecha { get { return urlbase + "detallemovimiento/gettransaccbyfecha"; } } //POST
         #endregion
 
         #region Saldos
