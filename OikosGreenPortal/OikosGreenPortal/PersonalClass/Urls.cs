@@ -183,7 +183,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero Punto
         public static String urlterceropunto_getall { get { return urlbase + "terceropunto/getall"; } } //GET
         public static String urlterceropunto_getbyid { get { return urlbase + "terceropunto/getbyid"; } } //POST
-        public static String urlterceropunto_getbycode { get { return urlbase + "terceropunto/getbyperiodo"; } } //POST
+        public static String urlterceropunto_getbycode { get { return urlbase + "terceropunto/getbycode"; } } //POST
         public static String urlterceropunto_insert { get { return urlbase + "terceropunto/insert"; } } //POST
         public static String urlterceropunto_update { get { return urlbase + "terceropunto/update"; } } //POST
         public static String urlterceropunto_inactive { get { return urlbase + "terceropunto/inactive"; } } //POST
@@ -228,12 +228,7 @@ namespace OikosGreenPortal.PersonalClass
 
         #endregion
 
-        #region Reporte Puntos
-
-        public static String urlreportepunto_getbytercero { get { return urlbase + "terceropuntos/getbytercero"; } } //POST Reibe Saldos_data
-        public static String urlreportepunto_getbycodeperiod { get { return urlbase + "terceropunto/getbycode"; } } //Post  Reibe Saldos_data
-
-        #endregion
+        
 
         
 

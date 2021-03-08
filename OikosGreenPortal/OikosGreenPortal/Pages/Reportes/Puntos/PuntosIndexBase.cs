@@ -24,10 +24,15 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
         public List<Tercero_data> _listaSecundaria { get; set; }
         public TerceroPunto_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
+        public List<Tercero_data> _lsttercero { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _datoTipo { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public String _terceronombre { get; set; }
+        public DateTime _fechaini { get; set; }
+        public DateTime _fechafin { get; set; }
+        public Int64 _idtercero { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
         private Boolean isok { get; set; } = false;
@@ -45,9 +50,13 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
             _datoPadre = 0;
             _Mensaje = _datoTipo = "";
             _regActual = new TerceroPunto_data();
+            _lsttercero = new List<Tercero_data>();
+            _idtercero = 0;
             Periodos tipoUbica = new Periodos();
             _listaTipo = tipoUbica.listaPeriodos();
-            TerceroPuntosRequest _dataRequest = new TerceroPuntosRequest();
+            _fechaini = _fechafin = DateTime.Now;
+
+
             try
             {
                 _dataStorage = null;
@@ -57,11 +66,7 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
-                _dataRequest = JsonConvert.DeserializeObject<TerceroPuntosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-                if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
-                    _lista = _dataRequest.entities.OrderBy(o => o.nombrefull).OrderByDescending(o => o.period).ToList();
-                //Obtenemos la Tabla de Terceros
+                
                 try
                 {
                     var resultadoTercero = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercero_getall, "");
@@ -214,12 +219,37 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
                 //else
                 //    _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
             }
+
             StateHasChanged();
             if (!isok && Crear)
                 _lista.Remove(reg);
             return retorno;
         }
 
+        public async Task procesar()
+        {
+            TerceroPuntosRequest _dataRequest = new TerceroPuntosRequest();
+            if (_datoPadre > 0 && _fechaini <= _fechafin)
+            {
+                TerceroPunto_data envio = new TerceroPunto_data();
+                envio.terceroid = _datoPadre;
+                envio.idtercero = _datoPadre;
+                envio.period = _fechaini.Year.ToString()+_fechaini.Month.ToString("0#");
+
+                try
+                {
+                    var resultado = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "GET", Urls.urlterceropunto_getbycode, envio);
+                    _dataRequest = JsonConvert.DeserializeObject<TerceroPuntosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
+                        _lista = _dataRequest.entities.OrderBy(o => o.nombrefull).OrderByDescending(o => o.period).ToList();
+                }
+                catch
+                {
+                    _lista = new List<TerceroPunto_data>();
+                }
+            }
+
+        }
 
     }
 }
