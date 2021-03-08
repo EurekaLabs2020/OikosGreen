@@ -166,6 +166,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Saldo Producto
         public static String urlsaldoproducto_getall { get { return urlbase + "saldoproducto/getall"; } } //GET
         public static String urlsaldoproducto_getbyid { get { return urlbase + "saldoproducto/getbyid"; } } //POST
+        public static String urlsaldoproducto_getbyprodperiod { get { return urlbase + "saldoproducto/getbyprodperiod"; } } //POST
         public static String urlsaldoproducto_insert { get { return urlbase + "saldoproducto/insert"; } } //POST
         public static String urlsaldoproducto_update { get { return urlbase + "saldoproducto/update"; } } //POST
         public static String urlsaldoproducto_inactive { get { return urlbase + "saldoproducto/inactive"; } } //POST
@@ -183,7 +184,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Tercero Punto
         public static String urlterceropunto_getall { get { return urlbase + "terceropunto/getall"; } } //GET
         public static String urlterceropunto_getbyid { get { return urlbase + "terceropunto/getbyid"; } } //POST
-        public static String urlterceropunto_getbycode { get { return urlbase + "terceropunto/getbyperiodo"; } } //POST
+        public static String urlterceropunto_getbycode { get { return urlbase + "terceropunto/getbycode"; } } //POST
         public static String urlterceropunto_insert { get { return urlbase + "terceropunto/insert"; } } //POST
         public static String urlterceropunto_update { get { return urlbase + "terceropunto/update"; } } //POST
         public static String urlterceropunto_inactive { get { return urlbase + "terceropunto/inactive"; } } //POST
@@ -219,6 +220,7 @@ namespace OikosGreenPortal.PersonalClass
         #region Transaccion
         public static String urltransaccion_gettransacc { get { return urlbase + "detallemovimiento/gettransaccc"; } } //GET
         public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
+        public static String urltransaccion_getbyfecha { get { return urlbase + "detallemovimiento/gettransaccbyfecha"; } } //POST
         #endregion
 
         #region Saldos
@@ -228,12 +230,7 @@ namespace OikosGreenPortal.PersonalClass
 
         #endregion
 
-        #region Reporte Puntos
-
-        public static String urlreportepunto_getbytercero { get { return urlbase + "terceropuntos/getbytercero"; } } //POST Reibe Saldos_data
-        public static String urlreportepunto_getbycodeperiod { get { return urlbase + "terceropunto/getbycode"; } } //Post  Reibe Saldos_data
-
-        #endregion
+        
 
         
 
