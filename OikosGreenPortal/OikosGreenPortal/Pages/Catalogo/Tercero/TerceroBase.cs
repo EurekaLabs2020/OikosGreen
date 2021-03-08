@@ -124,6 +124,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         {
             _datoPadre = 0;
             _datoTipo = "0";
+
             _Mensaje = "";
         }
 
@@ -135,6 +136,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         public async Task updateFila(SavedRowItem<Tercero_data, Dictionary<String, object>> e)
         {
             await setUbicacion(e.Item, false, urlupdate);
+        }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+
         }
 
         public async Task inactiveFila(Tercero_data item)

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Catalogo.Puntos
+namespace OikosGreenPortal.Pages.Reportes.Puntos
 {
     public class PuntosIndexBase : ComponentBase
     {
+
     }
 }

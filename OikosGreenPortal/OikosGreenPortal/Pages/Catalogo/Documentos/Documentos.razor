@@ -47,7 +47,7 @@
                     <EditTemplate>
                         @{
                             //_datoTipoUbicacion = context.CellValue.ToString();
-                            
+
                             <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
                                 <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTipo)
@@ -59,9 +59,9 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150">
-                 <EditTemplate>
-                     <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
-                 </EditTemplate>   
+                    <EditTemplate>
+                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280">
                     <DisplayTemplate>
@@ -99,7 +99,7 @@
                     </EditTemplate>
                 </DataGridColumn>
 
-                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista"  Displayable="false" Editable="true" Width="150">
+                <DataGridSelectColumn TItem="Documento_data" Field="@nameof(Documento_data.idlist)" Caption="Lista" Displayable="false" Editable="true" Width="150">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.namelist==null ? "" : ( context as Documento_data)?.namelist.ToUpper())} ")
                     </DisplayTemplate>
@@ -180,7 +180,21 @@
                     </EditTemplate>
 
                 </DataGridColumn>
+                <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.parametroid)" Caption="Parametro Punto" Editable="true" Width="150" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( ((context as Documento_data)?.nameparam ==  null ? "" : (context as Documento_data)?.nameparam) )} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                            @foreach (var item in _listaParam)
+                            {
+                                <SelectItem TValue="Int64" Value="@(item.id)">@item.code - @item.name</SelectItem>
+                            }
+                        </Select>
+                    </EditTemplate>
 
+                </DataGridColumn>
 
                 <DataGridCheckColumn TItem="Documento_data" Field="@nameof(Documento_data.active)" Caption="Activo" Editable="false" Width="150">
                     <DisplayTemplate>
