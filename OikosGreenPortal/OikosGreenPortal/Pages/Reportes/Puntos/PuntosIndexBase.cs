@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Reportes.Inventario
+namespace OikosGreenPortal.Pages.Reportes.Puntos
 {
-    public class InventarioBase : ComponentBase
+    public class PuntosIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] NavigationManager _nav { get; set; }
@@ -219,6 +219,7 @@ namespace OikosGreenPortal.Pages.Reportes.Inventario
                 _lista.Remove(reg);
             return retorno;
         }
+
 
     }
 }

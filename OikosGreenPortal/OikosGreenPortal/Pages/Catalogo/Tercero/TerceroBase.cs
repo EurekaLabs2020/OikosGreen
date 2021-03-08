@@ -124,6 +124,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         {
             _datoPadre = 0;
             _datoTipo = "0";
+            data.birthdate = DateTime.Now;
             _Mensaje = "";
         }
 
@@ -135,6 +136,17 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         public async Task updateFila(SavedRowItem<Tercero_data, Dictionary<String, object>> e)
         {
             await setUbicacion(e.Item, false, urlupdate);
+        }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Tercero_data>)arg).Item;
+            var valor = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Tercero_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            try
+            {
+                valor["birthdate"] = Convert.ToDateTime(valor["birthdate"].ToString()).ToString();
+            }catch { item.birthdate = DateTime.Now; }
+            
         }
 
         public async Task inactiveFila(Tercero_data item)

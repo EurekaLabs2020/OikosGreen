@@ -31,6 +31,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         public List<TipoProducto_data> _listaTipoProducto { get; set; }
         public List<GeneralIva_data> _listaGeneralIva { get; set; }
         public Producto_data _regActual { get; set; }
+        public Producto_data _regCop { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -48,7 +49,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
 
         protected async override Task OnInitializedAsync()
         {
-            _lista = new List<Producto_data>();
+            _lista = null;
             _listaPresentacion = null;
             _listaUnidadVenta = null;
             _listaUnidadCompra = null;
@@ -79,6 +80,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                         reg.idiva = reg.ivaid == null ? 0 : reg.ivaid.Value;
                     }
                 }
+                else
+                    _lista = new List<Producto_data>();               
                 // Obtenemos la Lista adicionales
                 try
                 {
@@ -148,35 +151,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                 {                   
                     using (var stream = new MemoryStream())
                     {
-                        /*await file.WriteToStreamAsync(stream);*/
                         try
                         {
-                            /*fileContent = await file.WriteToStreamAsync( .UploadAsyncStream(stream, file.Name);*/
-
                             String Name = DateTime.Now.Date.ToShortDateString().Replace("/", "") + "_" + DateTime.Now.ToShortTimeString().Replace(":", "").Substring(0, DateTime.Now.ToShortTimeString().Replace(":", "").Length > 4 ? 4 : 3).Trim()+ "_" + file.Name.Trim();
 
-                            var path = Path.Combine(_environment.WebRootPath, @"Uploads", Name);// fileEntry.Name);
+                            var path = Path.Combine(_environment.WebRootPath, @"Uploads", Name);
 
                             using (FileStream archivo = new FileStream(path, FileMode.Create, FileAccess.Write))
                             {
                                 stream.WriteTo(archivo);
-                                //Articulo articulo = new Articulo()
-                                //{
-                                //   RutaArchivo = file.Name
-                                //};
                             }
                         }
                         catch (Exception ex)
                         {
 
                         }
-
-                        /*stream.Seek(0, SeekOrigin.Begin);
-                        
-                        using (var reader = new StreamReader(stream))
-                        {
-                            fileContent = await reader.ReadToEndAsync();
-                        }*/
                     }
                 }
             }
@@ -248,23 +237,55 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
             _Mensaje = "";
             data.idiva = 0;
             data.idtypeproduct = 0;
+            data.imagepath = "";
         }
 
         public async Task insertFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
-        {
-            e.Item.imagepath = e.Item.imagepath;
+        {           
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
             e.Item.id = await setUbicacion(e.Item, true, urlinsert);
+            e.Item.imagepath = e.Item.code.Trim() + ".png";
         }
 
         public async Task updateFila(SavedRowItem<Producto_data, Dictionary<String, object>> e)
         {
-            e.Item.imagepath = e.Item.imagepath;
+            e.Item.active = _regCop.active;  e.Item.codeiva = _regCop.codeiva; e.Item.cost = _regCop.cost; 
+            e.Item.id = _regCop.id; e.Item.idtypeproduct = _regCop.idtypeproduct; e.Item.imagepath = _regCop.imagepath;
+            e.Item.ivaid = _regCop.ivaid; e.Item.namepresentation = _regCop.namepresentation; e.Item.nametypeproduct = _regCop.nametypeproduct;
+            e.Item.nameunitbuy = _regCop.nameunitbuy; e.Item.nameunitinventory = _regCop.nameunitinventory; e.Item.nameunitsale = _regCop.nameunitsale;
+            e.Item.presentationid = _regCop.presentationid; e.Item.typeproductid = _regCop.typeproductid; e.Item.unitbuyid = _regCop.unitbuyid;
+            e.Item.unitinventoryid = _regCop.unitinventoryid; e.Item.unitsaleid = _regCop.unitsaleid;
+            e.Item.code = _regCop.code;
+
             e.Item.typeproductid = e.Item.idtypeproduct;
             e.Item.ivaid = e.Item.idiva;
+            e.Item.imagepath = e.Item.code.Trim() + ".png";            
             await setUbicacion(e.Item, false, urlupdate);
         }
+
+        public async Task updatingFila(EventArgs arg)
+        {
+            //nombre, desctipcion, costo, iva, 
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Producto_data>)arg).Item;
+            var valor = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Producto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            //_regCop = item;
+            _regCop = new Producto_data();
+            _regCop.active = item.active; _regCop.codeiva = item.codeiva; _regCop.cost = item.cost;
+            _regCop.id = item.id; _regCop.idtypeproduct = item.idtypeproduct; _regCop.imagepath = item.imagepath;
+            _regCop.ivaid = item.ivaid; _regCop.namepresentation = item.namepresentation; _regCop.nametypeproduct = item.nametypeproduct;
+            _regCop.nameunitbuy = item.nameunitbuy; _regCop.nameunitinventory = item.nameunitinventory; _regCop.nameunitsale = item.nameunitsale;
+            _regCop.presentationid = item.presentationid; _regCop.typeproductid = item.typeproductid; _regCop.unitbuyid = item.unitbuyid;
+            _regCop.unitinventoryid = item.unitinventoryid; _regCop.unitsaleid = item.unitsaleid; _regCop.code = item.code;
+
+            /*valor.Remove("code");
+            valor.Remove("unitbuyid");
+            valor.Remove("unitsaleid");
+            valor.Remove("unitinventoryid");
+            valor.Remove("idtypeproduct");
+            valor.Remove("presentationid");*/
+        }
+
 
         public async Task inactiveFila(Producto_data item)
         {
@@ -295,9 +316,11 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         {
             Int64 retorno = 0;
             isok = false;
-            Item.code = Item.code.ToUpper();
+            if(Crear)
+                Item.code = Item.code.ToUpper();
             Item.name = Item.name.ToUpper();
             Item.description = Item.description.ToUpper();
+            Item.nametypeproduct = _listaTipoProducto.Where(w => w.id == Item.typeproductid).Select(s => s.name).FirstOrDefault();
             try
             {
                 Item.cost = Item.cost;

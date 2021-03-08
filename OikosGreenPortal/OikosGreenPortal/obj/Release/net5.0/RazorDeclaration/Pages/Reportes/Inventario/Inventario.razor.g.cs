@@ -173,7 +173,14 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/reportes/inventario")]
+#nullable restore
+#line 4 "C:\Users\Jhonatan\source\repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Pages\Reportes\Inventario\Inventario.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/reporte/inventario")]
     public partial class Inventario : InventarioBase
     {
         #pragma warning disable 1998
