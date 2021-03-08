@@ -20,9 +20,9 @@ namespace OikosGreenPortal.Pages.Reportes.Inventario
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<TerceroPunto_data> _lista { get; set; }
-        public List<Tercero_data> _listaSecundaria { get; set; }
-        public TerceroPunto_data _regActual { get; set; }
+        public List<SaldoProducto_data> _lista { get; set; }
+        public List<SaldoProducto_data> _listaSecundaria { get; set; }
+        public SaldoProducto_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _datoTipo { get; set; }
