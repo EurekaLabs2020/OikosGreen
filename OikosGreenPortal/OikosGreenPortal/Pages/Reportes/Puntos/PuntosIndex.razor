@@ -1,18 +1,15 @@
-﻿@page "/reporte/inventario"
+﻿@page "/reporte/puntos"
 
-@inherits InventarioBase
+@inherits PuntosIndexBase
 @attribute [Authorize]
 
-<TituloComponent _titulo="Reporte Inventario"></TituloComponent>
+<TituloComponent _titulo="Reporte Puntos"></TituloComponent>
 
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <Label> Producto</Label>
-            <TextEdit Text="@_tercero"></TextEdit>
-        </div>
-        <div class="col-md-4">
-
+            <label>Tercero:</label>
+            <TextEdit ></TextEdit>
         </div>
     </div>
     <div class="row">
@@ -136,4 +133,3 @@
 
     </div>
 </div>
-

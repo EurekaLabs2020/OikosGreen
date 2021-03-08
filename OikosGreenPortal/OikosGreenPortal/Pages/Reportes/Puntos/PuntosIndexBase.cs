@@ -12,17 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OikosGreenPortal.Pages.Reportes.Inventario
+namespace OikosGreenPortal.Pages.Reportes.Puntos
 {
-    public class InventarioBase : ComponentBase
+    public class PuntosIndexBase : ComponentBase
     {
         [Inject] IModalService _modal { get; set; }
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<SaldoProducto_data> _lista { get; set; }
-        public List<SaldoProducto_data> _listaSecundaria { get; set; }
-        public SaldoProducto_data _regActual { get; set; }
+        public List<TerceroPunto_data> _lista { get; set; }
+        public List<Tercero_data> _listaSecundaria { get; set; }
+        public TerceroPunto_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _datoTipo { get; set; }
@@ -219,6 +219,7 @@ namespace OikosGreenPortal.Pages.Reportes.Inventario
                 _lista.Remove(reg);
             return retorno;
         }
+
 
     }
 }
