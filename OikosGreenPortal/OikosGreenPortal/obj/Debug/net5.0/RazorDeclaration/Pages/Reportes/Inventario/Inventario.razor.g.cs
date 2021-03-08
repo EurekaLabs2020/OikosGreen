@@ -173,15 +173,7 @@ using OikosGreenPortal.Data.Request;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "C:\Desarrollos\OikosGreen S.A\OikosGreen_Web\OikosGreenPortal\OikosGreenPortal\Pages\Reportes\Inventario\Inventario.razor"
-           [Authorize]
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/reporte/inventario")]
-    public partial class Inventario : InventarioBase
+    public partial class Inventario : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
