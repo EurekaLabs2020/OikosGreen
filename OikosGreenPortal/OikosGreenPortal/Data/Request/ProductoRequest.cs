@@ -45,5 +45,6 @@ namespace OikosGreenPortal.Data.Request
         public String codeiva { get; set; } 
         public Decimal? valueiva { get; set; }
         public Decimal? stock { get; set; }
+        public Decimal? points { get; set; }
     }
 }
