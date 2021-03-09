@@ -20,6 +20,8 @@ namespace OikosGreenPortal.Data.Request
         public Int64 id { get; set; }
         public Int64 idproducto { get; set; }
         public Int64 productoid { get; set; }
+        public Int64 cellarid { get; set; }
+        public String cellarname { get; set; }
         public String period { get; set; }
         public Decimal initialbalance { get; set; }
         public Decimal initialvalue { get; set; }
