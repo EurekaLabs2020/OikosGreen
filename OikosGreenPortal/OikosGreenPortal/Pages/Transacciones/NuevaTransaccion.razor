@@ -59,7 +59,7 @@
                                 <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
                                 {
-                                    <SelectItem TValue="Int64" Value="@item.id">@item.numdocument-@item.nombrefull</SelectItem>
+                                    <SelectItem TValue="Int64" Value="@item.terceroid.Value">@item.numdocument-@item.nombrefull</SelectItem>
                                 }
                             </Select>
                         </div>
@@ -115,7 +115,7 @@
             <DataGrid TItem = "Transaccion_Producto" Data="@_listaDetalleProducto" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                       Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="4"  ShowPager="true"
                       Bordered="true" Striped="true" Responsive="true" Hoverable="true"
-                       RowInserted="@insertFila" RowUpdated="@updateFila"
+                       RowInserted="@insertFila" RowUpdated="@updateFila" RowInserting="@insertingFila"
                       Editable="true" EditMode="DataGridEditMode.Inline" NewItemDefaultSetter="iniciaDatos">
                 <ChildContent>
                     <DataGridCommandColumn TItem="Transaccion_Producto">
@@ -126,13 +126,13 @@
                             <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                         </EditCommandTemplate>
                         <DeleteCommandTemplate>
-                            <Tooltip Text="Eliminar"><Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active"> <i class="fas fa-arrow-alt-circle-down"></i></Button></Tooltip>
+                            <Tooltip Text="Eliminar"><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"> <i class="fas fa-arrow-alt-circle-down"></i></Button></Tooltip>
                         </DeleteCommandTemplate>
                         <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
                         <SaveCommandTemplate>
                             @*<div class="col-md-6">
-                                <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
-                            </div>*@
+                    <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                </div>*@
                             <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
                         </SaveCommandTemplate>
                         <CancelCommandTemplate>
@@ -141,7 +141,7 @@
                     </DataGridCommandColumn>
 
                     <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.line)" Caption="Linea" Editable="false" Width="50" />
-                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.productoid)" Caption="Producto" Editable="true"  >
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.productoid)" Caption="Producto" Editable="true" Width="450">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_Producto)?.prodNombre}")
                         </DisplayTemplate>
@@ -152,25 +152,25 @@
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaProducto)
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name-@item.namepresentation</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name-@item.namepresentation- =>@item.stock</SelectItem>
                                     }
                                 </Select>
                             }
                         </EditTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.presentationid)" Caption="Presentación" Editable="false" Width="100">
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.presentationid)" Caption="Presentación" Editable="false" Width="100">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_Producto)?.presNombre}")
                         </DisplayTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem = "Transaccion_Producto" Field="@nameof(Transaccion_Producto.ivaid)" Caption="Iva" Editable="false" Width="80">
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.ivaid)" Caption="Iva" Editable="false" Width="80" Displayable="false">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_Producto)?.ivaporc}")
                         </DisplayTemplate>
                     </DataGridColumn>
                     <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.quantity)" Caption="Cantidad" Editable="true" Width="150">
                         <DisplayTemplate>
-                            @($"{( context as Transaccion_Producto)?.quantity}")
+                            <span class="alert-info">@($"{( context as Transaccion_Producto)?.quantity}")</span>
                         </DisplayTemplate>
                         <EditTemplate>
                             <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />

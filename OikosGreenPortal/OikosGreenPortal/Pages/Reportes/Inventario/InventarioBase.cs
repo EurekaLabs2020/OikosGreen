@@ -109,9 +109,10 @@ namespace OikosGreenPortal.Pages.Reportes.Inventario
             if (_datoPadre > 0 && _fechaini <= _fechafin)
             {
                 Transaccion_data envio = new Transaccion_data();
-                envio.terceroid = _datoPadre;
+                envio.cellarid = _datoBodeg;
                 envio.dateinitial = _fechaini;
                 envio.datefinal = _fechafin;
+                envio.prodid = _datoPadre;
 
                 try
                 {

@@ -164,13 +164,14 @@ namespace OikosGreenPortal.PersonalClass
         #endregion
 
         #region Saldo Producto
-        public static String urlsaldoproducto_getall { get { return urlbase + "saldoproducto/getall"; } } //GET
-        public static String urlsaldoproducto_getbyid { get { return urlbase + "saldoproducto/getbyid"; } } //POST
-        public static String urlsaldoproducto_getbyprodperiod { get { return urlbase + "saldoproducto/getbyprodperiod"; } } //POST
-        public static String urlsaldoproducto_getbyprodidcellar { get { return urlbase + "saldoproducto/getbyprodidcellar"; } } //POST
-        public static String urlsaldoproducto_insert { get { return urlbase + "saldoproducto/insert"; } } //POST
-        public static String urlsaldoproducto_update { get { return urlbase + "saldoproducto/update"; } } //POST
-        public static String urlsaldoproducto_inactive { get { return urlbase + "saldoproducto/inactive"; } } //POST
+        public static String urlsaldoproducto_getall { get { return urlbase + "saldos/getall"; } } //GET
+        public static String urlsaldoproducto_getbyid { get { return urlbase + "saldos/getbyid"; } } //POST
+        public static String urlsaldoproducto_getbycellar { get { return urlbase + "saldos/getbycellar"; } } //POST
+        public static String urlsaldoproducto_getbyprodperiod { get { return urlbase + "saldos/getbyprodperiod"; } } //POST
+        public static String urlsaldoproducto_getbyprodidcellar { get { return urlbase + "saldos/getbyprodidcellar"; } } //POST
+        public static String urlsaldoproducto_insert { get { return urlbase + "saldos/insert"; } } //POST
+        public static String urlsaldoproducto_update { get { return urlbase + "saldos/update"; } } //POST
+        public static String urlsaldoproducto_inactive { get { return urlbase + "saldos/inactive"; } } //POST
         #endregion
 
         #region Tercero
