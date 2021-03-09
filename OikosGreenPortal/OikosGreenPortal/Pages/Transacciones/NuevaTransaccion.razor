@@ -111,6 +111,12 @@
     @if(_mostrarDetalleProductos)
     {
         <Divider DividerType="DividerType.TextContent" Text="Detalle Transacción"/>
+        @if ( _listaTipo.Any(w=>w.id==_datoTipo && w.typeclass=="I"))
+        {
+            <div class="row margen-sup30">
+                <span class="alert-success">@($"Puntos Acumulados para el Tercero: {_puntosTercero}")</span>
+            </div>
+        }
         <div class="row margen-sup30">
             <DataGrid TItem = "Transaccion_Producto" Data="@_listaDetalleProducto" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                       Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="4"  ShowPager="true"
@@ -141,7 +147,7 @@
                     </DataGridCommandColumn>
 
                     <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.line)" Caption="Linea" Editable="false" Width="50" />
-                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.productoid)" Caption="Producto" Editable="true" Width="450">
+                    <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.productoid)" Caption="Producto" Editable="true" Width="550">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_Producto)?.prodNombre}")
                         </DisplayTemplate>
@@ -152,7 +158,7 @@
                                     <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                                     @foreach (var item in _listaProducto)
                                     {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name-@item.namepresentation- =>@item.stock</SelectItem>
+                                        <SelectItem TValue="Int64" Value="@(item.id)">@item.code-@item.name-@item.namepresentation- Saldo=>@item.stock @(  _listaTipo.Any(w => w.id == _datoTipo && w.typeclass == "I") ? $"-Puntos=>{item.points}" : "" )</SelectItem>
                                     }
                                 </Select>
                             }

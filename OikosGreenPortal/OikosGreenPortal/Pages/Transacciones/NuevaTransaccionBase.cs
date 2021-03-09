@@ -44,6 +44,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
         public Boolean _enProductos { get; set; }
+        public decimal _puntosTercero { get; set; }
 
 
         private infoBrowser _dataStorage { get; set; }
@@ -84,7 +85,8 @@ namespace OikosGreenPortal.Pages.Transacciones
             _mostrarDetalleProductos = false;
             _resumenDetalle = "...";
             _datoTipoMvto = "M";
-            _datoTipo = _datoClase = 0;
+            _datoTipo = _datoClase = 0; 
+            _puntosTercero = 0;
             _datoFecha = DateTime.Now;
             _envio = new List<Transaccion_data>();
 
@@ -185,9 +187,47 @@ namespace OikosGreenPortal.Pages.Transacciones
                                 prod.stock = reg.balancequantity;
                         }
                     }
-
                 }
                 catch (Exception ex) { }
+
+                //Consulta Lista
+                try
+                {
+                    Documento_data docume = _listaTipo.Where(w => w.id == _datoTipo).FirstOrDefault();
+                    ListaDetalle_data _envio = new ListaDetalle_data();
+                    _envio.idlista = _envio.listid = docume.listid.Value;
+                    var resultado = await General.solicitudUrl<ListaDetalle_data>(_dataStorage.user.token, "POST", Urls.urllistadetalle_getbylistid, _envio);
+                    ListaDetallesRequest _dataRequest = JsonConvert.DeserializeObject<ListaDetallesRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
+                    {
+                        foreach (var reg in _dataRequest.entities)
+                        {
+                            Producto_data prod = _listaProducto.Where(w => w.id == reg.productid).FirstOrDefault();
+                            if (prod != null)
+                            {
+                                try{
+                                    prod.points = reg.value / Convert.ToDecimal(docume.valueparam);
+                                }catch(Exception dx) { prod.points = 1000; }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex) { }
+
+
+                // Pntos Tercero
+                try
+                {
+                    TerceroPunto_data _envio = new TerceroPunto_data();
+                    _envio.terceroid = _datoTercero;
+                    var resultado = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "POST", Urls.urlterceropunto_getbytercid, _envio);
+                    TerceroPuntoRequest _dataRequest = JsonConvert.DeserializeObject<TerceroPuntoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
+                        _puntosTercero = _dataRequest.entity.currentbalance.Value;
+                }
+                catch (Exception ex){ }
+
+
 
                 Detalle();
             }
@@ -238,6 +278,14 @@ namespace OikosGreenPortal.Pages.Transacciones
                 ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
                 await General.MensajeModal("Inventario Insuficiente", $"No hay inventario {prod.stock} para {valor["quantity"]}", _modal, _nav);
             }
+
+            Decimal totalPuntos = _listaDetalleProducto.Sum(w => w.points);
+            if ( ( ( _puntosTercero- totalPuntos) < (prod.points* Convert.ToDecimal(valor["quantity"].ToString()))) && _listaTipo.Any(w => w.id == _datoTipo && w.typeclass == "I") && _listaTipo.Any(w => w.id == _datoTipo && w.affect == "S"))
+            {
+                ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                await General.MensajeModal("Puntos Insuficientes", $"Total Puntos en transaccion {totalPuntos}, puntos Producto {prod.points}", _modal, _nav);
+            }
+
         }
 
         public async Task updateFila(SavedRowItem<Transaccion_Producto, Dictionary<String, object>> e)
