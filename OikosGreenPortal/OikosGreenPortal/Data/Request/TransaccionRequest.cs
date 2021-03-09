@@ -80,6 +80,7 @@ namespace OikosGreenPortal.Data.Request
         public Int64 idlist { get; set; }
         public DateTime? dateinitial { get; set; }
         public DateTime? datefinal { get; set; }
+        public Decimal stock { get; set; }
         [NotMapped]
         public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 
