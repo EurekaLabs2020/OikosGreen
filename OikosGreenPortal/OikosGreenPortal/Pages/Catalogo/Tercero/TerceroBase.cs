@@ -146,7 +146,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             {
                 valor["birthdate"] = Convert.ToDateTime(valor["birthdate"].ToString()).ToString();
             }catch { item.birthdate = DateTime.Now; }
-            
+            item.cellphone = valor["cellphone"].ToString();
+            item.phone = valor["phone"].ToString();
+
+
         }
 
         public async Task inactiveFila(Tercero_data item)
@@ -183,6 +186,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             Item.name = Item.name.ToUpper();
             Item.lastname = Item.lastname.ToUpper();
             Item.address = Item.address.ToUpper();
+            
             Item.email = Item.email== null ? "" : Item.email.ToUpper();
             Item.birthdate = Item.birthdate == null ? DateTime.Now : Item.birthdate;
             Tercero_data reg = Item;
