@@ -31,24 +31,28 @@
         <div class="col-md-2">
             <Button Color="Color.Success" Clicked="@procesar" class="btn-continuar btn-block margen-sup30">Consultar</Button>
         </div>
-        
+
     </div>
-    <div class="row margen-sup">
-        @if (mostrar)
-        {
+
+    @if (mostrar)
+    {
+        <div class="row margen-supinf">
+            <span class="alert-info">@($"Puntos Acumulados hasta la fecha => {(_datoPuntoTerc.currentbalance==null ? 0 : _datoPuntoTerc.currentbalance.Value.ToString("####.###"))}")</span>
+        </div>
+        <div class="row margen-sup">
             <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
 
             <DataGrid TItem="Transaccion_data" Data="_lista" ShowPager="true" Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
                       PageSize="8" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                       Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
-                
+
                 <ChildContent>
                     <DataGridCommandColumn TItem="Transaccion_data">
                         <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
                     </DataGridCommandColumn>
 
-                    <DataGridAggregate TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)"  Aggregate="DataGridAggregateType.Sum">
-                        <DisplayTemplate>                            
+                    <DataGridAggregate TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Aggregate="DataGridAggregateType.Sum">
+                        <DisplayTemplate>
                             @($" Total: { context.Value} Ptos")
                         </DisplayTemplate>
                     </DataGridAggregate>
@@ -63,7 +67,7 @@
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Código" Sortable="false" Displayable="true" Width="60" />
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Sortable="false" Displayable="true" Width="300" />
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cant." Sortable="false" Displayable="true" Width="40" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Sortable="false" Displayable="true" >
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Sortable="false" Displayable="true">
                         <DisplayTemplate>
                             @($"{( context as Transaccion_data)?.points * ( (context as Transaccion_data)?.affect=="S" ? -1 : ((context as Transaccion_data)?.affect=="E" ? 1 : 0)  ) } Ptos")
                         </DisplayTemplate>
@@ -83,6 +87,7 @@
                 <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
 
             </DataGrid>
-        }
-    </div>
+        </div>
+     }
+        
 </div>

@@ -71,6 +71,7 @@ namespace OikosGreenPortal.Pages.Transacciones
             public String prodNombre { get; set; }
             public String presNombre { get; set; }
             public Decimal ivaporc { get; set; }
+            public Decimal stock { get; set; }
         }
 
 
@@ -145,26 +146,53 @@ namespace OikosGreenPortal.Pages.Transacciones
         #region Detalle Productos
         public async Task creaEncabezado()
         {
-            _mostrarDetalleEncabezado = true;
-            _resumenDetalle = "";
-            if (_datoTipo != 0)
-                _resumenDetalle += " Tipo :"+ _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.name).FirstOrDefault();
-            if(_datoBodegaOrig!=0)
-                _resumenDetalle += "   Bod Orig :" + _listaOrig.Where(w => w.id == _datoBodegaOrig).Select(s => s.name).FirstOrDefault();
-            if (_datoBodegadest != 0)
-                _resumenDetalle += "   Bod Dest :" + _listaDest.Where(w => w.id == _datoBodegadest).Select(s => s.name).FirstOrDefault();
-            if (_datoTercero != 0)
-                _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.id == _datoTercero).Select(s => s.name).FirstOrDefault();
+            if (_datoTipo > 0 && _datoBodegaOrig > 0)
+            {
+                _mostrarDetalleEncabezado = true;
+                _resumenDetalle = "";
+                if (_datoTipo != 0)
+                    _resumenDetalle += " Tipo :" + _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.name).FirstOrDefault();
+                if (_datoBodegaOrig != 0)
+                    _resumenDetalle += "   Bod Orig :" + _listaOrig.Where(w => w.id == _datoBodegaOrig).Select(s => s.name).FirstOrDefault();
+                if (_datoBodegadest != 0)
+                    _resumenDetalle += "   Bod Dest :" + _listaDest.Where(w => w.id == _datoBodegadest).Select(s => s.name).FirstOrDefault();
+                if (_datoTercero != 0)
+                    _resumenDetalle += "   Prov :" + _listaTerc.Where(w => w.terceroid == _datoTercero).Select(s => s.name).FirstOrDefault();
 
-            _listaDetalleProducto = new List<Transaccion_Producto>();
-            var _typepro = _listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault();
-            if (_typepro == null || _typepro==0)
-                _listaProducto = _listaProductoOrig.OrderBy(o=>o.name).ToList();
+                _listaDetalleProducto = new List<Transaccion_Producto>();
+                var _typepro = _listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault();
+                if (_typepro == null || _typepro == 0)
+                    _listaProducto = _listaProductoOrig.OrderBy(o => o.name).ToList();
+                else
+                    _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
+                _mostrarDetalleProductos = true;
+                _enProductos = true;
+
+                /*Recorrer Productos*/
+                //Consulta Saldo
+                try
+                {
+                    SaldoProducto_data _envio = new SaldoProducto_data();
+                    _envio.cellarid = _datoBodegaOrig;
+                    var resultado = await General.solicitudUrl<SaldoProducto_data>(_dataStorage.user.token, "POST", Urls.urlsaldoproducto_getbycellar, _envio);
+                    SaldoProductosRequest _dataRequest = JsonConvert.DeserializeObject<SaldoProductosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
+                    {
+                        foreach (var reg in _dataRequest.entities)
+                        {
+                            Producto_data prod = _listaProducto.Where(w => w.id == reg.productoid).FirstOrDefault();
+                            if (prod != null)
+                                prod.stock = reg.balancequantity;
+                        }
+                    }
+
+                }
+                catch (Exception ex) { }
+
+                Detalle();
+            }
             else
-                _listaProducto = _listaProductoOrig.Where(w => w.typeproductid == (_listaTipo.Where(a => a.id == _datoTipo).Select(s => s.typeproductid).FirstOrDefault())).ToList();
-            _mostrarDetalleProductos = true;
-            _enProductos = true;
-            Detalle();
+                await General.MensajeModal("Información Incompleta", "Por favor dilicencie todas las casillas", _modal, _nav);
         }
 
         #region Presentación
@@ -198,71 +226,23 @@ namespace OikosGreenPortal.Pages.Transacciones
             e.Item.ivaid = prod.ivaid;
             e.Item.ivaporc = prod.valueiva.Value;
             e.Item.line = _listaDetalleProducto.Count();
-            await setUbicacion(e.Item, true, urlinsert);
+        }
+
+        public async Task insertingFila(EventArgs arg)
+        {
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Pages.Transacciones.NuevaTransaccionBase.Transaccion_Producto>)arg).Item;
+            var valor = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Pages.Transacciones.NuevaTransaccionBase.Transaccion_Producto, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var prod = _listaProducto.Where(w => w.id == Convert.ToInt64(valor["productoid"])).FirstOrDefault();
+            if (prod.stock < Convert.ToDecimal(valor["quantity"].ToString()) && _listaTipo.Any(w=>w.id==_datoTipo && w.affect=="S"))
+            {
+                ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
+                await General.MensajeModal("Inventario Insuficiente", $"No hay inventario {prod.stock} para {valor["quantity"]}", _modal, _nav);
+            }
         }
 
         public async Task updateFila(SavedRowItem<Transaccion_Producto, Dictionary<String, object>> e)
         {
-            await setUbicacion(e.Item, false, urlupdate);
         }
-        public async Task inactiveFila(Transaccion_Producto item)
-        {
-            //item.active = !item.active;
-            //try
-            //{
-            //    var resultado = await General.solicitudUrl<Tercero_data>(_dataStorage.user.token, "POST", urlinactive, item);
-            //    TerceroRequest _dataRequest = JsonConvert.DeserializeObject<TerceroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-            //    if (_dataRequest == null || _dataRequest.entity == null || _dataRequest.entity.id == 0)
-            //        item.active = !item.active;
-            //}
-            //catch (Exception) { item.active = !item.active; }
-        }
-
-
-        private async Task<Int64> setUbicacion(Transaccion_Producto Item, Boolean Crear, String Url)
-        {
-            Int64 retorno = 0;
-            //isok = false;
-            //Item.documentoid = Item.iddocumento = _datoPadre;
-            //Item.namedocum = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
-            //Item.name = Item.name.ToUpper();
-            //Item.lastname = Item.lastname.ToUpper();
-            //Item.address = Item.address.ToUpper();
-            //Item.email = Item.email.ToUpper();
-            //Tercero_data reg = Item;
-            //datosAdicionales(Crear, ref reg);
-            //if (validaDatos(Item))
-            //{
-            //    var resultadoCode = await General.solicitudUrl<Tercero_data>(_dataStorage.user.token, "POST", urlgetcode, reg);
-            //    TerceroRequest _dataRequestCode = JsonConvert.DeserializeObject<TerceroRequest>(resultadoCode.Content.ReadAsStringAsync().Result.ToString());
-            //    if (_dataRequestCode != null && (_dataRequestCode.status.code != 200 || !Crear))
-            //    {
-            //        try
-            //        {
-            //            var resultado = await General.solicitudUrl<Tercero_data>(_dataStorage.user.token, "POST", Url, reg);
-            //            TerceroRequest _dataRequest = JsonConvert.DeserializeObject<TerceroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
-            //            if (_dataRequest != null && _dataRequest.status != null && _dataRequest.status.code == 200)
-            //            {
-            //                if (_dataRequest.entity != null && _dataRequest.entity.id > 0)
-            //                {
-            //                    isok = true;
-            //                    retorno = _dataRequest.entity.id;
-            //                }
-            //            }
-            //            else
-            //                _Mensaje = _dataRequest.status.message;
-            //        }
-            //        catch (Exception ex) { _Mensaje = ex.Message; }
-            //    }
-            //    else
-            //        _Mensaje = "Por favor revisar, el código se encuentra duplicado.&s";
-            //}
-            //StateHasChanged();
-            //if (!isok && Crear)
-            //    _lista.Remove(reg);            
-            return retorno;
-        }
-
 
 
         public async Task terminar()
@@ -284,7 +264,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                     nuevo.sellerid = _dataStorage.user.iduser;
                     
                     
-                    nuevo.terceroid = _datoTercero;
+                    nuevo.terceroid = _datoTercero == 0 ? 1 : _datoTercero ;
                     nuevo.encaorigin = 0;
                     nuevo.typemoviment = _datoTipoMvto; //Mostrador-Domicilio-Web
                     try{
@@ -302,7 +282,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                     ResponsRequestLong _dataRequest = JsonConvert.DeserializeObject<ResponsRequestLong>(resultado.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity > 0)
                     {
-                        await General.MensajeModal("Transacción", $"Transaccion  de {_listaTipo.Where(w=>w.id== _datoTipo).Select(s=>s.name).FirstOrDefault()}  Número {_dataRequest.entity}. Creada con éxito!!!!",  _modal, _nav, "/transacciones");
+                        await General.MensajeModal("Transacción", $"Transaccion  de {_listaTipo.Where(w=>w.id== _datoTipo).Select(s=>s.name).FirstOrDefault()}  Número {_dataRequest.entity}. Creada con éxito!!!!",  _modal, _nav, "/transaccion");
                     }
                         
                 }

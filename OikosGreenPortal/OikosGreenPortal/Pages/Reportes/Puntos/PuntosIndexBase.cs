@@ -23,6 +23,7 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
         public List<Transaccion_data> _lista { get; set; }
         public Transaccion_data _regActual { get; set; }
         public List<Tercero_data> _lsttercero { get; set; }
+        public TerceroPunto_data _datoPuntoTerc { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
@@ -31,6 +32,7 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
         public DateTime _fechafin { get; set; }
         public Int64 _idtercero { get; set; }
         public Boolean mostrar { get; set; }
+
 
         private infoBrowser _dataStorage { get; set; }
         private Boolean isok { get; set; } = false;
@@ -46,6 +48,7 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
             _lsttercero = new List<Tercero_data>();
             _idtercero = 0;
             _fechaini = _fechafin = DateTime.Now;
+            _datoPuntoTerc = new TerceroPunto_data();
 
             try
             {
@@ -114,6 +117,14 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
                         foreach (var reg in _lista)
                             reg.points = reg.points * (reg.affect == "S" ? -1 : (reg.affect == "E" ? 1 : 0));
                     }
+                    //Obtenemos los datos actuales
+                    TerceroPunto_data envioTerc = new TerceroPunto_data();
+                    envioTerc.terceroid = envio.terceroid;
+                    var resultadoTerc = await General.solicitudUrl<TerceroPunto_data>(_dataStorage.user.token, "POST", Urls.urlterceropunto_getbytercid, envioTerc);
+                    TerceroPuntoRequest _dataRequestTerc = JsonConvert.DeserializeObject<TerceroPuntoRequest>(resultadoTerc.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestTerc != null && _dataRequestTerc.entity != null)
+                        _datoPuntoTerc = _dataRequestTerc.entity;
+
                 }
                 catch
                 {

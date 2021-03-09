@@ -1,10 +1,10 @@
-﻿@*@page "/reporte/inventario"
+﻿@page "/reporte/inventario"
 
 @inherits InventarioBase
 @attribute [Authorize]
 
 <TituloComponent _titulo="Reporte Inventario"></TituloComponent>
-
+ 
 <div class="container">
     <div class="row margen-sup">
         <div class="col-md-4">
@@ -20,6 +20,21 @@
                 </Select>
             }
         </div>
+        <div class="col-md-4">
+            <Label>Bodega:</Label>
+            @if (_listaTres != null)
+            {
+                <Select TValue="Int64" @bind-SelectedValue="@_datoBodeg">
+                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                    @foreach (var item in _listaTres)
+                    {
+                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.code}-{item.name}") </SelectItem>
+                    }
+                </Select>
+            }
+        </div>
+    </div>
+    <div class="row margen-sup">
         <div class="col-md-3">
             <Label>Fecha Inicial:</Label>
             <input type="date" class="form-control" @bind="@_fechaini" />
@@ -33,55 +48,60 @@
         </div>
 
     </div>
-    <div class="row margen-sup">
-        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+    @if (mostrar)
+    {
+        <div class="row margen-supinf">
+            <span class="alert-info">@($"Saldo en la Bodega  => {(_datoPuntoSaldo.balancequantity==null ? 0 : _datoPuntoSaldo.balancequantity.ToString("####.###"))}")</span>
+        </div>
+        <div class="row margen-sup">
+            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
 
-        <DataGrid TItem="SaldoProducto_data" Data="_lista" ShowPager="true" Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
-                  PageSize="5" EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" >
+            <DataGrid TItem="Transaccion_data" Data="_lista" ShowPager="true" Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
+                      PageSize="8" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                      Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
-            <ChildContent>
-                <DataGridCommandColumn TItem="SaldoProducto_data">
-                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
-                </DataGridCommandColumn>
+                <ChildContent>
+                    <DataGridCommandColumn TItem="Transaccion_data">
+                        <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    </DataGridCommandColumn>
 
-                <DataGridColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.id)" Caption="Id" Sortable="false" Editable="false" Displayable="false"/>
-
-                <DataGridNumericColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.initialbalance)" Caption="Anterior" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as SaldoProducto_data)?.initialbalance} Ptos") </DisplayTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.inputquantity)" Caption="Entrada" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as SaldoProducto_data)?.inputquantity} Ptos") </DisplayTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.outputquantity)" Caption="Salida" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as SaldoProducto_data)?.outputquantity} Ptos") </DisplayTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.balancequantity)" Caption="Saldo" Editable="false" Width="100">
-                    <DisplayTemplate>  @($"{( context as SaldoProducto_data)?.balancequantity} Ptos") </DisplayTemplate>
-                </DataGridNumericColumn>
+                    <DataGridAggregate TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Aggregate="DataGridAggregateType.Sum">
+                        <DisplayTemplate>
+                            @($" Total: { context.Value} Ptos")
+                        </DisplayTemplate>
+                    </DataGridAggregate>
 
 
-                <DataGridNumericColumn TItem="SaldoProducto_data" Field="@nameof(SaldoProducto_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridNumericColumn>
 
-            </ChildContent>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Sortable="false" Displayable="true" Width="200" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.typemoviment)" Caption="Tipo" Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.cellarname)" Caption="Bodega" Sortable="false" Displayable="true" Width="150" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Número" Sortable="false" Displayable="true" Width="80" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.detline)" Caption="Linea" Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Código" Sortable="false" Displayable="true" Width="60" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Sortable="false" Displayable="true" Width="300" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cant." Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Sortable="false" Displayable="true">
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_data)?.points * ( (context as Transaccion_data)?.affect=="S" ? -1 : ((context as Transaccion_data)?.affect=="E" ? 1 : 0)  ) } Ptos")
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                </ChildContent>
 
-            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
-            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
-            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
-            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
-            <PopupTitleTemplate>
-                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
-            </PopupTitleTemplate>
+                <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+                <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+                <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+                <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+                <PopupTitleTemplate>
+                    <TituloComponent _titulo=@((context.EditState == DataGridEditState.New ? "Insertando" : "Actualizando") + " Registro")></TituloComponent>
+                </PopupTitleTemplate>
 
-            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+                <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
 
-            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+                <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
 
-        </DataGrid>
+            </DataGrid>
+        </div>
+    }
+</div>
 
-    </div>
-</div>*@
