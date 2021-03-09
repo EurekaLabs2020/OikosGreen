@@ -72,7 +72,7 @@
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
-
+                 
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.typeclass)} ")
