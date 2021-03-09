@@ -284,7 +284,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                     nuevo.sellerid = _dataStorage.user.iduser;
                     
                     
-                    nuevo.terceroid = _datoTercero;
+                    nuevo.terceroid = _datoTercero == 0 ? 1 : _datoTercero ;
                     nuevo.encaorigin = 0;
                     nuevo.typemoviment = _datoTipoMvto; //Mostrador-Domicilio-Web
                     try{
