@@ -302,7 +302,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                     ResponsRequestLong _dataRequest = JsonConvert.DeserializeObject<ResponsRequestLong>(resultado.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity > 0)
                     {
-                        await General.MensajeModal("Transacción", $"Transaccion  de {_listaTipo.Where(w=>w.id== _datoTipo).Select(s=>s.name).FirstOrDefault()}  Número {_dataRequest.entity}. Creada con éxito!!!!",  _modal, _nav, "/transacciones");
+                        await General.MensajeModal("Transacción", $"Transaccion  de {_listaTipo.Where(w=>w.id== _datoTipo).Select(s=>s.name).FirstOrDefault()}  Número {_dataRequest.entity}. Creada con éxito!!!!",  _modal, _nav, "/transaccion");
                     }
                         
                 }

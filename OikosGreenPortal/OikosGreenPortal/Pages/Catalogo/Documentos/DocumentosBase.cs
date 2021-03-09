@@ -265,6 +265,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             item.thirdtype = valores["thirdtype"].ToString();
             if (Crear)
             {
+                item.code = valores["code"].ToString();
                 item.nature = valores["nature"].ToString();
                 item.hasthird =Convert.ToBoolean( valores["hasthird"].ToString());
                 item.type = valores["type"].ToString();
@@ -278,7 +279,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
                 }
                 catch { item.consecutive = 0; }
             }
-            item.code = valores["code"].ToString();             
+           
+                        
             item.namelist = _listaSecundaria.Where(w => w.id == item.idlist).Select(s => s.name).FirstOrDefault();
             item.nameparam = _listaParam.Where(w => w.id == item.parametroid).Select(s => s.name).FirstOrDefault();
             Int64 id = await setData(item, Crear ? true : false, Crear ? urlinsert : urlupdate);           

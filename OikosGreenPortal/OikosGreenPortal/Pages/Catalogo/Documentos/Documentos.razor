@@ -59,6 +59,9 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.code)" Caption="Código" Editable="true" Width="150">
+                    <DisplayTemplate>
+                        @($"{( context as Documento_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
                     <EditTemplate>
                         <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
                     </EditTemplate>
@@ -69,7 +72,7 @@
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
-
+                 
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.typeclass)} ")
