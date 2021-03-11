@@ -6,126 +6,88 @@
 <TituloComponent _titulo="Reporte Puntos"></TituloComponent>
 
 <div class="container">
-    <div class="row">
-    </div>
-    <div class="row">
-        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
-
-        <DataGrid TItem="TerceroPunto_data" Data="_lista" ShowPager="true" Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
-                  PageSize="5" Editable="true" EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large"
-                  RowInserted="@insertaFila" RowUpdated="@updateFila" UseInternalEditing="false" NewItemDefaultSetter="iniciaDatos"
-                  RowInserting="@insertandoFila" RowUpdating="@updatingFila">
-
-            <ChildContent>
-                <DataGridCommandColumn TItem="TerceroPunto_data">
-                    <NewCommandTemplate>
-                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
-                    </NewCommandTemplate>
-                    <EditCommandTemplate>
-                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
-                    </EditCommandTemplate>
-                    <DeleteCommandTemplate>
-                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active"> <i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i></Button></Tooltip>
-                    </DeleteCommandTemplate>
-                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
-                    <SaveCommandTemplate>
-                        <div class="col-md-6">
-                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
-                        </div>
-                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
-                    </SaveCommandTemplate>
-                    <CancelCommandTemplate>
-                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
-                    </CancelCommandTemplate>
-                </DataGridCommandColumn>
-
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.id)" Caption="Id" Sortable="false" Editable="false" Displayable="false">
-                </DataGridColumn>
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.period)" Caption="Periodo" Editable="true" Width="100">
-                    <EditTemplate>
-                        @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaTipo != null)
-                            {
-                                <Select TValue="String" @bind-SelectedValue="@_datoTipo">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaTipo)
-                                    {
-                                        <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
-                                    }
-                                </Select>
-                            }
-                        }
-                    </EditTemplate>
-
-                </DataGridColumn>
-                <DataGridColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.nombrefull)" Caption="Nombre" Editable="true">
-                    <EditTemplate>
-                        @{
-                            //_datoPadre = Convert.ToInt64( context.CellValue.ToString());
-                            @if (_listaSecundaria != null)
-                            {
-                                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
-                                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
-                                    @foreach (var item in _listaSecundaria)
-                                    {
-                                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name} {item.lastname}") </SelectItem>
-                                    }
-                                </Select>
-                            }
-                        }
-                    </EditTemplate>
-
-                </DataGridColumn>
-
-                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.previousbalance)" Caption="Anterior" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as TerceroPunto_data )?.previousbalance} Ptos") </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="Decimal" Value="@((Decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.input)" Caption="Entrada" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as TerceroPunto_data )?.input} Ptos") </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="Decimal" Value="@((Decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
-                    </EditTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.output)" Caption="Salida" Editable="true" Width="100">
-                    <DisplayTemplate>  @($"{( context as TerceroPunto_data )?.output} Ptos") </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="Decimal" Value="@((Decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
-                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.currentbalance)" Caption="Saldo" Editable="false" Width="100" >
-                    <DisplayTemplate>  @($"{( context as TerceroPunto_data )?.currentbalance} Ptos") </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="Decimal" Value="@((Decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
-
-
-                <DataGridNumericColumn TItem="TerceroPunto_data" Field="@nameof(TerceroPunto_data.active)" Caption="Activo" Editable="false" Width="50">
-                    <DisplayTemplate>
-                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
-                    </DisplayTemplate>
-                </DataGridNumericColumn>
-
-            </ChildContent>
-
-            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
-            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
-            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
-            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
-            <PopupTitleTemplate>
-                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
-            </PopupTitleTemplate>
-
-            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
-
-            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
-
-        </DataGrid>
+    <div class="row margen-sup">
+        <div class="col-md-4">
+            <Label>Tercero:</Label>
+            @if (_lsttercero != null)
+            {
+                <Select TValue="Int64" @bind-SelectedValue="@_datoPadre">
+                    <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                    @foreach (var item in _lsttercero)
+                    {
+                        <SelectItem TValue="Int64" Value="@(item.id)">@($"{item.numdocument}-{item.name} {item.lastname}") </SelectItem>
+                    }
+                </Select>
+            }
+        </div>
+        <div class="col-md-3">
+            <Label>Fecha Inicial:</Label>
+            <input type="date" class="form-control" @bind="@_fechaini" />
+        </div>
+        <div class="col-md-3">
+            <Label>Fecha Final:</Label>
+            <input type="date" class="form-control" @bind="@_fechafin" />
+        </div>
+        <div class="col-md-2">
+            <Button Color="Color.Success" Clicked="@procesar" class="btn-continuar btn-block margen-sup30">Consultar</Button>
+        </div>
 
     </div>
+
+    @if (mostrar)
+    {
+        <div class="row margen-supinf">
+            <span class="alert-info">@($"Puntos Acumulados hasta la fecha => {(_datoPuntoTerc.currentbalance==null ? 0 : _datoPuntoTerc.currentbalance.Value.ToString("####.###"))}")</span>
+        </div>
+        <div class="row margen-sup">
+            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+
+            <DataGrid TItem="Transaccion_data" Data="_lista" ShowPager="true" Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
+                      PageSize="8" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                      Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+
+                <ChildContent>
+                    <DataGridCommandColumn TItem="Transaccion_data">
+                        <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    </DataGridCommandColumn>
+
+                    <DataGridAggregate TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Aggregate="DataGridAggregateType.Sum">
+                        <DisplayTemplate>
+                            @($" Total: { context.Value} Ptos")
+                        </DisplayTemplate>
+                    </DataGridAggregate>
+
+
+
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Sortable="false" Displayable="true" Width="200" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.typemoviment)" Caption="Tipo" Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.cellarname)" Caption="Bodega" Sortable="false" Displayable="true" Width="150" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Número" Sortable="false" Displayable="true" Width="80" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.detline)" Caption="Linea" Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Código" Sortable="false" Displayable="true" Width="60" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Sortable="false" Displayable="true" Width="300" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cant." Sortable="false" Displayable="true" Width="40" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Sortable="false" Displayable="true">
+                        <DisplayTemplate>
+                            @($"{( context as Transaccion_data)?.points * ( (context as Transaccion_data)?.affect=="S" ? -1 : ((context as Transaccion_data)?.affect=="E" ? 1 : 0)  ) } Ptos")
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                </ChildContent>
+
+                <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+                <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+                <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+                <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+                <PopupTitleTemplate>
+                    <TituloComponent _titulo=@((context.EditState == DataGridEditState.New ? "Insertando" : "Actualizando") + " Registro")></TituloComponent>
+                </PopupTitleTemplate>
+
+                <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+                <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+            </DataGrid>
+        </div>
+     }
+        
 </div>

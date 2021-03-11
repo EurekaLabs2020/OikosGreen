@@ -78,6 +78,8 @@ namespace OikosGreenPortal.Data.Request
         public DateTime? datemodify { get; set; }
         public String namepc { get; set; }
         public Int64 idlist { get; set; }
+        public DateTime? dateinitial { get; set; }
+        public DateTime? datefinal { get; set; }
         [NotMapped]
         public String nombrefull { get { return (tercname == null ? "" : tercname) + " " + (terclastname == null ? "" : terclastname); } }
 

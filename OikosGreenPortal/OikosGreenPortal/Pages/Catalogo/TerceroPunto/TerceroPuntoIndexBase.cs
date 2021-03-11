@@ -157,7 +157,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
 
         public async Task updateFila(SavedRowItem<TerceroPunto_data, Dictionary<String, object>> e)
         {
-            _datoPadre = e.Item.terceroid;
+            _datoPadre = e.Item.terceroid.Value;
             await setUbicacion(e.Item, false, urlupdate);
         }
 
@@ -184,7 +184,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TerceroPunto
             TerceroPunto_data retorno = Item;
             isok = false;
             retorno.period = _datoTipo;
-            retorno.idtercero = Item.terceroid = _datoPadre;
+            Item.terceroid = retorno.idtercero =  _datoPadre;
             retorno.name = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             retorno.lastname = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.lastname).FirstOrDefault();
             TerceroPunto_data reg = retorno;

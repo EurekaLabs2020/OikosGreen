@@ -25,7 +25,7 @@ namespace OikosGreenPortal.Data.Request
         public Decimal? input { get; set; }
         public Decimal? output { get; set; }
         public Decimal? currentbalance { get; set; }
-        public Int64 terceroid { get; set; }
+        public Int64? terceroid { get; set; }
         public String usercreate { get; set; }
         public DateTime datecreate { get; set; }
         public String usermodify { get; set; }
