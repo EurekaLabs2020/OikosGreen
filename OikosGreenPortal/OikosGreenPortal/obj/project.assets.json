@@ -763,11 +763,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectUniqueName": "C:\\Users\\wilder.valencia\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
-      "projectPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectPath": "C:\\Users\\wilder.valencia\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "packagesPath": "C:\\Users\\wilder.valencia\\.nuget\\packages\\",
-      "outputPath": "E:\\EK\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+      "outputPath": "C:\\Users\\wilder.valencia\\Source\\Repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
