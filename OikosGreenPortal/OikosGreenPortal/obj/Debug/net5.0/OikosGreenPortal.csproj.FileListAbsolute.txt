@@ -721,14 +721,6 @@ C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosG
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Grupos\GruposIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Permisos\PermisosIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Usuarios\UsuariosIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Usuario\UsuarioIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAcceso\Grupos\GruposIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAcceso\Permisos\PermisosIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAcceso\Usuarios\UsuariosIndex.razor.g.cs
-C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAcceso\Usuario\UsuarioIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Grupos\GruposIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Permisos\PermisosIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAcceso\Usuarios\UsuariosIndex.razor.g.cs
@@ -741,3 +733,7 @@ E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAcceso\Usuario\UsuarioIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Indicadores\IndicadorIndex.razor.g.cs
 E:\EK\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Reportes\Puntos\PuntosIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Usuario\UsuarioIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Usuario\UsuarioIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
