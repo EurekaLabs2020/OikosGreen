@@ -34,7 +34,7 @@ namespace OikosGreenPortal.Data.Request
         public String nametypeproduct { get; set; }
         public Int64 parametroid { get; set; }
         public String nameparam { get; set; }
-        public String valieparam { get; set; }
+        public String valueparam { get; set; }
 
         public Int32 copie { get; set; }
         public Int64? listid { get; set; }
