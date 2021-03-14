@@ -873,3 +873,7 @@ C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosG
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilios\Despachos\DespachosIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilios\Entregas\EntregasIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilios\Despachos\DespachosIndex.razor.g.cs
+C:\Users\jhonatanhurtado\Desktop\Eureka\Oikos\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilios\Entregas\EntregasIndex.razor.g.cs
