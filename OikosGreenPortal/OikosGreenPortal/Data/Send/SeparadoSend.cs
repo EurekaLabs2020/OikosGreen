@@ -20,6 +20,5 @@ namespace OikosGreenPortal.Data.Send
         public String usermodify { get; set; }
         public DateTime datemodify { get; set; }
         public Boolean active { get; set; }
-
     }
 }
