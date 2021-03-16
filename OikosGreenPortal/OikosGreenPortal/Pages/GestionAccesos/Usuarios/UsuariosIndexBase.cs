@@ -20,9 +20,11 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<TerceroTipo_data> _lista { get; set; }
+        public List<Usuario_data> _lista { get; set; }
+
         public List<Tercero_data> _listaSecundaria { get; set; }
-        public TerceroTipo_data _regActual { get; set; }
+
+        public Usuario_data _regActual { get; set; }
         public List<String> _listaTipo { get; set; }
         public Int64 _datoPadre { get; set; }
         public String _datoTipo { get; set; }
@@ -32,20 +34,20 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
         private Boolean isok { get; set; } = false;
-        private String urlgetall { get; set; } = Urls.urltercerotipo_getall;
-        private String urlinsert { get; set; } = Urls.urltercerotipo_insert;
-        private String urlupdate { get; set; } = Urls.urltercerotipo_update;
-        private String urlinactive { get; set; } = Urls.urltercerotipo_inactive;
-        private String urlgetcode { get; set; } = Urls.urltercerotipo_getbycode;
+        private String urlgetall { get; set; } = Urls.urlusuario_getall;
+        private String urlinsert { get; set; } = Urls.urlusuario_insert;
+        private String urlupdate { get; set; } = Urls.urlusuario_update;
+        private String urlinactive { get; set; } = Urls.urlusuario_inactive;
+        private String urlgetcode { get; set; } = Urls.urlusuario_getbycode;
 
 
         protected override async Task OnInitializedAsync()
         {
-            _lista = new List<TerceroTipo_data>();
+            _lista = new List<Usuario_data>();
             _listaSecundaria = null;
             _datoPadre = 0;
             _Mensaje = _datoTipo = "";
-            _regActual = new TerceroTipo_data();
+            _regActual = new Usuario_data();
             TipoTerceroTipo tipoUbica = new TipoTerceroTipo();
             _listaTipo = tipoUbica.tiposTerceroTipo();
             TercerosTipoRequest _dataRequest = new TercerosTipoRequest();
