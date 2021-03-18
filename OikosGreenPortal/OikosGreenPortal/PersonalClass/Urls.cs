@@ -51,12 +51,12 @@ namespace OikosGreenPortal.PersonalClass
         #endregion
 
         #region Concepto
-        public static String urlconcepto_getall{ get { return urlbase + "api/concepto/getall"; } } //GET
-        public static String urlconccepto_getbyid { get { return urlbase + "api/concepto/getbyid"; } } //POST
-        public static String urlconcepto_getbycode { get { return urlbase + "api/concepto/getbycode"; } } //POST
-        public static String urlconcepto_insert { get { return urlbase + "api/concepto/insert"; } } //POST
-        public static String urlconcepto_update { get { return urlbase + "api/concepto/update"; } } //POST
-        public static String urlconcepto_inactive { get { return urlbase + "api/concepto/inactive"; } } //POST
+        public static String urlconcepto_getall{ get { return urlbase + "concepto/getall"; } } //GET
+        public static String urlconccepto_getbyid { get { return urlbase + "concepto/getbyid"; } } //POST
+        public static String urlconcepto_getbycode { get { return urlbase + "concepto/getbycode"; } } //POST
+        public static String urlconcepto_insert { get { return urlbase + "concepto/insert"; } } //POST
+        public static String urlconcepto_update { get { return urlbase + "concepto/update"; } } //POST
+        public static String urlconcepto_inactive { get { return urlbase + "concepto/inactive"; } } //POST
         #endregion
 
         #region Descuento Movimiento
@@ -175,23 +175,23 @@ namespace OikosGreenPortal.PersonalClass
 
 
         #region Rol
-        public static String urlrol_getall { get { return urlbase + "api/rol/getall"; } } //GET
-        public static String urlrol_getbyid { get { return urlbase + "api/rol/getbyid"; } } //POST        
-        public static String urlrol_insert { get { return urlbase + "api/rol/insert"; } } //POST
-        public static String urlrol_update { get { return urlbase + "api/rol/update"; } } //POST        
+        public static String urlrol_getall { get { return urlbase + "rol/getall"; } } //GET
+        public static String urlrol_getbyid { get { return urlbase + "rol/getbyid"; } } //POST        
+        public static String urlrol_insert { get { return urlbase + "rol/insert"; } } //POST
+        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST        
         #endregion
 
 
         #region Rol Usuarios
-        public static String urlrolusuario_getall { get { return urlbase + "api/roluser/getrolesbyuser"; } } //GET
-        public static String urlrolusuario_getbyid { get { return urlbase + "api/roluser/getrolesbyuser"; } } //POST        
-        public static String urlrolusuario_insert { get { return urlbase + "api/roluser/insert"; } } //POST
-        public static String urlrolusuario_delete { get { return urlbase + "api/roluser/delete"; } } //POST        
+        public static String urlrolusuario_getall { get { return urlbase + "roluser/getrolesbyuser"; } } //GET
+        public static String urlrolusuario_getbyid { get { return urlbase + "roluser/getrolesbyuser"; } } //POST        
+        public static String urlrolusuario_insert { get { return urlbase + "roluser/insert"; } } //POST
+        public static String urlrolusuario_delete { get { return urlbase + "roluser/delete"; } } //POST        
         #endregion
 
         #region Rol Opcion
-        public static String urlrolopcion_insert { get { return urlbase + "api/rolopcion/insert"; } } //POST
-        public static String urlrolopcion_update { get { return urlbase + "api/rolopcion/update"; } } //POST        
+        public static String urlrolopcion_insert { get { return urlbase + "rolopcion/insert"; } } //POST
+        public static String urlrolopcion_update { get { return urlbase + "rolopcion/update"; } } //POST        
         #endregion
 
 
@@ -268,11 +268,11 @@ namespace OikosGreenPortal.PersonalClass
         #endregion
 
         #region Usuario
-        public static String urlusuario_getall { get { return urlbase + "api/users/getusers"; } } //GET
-        public static String urlusuario_getbycode { get { return urlbase + "api/users/getbyusername"; } } //POST
-        public static String urlusuario_insert { get { return urlbase + "api/account/create"; } } //POST
-        public static String urlusuario_update { get { return urlbase + "api/account/create"; } } //POST
-        public static String urlusuario_inactive { get { return urlbase + "api/users/inactive"; } } //POST
+        public static String urlusuario_getall { get { return urlbase + "users/getusers"; } } //GET
+        public static String urlusuario_getbycode { get { return urlbase + "users/getbyusername"; } } //POST
+        public static String urlusuario_insert { get { return urlbase + "account/create"; } } //POST
+        public static String urlusuario_update { get { return urlbase + "account/create"; } } //POST
+        public static String urlusuario_inactive { get { return urlbase + "users/inactive"; } } //POST
         #endregion
 
 

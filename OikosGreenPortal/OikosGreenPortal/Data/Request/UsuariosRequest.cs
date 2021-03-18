@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,8 +35,12 @@ namespace OikosGreenPortal.Data.Request
         public String password { get; set; }
         public String passwordconfirm { get; set; }
         public String passTMP { get; set; }
-        public long? iddocument { get; set; }
+        public long? documentid { get; set; }
         public Boolean state { get; set; }
+        [NotMapped]
+        public String nombrefull { get { return (name == null ? "" : name.Trim()) +" "+ (lastname == null ? "" : lastname); } }
+        [NotMapped]
+        public List<String> lstRol { get; set; }
     }
 
 }
