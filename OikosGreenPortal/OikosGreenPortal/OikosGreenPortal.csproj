@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Domicilio\Entregar\" />
+    <Folder Include="Pages\Domicilio\Transportadora\" />
     <Folder Include="Pages\Reportes\Movimiento\Punto\" />
     <Folder Include="Pages\Reportes\Movimiento\Tercero\" />
   </ItemGroup>

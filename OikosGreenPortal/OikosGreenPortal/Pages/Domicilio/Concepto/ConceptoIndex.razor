@@ -1,0 +1,68 @@
+﻿@page "/domicilio/concepto"
+
+
+@inherits ConceptoIndexBase
+@attribute [Authorize]
+
+<TituloComponent _titulo="Concepto"></TituloComponent>
+<div class="container">
+    <div class="row">
+        <DataGrid TItem="Parametro_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                  RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+            <ChildContent>
+                <DataGridCommandColumn TItem="Parametro_data">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
+                    </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate>
+                        <span @onclick="@context.Clicked">Limpiar Filtro</span>
+                    </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate>
+                        <div class="col-md-6">
+                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                        </div>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
+                    </CancelCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false">
+                    <DisplayTemplate>@($"{( context as Parametro_data )?.code.ToUpper()} ")</DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" Width="320" Sortable="false">
+                    <DisplayTemplate>@($"{( context as Parametro_data )?.name.ToUpper()} ")</DisplayTemplate>
+                </DataGridColumn>
+                <DataGridCheckColumn TItem="Parametro_data" Field="@nameof(Parametro_data.active)" Caption="Activo" Editable="false" Width="180">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
+
+            </ChildContent>
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+            <PopupTitleTemplate>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
+            </PopupTitleTemplate>
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+        </DataGrid>
+    </div>
+    <div class="row">
+        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+    </div>
+</div>
