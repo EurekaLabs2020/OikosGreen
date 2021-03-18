@@ -7,17 +7,17 @@ namespace OikosGreenPortal.Data.Request
 {
     public class TransportadorasRequest
     {
-        public List<Transportadora_Data> entities { get; set; }
+        public List<Transportadora_data> entities { get; set; }
         public Status status { get; set; }
     }
 
     public class TransportadoraRequest
     {
-        public List<Transportadora_Data> entity { get; set; }
+        public Transportadora_data entity { get; set; }
         public Status status { get; set; }
     }
 
-    public class Transportadora_Data
+    public class Transportadora_data
     {
         public Int64 id { get; set; }
         public String type { get; set; }
