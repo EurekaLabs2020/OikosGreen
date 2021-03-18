@@ -83,13 +83,13 @@
 
                 <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lstRol)" Caption="Usuario" Editable="true" Width="200" Displayable="false">
                     <EditTemplate>
-                        <Select Multiple="true" SelectedValuesChanged="@selecc">@*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
-                            <SelectItem Value="@("0")">SELECCCIONAR...</SelectItem>
+                        <!--<Select Multiple="true" >-->@*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
+                            <!--<SelectItem Value="@("0")">SELECCCIONAR...</SelectItem>
                             @foreach (var item in _listaTRoles)
                             {
                                 <SelectItem Value="@(item.id)">@item.name</SelectItem>
                             }
-                        </Select>
+                        </Select>-->
                     </EditTemplate>
                 </DataGridSelectColumn>
 

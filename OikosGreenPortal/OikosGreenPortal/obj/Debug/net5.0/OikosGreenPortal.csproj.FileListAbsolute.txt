@@ -461,7 +461,6 @@ C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosG
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
-D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.GeneratedMSBuildEditorConfig.editorconfig
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfoInputs.cache
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.AssemblyInfo.cs
