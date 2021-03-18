@@ -1,26 +1,28 @@
-﻿@page "/gestionacceso/grupos"
+﻿@page "/domicilio/transportadora"
 
 
-@inherits GrupoIndexBase
+@inherits TransportadoraIndexBase
 @attribute [Authorize]
 
-<TituloComponent _titulo="Grupos"></TituloComponent>
+<TituloComponent _titulo="Transportadora"></TituloComponent>
 <div class="container">
     <div class="row">
-        <DataGrid TItem="Rol_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
+        <DataGrid TItem="Transportadora_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
                   Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                  RowInserting="@insertaFila" RowUpdating="@updateFila" 
+                  RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila"
                   Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
             <ChildContent>
-                <DataGridCommandColumn TItem="Rol_data">
+                <DataGridCommandColumn TItem="Transportadora_data">
                     <NewCommandTemplate>
                         <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
                     <EditCommandTemplate>
                         <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate></DeleteCommandTemplate>                    
+                    <DeleteCommandTemplate>
+                        <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
+                    </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate>
                         <span @onclick="@context.Clicked">Limpiar Filtro</span>
                     </ClearFilterCommandTemplate>
@@ -35,8 +37,29 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Rol_data" Field="@nameof(Rol_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
-                <DataGridColumn TItem="Rol_data" Field="@nameof(Rol_data.name)" Caption="Nombre" Displayable="true" Editable="true" Sortable="false" />            
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.code)" Caption="Codigo" Displayable="true" Editable="true" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.type)" Caption="Tipo" Displayable="true" Editable="true" Sortable="false" Width="180">
+                    <EditTemplate>
+
+                        <Select TValue="String" SelectedValue="@((String)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _listaTipo)
+                            {
+                                <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
+                            }
+                        </Select>
+
+                    </EditTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.name)" Caption="Descripcrion" Displayable="true" Editable="true" Sortable="false">
+                    <DisplayTemplate>@($"{( context as Transportadora_data)?.name.ToUpper()} ")</DisplayTemplate>
+                </DataGridColumn>
+                <DataGridCheckColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.active)" Caption="Activo" Displayable="true" Editable="false" Width="180">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
 
 
             </ChildContent>

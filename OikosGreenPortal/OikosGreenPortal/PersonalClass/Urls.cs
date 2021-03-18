@@ -178,7 +178,9 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlrol_getall { get { return urlbase + "rol/getall"; } } //GET
         public static String urlrol_getbyid { get { return urlbase + "rol/getbyid"; } } //POST        
         public static String urlrol_insert { get { return urlbase + "rol/insert"; } } //POST
-        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST        
+        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST    
+        public static String urlrol_getbycode { get { return urlbase + "rol/getbycode"; } } //POST
+
         #endregion
 
 
@@ -273,6 +275,15 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlusuario_insert { get { return urlbase + "account/create"; } } //POST
         public static String urlusuario_update { get { return urlbase + "account/create"; } } //POST
         public static String urlusuario_inactive { get { return urlbase + "users/inactive"; } } //POST
+        #endregion
+
+        #region Transportadora
+        public static String urltransportadora_getall { get { return urlbase + "transportadora/getall"; } } //GET
+        public static String urltransportadora_getbycode { get { return urlbase + "transportadora/getbycode"; } } //POST
+        public static String urltransportadora_getbyid { get { return urlbase + "transportadora/getbyid"; } } //POST
+        public static String urltransportadora_insert { get { return urlbase + "transportadora/insert"; } } //POST
+        public static String urltransportadora_update { get { return urlbase + "transportadora/update"; } } //POST
+        public static String urltransportadora_inactive { get { return urlbase + "transportadora/inactive"; } } //POST
         #endregion
 
 
