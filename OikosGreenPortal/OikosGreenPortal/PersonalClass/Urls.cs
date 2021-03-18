@@ -178,7 +178,9 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlrol_getall { get { return urlbase + "rol/getall"; } } //GET
         public static String urlrol_getbyid { get { return urlbase + "rol/getbyid"; } } //POST        
         public static String urlrol_insert { get { return urlbase + "rol/insert"; } } //POST
-        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST        
+        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST    
+        public static String urlrol_getbycode { get { return urlbase + "rol/getbycode"; } } //POST
+
         #endregion
 
 
