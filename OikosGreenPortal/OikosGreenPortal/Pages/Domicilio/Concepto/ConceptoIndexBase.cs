@@ -20,19 +20,23 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
 
-        public List<Parametro_data> _lista { get; set; }
-        public Parametro_data _regActual { get; set; }
+        public List<Concepto_data> _lista { get; set; }
+        public List<String> _listaTipo { get; set; }
+        public Concepto_data _regActual { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public String _datoTipo { get; set; }
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
             _mensajeIsDanger = "alert-danger";
-            _lista = new List<Parametro_data>();
-            _regActual = new Parametro_data();
+            _lista = new List<Concepto_data>();
+            _regActual = new Concepto_data();
             _Mensaje = "";
-            ParametrosRequest _dataRequest = new ParametrosRequest();
+            TipoConcepto tipos = new TipoConcepto();
+            _listaTipo = tipos.tiposConceptos();
+            ConceptosRequest _dataRequest = new ConceptosRequest();
             try
             {
                 _dataStorage = null;
@@ -42,8 +46,8 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
                     _dataStorage = _resultado.Value;
                 } while (_dataStorage == null);
 
-                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlparametro_getall, "");
-                _dataRequest = JsonConvert.DeserializeObject<ParametrosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urlconcepto_getall, "");
+                _dataRequest = JsonConvert.DeserializeObject<ConceptosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.entities;
 
@@ -56,13 +60,13 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
 
 
         #region Presentación
-        public void estilofila(Parametro_data reg, DataGridRowStyling style)
+        public void estilofila(Concepto_data reg, DataGridRowStyling style)
         {
             style.Background = Blazorise.Background.Light;
             style.Style = "font-size: 13px;";
         }
 
-        public void filaSeleccionada(Parametro_data reg, DataGridRowStyling style)
+        public void filaSeleccionada(Concepto_data reg, DataGridRowStyling style)
         {
             style.Style = "color: blue; font-size: 15px;";
             style.Color = Color.Success;
@@ -71,12 +75,12 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
 
         public async Task insertaFila(EventArgs arg)
         {
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
-            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-            var codigo = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-            item.name = nombre;
-            item.code = codigo;
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Concepto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Concepto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var nombre = valores.Where(w => w.Key == "description").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            var tipo = valores.Where(w => w.Key == "type").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            item.description = nombre;
+            item.type = tipo;
             item.active = true;
             item.usercreate = _dataStorage.user.user;
             item.datecreate = DateTime.Now;
@@ -85,12 +89,12 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
             try
             {
                 _Mensaje = "";
-                var resultadoValida = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_getbycode, item);
-                ParametroRequest _dataRequestValida = JsonConvert.DeserializeObject<ParametroRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
+                var resultadoValida = await General.solicitudUrl<Concepto_data>(_dataStorage.user.token, "POST", Urls.urlconcepto_getbycode, item);
+                ConceptoRequest _dataRequestValida = JsonConvert.DeserializeObject<ConceptoRequest>(resultadoValida.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestValida != null && _dataRequestValida.status.code != 200)
                 {
-                    var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_insert, item);
-                    ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    var resultado = await General.solicitudUrl<Concepto_data>(_dataStorage.user.token, "POST", Urls.urlconcepto_insert, item);
+                    ConceptoRequest _dataRequest = JsonConvert.DeserializeObject<ConceptoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                         item.id = _dataRequest.entity.id;
                 }
@@ -105,40 +109,40 @@ namespace OikosGreenPortal.Pages.Domicilio.Concepto
                     ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
                 }
             }
-            catch (Exception) { item = new Parametro_data(); }
+            catch (Exception) { item = new Concepto_data(); }
         }
 
         public async Task updateFila(EventArgs arg)
         {
-            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
-            var nombre = valores.Where(w => w.Key == "name").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-            var codigo = valores.Where(w => w.Key == "code").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
-            item.name = nombre;
-            item.code = codigo;
+            var valores = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Concepto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Concepto_data, System.Collections.Generic.Dictionary<string, object>>)arg).Item;
+            var nombre = valores.Where(w => w.Key == "description").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            var tipo = valores.Where(w => w.Key == "type").Select(s => s.Value.ToString().ToUpper()).FirstOrDefault();
+            item.description = nombre;
+            item.type = tipo;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             try
             {
-                var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_update, item);
-                ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Concepto_data>(_dataStorage.user.token, "POST", Urls.urlconcepto_update, item);
+                ConceptoRequest _dataRequest = JsonConvert.DeserializeObject<ConceptoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
-            catch (Exception) { item = new Parametro_data(); }
+            catch (Exception) { item = new Concepto_data(); }
         }
 
         public async Task inactiveFila(EventArgs arg)
         {
-            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Parametro_data>)arg).Item;
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Concepto_data>)arg).Item;
             item.active = !item.active;
             item.usermodify = _dataStorage.user.user;
             item.datemodify = DateTime.Now;
             ((System.ComponentModel.CancelEventArgs)arg).Cancel = true;
             try
             {
-                var resultado = await General.solicitudUrl<Parametro_data>(_dataStorage.user.token, "POST", Urls.urlparametro_inactive, item);
-                ParametroRequest _dataRequest = JsonConvert.DeserializeObject<ParametroRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                var resultado = await General.solicitudUrl<Concepto_data>(_dataStorage.user.token, "POST", Urls.urlconcepto_inactive, item);
+                ConceptoRequest _dataRequest = JsonConvert.DeserializeObject<ConceptoRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entity != null && _dataRequest.entity.id > 0)
                     item.id = _dataRequest.entity.id;
             }
