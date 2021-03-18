@@ -50,6 +50,15 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlconversion_inactive { get { return urlbase + "conversion/inactive"; } } //POST
         #endregion
 
+        #region Concepto
+        public static String urlconcepto_getall{ get { return urlbase + "concepto/getall"; } } //GET
+        public static String urlconccepto_getbyid { get { return urlbase + "concepto/getbyid"; } } //POST
+        public static String urlconcepto_getbycode { get { return urlbase + "concepto/getbycode"; } } //POST
+        public static String urlconcepto_insert { get { return urlbase + "concepto/insert"; } } //POST
+        public static String urlconcepto_update { get { return urlbase + "concepto/update"; } } //POST
+        public static String urlconcepto_inactive { get { return urlbase + "concepto/inactive"; } } //POST
+        #endregion
+
         #region Descuento Movimiento
         public static String urldescuentomovimiento_getall { get { return urlbase + "descuentomovimiento/getall"; } } //GET
         public static String urldescuentomovimiento_getbyid { get { return urlbase + "descuentomovimiento/getbyid"; } } //POST
@@ -164,6 +173,36 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlproductocategoria_getbycode { get { return urlbase + "productocategoria/getbycode"; } } //POST
         #endregion
 
+
+        #region Rol
+        public static String urlrol_getall { get { return urlbase + "rol/getall"; } } //GET
+        public static String urlrol_getbyid { get { return urlbase + "rol/getbyid"; } } //POST        
+        public static String urlrol_insert { get { return urlbase + "rol/insert"; } } //POST
+        public static String urlrol_update { get { return urlbase + "rol/update"; } } //POST        
+        #endregion
+
+
+        #region Rol Usuarios
+        public static String urlrolusuario_getall { get { return urlbase + "roluser/getrolesbyuser"; } } //GET
+        public static String urlrolusuario_getbyid { get { return urlbase + "roluser/getrolesbyuser"; } } //POST        
+        public static String urlrolusuario_insert { get { return urlbase + "roluser/insert"; } } //POST
+        public static String urlrolusuario_delete { get { return urlbase + "roluser/delete"; } } //POST        
+        #endregion
+
+        #region Rol Opcion
+        public static String urlrolopcion_insert { get { return urlbase + "rolopcion/insert"; } } //POST
+        public static String urlrolopcion_update { get { return urlbase + "rolopcion/update"; } } //POST        
+        #endregion
+
+
+
+        #region Saldos
+
+        public static String urlsaldos_getbyprodid { get { return urlbase + "saldos/getbyprodid"; } } //POST Reibe Saldos_data
+        public static String urlsaldos_getbyprodperiod { get { return urlbase + "saldos/getbyprodperiod"; } } //Post  Reibe Saldos_data
+
+        #endregion
+
         #region Saldo Producto
         public static String urlsaldoproducto_getall { get { return urlbase + "saldos/getall"; } } //GET
         public static String urlsaldoproducto_getbyid { get { return urlbase + "saldos/getbyid"; } } //POST
@@ -212,6 +251,13 @@ namespace OikosGreenPortal.PersonalClass
         public static String urltipoproducto_getbycode { get { return urlbase + "tipoproducto/getbycode"; } } //POST
         #endregion    
 
+        #region Transaccion
+        public static String urltransaccion_gettransacc { get { return urlbase + "detallemovimiento/gettransaccc"; } } //GET
+        public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
+        public static String urltransaccion_gettransaccprodiddatecellar { get { return urlbase + "detallemovimiento/gettransaccprodiddatecellar"; } } //POST
+        public static String urltransaccion_getbyfecha { get { return urlbase + "detallemovimiento/gettransaccbyfecha"; } } //POST
+        #endregion
+
         #region Ubicacion
         public static String urlubicacion_getall { get { return urlbase + "ubicacion/getall"; } } //GET
         public static String urlubicacion_getbyid { get { return urlbase + "ubicacion/getbyid"; } } //POST
@@ -221,23 +267,19 @@ namespace OikosGreenPortal.PersonalClass
         public static String urlubicacion_inactive { get { return urlbase + "ubicacion/inactive"; } } //POST
         #endregion
 
-        #region Transaccion
-        public static String urltransaccion_gettransacc { get { return urlbase + "detallemovimiento/gettransaccc"; } } //GET
-        public static String urltransaccion_gettransaccbyitem { get { return urlbase + "detallemovimiento/gettransaccbyitem"; } } //POST
-        public static String urltransaccion_gettransaccprodiddatecellar { get { return urlbase + "detallemovimiento/gettransaccprodiddatecellar"; } } //POST
-        public static String urltransaccion_getbyfecha { get { return urlbase + "detallemovimiento/gettransaccbyfecha"; } } //POST
+        #region Usuario
+        public static String urlusuario_getall { get { return urlbase + "users/getusers"; } } //GET
+        public static String urlusuario_getbycode { get { return urlbase + "users/getbyusername"; } } //POST
+        public static String urlusuario_insert { get { return urlbase + "account/create"; } } //POST
+        public static String urlusuario_update { get { return urlbase + "account/create"; } } //POST
+        public static String urlusuario_inactive { get { return urlbase + "users/inactive"; } } //POST
         #endregion
 
-        #region Saldos
 
-        public static String urlsaldos_getbyprodid { get { return urlbase + "saldos/getbyprodid"; } } //POST Reibe Saldos_data
-        public static String urlsaldos_getbyprodperiod { get { return urlbase + "saldos/getbyprodperiod"; } } //Post  Reibe Saldos_data
 
-        #endregion
 
-        
 
-        
+
 
 
 
