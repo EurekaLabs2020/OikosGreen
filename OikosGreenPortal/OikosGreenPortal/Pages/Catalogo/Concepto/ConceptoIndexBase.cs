@@ -12,7 +12,7 @@ using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
 using OikosGreenPortal.PersonalClass;
 
-namespace OikosGreenPortal.Pages.Domicilio.Concepto
+namespace OikosGreenPortal.Pages.Catalogo.Concepto
 {
     public class ConceptoIndexBase : ComponentBase
     {
