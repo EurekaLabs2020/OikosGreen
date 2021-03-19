@@ -81,15 +81,15 @@
 
                 <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.email)" Caption="Email" Editable="true" Width="300" Displayable="true" />
 
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lstRol)" Caption="Usuario" Editable="true" Width="200" Displayable="false">
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lstRol)" Caption="Roles" Editable="true" Width="200" Displayable="false">
                     <EditTemplate>
-                        <!--<Select Multiple="true" >-->@*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
-                            <!--<SelectItem Value="@("0")">SELECCCIONAR...</SelectItem>
+                        <select ref="refMultiple" multiple @onchange="@selecRoles">  @*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
+                            <option value="@("0")">SELECCCIONAR...</option>
                             @foreach (var item in _listaTRoles)
                             {
-                                <SelectItem Value="@(item.id)">@item.name</SelectItem>
+                                <option>@item.name</option>
                             }
-                        </Select>-->
+                        </select>
                     </EditTemplate>
                 </DataGridSelectColumn>
 

@@ -3,6 +3,7 @@ using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
@@ -16,6 +17,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
 {
     public class UsuariosIndexBase : ComponentBase
     {
+        [Inject] IJSRuntime js { get; set; }
         [Inject] IModalService _modal { get; set; }
         [Inject] NavigationManager _nav { get; set; }
         [Inject] public ProtectedSessionStorage _storage { get; set; }
@@ -24,8 +26,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
 
         public List<Documento_data> _listaTipoDocument { get; set; }
         public List<Rol_data> _listaTRoles { get; set; }
-        public List<Rol_data> lstR { get; set; }
-        public String  lr { get; set; }
+        public List<String> lstSelecRol { get; set; }
 
 
         public Usuario_data _regActual { get; set; }
@@ -34,6 +35,8 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         public String _datoTipo { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public ElementReference refMultiple { get; set; }
+
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
@@ -45,6 +48,8 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         private String urlgetcode { get; set; } = Urls.urlusuario_getbycode;
 
 
+
+
         protected override async Task OnInitializedAsync()
         {
             _lista = new List<Usuario_data>();
@@ -53,6 +58,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
             _Mensaje = _datoTipo = "";
             _regActual = new Usuario_data();
             _listaTRoles = new List<Rol_data>();
+            lstSelecRol = new List<string>();
             UsuariosRequest _dataRequest = new UsuariosRequest();
             try
             {
@@ -102,6 +108,13 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
             }
         }
 
+        public async Task selecRoles(ChangeEventArgs evt)
+        {
+            lstSelecRol = (await js.InvokeAsync<List<string>>("getSelectedValues", refMultiple)).ToList();
+            //await InvokeAsync(StateHasChanged);
+        }
+
+
         #region Presentación
         public void estilofila(Usuario_data reg, DataGridRowStyling style)
         {
@@ -137,8 +150,6 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
             _Mensaje = "";
             data.documentid = 0;
             data.lstRol = new List<String>();
-            lstR = new List<Rol_data>();
-            lr = "";
         }
 
         public void selecc(EventArgs _dato)
