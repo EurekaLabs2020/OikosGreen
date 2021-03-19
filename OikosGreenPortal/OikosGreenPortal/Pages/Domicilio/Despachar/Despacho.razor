@@ -1,13 +1,132 @@
 ﻿@page "/domicilio/despacho"
 
+@inherits DespachoBase
 @attribute [Authorize]
 
 <TituloComponent _titulo="Despacho Mercancía"></TituloComponent>
 
 <div class="container">
     <div class="row">
-        @*<DataGrid>
+        <DataGrid TItem="vDespacho_data" Data="@_lista" ShowPager="true" 
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"                  
+                  UseInternalEditing="true" 
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
 
-        </DataGrid>*@
+            <ChildContent>
+                <DataGridCommandColumn TItem="vDespacho_data" CellsEditableOnEditCommand="true">
+                    <NewCommandTemplate>  </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate> </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate>
+                        <div class="col-md-6">
+                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                        </div>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
+                    </CancelCommandTemplate>
+                </DataGridCommandColumn>
+
+
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.docname)" Caption="Documento" Editable="false" />
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.numberdocument)" Caption="Número" Editable="false" Width="60"/>
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.date)" Caption="Fecha" Editable="false" />
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.deliverdate)" Caption="Fecha Despacho" Editable="false" />
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.cantdetalle)" Caption="Unidades" Editable="false"  Width="100"/>
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.line)" Caption="Lineas" Editable="false" Width="60"/>
+                <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.prodname)" Caption="Acciones" Editable="false" Width="200" >
+                    <DisplayTemplate>
+                        <Tooltip Text="Separar"><button class="btn btn-info" @onclick="@(()=>accion(1))"><i class="fas fa-exchange-alt"></i></button></Tooltip>
+                        <Tooltip Text="Chequear"><button class="btn btn-info" @onclick="@(()=>accion(2))"><i class="fas fa-box"></i></button></Tooltip>
+                        <Tooltip Text="Despachar"><button class="btn btn-info" @onclick="@(()=>accion(3))"><i class="fab fa-docker"></i></button></Tooltip>
+                    </DisplayTemplate>
+                </DataGridColumn>
+
+
+                <!--<DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.id)" Caption="Id" Editable="false" Width="80" Displayable="false" />
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.name)" Caption="Nombre" Editable="true" Displayable="true">
+        <DisplayTemplate>
+            @($"{( context as vDespacho_data)?.nombrefull.ToUpper()}")
+        </DisplayTemplate>
+        <EditTemplate>
+            <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+        </EditTemplate>
+    </DataGridSelectColumn>
+
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.lastname)" Caption="Nombre" Editable="true" Displayable="false">
+        <EditTemplate>
+            <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+        </EditTemplate>
+    </DataGridSelectColumn>
+
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.documentid)" Caption="Tipo" Editable="true" Displayable="false">
+        <DisplayTemplate>
+            @($"{( context as vDespacho_data)?.namedoc.ToUpper()}")
+        </DisplayTemplate>
+        <EditTemplate>
+            <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                <SelectItem TValue="Int64" Value="@(0)">SELECCCIONAR...</SelectItem>
+                @foreach (var item in _listaTipoDocument.Where(w => w.type == "PERSONA"))
+                {
+                    <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                }
+            </Select>
+        </EditTemplate>
+    </DataGridSelectColumn>
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.numdoc)" Caption="Documento" Editable="true" Displayable="false" />
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
+
+
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.user)" Caption="Usuario" Editable="true" Width="200" Displayable="true">
+        <EditTemplate>
+            <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+        </EditTemplate>
+    </DataGridSelectColumn>
+
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.email)" Caption="Email" Editable="true" Width="300" Displayable="true" />
+
+    <DataGridSelectColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.lstRol)" Caption="Roles" Editable="true" Width="200" Displayable="false">
+        <EditTemplate>
+            <select ref="refMultiple" multiple @onchange="@selecRoles">-->
+                @*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
+                <!--<option value="@("0")">SELECCCIONAR...</option>
+                @foreach (var item in _listaTRoles)
+                {
+                    <option>@item.name</option>
+                }
+            </select>
+        </EditTemplate>
+    </DataGridSelectColumn>
+
+    <DataGridCheckColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.isactive)" Caption="Activo" Editable="false" Width="50">
+        <DisplayTemplate>
+            <Check @bind-Checked="@context.isactive" TValue="Boolean" Disabled="true"></Check>
+        </DisplayTemplate>
+    </DataGridCheckColumn>-->
+
+            </ChildContent>
+
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+            <PopupTitleTemplate>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
+            </PopupTitleTemplate>
+
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+        </DataGrid>
+    </div>
+    <div class="row">
+        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
     </div>
 </div>

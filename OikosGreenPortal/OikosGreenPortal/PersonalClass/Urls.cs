@@ -67,6 +67,16 @@ namespace OikosGreenPortal.PersonalClass
         public static String urldescuentomovimiento_inactive { get { return urlbase + "descuentomovimiento/inactive"; } } //POST
         #endregion
 
+
+        #region Despachos
+        public static String urlvdespachos_getall { get { return urlbase + "vdespacho/getall"; } } //GET
+        public static String urldespacho_getall { get { return urlbase + "despacho/getall"; } } //POST
+        public static String urldespacho_insert { get { return urlbase + "despacho/insert"; } } //POST
+        public static String urldespacho_update { get { return urlbase + "despacho/update"; } } //POST
+        public static String urldespacho_inactive { get { return urlbase + "despacho/inactive"; } } //POST
+        #endregion
+
+
         #region Detalle Movimiento
         public static String urldetallemovimiento_getall { get { return urlbase + "detallemovimiento/getall"; } } //GET
         public static String urldetallemovimiento_getbyid { get { return urlbase + "detallemovimiento/getbyid"; } } //POST

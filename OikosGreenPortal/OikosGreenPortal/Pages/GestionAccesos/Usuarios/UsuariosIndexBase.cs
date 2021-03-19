@@ -111,6 +111,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         public async Task selecRoles(ChangeEventArgs evt)
         {
             lstSelecRol = (await js.InvokeAsync<List<string>>("getSelectedValues", refMultiple)).ToList();
+
             //await InvokeAsync(StateHasChanged);
         }
 
