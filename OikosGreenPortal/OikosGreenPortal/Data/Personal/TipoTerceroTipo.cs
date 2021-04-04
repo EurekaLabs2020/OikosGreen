@@ -15,7 +15,7 @@ namespace OikosGreenPortal.Data.Personal
         public List<String> tiposTerceroTipo()
         {
             List<String> retorno = new List<String>()
-            { "PROVEEDOR", "CLIENTE"};
+            { "PROVEEDOR", "ALIADO"};
             return retorno;
         }
 

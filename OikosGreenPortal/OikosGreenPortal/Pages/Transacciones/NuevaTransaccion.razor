@@ -54,7 +54,7 @@
                     @if (_listaTerc != null)
                     {
                         <div class="col-md-3">
-                            <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Cliente")</Label>
+                            <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
                             <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
                                 <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
                                 @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
@@ -114,7 +114,7 @@
         @if ( _listaTipo.Any(w=>w.id==_datoTipo && w.typeclass=="I"))
         {
             <div class="row margen-sup30">
-                <span class="alert-success">@($"Puntos Acumulados para el Tercero: {_puntosTercero}")</span>
+                <span class="alert-success">@($"Puntos Acumulados para el Aliado: {_puntosTercero}")</span>
             </div>
         }
         <div class="row margen-sup30">
