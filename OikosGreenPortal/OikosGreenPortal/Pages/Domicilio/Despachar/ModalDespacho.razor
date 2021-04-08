@@ -1,0 +1,82 @@
+﻿@attribute [Authorize]
+@inherits ModalDespachoBase
+
+
+<div class="pop-up-form pop-up-despacho">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@_titulo</h3>
+        </div>
+    </div>
+    @*@if (_tipo == 1 || _tipo == 2)
+    {*@
+        <div class="row row-space-bottom">
+            <div class="col-md-12">
+                <Select TValue="String" @bind-SelectedValue="_idusuario" title="Usuario asignado">
+                    <SelectItem TValue="String" Value="@("0")">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _lstUsuarios.Where(w => w.isactive))
+                    {
+                        <SelectItem TValue="String" Value="@(item.id)">@item.name</SelectItem>
+                    }
+                </Select>
+            </div>
+        </div>
+    @*}*@
+    @*@if (_tipo == "FIN EMPACA" || _tipo == "FIN SEPARA")
+    {*@
+        <div class="row row-space-bottom">
+            <div class="col-md-12">
+                <Select TValue="Int64" @bind-SelectedValue="_idconcepto" title="Concepto">
+                    <SelectItem TValue="Int64" Value="@(0)">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _lstConcepto.Where(w => w.type == "LOGISTICA"))
+                    {
+                        <SelectItem TValue="Int64" Value="@(item.id)">@item.description</SelectItem>
+                    }
+                </Select>
+
+            </div>
+        </div>
+        @*}*@
+    @if (_tipo == 2)
+    {
+        <div class="row row-space-bottom">
+            <div class="col-md-6">
+                <TextEdit @bind-Value="@_cajas" Type="number" Label="Cajas" Outlined="true"></TextEdit>
+            </div>
+            <div class="col-md-6">
+                <TextEdit @bind-Value="@_bolsas" Type="number" Label="Bolsas" Outlined="true"></TextEdit>
+            </div>
+        </div>
+    }
+    @*@if (_tipo == "FIN EMPACA" || _tipo == "FIN SEPARA")
+    {*@
+        <div class="row">
+            <div class="col-md-12">
+                <TextEdit @bind-Value="@_observacion" TextArea="true" Label="Observación" Outlined="true"></TextEdit>
+            </div>
+        </div>
+    @*}*@
+    <div class="row">
+        <div class="col-md-6">
+            <button @onclick="Save" class="btn btn-primary btn-block">Grabar</button>
+        </div>
+        <div class="col-md-6">
+            <button @onclick="Salir" class="btn btn-danger btn-block">Cancelar</button>
+        </div>
+    </div>
+
+
+
+    @if (!String.IsNullOrEmpty(_Mensaje))
+    {
+        <div class="row" style="text-align:left; font-weight:bold">
+            <span>
+                @foreach (String mensaje in _Mensaje.Split("&s"))
+                {
+                    @mensaje
+                    <br />
+                }
+            </span>
+        </div>
+    }
+</div>
