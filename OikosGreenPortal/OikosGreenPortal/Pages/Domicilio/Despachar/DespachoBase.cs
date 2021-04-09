@@ -1,4 +1,5 @@
-﻿using Blazored.Modal.Services;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -36,10 +37,16 @@ namespace OikosGreenPortal.Pages.Domicilio.Despachar
         private String urlupdate { get; set; } = Urls.urlusuario_update;
         private String urlinactive { get; set; } = Urls.urlusuario_inactive;
         private String urlgetcode { get; set; } = Urls.urlusuario_getbycode;
+        private List<Usuario_data> _listaUsuarios { get; set; }
 
 
 
         protected override async Task OnInitializedAsync()
+        {
+            await Cargue();
+        }
+
+        private async Task Cargue()
         {
             _lista = new List<vDespacho_data>();
             vDespachosRequest _dataRequest = new vDespachosRequest();
@@ -56,6 +63,18 @@ namespace OikosGreenPortal.Pages.Domicilio.Despachar
                 _dataRequest = JsonConvert.DeserializeObject<vDespachosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
                     _lista = _dataRequest.agrupa().OrderByDescending(o => o.deliverdate).ToList();//.entities.OrderByDescending(o => o.date).ToList();
+
+                //Obtenemos la Tabla de Usuarios
+                try
+                {
+                    var resultadoUsuarios = await General.solicitudUrl<String>(_dataStorage.user.token, "POST", Urls.urlusuario_getall, "");
+                    UsuariosRequest _dataRequestUser = JsonConvert.DeserializeObject<UsuariosRequest>(resultadoUsuarios.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequestUser != null && _dataRequestUser.entities != null && _dataRequestUser.entities.Count > 0)
+                        _listaUsuarios = _dataRequestUser.entities.Where(w=>w.lstRol.Contains("BODEGA")).ToList();
+
+                }
+                catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
+
 
                 //if (_lista != null)
                 //    foreach (var x in _lista)
@@ -91,8 +110,6 @@ namespace OikosGreenPortal.Pages.Domicilio.Despachar
             }
         }
 
-
-
         #region Presentación
         public void estilofila(vDespacho_data reg, DataGridRowStyling style)
         {
@@ -113,9 +130,19 @@ namespace OikosGreenPortal.Pages.Domicilio.Despachar
 
         }
 
-        public async Task accion(Int32 _accion)
+        public async Task accion(Int32 _accion, Int64 _id)
         {
+            var parameters = new ModalParameters();
+            parameters.Add(nameof(ModalDespacho.userLogueado), _dataStorage.user);
+            parameters.Add(nameof(ModalDespacho._tipo), _accion);
+            parameters.Add(nameof(ModalDespacho._id), _id);
+            parameters.Add(nameof(ModalDespacho._titulo), _accion==1 ? "SEPARAR" : _accion==2 ? "CHEQUEAR" : "DESPACHAR");
+            parameters.Add(nameof(ModalDespacho._lstUsuarios), _listaUsuarios);
+            parameters.Add(nameof(ModalDespacho._regdespacho), _lista.Where(w => w.idenca == _id).ToList());
+            var formModal = _modal.Show<ModalDespacho>("", parameters);
+            var result = await formModal.Result;
 
+            await Cargue();
         }
 
 

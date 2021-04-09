@@ -41,9 +41,9 @@
                 <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.line)" Caption="Lineas" Editable="false" Width="60"/>
                 <DataGridColumn TItem="vDespacho_data" Field="@nameof(vDespacho_data.prodname)" Caption="Acciones" Editable="false" Width="200" >
                     <DisplayTemplate>
-                        <Tooltip Text="Separar"><button class="btn btn-info" @onclick="@(()=>accion(1))"><i class="fas fa-exchange-alt"></i></button></Tooltip>
-                        <Tooltip Text="Chequear"><button class="btn btn-info" @onclick="@(()=>accion(2))"><i class="fas fa-box"></i></button></Tooltip>
-                        <Tooltip Text="Despachar"><button class="btn btn-info" @onclick="@(()=>accion(3))"><i class="fab fa-docker"></i></button></Tooltip>
+                        <Tooltip Text="Separar"><button class="btn btn-info" @onclick="@(()=>accion(1, (context as vDespacho_data).idenca))"><i class="fas fa-exchange-alt"></i></button></Tooltip>
+                        <Tooltip Text="Chequear"><button class="btn btn-info" @onclick="@(()=>accion(2, (context as vDespacho_data).idenca))"><i class="fas fa-box"></i></button></Tooltip>
+                        <Tooltip Text="Despachar"><button class="btn btn-info" @onclick="@(()=>accion(3, (context as vDespacho_data).idenca))"><i class="fab fa-docker"></i></button></Tooltip>
                     </DisplayTemplate>
                 </DataGridColumn>
 
