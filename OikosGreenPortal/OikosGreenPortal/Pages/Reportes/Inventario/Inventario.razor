@@ -74,8 +74,14 @@
 
 
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Sortable="false" Displayable="true" Width="200" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.typemoviment)" Caption="Tipo" Sortable="false" Displayable="true" Width="40" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.cellarname)" Caption="Bodega" Sortable="false" Displayable="true" Width="150" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.typemoviment)" Caption="Tipo" Sortable="false" Displayable="true" Width="20" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.affect)" Caption="Afec" Sortable="false" Displayable="true" Width="20" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.tercname)" Caption="Aliado" Sortable="false" Displayable="true" Width="70">
+                        <DisplayTemplate>
+                            @($"{ (context as Transaccion_data)?.terccellphone.Trim() + "-"+ ( context as Transaccion_data)?.tercname.Trim()+" "+(context as Transaccion_data)?.terclastname.Trim()}")
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.cellarname)" Caption="Bodega" Sortable="false" Displayable="true" Width="50" />
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Número" Sortable="false" Displayable="true" Width="80" />
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.detline)" Caption="Linea" Sortable="false" Displayable="true" Width="40" />
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Código" Sortable="false" Displayable="true" Width="60" />

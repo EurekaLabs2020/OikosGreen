@@ -81,7 +81,7 @@
                             </EditTemplate>
                         </DataGridSelectColumn>
 
-                        <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" Dec >
+                        <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" >
                             <DisplayTemplate>
                                 @($"{ (context as ListaDetalle_data)?.value.ToString("########")}")
                             </DisplayTemplate>
