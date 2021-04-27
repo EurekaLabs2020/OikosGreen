@@ -1030,3 +1030,4 @@ D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\ob
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Transportadora\TransportadoraIndex.razor.g.cs
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
+D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache

@@ -54,14 +54,38 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.code)" Caption="Código" Editable="true" Width="60" />
+                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.code)" Caption="Código" Editable="true" Width="60">
+                    <DisplayTemplate>
+                        @($"{( context as Bodega_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.name)" Caption="Nombre" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Bodega_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
-                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
+                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.address)" Caption="Dirección" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Bodega_data)?.address.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Dirección" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Bodega_data" Field="@nameof(Bodega_data.phone)" Caption="Teléfono" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Bodega_data)?.phone.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Teléfono" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.ubicaname)" Caption="Ciudad" Editable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Bodega_data" Field="@nameof(Bodega_data.idubicacion)" Caption="Ciudad" Editable="true" Displayable="false">
                         <DisplayTemplate>
