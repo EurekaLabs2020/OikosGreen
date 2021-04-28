@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\GestionAccesos\Usuarios\" />
+    <Folder Include="Pages\Domicilio\Entregar\" />
     <Folder Include="Pages\Reportes\Movimiento\Punto\" />
     <Folder Include="Pages\Reportes\Movimiento\Tercero\" />
   </ItemGroup>

@@ -148,8 +148,10 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             }catch { item.birthdate = DateTime.Now; }
             item.cellphone = valor["cellphone"].ToString();
             item.phone = valor["phone"].ToString();
-
-
+            item.name = valor["name"].ToString().ToUpper();
+            item.lastname = valor["lastname"].ToString().ToUpper();
+            item.numdocument = valor["numdocument"].ToString();
+            await setUbicacion(item, false, urlupdate);
         }
 
         public async Task inactiveFila(Tercero_data item)
@@ -181,7 +183,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         {
             Int64 retorno = 0;
             isok = false;
-            Item.documentoid = Item.iddocumento= _datoPadre;
+            Item.iddocumento= _datoPadre = Item.documentoid.Value;
             Item.namedocum = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Item.lastname = Item.lastname.ToUpper();

@@ -81,7 +81,14 @@
                             </EditTemplate>
                         </DataGridSelectColumn>
 
-                        <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" />
+                        <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false" >
+                            <DisplayTemplate>
+                                @($"{ (context as ListaDetalle_data)?.value.ToString("########")}")
+                            </DisplayTemplate>
+                            <EditTemplate>
+                                <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" Decimals="0"/>
+                            </EditTemplate>
+                        </DataGridNumericColumn>>
                         <DataGridCheckColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.active)" Caption="Activo" Editable="false" Width="50" Sortable="false">
                             <DisplayTemplate>
                                 <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

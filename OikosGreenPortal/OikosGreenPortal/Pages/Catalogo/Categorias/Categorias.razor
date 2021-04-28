@@ -42,6 +42,9 @@
                     <DisplayTemplate>
                         @($"{( context as Categoria_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.nameparent)" Caption="Padre" Editable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Categoria_data" Field="@nameof(Categoria_data.parent)" Caption="Padre" Editable="true" Displayable="false">

@@ -1,0 +1,121 @@
+﻿@page "/gestionacceso/usuarios"
+
+@inherits UsuariosIndexBase
+@attribute [Authorize]
+
+<TituloComponent _titulo="Usuarios"></TituloComponent>
+
+<div class="container">
+    <div class="row">
+        <DataGrid TItem="Usuario_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
+                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
+                  RowInserted="@insertFila" RowUpdated="@updateFila"
+                  UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large"
+                  RowInserting="@insertingFila" RowUpdating="@updatingFila">
+
+            <ChildContent>
+                <DataGridCommandColumn TItem="Usuario_data" CellsEditableOnEditCommand="true">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Tooltip Text=@(context.Item.isactive ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@(()=> inactiveFila(context.Item))" class="btn-active"> <i class=@(context.Item.isactive ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i></Button></Tooltip>
+                    </DeleteCommandTemplate>
+                    <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
+                    <SaveCommandTemplate>
+                        <div class="col-md-6">
+                            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+                        </div>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
+                    </CancelCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="Usuario_data" Field="@nameof(Usuario_data.id)" Caption="Id" Editable="false" Width="80" Displayable="false" />
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.name)" Caption="Nombre" Editable="true" Displayable="true">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.nombrefull.ToUpper()}")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lastname)" Caption="Nombre" Editable="true" Displayable="false">
+                    <EditTemplate>
+                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.documentid)" Caption="Tipo" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.namedoc.ToUpper()}")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Select TValue="Int64" SelectedValue="@((Int64)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">
+                            <SelectItem TValue="Int64" Value="@(0)">SELECCCIONAR...</SelectItem>
+                            @foreach (var item in _listaTipoDocument.Where(w => w.type == "PERSONA"))
+                            {
+                                <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                            }
+                        </Select>
+                    </EditTemplate>
+                </DataGridSelectColumn>
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.numdoc)" Caption="Documento" Editable="true" Displayable="false" />
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
+
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.user)" Caption="Usuario" Editable="true" Width="200" Displayable="true">
+                    <EditTemplate>
+                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.email)" Caption="Email" Editable="true" Width="300" Displayable="true" />
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lstRol)" Caption="Roles" Editable="true" Width="200" Displayable="false">
+                    <EditTemplate>
+                        <select ref="refMultiple" multiple @onchange="@selecRoles">  @*SelectedValues="@((List<String>)(((CellEditContext)context).CellValue))" SelectedValueChanged="@(v=>((CellEditContext)context).CellValue=v)">*@
+                            <option value="@("0")">SELECCCIONAR...</option>
+                            @foreach (var item in _listaTRoles)
+                            {
+                                <option>@item.name</option>
+                            }
+                        </select>
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridCheckColumn TItem="Usuario_data" Field="@nameof(Usuario_data.isactive)" Caption="Activo" Editable="false" Width="50">
+                    <DisplayTemplate>
+                        <Check @bind-Checked="@context.isactive" TValue="Boolean" Disabled="true"></Check>
+                    </DisplayTemplate>
+                </DataGridCheckColumn>
+
+            </ChildContent>
+
+            <FirstPageButtonTemplate> <span>Prim</span> </FirstPageButtonTemplate>
+            <PreviousPageButtonTemplate> <span>Ant</span> </PreviousPageButtonTemplate>
+            <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
+            <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
+            <PopupTitleTemplate>
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
+            </PopupTitleTemplate>
+
+            <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
+
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+
+        </DataGrid>
+    </div>
+    <div class="row">
+        <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+    </div>
+</div>
