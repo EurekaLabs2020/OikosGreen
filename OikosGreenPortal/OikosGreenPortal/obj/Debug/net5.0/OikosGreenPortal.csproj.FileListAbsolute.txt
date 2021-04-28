@@ -867,3 +867,7 @@ C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
+C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
+C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Permisos\PermisosIndex.razor.g.cs
+C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
+C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Permisos\PermisosIndex.razor.g.cs
