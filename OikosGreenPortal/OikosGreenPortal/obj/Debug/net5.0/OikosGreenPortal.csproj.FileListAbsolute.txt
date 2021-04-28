@@ -728,11 +728,9 @@ C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\ref\OikosGreenPortal.dll
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.pdb
 C:\Users\wilder.valencia\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.genruntimeconfig.cache
-C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Usuario\UsuarioIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Permisos\PermisosIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\GestionAccesos\Usuarios\UsuariosIndex.razor.g.cs
-C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Usuario\UsuarioIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Grupos\GruposIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Permisos\PermisosIndex.razor.g.cs
 C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Usuarios\UsuariosIndex.razor.g.cs
@@ -1031,3 +1029,11 @@ D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\ob
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\OikosGreenPortal.csprojAssemblyReference.cache
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Catalogo\Concepto\ConceptoIndex.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilio\Despachar\Despacho.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\RazorDeclaration\Pages\Domicilio\Transportadora\TransportadoraIndex.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Catalogo\Concepto\ConceptoIndex.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Despachar\Despacho.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Despachar\ModalDespacho.razor.g.cs
+C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\Domicilio\Transportadora\TransportadoraIndex.razor.g.cs
