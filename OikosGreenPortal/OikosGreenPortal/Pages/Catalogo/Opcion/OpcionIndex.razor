@@ -37,11 +37,21 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.id)" Caption="Id" Editable="false" Displayable="false" Sortable="false" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="50" Sortable="false"/>
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.code)" Caption="Código" Editable="true" Width="50" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Opcion_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.name)" Caption="Nombre" Editable="true" Width="180" Sortable="false">
                     <DisplayTemplate>
                         @($"{( context as Opcion_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.type)" Caption="Tipo" Sortable="false" Editable="true" Width="120">
                     <DisplayTemplate>
@@ -59,8 +69,22 @@
                         }
                     </EditTemplate>
                 </DataGridSelectColumn>
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="80" Sortable="false" />
-                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" Sortable="false"/>
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.url)" Caption="URL" Editable="true" Width="80" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Opcion_data)?.url.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="URL" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="Opcion_data" Field="@nameof(Opcion_data.icon)" Caption="Icono" Editable="true" Width="50" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Opcion_data)?.icon.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Icono" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.nameparent)" Caption="Padre" Editable="false" Width="150" Sortable="false" Displayable="true"/>
                     <DataGridSelectColumn TItem="Opcion_data" Field="@nameof(Opcion_data.parent)" Caption="Padre" Editable="true" Width="150" Sortable="false" Displayable="false">
                         <DisplayTemplate>

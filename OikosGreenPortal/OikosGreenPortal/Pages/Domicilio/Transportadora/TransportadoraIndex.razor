@@ -38,7 +38,14 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
-                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.code)" Caption="Codigo" Displayable="true" Editable="true" Sortable="false" Width="180" />
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.code)" Caption="Código" Displayable="true" Editable="true" Sortable="false" Width="180">
+                    <DisplayTemplate>
+                        @($"{( context as Transportadora_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.type)" Caption="Tipo" Displayable="true" Editable="true" Sortable="false" Width="180">
                     <EditTemplate>
 
@@ -52,9 +59,15 @@
 
                     </EditTemplate>
                 </DataGridColumn>
-                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.name)" Caption="Descripcrion" Displayable="true" Editable="true" Sortable="false">
-                    <DisplayTemplate>@($"{( context as Transportadora_data)?.name.ToUpper()} ")</DisplayTemplate>
+                <DataGridColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.name)" Caption="Descripción" Displayable="true" Editable="true" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Transportadora_data)?.name.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Descripción" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
+                
                 <DataGridCheckColumn TItem="Transportadora_data" Field="@nameof(Transportadora_data.active)" Caption="Activo" Displayable="true" Editable="false" Width="180">
                     <DisplayTemplate>
                         <Check @bind-Checked="@context.active" TValue="Boolean" Disabled="true"></Check>

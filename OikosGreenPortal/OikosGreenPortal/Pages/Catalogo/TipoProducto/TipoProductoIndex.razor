@@ -40,6 +40,9 @@
                     <DisplayTemplate>
                         @($"{( context as TipoProducto_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
 
                 <DataGridCheckColumn TItem="TipoProducto_data" Field="@nameof(TipoProducto_data.active)" Caption="Activo" Editable="false">

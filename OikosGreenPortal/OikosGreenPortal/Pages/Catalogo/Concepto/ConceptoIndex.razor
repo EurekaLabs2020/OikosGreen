@@ -51,8 +51,13 @@
                         
                     </EditTemplate>
                 </DataGridColumn>   
-                <DataGridColumn TItem="Concepto_data" Field="@nameof(Concepto_data.description)" Caption="Descripcrion" Displayable="true" Editable="true" Sortable="false">
-                    <DisplayTemplate>@($"{( context as Concepto_data)?.description.ToUpper()} ")</DisplayTemplate>
+                <DataGridColumn TItem="Concepto_data" Field="@nameof(Concepto_data.description)" Caption="Descripcion" Displayable="true" Editable="true" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Concepto_data)?.description.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Descripcion" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridCheckColumn TItem="Concepto_data" Field="@nameof(Concepto_data.active)" Caption="Activo" Displayable="true" Editable="false" Width="180">
                     <DisplayTemplate>

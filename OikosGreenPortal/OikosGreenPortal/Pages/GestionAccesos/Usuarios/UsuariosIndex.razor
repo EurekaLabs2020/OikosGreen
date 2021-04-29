@@ -41,16 +41,19 @@
                 <DataGridColumn TItem="Usuario_data" Field="@nameof(Usuario_data.id)" Caption="Id" Editable="false" Width="80" Displayable="false" />
                 <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.name)" Caption="Nombre" Editable="true" Displayable="true">
                     <DisplayTemplate>
-                        @($"{( context as Usuario_data)?.nombrefull.ToUpper()}")
+                        @($"{( context as Usuario_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
                     <EditTemplate>
-                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
                     </EditTemplate>
                 </DataGridSelectColumn>
 
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lastname)" Caption="Nombre" Editable="true" Displayable="false">
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lastname)" Caption="Apellido" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.lastname.ToUpper()} ")
+                    </DisplayTemplate>
                     <EditTemplate>
-                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        <TextEdit Placeholder="Apellido" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
                     </EditTemplate>
                 </DataGridSelectColumn>
 
@@ -69,17 +72,41 @@
                     </EditTemplate>
                 </DataGridSelectColumn>
                 <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.numdoc)" Caption="Documento" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.address)" Caption="Dirección" Editable="true" Displayable="false" />
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.phone)" Caption="Teléfono" Editable="true" Displayable="false" />
-
-
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.user)" Caption="Usuario" Editable="true" Width="200" Displayable="true">
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.address)" Caption="Dirección" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.address.ToUpper()} ")
+                    </DisplayTemplate>
                     <EditTemplate>
-                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        <TextEdit Placeholder="Dirección" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.phone)" Caption="Teléfono" Editable="true" Displayable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.phone.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Teléfono" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
                     </EditTemplate>
                 </DataGridSelectColumn>
 
-                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.email)" Caption="Email" Editable="true" Width="300" Displayable="true" />
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.user)" Caption="Usuario" Editable="true" Width="200" Displayable="true">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.user.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Usuario" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
+
+                <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.email)" Caption="Email" Editable="true" Width="300" Displayable="true">
+                    <DisplayTemplate>
+                        @($"{( context as Usuario_data)?.email.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Email" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridSelectColumn>
 
                 <DataGridSelectColumn TItem="Usuario_data" Field="@nameof(Usuario_data.lstRol)" Caption="Roles" Editable="true" Width="200" Displayable="false">
                     <EditTemplate>
