@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\OikosGreenPortal"
+    "\\OikosGreenPortal",
+    "\\OikosGreenPortal\\OikosGreenPortal\\Pages",
+    "\\OikosGreenPortal\\OikosGreenPortal\\Pages\\Catalogo",
+    "\\OikosGreenPortal\\OikosGreenPortal\\Pages\\Catalogo\\Bodegas"
   ],
   "SelectedNode": "\\OikosGreenPortal\\OikosGreenPortal.sln",
   "PreviewInSolutionExplorer": false
