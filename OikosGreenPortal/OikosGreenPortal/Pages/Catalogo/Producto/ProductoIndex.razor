@@ -46,16 +46,29 @@
                     </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.code)" Caption="Código" Editable="true" Width="60" />
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.code)" Caption="Código" Editable="true" Width="60">
+                    <DisplayTemplate>
+                        @($"{( context as Producto_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.name)" Caption="Nombre" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.description)" Caption="Descripción" Displayable="false" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.description.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Descripción" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
 

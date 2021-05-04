@@ -39,6 +39,9 @@
                     <DisplayTemplate>
                         @($"{( context as GeneralIva_data)?.code.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.value)" Caption="Valor" Validator="@validaName" Editable="true" Width="120"/>
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.startdate)" Caption="Fecha Incial" Validator="@validaName" Editable="true" />

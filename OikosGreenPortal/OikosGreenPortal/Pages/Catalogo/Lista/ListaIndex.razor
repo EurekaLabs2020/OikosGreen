@@ -38,6 +38,9 @@
                     <DisplayTemplate>
                         @($"{( context as Lista_data)?.name.ToUpper()}")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.startdate)" Caption="Fecna Inicio" Editable="true">
                     @*<DisplayTemplate>
