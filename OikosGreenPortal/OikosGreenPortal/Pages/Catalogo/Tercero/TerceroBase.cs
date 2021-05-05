@@ -47,6 +47,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         private String urlinactive { get; set; } = Urls.urltercero_inactive;
         private String urlgetcode { get; set; } = Urls.urltercero_getbycode;
 
+        public string customFilterValue { get; set; }
+
 
         protected async override Task OnInitializedAsync()
         {
@@ -278,6 +280,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                 _lista.Remove(reg);
             return retorno;
         }
+
+        #region Filtro
+        public bool OnCustomFilter(Tercero_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.lastname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.numdocument?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
 
     }

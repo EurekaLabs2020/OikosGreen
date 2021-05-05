@@ -18,3 +18,8 @@ window.getSelectedValues = function (sel) {
     }
     return results;
 };
+
+$(() => {
+    console.log('load')
+    $('#pag-tercero .form-control').attr('autocomplete', 'off');
+})
