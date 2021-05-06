@@ -22,6 +22,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
 
         public List<Lista_data> _lista { get; set; }
         public Lista_data _regActual { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private infoBrowser _dataStorage { get; set; }
 
         public DateTime fechaini { get; set; }
@@ -143,6 +144,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Lista
             if (arg.Status == ValidationStatus.Error)
                 arg.ErrorText = "El nombre debe de ser en letras mayusculas";
         }
+
+        #region Filtro
+        public bool OnCustomFilter(Lista_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

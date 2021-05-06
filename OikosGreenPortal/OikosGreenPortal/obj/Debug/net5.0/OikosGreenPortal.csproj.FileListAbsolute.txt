@@ -1050,3 +1050,4 @@ C:\Users\wilder.valencia\source\repos\EurekaLabs2020\OikosGreen\OikosGreenPortal
 C:\Users\wilder.valencia\source\repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Permisos\PermisosIndex.razor.g.cs
 C:\Users\wilder.valencia\source\repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\obj\Debug\net5.0\Razor\Pages\GestionAccesos\Usuarios\UsuariosIndex.razor.g.cs
 D:\Negocio\OikosGreen\OikosGreen\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Components.dll
+C:\Users\wilder.valencia\source\repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\bin\Debug\net5.0\Blazorise.Components.dll

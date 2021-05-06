@@ -30,6 +30,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlproductocategoria_getall;
         private String urlinsert { get; set; } = Urls.urlproductocategoria_insert;
@@ -207,7 +208,21 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
             if (!isok && Crear)
                 _lista.Remove(reg);
             return retorno;
-        }  
+        }
+        #region Filtro
+        public bool OnCustomFilter(ProductoCategoria_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.namecateg?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.nameprod?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
+
     }
 }  
 

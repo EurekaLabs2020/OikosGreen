@@ -29,6 +29,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
+        public string customFilterValue { get; set; } /// Variable para Filtro
+
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
         private Boolean isok { get; set; } = false;
@@ -201,5 +203,20 @@ namespace OikosGreenPortal.Pages.Catalogo.Bodegas
             return retorno;
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Bodega_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.type?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.ubicaname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
     }
 }
