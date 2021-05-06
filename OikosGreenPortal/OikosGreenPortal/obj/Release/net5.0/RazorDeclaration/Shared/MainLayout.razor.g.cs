@@ -188,7 +188,7 @@ using OikosGreenPortal.Pages.Auth.Cambiar_Clave;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
+#line 37 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
           
 
 

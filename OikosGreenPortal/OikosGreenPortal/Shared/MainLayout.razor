@@ -18,6 +18,11 @@
             <AuthorizeView>
                 <Authorized>
                     <div class="top-row px-4">
+                        <Buttons Class="buttonmain">
+                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/transaccion">Transacciones</Button>
+                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/catalogo/tercero">Terceros</Button>
+                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/catalogo/producto">Productos</Button>
+                        </Buttons>
                         <a href="#!" @onclick="@(e => changePass())">Cambiar contraseña</a>
                         <a href="#!" @onclick="LogOut">Salir</a>
                     </div>
