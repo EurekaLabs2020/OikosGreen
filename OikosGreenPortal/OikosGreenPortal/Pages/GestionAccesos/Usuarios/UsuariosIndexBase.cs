@@ -36,7 +36,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
         public ElementReference refMultiple { get; set; }
-
+        public string customFilterValue { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
@@ -266,5 +266,20 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Usuarios
             }
             return true;
         }
+        #region Filtro
+        public bool OnCustomFilter(Usuario_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.user?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.email?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+                
+        }
+        #endregion
     }
 }
