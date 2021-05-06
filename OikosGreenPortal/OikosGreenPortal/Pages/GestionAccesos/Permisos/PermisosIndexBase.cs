@@ -28,7 +28,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Permisos
         public String _datoTipo { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
-
+        public string customFilterValue { get; set; }
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
         private Boolean isok { get; set; } = false;
@@ -229,5 +229,19 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Permisos
             }
             return true;
         }
+        #region Filtro
+        public bool OnCustomFilter(TerceroTipo_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.nombrefull?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.type?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+                
+        }
+        #endregion
     }
 }

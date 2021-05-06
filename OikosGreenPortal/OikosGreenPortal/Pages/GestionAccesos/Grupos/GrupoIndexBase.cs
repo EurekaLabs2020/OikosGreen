@@ -27,6 +27,7 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Grupos
         public String _mensajeIsDanger { get; set; }
         public String _datoTipo { get; set; }
         private infoBrowser _dataStorage { get; set; }
+        public string customFilterValue { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -129,7 +130,18 @@ namespace OikosGreenPortal.Pages.GestionAccesos.Grupos
                 arg.ErrorText = "El nombre debe de ser en letras mayusculas";
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Rol_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
 
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+                 }
+        #endregion
 
     }
 }
