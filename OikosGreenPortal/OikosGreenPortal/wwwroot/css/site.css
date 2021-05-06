@@ -275,3 +275,11 @@ a, .btn-link {
     display: block;
     text-align: right;
 }
+.buttonmain a {
+    margin-right: 6px;
+}
+
+.buttonmain {
+    position: absolute;
+    left: 0;
+}
