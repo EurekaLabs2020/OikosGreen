@@ -94,6 +94,20 @@
           "buildMultiTargeting/Blazorise.Bootstrap.props": {}
         }
       },
+      "Blazorise.Components/0.9.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Blazorise": "0.9.2.5",
+          "Microsoft.AspNetCore.Components": "5.0.0",
+          "Microsoft.AspNetCore.Components.Web": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/Blazorise.Components.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazorise.Components.dll": {}
+        }
+      },
       "Blazorise.DataGrid/0.9.2.5": {
         "type": "package",
         "dependencies": {
@@ -396,6 +410,21 @@
         "lib/netstandard2.1/Blazorise.Bootstrap.dll",
         "staticwebassets/blazorise.bootstrap.css",
         "staticwebassets/blazorise.bootstrap.js"
+      ]
+    },
+    "Blazorise.Components/0.9.2.5": {
+      "sha512": "n2br/64pgM3SE1JULiTW/On4pJ+LazSTBEBgKficEQeQoFiYshfI/zzAevc0gf4knfo22UAcmJn45UGkSeu7ng==",
+      "type": "package",
+      "path": "blazorise.components/0.9.2.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Blazorise.png",
+        "LICENSE.md",
+        "blazorise.components.0.9.2.5.nupkg.sha512",
+        "blazorise.components.nuspec",
+        "lib/net5.0/Blazorise.Components.dll",
+        "lib/netstandard2.1/Blazorise.Components.dll"
       ]
     },
     "Blazorise.DataGrid/0.9.2.5": {
@@ -750,6 +779,7 @@
       "Blazored.Menu >= 2.0.5",
       "Blazored.Modal >= 6.0.1",
       "Blazorise >= 0.9.2.5",
+      "Blazorise.Components >= 0.9.2.5",
       "Blazorise.DataGrid >= 0.9.2.5",
       "Blazorise.Icons.Material >= 0.9.2.5",
       "Blazorise.Material >= 0.9.2.5",
@@ -816,6 +846,10 @@
             "version": "[6.0.1, )"
           },
           "Blazorise": {
+            "target": "Package",
+            "version": "[0.9.2.5, )"
+          },
+          "Blazorise.Components": {
             "target": "Package",
             "version": "[0.9.2.5, )"
           },
