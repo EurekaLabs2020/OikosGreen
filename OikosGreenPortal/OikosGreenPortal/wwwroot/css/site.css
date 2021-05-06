@@ -270,3 +270,8 @@ a, .btn-link {
 .separator-custom-filter {
     padding: 15px;
 }
+
+.separator-custom-filter span {
+    display: block;
+    text-align: right;
+}
