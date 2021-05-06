@@ -6,15 +6,24 @@
 <TituloComponent _titulo="Terceros"></TituloComponent>
 
 <div class="container">
-
-    <div class="row">
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
+    <div class="row" id="pag-tercero">
         <DataGrid TItem="Tercero_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains"
                   PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowUpdating="@updatingFila" RowInserting="insertingFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" CustomFilter="@OnCustomFilter">
             @*RowUpdated="@updateFila"*@
             @*RowUpdating="@updatingFila"*@
             @*RowInserted="@insertFila"*@
@@ -122,11 +131,11 @@
                 </DataGridColumn>
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.birthdate)" Caption="Fec.Nacimiento" Editable="false" Displayable="false" Width="40">
                     @*<DisplayTemplate>
-                    @($"{( context as Tercero_data)?.birthdate.Value} ")
-                </DisplayTemplate>
-                <EditTemplate>
-                    <TextEdit Placeholder="Fec.Nacimiento" Role="TextRole.Text" Text="@((DateTime)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
-                </EditTemplate>*@
+                            @($"{( context as Tercero_data)?.birthdate.Value} ")
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            <TextEdit Placeholder="Fec.Nacimiento" Role="TextRole.Text" Text="@((DateTime)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                        </EditTemplate>*@
                 </DataGridColumn>
                 <DataGridColumn TItem="Tercero_data" Field="@nameof(Tercero_data.email)" Caption="Email" Editable="true" Displayable="false" Width="80">
                     <DisplayTemplate>

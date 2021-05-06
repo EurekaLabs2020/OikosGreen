@@ -54,7 +54,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         private String urlinactive { get; set; } = Urls.urltercero_inactive;
         private String urlgetcode { get; set; } = Urls.urltercero_getbycode;
 
-
+        public string selectedSearchValue { get; set; }
 
         public List<Transaccion_Producto> _listaDetalleProducto { get; set; }
         public class Transaccion_Producto
@@ -142,7 +142,11 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
-            
+        }
+
+        public void MySearchHandler(string newValue)
+        {
+            selectedSearchValue = newValue;
         }
 
         #region Detalle Productos
