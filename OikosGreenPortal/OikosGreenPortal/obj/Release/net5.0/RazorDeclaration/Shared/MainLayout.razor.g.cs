@@ -188,7 +188,7 @@ using OikosGreenPortal.Pages.Auth.Cambiar_Clave;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
+#line 42 "C:\Users\Jhonatan\Source\Repos\EurekaLabs2020\OikosGreen\OikosGreenPortal\OikosGreenPortal\Shared\MainLayout.razor"
           
 
 
@@ -221,7 +221,7 @@ using OikosGreenPortal.Pages.Auth.Cambiar_Clave;
             }
         }
 
-        private bool collapseNavMenu = true;
+        private bool collapseNavMenu = false;
 
         private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
