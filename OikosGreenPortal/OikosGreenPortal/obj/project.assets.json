@@ -787,26 +787,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ancou\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\wilder.valencia\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "projectUniqueName": "C:\\Users\\wilder.valencia\\source\\repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
       "projectName": "OikosGreenPortal",
-      "projectPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
-      "packagesPath": "C:\\Users\\ancou\\.nuget\\packages\\",
-      "outputPath": "D:\\Negocio\\OikosGreen\\OikosGreen\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
+      "projectPath": "C:\\Users\\wilder.valencia\\source\\repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\OikosGreenPortal.csproj",
+      "packagesPath": "C:\\Users\\wilder.valencia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wilder.valencia\\source\\repos\\EurekaLabs2020\\OikosGreen\\OikosGreenPortal\\OikosGreenPortal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\ancou\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\wilder.valencia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -888,7 +885,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
