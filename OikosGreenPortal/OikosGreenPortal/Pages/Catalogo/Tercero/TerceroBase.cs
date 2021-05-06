@@ -281,6 +281,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             return retorno;
         }
 
+
         #region Filtro
         public bool OnCustomFilter(Tercero_data model)
         {

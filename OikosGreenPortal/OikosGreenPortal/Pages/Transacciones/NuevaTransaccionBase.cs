@@ -357,14 +357,13 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task creaTercero()
         {
 
+
         }
 
 
-
-
-
+        
         #endregion
-    
-    
+
+
     }
 }

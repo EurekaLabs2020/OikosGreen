@@ -12,22 +12,32 @@
             </div>
 
         </div>
+        <section class="separator-custom-filter">
+            <div class="row">
+                <div class="col-md-2">
+                    <span>Filtrar</span>
+                </div>
+                <div class="col-md-10">
+                    <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+                </div>
+            </div>
+        </section>
         <div class="row">
             <DataGrid TItem="Transaccion_data" Data="@_lista" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
-                      Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5"  ShowPager="true"
-                      Bordered="true" Striped="true" Responsive="true" Hoverable="true">
+                      Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" ShowPager="true"
+                      Bordered="true" Striped="true" Responsive="true" Hoverable="true" CustomFilter="@OnCustomFilter">
                 <ChildContent>
                     <DataGridCommandColumn TItem="Opcion_data" />
 
                     <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.idencabezado)" Caption="Id" Editable="false" Displayable="false" />
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Editable="false"  Width="120"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.name)" Caption="Tipo" Editable="false" Width="80"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Doc" Editable="false" Width="30"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.nombrefull)" Caption="Aliado" Editable="false"  Width="100"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Cod" Editable="false" Width="50"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Editable="false" Width="80"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cant" Editable="false" Width="50"/>
-                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Editable="false" Width="60"/>
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.date)" Caption="Fecha" Editable="false" Width="120" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.name)" Caption="Tipo" Editable="false" Width="80" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.numberdocument)" Caption="Doc" Editable="false" Width="30" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.nombrefull)" Caption="Aliado" Editable="false" Width="100" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodcode)" Caption="Cod" Editable="false" Width="50" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.prodname)" Caption="Nombre" Editable="false" Width="80" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.quantity)" Caption="Cant" Editable="false" Width="50" />
+                    <DataGridColumn TItem="Transaccion_data" Field="@nameof(Transaccion_data.points)" Caption="Puntos" Editable="false" Width="60" />
 
                 </ChildContent>
 
