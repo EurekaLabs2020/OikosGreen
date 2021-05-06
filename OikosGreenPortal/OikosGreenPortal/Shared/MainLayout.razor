@@ -19,9 +19,12 @@
                 <Authorized>
                     <div class="top-row px-4">
                         <Buttons Class="buttonmain">
-                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/transaccion">Transacciones</Button>
-                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/catalogo/tercero">Terceros</Button>
-                            <Button Color="Color.Secondary" Type="ButtonType.Link" To="/catalogo/producto">Productos</Button>
+                            <button class="navbar-toggler" @onclick="ToggleNavMenu">
+                                <span class="navbar-toggler-icon">X</span>
+                            </button>
+                            <Button Color="Color.Info" Type="ButtonType.Link" To="/transaccion">Transacciones</Button>
+                            <Button Color="Color.Info" Type="ButtonType.Link" To="/catalogo/tercero">Terceros</Button>
+                            <Button Color="Color.Info" Type="ButtonType.Link" To="/catalogo/producto">Productos</Button>
                         </Buttons>
                         <a href="#!" @onclick="@(e => changePass())">Cambiar contraseña</a>
                         <a href="#!" @onclick="LogOut">Salir</a>
@@ -64,6 +67,15 @@
             {
 
             }
+        }
+
+        private bool collapseNavMenu = true;
+
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
         }
 
 
