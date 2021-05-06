@@ -266,3 +266,20 @@ a, .btn-link {
 .logo-eureka-footer {
     max-width: 100px;
 }
+
+.separator-custom-filter {
+    padding: 15px;
+}
+
+.separator-custom-filter span {
+    display: block;
+    text-align: right;
+}
+.buttonmain a {
+    margin-right: 6px;
+}
+
+.buttonmain {
+    position: absolute;
+    left: 0;
+}

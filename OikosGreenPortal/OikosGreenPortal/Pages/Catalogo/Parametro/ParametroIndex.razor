@@ -38,11 +38,21 @@
                 </DataGridCommandColumn>
 
                 <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.id)" Caption="Id" Displayable="false" Sortable="false" Width="180" />
-                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false" >
-                <DisplayTemplate>@($"{( context as Parametro_data )?.code.ToUpper()} ")</DisplayTemplate>
+                <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="180" Sortable="false">
+                    <DisplayTemplate>
+                        @($"{( context as Parametro_data )?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Parametro_data" Field="@nameof(Parametro_data.name)" Caption="Nombre" Validator="@validaName" Editable="true" Width="320" Sortable="false">
-                    <DisplayTemplate>@($"{( context as Parametro_data )?.name.ToUpper()} ")</DisplayTemplate>
+                    <DisplayTemplate>
+                        @($"{( context as Parametro_data )?.name.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridCheckColumn TItem="Parametro_data" Field="@nameof(Parametro_data.active)" Caption="Activo" Editable="false" Width="180">
                     <DisplayTemplate>
