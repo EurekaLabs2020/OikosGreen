@@ -56,11 +56,13 @@
                     {
             <div class="col-md-3">
                 <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
-                <Autocomplete TItem="TerceroTipo_data" TValue="string"
-                              Data="@_listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault())"
-                              TextField="@((item)=>item.nombrefull)"
-                              ValueField="@((item)=>item.terceroid.Value)"
-                              SelectedValue="@selectedSearchValue"
+
+                <Autocomplete TItem="ListAliado"
+                              Data="@_listaDB"
+                              TextField="@((item)=>item.nombre)"
+                              ValueField="@((item)=>item.nombre)"
+                              SelectedValue="@selectedSearchValue"                              
+                              SelectedValueChanged="@MySearchHandler()"
                               Placeholder="Buscar Aliado..." />
 
                 @*<Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
@@ -217,3 +219,14 @@
         </div>
     }
 </div>
+
+
+@code{
+
+    void AsignaSeleccion(string newValue)
+    {
+        selectedSearchValue = newValue;
+    }
+
+
+}

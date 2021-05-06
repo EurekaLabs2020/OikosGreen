@@ -55,6 +55,11 @@ namespace OikosGreenPortal.Pages.Transacciones
         private String urlgetcode { get; set; } = Urls.urltercero_getbycode;
 
         public string selectedSearchValue { get; set; }
+        public class ListAliado {
+            public Int64 id { get; set; }
+            public String nombre { get; set; }
+        }
+        public IEnumerable<ListAliado> _listaDB { get; set; }
 
         public List<Transaccion_Producto> _listaDetalleProducto { get; set; }
         public class Transaccion_Producto
@@ -126,6 +131,12 @@ namespace OikosGreenPortal.Pages.Transacciones
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                     _listaProductoOrig = _dataRequestProductos.entities;
+
+                if(_listaTerc!=null && _listaTerc.Count>0)
+                {
+                    var list = _listaTerc.Where(w => w.type == "ALIADO").Select(s=>s.nombrefull).ToArray();
+                    _listaDB = Enumerable.Range(1, list.Length).Select(x => new ListAliado { nombre = list[x - 1], id = x });
+                }
             }
             catch (Exception ex)
             {
@@ -142,11 +153,6 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
-        }
-
-        public void MySearchHandler(string newValue)
-        {
-            selectedSearchValue = newValue;
         }
 
         #region Detalle Productos
@@ -361,7 +367,13 @@ namespace OikosGreenPortal.Pages.Transacciones
         }
 
 
-        
+        public void MySearchHandler(String newvalue)
+        {
+
+            selectedSearchValue = newValue;
+        }
+
+
         #endregion
 
 
