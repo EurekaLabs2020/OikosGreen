@@ -8,9 +8,11 @@
     <div class="page">
         <AuthorizeView>
             <Authorized>
+                @if (!collapseNavMenu) {
                 <div class="sidebar">
                     <NavMenu />
                 </div>
+                }
             </Authorized>
         </AuthorizeView>
 
@@ -20,7 +22,7 @@
                     <div class="top-row px-4">
                         <Buttons Class="buttonmain">
                             <button class="navbar-toggler" @onclick="ToggleNavMenu">
-                                <span class="navbar-toggler-icon">X</span>
+                                <span class="oi oi-menu"></span>
                             </button>
                             <Button Color="Color.Info" Type="ButtonType.Link" To="/transaccion">Transacciones</Button>
                             <Button Color="Color.Info" Type="ButtonType.Link" To="/catalogo/tercero">Terceros</Button>
@@ -69,7 +71,7 @@
             }
         }
 
-        private bool collapseNavMenu = true;
+        private bool collapseNavMenu = false;
 
         private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
