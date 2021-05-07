@@ -1,0 +1,58 @@
+﻿@inherits CreateTerceroSharedBase
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <Label>Tipo Documento</Label>
+                @if (_listaSecundaria != null)
+                {
+                    <Select TValue="Int64" SelectedValue="_datoPadre" SelectedValuesChanged="@( () => OnSelectedValueChanged(_datoPadre))">
+                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                        @foreach (var item in _listaSecundaria)
+                        {
+                            <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                        }
+                    </Select>
+                }
+
+
+            </div>
+            <div class="col-md-6">
+                <Label>Documento</Label>
+                <TextEdit Role="TextRole.Text" Placeholder="Numero de documento" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <Label>Nombre</Label>
+                <TextEdit Role="TextRole.Text" Placeholder="Pepito" />
+            </div>
+            <div class="col-md-6">
+                <Label>Apellido</Label>
+                <TextEdit Role="TextRole.Text" Placeholder="Perez" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <Label>Dirección</Label>
+                <TextEdit Role="TextRole.Text" Placeholder="Calle 21..." />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <Label>Celular</Label>
+                <TextEdit Role="TextRole.Text" Placeholder="3330000000" />
+            </div>
+            <div class="col-md-6">
+                <Label>Correo Electronico</Label>
+                <TextEdit Role="TextRole.Email" Placeholder="pepito@dominio.com" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <Button Color="Color.Primary" Block="true" Clicked="createAliado" Type="ButtonType.Submit">Crear Aliado</Button>
+            </div>
+        </div>
+    </div>
+</section>
