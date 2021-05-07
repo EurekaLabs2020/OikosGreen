@@ -6,6 +6,7 @@
 <TituloComponent _titulo="Productos Categoria"></TituloComponent>
 
 <div class="container">
+    @*Seccion para el Filtro*@
     <section class="separator-custom-filter">
         <div class="row">
             <div class="col-md-2">
@@ -16,6 +17,7 @@
             </div>
         </div>
     </section>
+
     <div class="row">
         <DataGrid TItem="ProductoCategoria_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
                   Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"

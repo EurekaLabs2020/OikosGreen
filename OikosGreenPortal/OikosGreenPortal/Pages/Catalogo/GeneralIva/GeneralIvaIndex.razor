@@ -7,12 +7,24 @@
 
 <TituloComponent _titulo="General Iva"></TituloComponent>
 <div class="container">
+    @*Seccion para el Filtro*@
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
+
     <div class="row">
         <DataGrid TItem="GeneralIva_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila" NewItemDefaultSetter="@iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" CustomFilter="@OnCustomFilter">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="GeneralIva_data">
@@ -22,19 +34,19 @@
                     <EditCommandTemplate>
                         <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>
                     </EditCommandTemplate>
-                    <DeleteCommandTemplate> 
+                    <DeleteCommandTemplate>
                         <Tooltip Text=@(context.Item.active ? "Inactivar": "Activar")><Button Color="Color.Danger" Clicked="@context.Clicked" class="btn-active"><i class=@(context.Item.active ? "fas fa-arrow-alt-circle-down" : "fas fa-arrow-alt-circle-up" )></i> </Button></Tooltip>
                     </DeleteCommandTemplate>
                     <ClearFilterCommandTemplate> <span @onclick="@context.Clicked">Limpiar Filtro</span> </ClearFilterCommandTemplate>
-                    <SaveCommandTemplate> 
-                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip> 
+                    <SaveCommandTemplate>
+                        <Tooltip Text="Guardar"><button class="btn btn-info" @onclick="@context.Clicked"><i class="far fa-save"></i></button></Tooltip>
                     </SaveCommandTemplate>
-                    <CancelCommandTemplate> 
-                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip> 
+                    <CancelCommandTemplate>
+                        <Tooltip Text="Cancelar"><button class="btn btn-danger btn-cancel" @onclick="@context.Clicked"><i class="fas fa-window-close"></i></button></Tooltip>
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.id)" Caption="Id" Sortable="false" Displayable="false"/>
+                <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.id)" Caption="Id" Sortable="false" Displayable="false" />
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.code)" Caption="Código" Validator="@validaName" Editable="true" Width="120">
                     <DisplayTemplate>
                         @($"{( context as GeneralIva_data)?.code.ToUpper()} ")
@@ -43,7 +55,7 @@
                         <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
                     </EditTemplate>
                 </DataGridColumn>
-                <DataGridNumericColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.value)" Caption="Valor" Validator="@validaName" Editable="true" Width="120"/>
+                <DataGridNumericColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.value)" Caption="Valor" Validator="@validaName" Editable="true" Width="120" />
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.startdate)" Caption="Fecha Incial" Validator="@validaName" Editable="true" />
                 <DataGridColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.enddate)" Caption="Fecha Final" Validator="@validaName" Editable="true" />
                 <DataGridCheckColumn TItem="GeneralIva_data" Field="@nameof(GeneralIva_data.active)" Caption="Activo" Editable="false" Width="50">

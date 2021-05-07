@@ -25,6 +25,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
         public List<Ubicacion_data> _listaSecundaria { get; set; }
         public Ubicacion_data _regActual { get; set; }
         public List<String> _listaTipoUbicacion { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         public Int64 _datoPadre { get; set; }
         public String _datoTipoUbicacion
         {
@@ -213,7 +214,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Ubicacion
                 _lista.Remove(reg);
             return retorno;
         }
+        #region Filtro
+        public bool OnCustomFilter(Ubicacion_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
 
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.type?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.nameparent?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }
