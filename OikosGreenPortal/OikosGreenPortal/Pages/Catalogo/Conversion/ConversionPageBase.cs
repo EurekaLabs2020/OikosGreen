@@ -27,6 +27,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
         public Conversion_data _regActual { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private infoBrowser _dataStorage { get; set; }
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlconversion_getall;
@@ -197,6 +198,18 @@ namespace OikosGreenPortal.Pages.Catalogo.Conversion
             return true;
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Conversion_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
 
+            return
+                model.presorigin?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.presdestination?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
     }
 }

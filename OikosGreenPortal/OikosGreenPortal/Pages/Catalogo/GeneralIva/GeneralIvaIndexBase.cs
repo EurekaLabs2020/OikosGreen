@@ -23,6 +23,7 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
 
         public List<GeneralIva_data> _lista { get; set; }
         public GeneralIva_data _regActual { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
@@ -149,6 +150,19 @@ namespace OikosGreenPortal.Pages.Catalogo.GeneralIva
             if (arg.Status == ValidationStatus.Error)
                 arg.ErrorText = "El nombre debe de ser en letras mayusculas";
         }
+
+        #region Filtro
+        public bool OnCustomFilter(GeneralIva_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

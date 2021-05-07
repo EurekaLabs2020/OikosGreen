@@ -23,6 +23,7 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
         public String _mensajeIsDanger { get; set; }
         public List<TipoProducto_data> _lista { get; set; }
         public TipoProducto_data _regActual { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private infoBrowser _dataStorage { get; set; }
 
         protected async override Task OnInitializedAsync()
@@ -156,5 +157,17 @@ namespace OikosGreenPortal.Pages.Catalogo.TipoProducto
             }
             catch (Exception) {  } 
         }
+        #region Filtro
+        public bool OnCustomFilter(TipoProducto_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
     }
 }
