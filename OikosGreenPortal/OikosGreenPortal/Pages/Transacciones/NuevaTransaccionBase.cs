@@ -370,7 +370,7 @@ namespace OikosGreenPortal.Pages.Transacciones
         public void MySearchHandler(String newvalue)
         {
 
-            selectedSearchValue = newValue;
+           // selectedSearchValue = newValue;
         }
 
 
