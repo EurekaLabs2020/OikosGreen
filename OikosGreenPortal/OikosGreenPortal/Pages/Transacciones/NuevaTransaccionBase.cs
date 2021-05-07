@@ -1,4 +1,5 @@
-﻿using Blazored.Modal.Services;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
+using OikosGreenPortal.Pages.Shared;
 using OikosGreenPortal.PersonalClass;
 using System;
 using System.Collections.Generic;
@@ -153,6 +155,20 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
+        }
+
+        public async Task openModalCreateTercero()
+        {
+            try
+            {
+                var parameters = new ModalParameters();
+                var formModal = _modal.Show<CreateTerceroShared>($"Crear Tercero", parameters);
+                var result = await formModal.Result;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         #region Detalle Productos
