@@ -98,7 +98,7 @@ namespace OikosGreenPortal.Pages.Shared
         {
             _datoPadre = value;
         }
-
+         
 
         public Boolean validaDatos(Tercero_data _paraValidar)
         {
