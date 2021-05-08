@@ -25,6 +25,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         public List<Transaccion_data> _lista { get; set; }
         public String _Mensaje { get; set; }
+        public string customFilterValue { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
 
@@ -73,7 +74,23 @@ namespace OikosGreenPortal.Pages.Transacciones
         }
         #endregion
 
+        #region Filtro
+        public bool OnCustomFilter(Transaccion_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
 
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.tercname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.tercnumdocument?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.prodname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.prodivacode?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.terclastname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

@@ -6,14 +6,27 @@
 <TituloComponent _titulo="Documentos"></TituloComponent>
 
 <div class="container">
+    @*Seccion para el Filtro*@
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
+
+
     <div class="row">
         <DataGrid TItem="Documento_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila"
                   UseInternalEditing="false" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" 
-                  RowInserting="@insertingFila" RowUpdating="@updatingFila">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large"
+                  RowInserting="@insertingFila" RowUpdating="@updatingFila"  CustomFilter="@OnCustomFilter">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Documento_data" CellsEditableOnEditCommand="true">
@@ -63,16 +76,19 @@
                         @($"{( context as Documento_data)?.code.ToUpper()} ")
                     </DisplayTemplate>
                     <EditTemplate>
-                        <TextEdit Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
                     </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.name)" Caption="Nombre" Editable="true" Width="280">
                     <DisplayTemplate>
                         @($"{( context as Documento_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Documento_data" Field="@nameof(Documento_data.consecutive)" Caption="Consecutivo" Editable="true" Displayable="false" />
-                 
+
                 <DataGridColumn TItem="Documento_data" Field="@nameof(Documento_data.typeclass)" Caption="Clase" Editable="true" Displayable="false">
                     <DisplayTemplate>
                         @($"{( (context as Documento_data)?.typeclass)} ")

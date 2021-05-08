@@ -47,6 +47,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         private String urlinactive { get; set; } = Urls.urltercero_inactive;
         private String urlgetcode { get; set; } = Urls.urltercero_getbycode;
 
+        public string customFilterValue { get; set; }
+
 
         protected async override Task OnInitializedAsync()
         {
@@ -114,6 +116,9 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                 _Mensaje += "Por favor diligenciar el NUMERO DOCUMENTO, es un campo obligatorio.&s";
             if (_paraValidar.documentoid == null || _paraValidar.documentoid == 0)
                 _Mensaje += "Por favor diligenciar el TIPO DE DOCUMENTO, es un campo obligatorio.&s";
+            if (_paraValidar.address == null)
+                _Mensaje += "Por favor diligenciar la Dirección, es un campo obligatorio.&s";
+
 
             if (_Mensaje.Trim().Length > 0)
                 return false;
@@ -126,6 +131,8 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             _datoTipo = "0";
             data.birthdate = DateTime.Now;
             _Mensaje = "";
+            data.iddocumento = 1;
+            data.documentoid = 1;
         }
 
         public async Task insertFila(SavedRowItem<Tercero_data, Dictionary<String, object>> e)
@@ -138,6 +145,40 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             await setUbicacion(e.Item, false, urlupdate);
         }
 
+
+        public async Task insertingFila(EventArgs arg)
+        {
+            var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Tercero_data>)arg).Item;
+            var valor = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Tercero_data, System.Collections.Generic.Dictionary<string, object>>)arg).Values;
+            try
+            {
+                valor["birthdate"] = Convert.ToDateTime(valor["birthdate"].ToString()).ToString();
+            }
+            catch { item.birthdate = DateTime.Now; }
+            item.cellphone = valor["cellphone"].ToString().ToUpper();
+            //item.phone = valor["phone"].ToString().ToUpper();
+            item.name = valor["name"].ToString().ToUpper().ToUpper();
+            item.lastname = valor["lastname"].ToString().ToUpper().ToUpper();
+            item.numdocument = valor["numdocument"].ToString().ToUpper();
+            item.address = valor["address"].ToString().ToUpper();
+            item.email = valor["email"].ToString().ToUpper();
+            item.documentoid = Convert.ToInt64( valor["documentoid"].ToString());
+            //item.birthdate = DateTime.Now;
+            item.phone = item.cellphone;
+            //try
+            //{
+            //    item.birthdate = Convert.ToDateTime(valor["birthdate"].ToString());
+            //}
+            //catch (Exception ex)
+            //{
+            //    await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
+            //}
+
+            await setUbicacion(item, true, urlupdate);
+        }
+
+
+
         public async Task updatingFila(EventArgs arg)
         {
             var item = ((Blazorise.DataGrid.CancellableRowChange<OikosGreenPortal.Data.Request.Tercero_data>)arg).Item;
@@ -147,9 +188,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                 valor["birthdate"] = Convert.ToDateTime(valor["birthdate"].ToString()).ToString();
             }catch { item.birthdate = DateTime.Now; }
             item.cellphone = valor["cellphone"].ToString();
-            item.phone = valor["phone"].ToString();
+            item.phone = item.cellphone;//valor["phone"].ToString();
+            item.name = valor["name"].ToString().ToUpper();
+            item.lastname = valor["lastname"].ToString().ToUpper();
+            item.numdocument = valor["numdocument"].ToString();
+            item.address = valor["address"].ToString();
+            item.email = valor["email"].ToString();
+            //try{
+            //    item.birthdate = Convert.ToDateTime(valor["birthdate"].ToString());
+            //}catch(Exception ex){
+            //    await General.MensajeModal("ERROR", ex.Message, _modal, _nav);
+            //}
 
-
+            await setUbicacion(item, false, urlupdate);
         }
 
         public async Task inactiveFila(Tercero_data item)
@@ -181,7 +232,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
         {
             Int64 retorno = 0;
             isok = false;
-            Item.documentoid = Item.iddocumento= _datoPadre;
+            Item.iddocumento= _datoPadre = Item.documentoid.Value;
             Item.namedocum = _listaSecundaria.Where(w => w.id == _datoPadre).Select(s => s.name).FirstOrDefault();
             Item.name = Item.name.ToUpper();
             Item.lastname = Item.lastname.ToUpper();
@@ -189,6 +240,13 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             
             Item.email = Item.email== null ? "" : Item.email.ToUpper();
             Item.birthdate = Item.birthdate == null ? DateTime.Now : Item.birthdate;
+            if(Crear)
+            {
+                Item.datecreate = DateTime.Now;
+                Item.usercreate = _dataStorage.user.user;
+            }
+            Item.datemodify = DateTime.Now;
+            Item.usermodify = _dataStorage.user.user;
             Tercero_data reg = Item;
             datosAdicionales(Crear, ref reg);
             if (validaDatos(Item))
@@ -222,6 +280,22 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
                 _lista.Remove(reg);
             return retorno;
         }
+
+
+        #region Filtro
+        public bool OnCustomFilter(Tercero_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.lastname?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.numdocument?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
 
     }

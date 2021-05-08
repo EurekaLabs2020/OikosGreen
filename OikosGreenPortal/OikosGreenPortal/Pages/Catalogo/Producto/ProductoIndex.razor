@@ -6,13 +6,23 @@
 <TituloComponent _titulo="Productos"></TituloComponent>
 
 <div class="container">
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
     <div class="row">
         <DataGrid TItem="Producto_data" Data="@_lista" ShowPager="true" @bind-SelectedRow="@_regActual"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserted="@insertFila" RowUpdated="@updateFila" RowUpdating="@updatingFila"
                   UseInternalEditing="true" NewItemDefaultSetter="iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" CustomFilter="@OnCustomFilter">
 
             <ChildContent>
                 <DataGridCommandColumn TItem="Producto_data" CellsEditableOnEditCommand="true">
@@ -46,16 +56,29 @@
                     </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.id)" Caption="Id" Editable="false" Displayable="false" />
-                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.code)" Caption="Código" Editable="true" Width="60" />
+                <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.code)" Caption="Código" Editable="true" Width="60">
+                    <DisplayTemplate>
+                        @($"{( context as Producto_data)?.code.ToUpper()} ")
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Código" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
+                </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.name)" Caption="Nombre" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.name.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Producto_data" Field="@nameof(Producto_data.description)" Caption="Descripción" Displayable="false" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Producto_data)?.description.ToUpper()} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Descripción" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridNumericColumn TItem="Producto_data" Field="@nameof(Producto_data.cost)" Caption="Costo" Editable="true" Width="60" />
 
@@ -206,9 +229,9 @@
                     <div class="box"><progress class="progress is-small is-primary" max="100" /></div>
                 }
             </EmptyTemplate>
-                <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
+            <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>
 
-            </DataGrid>
+        </DataGrid>
     </div>
     <div class="row">
         <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>

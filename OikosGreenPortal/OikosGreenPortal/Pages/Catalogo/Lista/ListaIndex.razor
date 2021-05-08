@@ -5,12 +5,24 @@
 
 <TituloComponent _titulo="Lista Precio"></TituloComponent>
 <div class="container">
+    @*Seccion para el Filtro*@
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
+
     <div class="row">
         <DataGrid TItem="Lista_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserting="@insertaFila" RowUpdating="@updateFila" RowRemoving="@inactiveFila" NewItemDefaultSetter="@iniciaDatos"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" CustomFilter="@OnCustomFilter">
             <ChildContent>
                 <DataGridCommandColumn TItem="Lista_data">
                     <NewCommandTemplate>
@@ -33,32 +45,35 @@
                     </CancelCommandTemplate>
                 </DataGridCommandColumn>
 
-                <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.id)" Caption="Id" Sortable="false" Displayable="false"/>
+                <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.id)" Caption="Id" Sortable="false" Displayable="false" />
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.name)" Caption="Nombre" Validator="@validaName" Editable="true">
                     <DisplayTemplate>
                         @($"{( context as Lista_data)?.name.ToUpper()}")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.startdate)" Caption="Fecna Inicio" Editable="true">
                     @*<DisplayTemplate>
-                        @($"{( context as Lista_data )?.startdate} ")
-                    </DisplayTemplate>*@
+                            @($"{( context as Lista_data )?.startdate} ")
+                        </DisplayTemplate>*@
                     <!--<EditTemplate>-->
-                        @*<input class="form-control" type="date" name="@fechaini" value="@fechaini)" @onbeforeactivate="pasaFecha" />*@
-                        @*<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />*@
-                        @*<TextEdit  Text="@( ((DateTime)(((CellEditContext)context).CellValue)).ToString("yyyy-MM-dd") )" TextChanged="@(v=>((CellEditContext)context).CellValue=v)"/>*@
-                        @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />*@
+                    @*<input class="form-control" type="date" name="@fechaini" value="@fechaini)" @onbeforeactivate="pasaFecha" />*@
+                    @*<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />*@
+                    @*<TextEdit  Text="@( ((DateTime)(((CellEditContext)context).CellValue)).ToString("yyyy-MM-dd") )" TextChanged="@(v=>((CellEditContext)context).CellValue=v)"/>*@
+                    @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />*@
                     <!--</EditTemplate>-->
                 </DataGridColumn>
                 <DataGridColumn TItem="Lista_data" Field="@nameof(Lista_data.enddate)" Caption="Fecna Finalización" Editable="true">
                     @*<DisplayTemplate>
-                        @($"{( context as Lista_data )?.enddate} ")
-                    </DisplayTemplate>
-                    <EditTemplate>-->
-                        @*<InputDate TValue="DateTime" Value="@((DateTime)(((CellEditContext)context).CellValue))"  ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
-                        <!--<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />
-                        @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />
-                    </EditTemplate>*@
+                            @($"{( context as Lista_data )?.enddate} ")
+                        </DisplayTemplate>
+                        <EditTemplate>-->
+                            @*<InputDate TValue="DateTime" Value="@((DateTime)(((CellEditContext)context).CellValue))"  ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"/>
+                            <!--<input class="form-control" type="date" name="@context" value="@((DateTime)(((CellEditContext)context).CellValue))" />
+                            @*<DateEdit TValue="DateTime?" Date="@((DateTime)(((CellEditContext)context).CellValue))" DateChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+                        </EditTemplate>*@
                 </DataGridColumn>
                 <DataGridCheckColumn TItem="Lista_data" Field="@nameof(Lista_data.active)" Caption="Activo" Editable="false" Width="50">
                     <DisplayTemplate>
@@ -72,7 +87,7 @@
             <NextPageButtonTemplate> <span>Sig</span> </NextPageButtonTemplate>
             <LastPageButtonTemplate> <span>Ult</span> </LastPageButtonTemplate>
             <PopupTitleTemplate>
-                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>   
+                <TituloComponent _titulo=@((context.EditState== DataGridEditState.New ? "Insertando" : "Actualizando")+ " Registro")></TituloComponent>
             </PopupTitleTemplate>
             <EmptyTemplate><div class="box"> No hay información...!!</div> </EmptyTemplate>
             <LoadingTemplate> <div class="box"><progress class="progress is-small is-primary" max="100" /></div></LoadingTemplate>

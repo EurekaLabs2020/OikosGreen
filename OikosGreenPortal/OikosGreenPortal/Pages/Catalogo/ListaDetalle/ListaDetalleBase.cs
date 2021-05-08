@@ -28,6 +28,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
 
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
@@ -207,6 +208,19 @@ namespace OikosGreenPortal.Pages.Catalogo.ListaDetalle
             return retorno;
         }
 
+        #region Filtro
+        public bool OnCustomFilter(ListaDetalle_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.namelist?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.nameprod?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
 
     }

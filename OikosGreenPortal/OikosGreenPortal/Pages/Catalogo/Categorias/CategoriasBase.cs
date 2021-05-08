@@ -26,6 +26,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
         public List<String> _listaTipoUbicacion { get; set; }
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipoUbicacion { get; set; }
@@ -174,6 +175,19 @@ namespace OikosGreenPortal.Pages.Catalogo.Categorias
             return retorno;
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Categoria_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.nameparent?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

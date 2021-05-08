@@ -27,6 +27,7 @@ namespace OikosGreenPortal.Pages.Domicilio.Transportadora
         public String _mensajeIsDanger { get; set; }
         public String _datoTipo { get; set; }
         private infoBrowser _dataStorage { get; set; }
+        public string customFilterValue { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -160,7 +161,20 @@ namespace OikosGreenPortal.Pages.Domicilio.Transportadora
                 arg.ErrorText = "El nombre debe de ser en letras mayusculas";
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Transportadora_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
 
+            return
+                model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.type?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

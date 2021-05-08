@@ -2,6 +2,7 @@
 
 @inherits NuevaTransaccionBase
 @attribute [Authorize]
+@using Blazorise.Components
 
 <TituloComponent _titulo="Nueva Transacción"></TituloComponent>
 
@@ -53,18 +54,28 @@
                 {                                    
                     @if (_listaTerc != null)
                     {
-                        <div class="col-md-3">
-                            <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
-                            <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
-                                <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
-                                @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
-                                {
-                                    <SelectItem TValue="Int64" Value="@item.terceroid.Value">@item.numdocument-@item.nombrefull</SelectItem>
-                                }
-                            </Select>
-                        </div>
+            <div class="col-md-3">
+                <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
+
+                @*<Autocomplete TItem="ListAliado"
+                              Data="@_listaDB"
+                              TextField="@((item)=>item.nombre)"
+                              ValueField="@((item)=>item.nombre)"
+                              SelectedValue="@selectedSearchValue"                              
+                              SelectedValueChanged="@MySearchHandler()"
+                              Placeholder="Buscar Aliado..." />*@
+
+                <Label>@(_listaTipo.Any(a=>a.id==_datoTipo && a.thirdtype== _tipoProv[0]) ? "Proveedor" : "Aliado")</Label>
+                <Select TValue="Int64" @bind-SelectedValue="@_datoTercero" Class="form-control">
+                    <SelectItem TValue="Int64" Value="0">SELECCCIONAR...</SelectItem>
+                    @foreach (var item in _listaTerc.Where(w => w.type == _listaTipo.Where(w => w.id == _datoTipo).Select(s => s.thirdtype).FirstOrDefault()))
+                    {
+                        <SelectItem TValue="Int64" Value="@item.terceroid.Value">@item.numdocument-@item.nombrefull</SelectItem>
+                    }
+                </Select>
+            </div>
                         <div class="col-md-1">
-                            <Button Color="Color.Light" class="btn btn-block margen-sup30" Clicked="@creaTercero">...</Button>
+                            <Button Color="Color.Light" class="btn btn-block margen-sup30" Clicked="@openModalCreateTercero">...</Button>
                         </div>
                     }
                 
@@ -208,3 +219,14 @@
         </div>
     }
 </div>
+
+
+@code{
+
+    void AsignaSeleccion(string newValue)
+    {
+        selectedSearchValue = newValue;
+    }
+
+
+}

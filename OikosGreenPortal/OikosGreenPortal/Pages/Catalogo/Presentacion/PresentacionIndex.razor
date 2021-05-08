@@ -6,14 +6,26 @@
 
 <TituloComponent _titulo="Presentación"></TituloComponent>
 <div class="container">
+    @*Seccion para el Filtro*@
+    <section class="separator-custom-filter">
+        <div class="row">
+            <div class="col-md-2">
+                <span>Filtrar</span>
+            </div>
+            <div class="col-md-10">
+                <TextEdit @bind-Text="@customFilterValue" ChangeTextOnKeyPress="false" />
+            </div>
+        </div>
+    </section>
+
     <div class="row">
         <DataGrid TItem="Presentacion_data" Data="@_lista" @bind-SelectedRow="@_regActual" ShowPager="true"
-                  Filterable="true" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
+                  Filterable="false" FilterMethod="DataGridFilterMethod.Contains" PageSize="5" Editable="true"
                   EditMode="DataGridEditMode.Popup" RowStyling="@estilofila" SelectedRowStyling="@filaSeleccionada"
                   RowInserting="@insertaFila"
                   RowUpdating="@updateFila"
                   RowRemoving="@inactiveFila"
-                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large">
+                  Bordered="true" Striped="true" Responsive="true" Hoverable="true" PopupSize="ModalSize.Large" CustomFilter="@OnCustomFilter">
             @*esta linea la puse por si arroja error en algun lado - Wilder*@
             <ChildContent>
                 <DataGridCommandColumn TItem="Presentacion_data">
@@ -45,6 +57,9 @@
                     <DisplayTemplate>
                         @($"{((context as Presentacion_data)?.name.ToUpper())} ")
                     </DisplayTemplate>
+                    <EditTemplate>
+                        <TextEdit Placeholder="Nombre" Role="TextRole.Text" Text="@((String)(((CellEditContext)context).CellValue))" TextChanged="@(v=>((CellEditContext)context).CellValue=v)" ChangeTextOnKeyPress="false" />
+                    </EditTemplate>
                 </DataGridColumn>
                 <DataGridCheckColumn TItem="Presentacion_data" Field="@nameof(Presentacion_data.active)" Caption="Activo" Editable="false">
                     <DisplayTemplate>

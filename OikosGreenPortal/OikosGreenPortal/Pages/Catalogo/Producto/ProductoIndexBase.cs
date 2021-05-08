@@ -36,6 +36,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
         public String _mensajeIsDanger { get; set; }
 
         public String fileContent { get; set; }
+        public string customFilterValue { get; set; }
 
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
@@ -363,6 +364,21 @@ namespace OikosGreenPortal.Pages.Catalogo.Producto
                 _lista.Remove(reg);
             return retorno;
         }
+
+        #region Filtro
+        public bool OnCustomFilter(Producto_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.nametypeproduct?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
 
     }

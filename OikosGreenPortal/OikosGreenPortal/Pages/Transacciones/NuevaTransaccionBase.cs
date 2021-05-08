@@ -1,4 +1,5 @@
-﻿using Blazored.Modal.Services;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
+using OikosGreenPortal.Pages.Shared;
 using OikosGreenPortal.PersonalClass;
 using System;
 using System.Collections.Generic;
@@ -54,7 +56,12 @@ namespace OikosGreenPortal.Pages.Transacciones
         private String urlinactive { get; set; } = Urls.urltercero_inactive;
         private String urlgetcode { get; set; } = Urls.urltercero_getbycode;
 
-
+        public string selectedSearchValue { get; set; }
+        public class ListAliado {
+            public Int64 id { get; set; }
+            public String nombre { get; set; }
+        }
+        public IEnumerable<ListAliado> _listaDB { get; set; }
 
         public List<Transaccion_Producto> _listaDetalleProducto { get; set; }
         public class Transaccion_Producto
@@ -126,6 +133,12 @@ namespace OikosGreenPortal.Pages.Transacciones
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                     _listaProductoOrig = _dataRequestProductos.entities;
+
+                if(_listaTerc!=null && _listaTerc.Count>0)
+                {
+                    var list = _listaTerc.Where(w => w.type == "ALIADO").Select(s=>s.nombrefull).ToArray();
+                    _listaDB = Enumerable.Range(1, list.Length).Select(x => new ListAliado { nombre = list[x - 1], id = x });
+                }
             }
             catch (Exception ex)
             {
@@ -142,7 +155,20 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task Detalle()
         {
             _mostrarDetalleEncabezado = !_mostrarDetalleEncabezado;
-            
+        }
+
+        public async Task openModalCreateTercero()
+        {
+            try
+            {
+                var parameters = new ModalParameters();
+                var formModal = _modal.Show<CreateTerceroShared>($"Crear Tercero", parameters);
+                var result = await formModal.Result;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         #region Detalle Productos
@@ -353,14 +379,19 @@ namespace OikosGreenPortal.Pages.Transacciones
         public async Task creaTercero()
         {
 
+
         }
 
 
+        public void MySearchHandler(String newvalue)
+        {
 
+            selectedSearchValue = newvalue;
+        }
 
 
         #endregion
-    
-    
+
+
     }
 }
