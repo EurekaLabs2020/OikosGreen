@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OikosGreenPortal.Pages.Shared
 {
-    public class CreateTerceroShared
-    {
-    }
+    //public class CreateTerceroShared
+    //{
+    //}
 }
