@@ -161,7 +161,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             item.lastname = valor["lastname"].ToString().ToUpper().ToUpper();
             item.numdocument = valor["numdocument"].ToString().ToUpper();
             item.address = valor["address"].ToString().ToUpper();
-            item.email = valor["email"].ToString().ToUpper();
+            item.email = valor["email"] == null ? "": valor["email"].ToString().ToUpper();
             item.documentoid = Convert.ToInt64( valor["documentoid"].ToString());
             //item.birthdate = DateTime.Now;
             item.phone = item.cellphone;
