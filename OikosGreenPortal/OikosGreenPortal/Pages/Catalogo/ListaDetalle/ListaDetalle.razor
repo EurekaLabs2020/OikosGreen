@@ -94,9 +94,9 @@
                 </DataGridSelectColumn>
 
                 <DataGridNumericColumn TItem="ListaDetalle_data" Field="@nameof(ListaDetalle_data.value)" Caption="Valor" Editable="true" Width="180" Sortable="false">
-                    <DisplayTemplate>
+                    @*<DisplayTemplate>
                         @($"{ (context as ListaDetalle_data)?.value.ToString("########")}")
-                    </DisplayTemplate>
+                    </DisplayTemplate>*@
                     <EditTemplate>
                         <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" Decimals="0" />
                     </EditTemplate>
