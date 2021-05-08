@@ -23,7 +23,9 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
         public List<ParametroDetalle_data> _lista { get; set; }
         public List<Parametro_data> _listaSecundaria { get; set; }
         public ParametroDetalle_data _regActual { get; set; }
- 
+
+        public string customFilterValue { get; set; } /// Variable para Filtro
+
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
 
@@ -188,6 +190,21 @@ namespace OikosGreenPortal.Pages.Catalogo.ParametroDetalle
                 _lista.Remove(reg);
             return retorno;
         }
+
+        #region Filtro
+        public bool OnCustomFilter(ParametroDetalle_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.nameparam?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.value?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
+
 
     }
 }

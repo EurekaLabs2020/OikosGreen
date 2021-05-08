@@ -29,6 +29,7 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
         public List<String> _listaClase { get; set; }
         public List<String> _listaAfecte { get; set; }
         public List<String> _listaTerceroTipo { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
 
         public Int64 _datoPadre { get; set; }
         public String _datoTipo
@@ -295,6 +296,20 @@ namespace OikosGreenPortal.Pages.Catalogo.Documentos
             return true;
         }
 
+        #region Filtro
+        public bool OnCustomFilter(Documento_data model)
+        {
+            // We want to accept empty value as valid or otherwise
+            // datagrid will not show anything.
+            if (string.IsNullOrEmpty(customFilterValue))
+                return true;
+
+            return
+                model.type?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.code?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true
+                || model.name?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
+        }
+        #endregion
 
     }
 }

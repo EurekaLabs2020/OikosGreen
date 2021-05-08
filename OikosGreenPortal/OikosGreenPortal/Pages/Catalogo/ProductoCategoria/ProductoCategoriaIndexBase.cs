@@ -27,9 +27,10 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
 
         public String _Mensaje { get; set; }
         public String _mensajeIsDanger { get; set; }
-        public string customFilterValue { get; set; }
+
         private infoBrowser _dataStorage { get; set; }
         private String datoTipo { get; set; }
+        public string customFilterValue { get; set; } /// Variable para Filtro
         private Boolean isok { get; set; } = false;
         private String urlgetall { get; set; } = Urls.urlproductocategoria_getall;
         private String urlinsert { get; set; } = Urls.urlproductocategoria_insert;
@@ -221,6 +222,7 @@ namespace OikosGreenPortal.Pages.Catalogo.ProductoCategoria
                 || model.nameprod?.Contains(customFilterValue, StringComparison.OrdinalIgnoreCase) == true;
         }
         #endregion
+
     }
 }  
 
