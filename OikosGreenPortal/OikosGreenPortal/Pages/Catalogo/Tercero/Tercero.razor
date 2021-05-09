@@ -32,7 +32,7 @@
             <ChildContent>
                 <DataGridCommandColumn TItem="Tercero_data" CellsEditableOnEditCommand="true">
                     <NewCommandTemplate>
-                        <Button Color="Color.Success" Clicked="@context.Clicked" class="btn-create">Crear</Button>
+                        <Button Color="Color.Success" Clicked="@nuevoTercero" class="btn-create">Crear</Button>
                     </NewCommandTemplate>
                     <EditCommandTemplate>
                         <Tooltip Text="Editar"><Button Color="Color.Primary" Clicked="@context.Clicked" class="edit-button"><i class="fas fa-user-edit"></i></Button></Tooltip>

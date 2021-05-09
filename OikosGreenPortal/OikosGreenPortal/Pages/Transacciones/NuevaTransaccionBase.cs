@@ -164,6 +164,16 @@ namespace OikosGreenPortal.Pages.Transacciones
                 var parameters = new ModalParameters();
                 var formModal = _modal.Show<CreateTerceroShared>($"Crear Tercero", parameters);
                 var result = await formModal.Result;
+                if (result.Cancelled)
+                {
+                    Console.WriteLine("Modal Cancelado");
+                }
+                else
+                {
+                    TerceroTipo_data resultado =(TerceroTipo_data)result.Data;
+                    _datoTercero = resultado.idtercero;
+                    _listaTerc.Add(resultado);
+                }
             }
             catch(Exception ex)
             {

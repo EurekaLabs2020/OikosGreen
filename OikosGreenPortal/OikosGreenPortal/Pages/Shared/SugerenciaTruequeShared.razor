@@ -1,0 +1,20 @@
+﻿@inherits SugerenciaTruequeSharedBase
+
+<section>
+    <div class="container">
+        <div class="row">
+        </div>
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <Button Color="Color.Primary" Block="true" Clicked="cerrarModal" Type="ButtonType.Submit">Cerrar</Button>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+        </div>
+    </div>
+</section>

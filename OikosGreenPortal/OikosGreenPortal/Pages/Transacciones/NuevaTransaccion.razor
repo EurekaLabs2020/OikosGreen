@@ -190,7 +190,7 @@
                             <span class="alert-info">@($"{( context as Transaccion_Producto)?.quantity}")</span>
                         </DisplayTemplate>
                         <EditTemplate>
-                            <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" Decimals="2" />
+                            <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" Decimals="2" ChangeTextOnKeyPress="false"/>
                         </EditTemplate>
                     </DataGridColumn>
                     <DataGridColumn TItem="Transaccion_Producto" Field="@nameof(Transaccion_Producto.costvalue)" Caption="Valor" Editable="false" Width="150">

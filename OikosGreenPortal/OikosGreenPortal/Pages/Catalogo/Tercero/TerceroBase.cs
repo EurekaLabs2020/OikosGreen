@@ -1,4 +1,5 @@
-﻿using Blazored.Modal.Services;
+﻿using Blazored.Modal;
+using Blazored.Modal.Services;
 using Blazorise;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Newtonsoft.Json;
 using OikosGreenPortal.Data.Personal;
 using OikosGreenPortal.Data.Request;
+using OikosGreenPortal.Pages.Shared;
 using OikosGreenPortal.PersonalClass;
 using System;
 using System.Collections.Generic;
@@ -279,6 +281,32 @@ namespace OikosGreenPortal.Pages.Catalogo.Tercero
             if (!isok && Crear)
                 _lista.Remove(reg);
             return retorno;
+        }
+
+        public async Task nuevoTercero()
+        {
+            try
+            {
+                var parameters = new ModalParameters();
+                var formModal = _modal.Show<CreateTerceroShared>($"Crear Tercero", parameters);
+                var result = await formModal.Result;
+                if (result.Cancelled)
+                {
+                    Console.WriteLine("Modal Cancelado");
+                }
+                else
+                {
+                    TercerosRequest _dataRequest = new TercerosRequest();
+                    var resultado = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", urlgetall, "");
+                    _dataRequest = JsonConvert.DeserializeObject<TercerosRequest>(resultado.Content.ReadAsStringAsync().Result.ToString());
+                    if (_dataRequest != null && _dataRequest.entities != null && _dataRequest.entities.Count > 0)
+                        _lista = _dataRequest.entities;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
