@@ -1,0 +1,63 @@
+﻿@inherits SugerenciaTruequeSharedBase
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <Label>Puntos</Label>
+                <NumericEdit TValue="Decimal"  @bind-Value="_puntos" Placeholder="Numero de documento" ChangeTextOnKeyPress="false" />
+            </div>
+            <div class="col-md-4">
+                <Label>Categoria</Label>
+                @if (_listCategoria != null)
+                {
+                    <Select TValue="Int64" @bind-SelectedValue="_categoria">
+                        <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
+                        @foreach (var item in _listCategoria)
+                        {
+                            <SelectItem TValue="Int64" Value="@(item.id)">@item.name</SelectItem>
+                        }
+                    </Select>
+                }
+            </div>
+            <div class="col-md-4">
+                <Button Color="Color.Primary" Block="true" Clicked="buscarData" Type="ButtonType.Submit">Procesar</Button>
+            </div>
+
+        </div>
+        <div class="row">
+            @if(_listMostrar.Count>0)
+            {
+
+                <Table>
+                    <TableHeader>
+                        <TableHeaderCell> Nombre </TableHeaderCell>
+                        <TableHeaderCell> Puntos </TableHeaderCell>
+                    </TableHeader>
+                    <TableBody>
+                        @foreach(Producto_data fila in _listMostrar)
+                        {
+                            <TableRow>
+                                <TableRowCell> @(fila.name.Length>40 ? fila.name.Substring(0,40) : fila.name)  </TableRowCell>
+                                <TableRowCell> @fila.points </TableRowCell>
+                            </TableRow>
+                        }
+                    </TableBody>
+                </Table>
+            }
+        </div>
+
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <Button Color="Color.Primary" Block="true" Clicked="cerrarModal" Type="ButtonType.Submit">Cerrar</Button>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
+        </div>
+    </div>
+</section>

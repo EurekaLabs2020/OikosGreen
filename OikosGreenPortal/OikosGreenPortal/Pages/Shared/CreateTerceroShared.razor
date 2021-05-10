@@ -1,4 +1,5 @@
-﻿
+﻿@inherits CreateTerceroSharedBase
+
 <section>
     <div class="container">
         <div class="row">
@@ -6,7 +7,8 @@
                 <Label>Tipo Documento</Label>
                 @if (_listaSecundaria != null)
                 {
-                    <Select TValue="Int64" SelectedValue="_datoPadre" SelectedValuesChanged="@( () => OnSelectedValueChanged(_datoPadre))">
+                    <Select TValue="Int64" @bind-SelectedValue="_regActual.iddocumento">
+                        @*SelectedValue="_regActual.iddocumento" SelectedValuesChanged="@( () => OnSelectedValueChanged(_regActual.iddocumento))">*@
                         <SelectItem TValue="Int64" Value="0">SELECCIONAR...</SelectItem>
                         @foreach (var item in _listaSecundaria)
                         {
@@ -14,46 +16,65 @@
                         }
                     </Select>
                 }
-
-
             </div>
             <div class="col-md-6">
                 <Label>Documento</Label>
-                <TextEdit Role="TextRole.Text" Placeholder="Numero de documento" />
+                <TextEdit @bind-Text="_regActual.numdocument" Role="TextRole.Text" Placeholder="Numero de documento" ChangeTextOnKeyPress="false" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <Label>Nombre</Label>
-                <TextEdit Role="TextRole.Text" Placeholder="Pepito" />
+                <TextEdit @bind-Text="_regActual.name" Role="TextRole.Text" Placeholder="Nombre" ChangeTextOnKeyPress="false" />
             </div>
             <div class="col-md-6">
                 <Label>Apellido</Label>
-                <TextEdit Role="TextRole.Text" Placeholder="Perez" />
+                <TextEdit @bind-Text="_regActual.lastname" Role="TextRole.Text" Placeholder="Apellido" ChangeTextOnKeyPress="false" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <Label>Dirección</Label>
-                <TextEdit Role="TextRole.Text" Placeholder="Calle 21..." />
+                <TextEdit @bind-Text="_regActual.address" Role="TextRole.Text" Placeholder="Dirección" ChangeTextOnKeyPress="false" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <Label>Celular</Label>
-                <TextEdit Role="TextRole.Text" Placeholder="3330000000" />
+                <TextEdit @bind-Text="_regActual.cellphone" Role="TextRole.Text" Placeholder="Celular" ChangeTextOnKeyPress="false" />
             </div>
             <div class="col-md-6">
                 <Label>Correo Electronico</Label>
-                <TextEdit Role="TextRole.Email" Placeholder="pepito@dominio.com" />
+                <TextEdit @bind-Text="_regActual.email" Role="TextRole.Email" Placeholder="Email" ChangeTextOnKeyPress="false" />
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <Label>Tipo Tercero</Label>
+                @if (_listaTipo != null)
+                {
+                    <Select TValue="String" @bind-SelectedValue="_regTercTipoActual.type">
+                        @*SelectedValue="_regTercTipoActual.type" SelectedValuesChanged="@( () => OnSelectedValueChangedTercTipo(_regTercTipoActual.type))">*@
+                        <SelectItem TValue="String" Value="@("0")">SELECCIONAR...</SelectItem>
+                        @foreach (var item in _listaTipo)
+                        {
+                            <SelectItem TValue="String" Value="@(item)">@item</SelectItem>
+                        }
+                    </Select>
+                }
+            </div>
+        </div>
+
         <br />
         <br />
         <div class="row">
             <div class="col-md-12">
                 <Button Color="Color.Primary" Block="true" Clicked="createAliado" Type="ButtonType.Submit">Crear Aliado</Button>
             </div>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <MensajeInPopUp Mensaje="@_Mensaje" clase="@_mensajeIsDanger"></MensajeInPopUp>
         </div>
     </div>
 </section>

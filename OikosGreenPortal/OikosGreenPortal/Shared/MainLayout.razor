@@ -27,6 +27,7 @@
                             <Button Color="Color.Info" Type="ButtonType.Link" To="/transaccion">Transacciones</Button>
                             <Button Color="Color.Info" Type="ButtonType.Link" To="/catalogo/tercero">Terceros</Button>
                             <Button Color="Color.Info" Type="ButtonType.Link" To="/catalogo/producto">Productos</Button>
+                            <Button Color="Color.Info" Type="ButtonType.Button" Clicked="SugerenciaTrueque">Sugerencia Trueque</Button>
                         </Buttons>
                         <a href="#!" @onclick="@(e => changePass())">Cambiar contraseña</a>
                         <a href="#!" @onclick="LogOut">Salir</a>
@@ -78,6 +79,31 @@
         private void ToggleNavMenu()
         {
             collapseNavMenu = !collapseNavMenu;
+        }
+
+
+        public async Task SugerenciaTrueque()
+        {
+            try
+            {
+                var parameters = new ModalParameters();
+                var formModal = _modal.Show<SugerenciaTruequeShared>($"Sugerencias para Trueque", parameters);
+                var result = await formModal.Result;
+                if (result.Cancelled)
+                {
+                    Console.WriteLine("Modal Cancelado");
+                }
+                //else
+                //{
+                //    TerceroTipo_data resultado = (TerceroTipo_data)result.Data;
+                //    _datoTercero = resultado.idtercero;
+                //    _listaTerc.Add(resultado);
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
