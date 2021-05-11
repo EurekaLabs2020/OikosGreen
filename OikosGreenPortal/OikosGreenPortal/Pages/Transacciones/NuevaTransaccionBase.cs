@@ -134,7 +134,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 if (_dataRequestProductos != null && _dataRequestProductos.entities != null && _dataRequestProductos.entities.Count > 0)
                     _listaProductoOrig = _dataRequestProductos.entities;
 
-                if(_listaTerc!=null && _listaTerc.Count>0)
+                if (_listaTerc!=null && _listaTerc.Count>0)
                 {
                     var list = _listaTerc.Where(w => w.type == "ALIADO").Select(s=>s.nombrefull).ToArray();
                     _listaDB = Enumerable.Range(1, list.Length).Select(x => new ListAliado { nombre = list[x - 1], id = x });
@@ -243,7 +243,8 @@ namespace OikosGreenPortal.Pages.Transacciones
                             {
                                 try{
                                     prod.points = reg.value / Convert.ToDecimal(docume.valueparam);
-                                }catch(Exception dx) { prod.points = 1000; }
+                                    prod.cost = reg.value;
+                                }catch(Exception dx) { prod.points = 1; }
                             }
                         }
                     }
@@ -326,7 +327,7 @@ namespace OikosGreenPortal.Pages.Transacciones
 
         public async Task updateFila(SavedRowItem<Transaccion_Producto, Dictionary<String, object>> e)
         {
-        }
+        } 
 
 
         public async Task terminar()
