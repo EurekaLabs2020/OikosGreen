@@ -88,7 +88,7 @@ namespace OikosGreenPortal.Pages.Shared
             _regActual.lastname = _regActual.lastname.ToUpper().Trim();
             _regActual.numdocument = _regActual.numdocument.ToUpper().Trim();
             _regActual.address = _regActual.address.ToUpper().Trim();
-            _regActual.email = _regActual.email.ToUpper().Trim();
+            _regActual.email = _regActual.email== null ? "": _regActual.email.ToUpper().Trim();
             _regActual.documentoid = _regActual.iddocumento;
 
             _regTercTipoActual.usermodify = _regActual.usermodify = _regActual.usercreate = _regTercTipoActual.usercreate = _dataStorage.user.user;

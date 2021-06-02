@@ -127,7 +127,7 @@ namespace OikosGreenPortal.Pages.Transacciones
                 var resultadoProveedor = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercerotipo_getall, "");
                 TercerosTipoRequest _dataRequestProveedor = JsonConvert.DeserializeObject<TercerosTipoRequest>(resultadoProveedor.Content.ReadAsStringAsync().Result.ToString());
                 if (_dataRequestProveedor != null && _dataRequestProveedor.entities != null && _dataRequestProveedor.entities.Count > 0)
-                    _listaTerc = _dataRequestProveedor.entities.ToList();
+                    _listaTerc = _dataRequestProveedor.entities.OrderBy(o=> o.numdocument).ToList();
                 //Obtiene Productos
                 var resultadoProducto = await General.solicitudUrl<String>("", "GET", Urls.urlproducto_getall, "");
                 ProductosRequest _dataRequestProductos = JsonConvert.DeserializeObject<ProductosRequest>(resultadoProducto.Content.ReadAsStringAsync().Result.ToString());

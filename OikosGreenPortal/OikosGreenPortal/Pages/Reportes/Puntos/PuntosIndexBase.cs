@@ -65,8 +65,7 @@ namespace OikosGreenPortal.Pages.Reportes.Puntos
                     var resultadoTercero = await General.solicitudUrl<String>(_dataStorage.user.token, "GET", Urls.urltercero_getall, "");
                     TercerosRequest _dataRequestTercero = JsonConvert.DeserializeObject<TercerosRequest>(resultadoTercero.Content.ReadAsStringAsync().Result.ToString());
                     if (_dataRequestTercero != null && _dataRequestTercero.entities != null && _dataRequestTercero.entities.Count > 0)
-                        _lsttercero = _dataRequestTercero.entities.OrderBy(o => o.nombrefull).ToList();
-
+                        _lsttercero = _dataRequestTercero.entities.OrderBy(o => o.numdocument).ToList();
                 }
                 catch (Exception ex) { await General.MensajeModal("ERROR", ex.Message, _modal, _nav); }
             }
